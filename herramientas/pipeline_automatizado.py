@@ -21,6 +21,7 @@ Flujo:
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
 import math
@@ -30,8 +31,9 @@ from datetime import date
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 HERRAMIENTAS = REPO_ROOT / "herramientas"
-CALCULOS_DIR = HERRAMIENTAS / "calculos-electricos-vivienda"
-IA_CAD_DIR = HERRAMIENTAS / "ia-cad-casas"
+PROJECTS_DIR = REPO_ROOT / "proyectos"
+CALCULOS_DIR = HERRAMIENTAS / "calculos"
+CAD_DIR = HERRAMIENTAS / "cad"
 
 
 def log(msg):
@@ -41,9 +43,26 @@ def log(msg):
 def load_config(path):
     import yaml
     with open(path, "r", encoding="utf-8") as f:
-        if path.endswith(".yaml") or path.endswith(".yml"):
+        if str(path).endswith((".yaml", ".yml")):
             return yaml.safe_load(f)
         return json.load(f)
+
+
+def resolve_path(config_path, value):
+    """Resuelve una entrada absoluta, relativa al proyecto o relativa al repo."""
+    if not value:
+        return None
+    path = Path(value).expanduser()
+    if path.is_absolute():
+        return path
+    project_path = config_path.parent / path
+    if project_path.exists():
+        return project_path
+    return REPO_ROOT / path
+
+
+def config_input(config, key):
+    return config.get("entradas", {}).get(key) or config.get(key)
 
 
 def generar_json_calculo(config, output_path):
@@ -241,8 +260,8 @@ def generar_json_electrico(calculo_json_path, config, output_path):
 
 def generar_plano_dxf(layout_json_path, electrico_json_path, output_dxf):
     """Genera plano DXF arquitectonico + superposicion electrica."""
-    generator = IA_CAD_DIR / "scripts" / "dxf_generator.py"
-    overlay = IA_CAD_DIR / "scripts" / "electrical_overlay.py"
+    generator = CAD_DIR / "scripts" / "dxf_generator.py"
+    overlay = CAD_DIR / "scripts" / "electrical_overlay.py"
 
     temp_dxf = output_dxf.replace(".dxf", "_arq.dxf")
 
@@ -259,11 +278,21 @@ def generar_plano_dxf(layout_json_path, electrico_json_path, output_dxf):
             return None
         base_dxf = temp_dxf
     else:
-        log("ADVERTENCIA: No hay JSON de layout arquitectonico")
-        base_dxf = IA_CAD_DIR / "data" / "layout_example.json"
-        if not base_dxf.exists():
+        log("ADVERTENCIA: No hay layout del proyecto; se usara el ejemplo")
+        example_layout = CAD_DIR / "examples" / "layout.json"
+        if not example_layout.exists():
             log("No se encontro layout de ejemplo, omitiendo CAD")
             return None
+        cmd_arq = [
+            sys.executable, str(generator),
+            "--input", str(example_layout),
+            "--output", str(temp_dxf),
+        ]
+        result = subprocess.run(cmd_arq, capture_output=True, text=True)
+        if result.returncode != 0:
+            log(f"ERROR: {result.stderr}")
+            return None
+        base_dxf = temp_dxf
 
     if electrico_json_path and os.path.exists(electrico_json_path):
         cmd_elec = [
@@ -279,7 +308,7 @@ def generar_plano_dxf(layout_json_path, electrico_json_path, output_dxf):
             return output_dxf
         else:
             log(f"ERROR: {result.stderr}")
-            return base_dxf
+            return None
 
     return base_dxf
 
@@ -310,7 +339,7 @@ def generar_pdf(dxf_path, output_pdf):
     except Exception as e:
         log(f"No se pudo generar PDF con matplotlib: {e}")
         try:
-            qcad_script = IA_CAD_DIR / "cad-scripts" / "dxf2pdf.js"
+            qcad_script = CAD_DIR / "cad-scripts" / "dxf2pdf.js"
             if qcad_script.exists():
                 cmd = [
                     "qcad", "-no-gui", "-platform", "offscreen", "-quit",
@@ -325,6 +354,37 @@ def generar_pdf(dxf_path, output_pdf):
         except Exception:
             pass
         return None
+
+
+def ejecutar_cad_personalizado(config_path, cad_config, output_dxf, output_pdf):
+    """Ejecuta un generador CAD declarado por el manifiesto del proyecto."""
+    script = resolve_path(config_path, cad_config.get("script"))
+    electrical = resolve_path(config_path, cad_config.get("electrical"))
+    if not script or not script.exists():
+        log(f"ERROR: No existe el generador CAD personalizado: {script}")
+        return None
+    if not electrical or not electrical.exists():
+        log(f"ERROR: No existe la entrada CAD personalizada: {electrical}")
+        return None
+
+    cmd = [
+        sys.executable,
+        str(script),
+        "--electrical", str(electrical),
+        "--view", cad_config.get("view", "todo"),
+        "--output", str(output_dxf),
+        "--pdf", str(output_pdf),
+    ]
+    log(f"Ejecutando CAD personalizado: {' '.join(cmd)}")
+    result = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
+    if result.returncode != 0:
+        log(f"ERROR en CAD personalizado: {result.stderr or result.stdout}")
+        return None
+    log(result.stdout.strip())
+    if not Path(output_dxf).exists() or not Path(output_pdf).exists():
+        log("ERROR: El generador CAD no produjo todos los archivos esperados")
+        return None
+    return output_dxf
 
 
 def generar_bom(calculo_json_path, config, output_path):
@@ -645,11 +705,12 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Pipeline automatizado de instalaciones electricas"
     )
-    parser.add_argument("--config", help="Archivo YAML/JSON de configuracion del proyecto")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--config", help="Archivo YAML/JSON de configuracion del proyecto")
+    source.add_argument("--proyecto", help="ID de una carpeta dentro de proyectos/")
     parser.add_argument("--generar-ejemplo", action="store_true",
                        help="Generar archivo de configuracion de ejemplo")
-    parser.add_argument("--output-dir", default="output_pipeline",
-                       help="Directorio de salida")
+    parser.add_argument("--output-dir", help="Directorio de salida; por defecto build/<proyecto>")
     parser.add_argument("--skip-cad", action="store_true",
                        help="Saltar generacion de planos CAD")
     parser.add_argument("--skip-bom", action="store_true",
@@ -661,42 +722,60 @@ def main():
     args = parse_args()
 
     if args.generar_ejemplo:
-        ejemplo_path = os.path.join(args.output_dir, "proyecto_ejemplo.yaml")
-        os.makedirs(args.output_dir, exist_ok=True)
+        output_dir = Path(args.output_dir or REPO_ROOT / "build" / "ejemplo")
+        ejemplo_path = output_dir / "proyecto_ejemplo.yaml"
+        output_dir.mkdir(parents=True, exist_ok=True)
         generar_config_ejemplo(ejemplo_path)
         print(f"\nConfiguracion de ejemplo creada en: {ejemplo_path}")
         print("Ejecuta: python3 pipeline_automatizado.py --config " + ejemplo_path)
         return
 
-    if not args.config:
-        print("ERROR: Debes especificar --config o --generar-ejemplo")
+    if not args.config and not args.proyecto:
+        print("ERROR: Debes especificar --proyecto, --config o --generar-ejemplo")
         print("Usa: python3 pipeline_automatizado.py --generar-ejemplo")
         sys.exit(1)
 
-    if not os.path.exists(args.config):
-        print(f"ERROR: No existe el archivo: {args.config}")
+    if args.proyecto:
+        config_path = PROJECTS_DIR / args.proyecto / "proyecto.yaml"
+    else:
+        config_path = Path(args.config)
+
+    if not config_path.exists():
+        print(f"ERROR: No existe el archivo: {config_path}")
         sys.exit(1)
 
-    os.makedirs(args.output_dir, exist_ok=True)
-    out = Path(args.output_dir)
-    config_path = Path(args.config)
+    project_id = args.proyecto or config_path.parent.name or config_path.stem
+    out = Path(args.output_dir or REPO_ROOT / "build" / project_id)
+    out.mkdir(parents=True, exist_ok=True)
 
     log(f"Iniciando pipeline para: {config_path.name}")
     print("=" * 60)
 
     # 1. Cargar configuracion
-    config = load_config(args.config)
+    config = load_config(config_path)
+    if config.get("automatizacion", {}).get("pipeline_habilitado") is False:
+        log("ERROR: El manifiesto marca este pipeline como pendiente de migracion")
+        sys.exit(2)
 
     # 2. Generar JSON de calculo
     calculo_json = out / "calculo.json"
-    generar_json_calculo(config, calculo_json)
+    calculos_source = resolve_path(config_path, config_input(config, "calculos_json"))
+    if calculos_source:
+        if not calculos_source.exists():
+            log(f"ERROR: No existe la entrada de calculos: {calculos_source}")
+            sys.exit(1)
+        shutil.copy2(calculos_source, calculo_json)
+        log(f"Entrada de calculo copiada desde: {calculos_source}")
+    else:
+        generar_json_calculo(config, calculo_json)
 
     # 3. Ejecutar calculos
     calculos_out = out / "calculos"
-    ejecutar_calculos(calculo_json, calculos_out)
+    if ejecutar_calculos(calculo_json, calculos_out) is None:
+        sys.exit(1)
 
     # Leer resultados
-    resultados_json = calculos_out / "resultados_aquiles.json"
+    resultados_json = calculos_out / "resultados.json"
     if not resultados_json.exists():
         log("ERROR: No se generaron los resultados de calculo")
         sys.exit(1)
@@ -715,26 +794,43 @@ def main():
 
     # 4. Generar JSON electrico
     electrico_json = out / "electrico.json"
-    generar_json_electrico(resultados_json, config, electrico_json)
+    electrico_source = resolve_path(config_path, config_input(config, "electrico_json"))
+    if electrico_source:
+        if not electrico_source.exists():
+            log(f"ERROR: No existe la entrada electrica: {electrico_source}")
+            sys.exit(1)
+        shutil.copy2(electrico_source, electrico_json)
+        log(f"Entrada electrica copiada desde: {electrico_source}")
+    else:
+        generar_json_electrico(resultados_json, config, electrico_json)
 
     # 5. Generar plano CAD
     layout_json = None
-    layout_path = config.get("layout_json")
+    layout_path = config_input(config, "layout_json")
     if layout_path:
-        layout_json = Path(layout_path)
+        layout_json = resolve_path(config_path, layout_path)
         if not layout_json.exists():
-            layout_json = config_path.parent / layout_path
-            if not layout_json.exists():
-                layout_json = None
+            layout_json = None
 
     dxf_output = None
+    cad_ok = True
     if not args.skip_cad:
         dxf_output = str(out / "plano_electrico.dxf")
         pdf_output = str(out / "plano_electrico.pdf")
-
-        result = generar_plano_dxf(layout_json, electrico_json, dxf_output)
-        if result:
-            generar_pdf(result, pdf_output)
+        cad_personalizado = config.get("automatizacion", {}).get("cad_personalizado")
+        if cad_personalizado:
+            result = ejecutar_cad_personalizado(
+                config_path, cad_personalizado, dxf_output, pdf_output
+            )
+        else:
+            result = generar_plano_dxf(layout_json, electrico_json, dxf_output)
+            if result:
+                pdf_result = generar_pdf(result, pdf_output)
+                cad_ok = bool(pdf_result and Path(dxf_output).exists())
+            else:
+                cad_ok = False
+        if cad_personalizado:
+            cad_ok = bool(result)
 
     # 6. Generar BOM
     if not args.skip_bom:
@@ -747,7 +843,6 @@ def main():
     os.makedirs(tex_dst, exist_ok=True)
     for f_name in os.listdir(tex_src):
         if f_name.endswith(".tex"):
-            import shutil
             shutil.copy2(os.path.join(tex_src, f_name), os.path.join(tex_dst, f_name))
 
     print(f"\n{'=' * 60}")
@@ -755,12 +850,15 @@ def main():
     print(f"  Resultados:  {out}")
     print(f"  Calculos:    {calculos_out}")
     print(f"  Tablas LaTeX: {tex_dst}")
-    if not args.skip_cad and dxf_output:
+    if not args.skip_cad and cad_ok:
         print(f"  Plano DXF:   {dxf_output}")
         print(f"  Plano PDF:   {pdf_output}")
     if not args.skip_bom:
         print(f"  BOM:         {out / 'bom.json'}")
     print("=" * 60)
+    if not cad_ok:
+        log("Pipeline incompleto: fallo la etapa CAD")
+        sys.exit(2)
 
 
 if __name__ == "__main__":

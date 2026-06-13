@@ -1,0 +1,200 @@
+\chapter*{CALCULOS JUSTIFICATIVOS}
+\addcontentsline{toc}{chapter}{CALCULOS JUSTIFICATIVOS}
+
+% Reinicio de contadores para numeracion coherente con el capitulo 2.
+\setcounter{section}{0}
+\renewcommand{\thesection}{2.\arabic{section}.}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{2.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+\renewcommand{\theHsection}{calculos.\arabic{section}}
+\renewcommand{\theHsubsection}{calculos.\arabic{section}.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{calculos.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\section{NORMAS APLICABLES Y BASES DE DISENO}
+
+Los calculos justificativos se desarrollan para una instalacion residencial monofasica en baja tension. Las normas consideradas como base son el Codigo Nacional de Electricidad - Utilizacion, la Norma Tecnica EM.010 del Reglamento Nacional de Edificaciones, la Norma DGE de Simbolos Graficos en Electricidad y los criterios tecnicos de la empresa concesionaria local.
+
+La auditoria normativa del capitulo 2 corrigio tres criterios importantes:
+\begin{itemize}
+  \item La Regla CNE-U 050-204 no se usa como sustento para el factor \(1.25\), porque la revision del texto disponible la relaciona con escuelas y no con vivienda.
+  \item El factor \(1.25\) se mantiene solo como criterio preliminar conservador para verificar la capacidad del conductor. Su sustento normativo final debe revisarse en el CNE-U antes del cierre.
+  \item Los circuitos derivados de alumbrado se dimensionan con conductor minimo de \(2.5\text{ mm}^2\), conforme a la observacion de auditoria sobre CNE-U 030-002. No se adopta \(1.5\text{ mm}^2\) como seccion definitiva para circuitos derivados de alumbrado.
+\end{itemize}
+
+\section{PARAMETROS ELECTRICOS DEL SISTEMA}
+
+Para el calculo preliminar se adoptan los parametros de la Tabla \ref{tab:parametros_calculo}.
+
+\begin{table}[H]
+\centering
+\caption{Parametros electricos usados en el calculo preliminar.}
+\label{tab:parametros_calculo}
+\begin{tabularx}{\textwidth}{l c L}
+\toprule
+\textbf{Parametro} & \textbf{Valor} & \textbf{Observacion} \\
+\midrule
+Tension nominal & \(220\text{ V}\) & Suministro monofasico residencial por confirmar con concesionaria. \\
+Frecuencia & \(60\text{ Hz}\) & Valor usual del sistema electrico nacional. \\
+Factor de potencia & \(0.90\) & Valor preliminar para cargas residenciales combinadas. \\
+Resistividad del cobre & \(0.0178\ \Omega\cdot\text{mm}^2/\text{m}\) & Valor unico usado en motor, tablas y formulas. \\
+Factor de diseno del conductor & \(1.25\) & Criterio conservador preliminar; REVISAR sustento normativo final. \\
+Limite de caida alimentador & \(1.5\%\) & Criterio de diseno conservador; el limite normativo debe verificarse en CNE-U. \\
+Limite de caida derivados & \(2.5\%\) & Criterio usado para circuitos derivados. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{DATOS BASE DE AREAS}
+
+Las areas arquitectonicas disponibles aun no son definitivas. La memoria descriptiva anterior, el cuestionario y los croquis no coinciden plenamente, por lo que se trabaja con un escenario de calculo provisional y se marca el estado de cada dato.
+
+\input{tablas/tabla_areas.tex}
+
+El area techada total usada para el escenario preliminar es \(120.00\text{ m}^2\). Este valor no reemplaza la medicion final de planos; solo permite evaluar la demanda basica por area mientras Aquiles confirma las medidas reales por piso.
+
+\section{LEVANTAMIENTO PRELIMINAR DE CARGAS}
+
+El levantamiento de cargas se organiza por circuitos derivados. Las potencias unitarias y cantidades provienen de las respuestas preliminares, los croquis de distribucion y el cuadro de cargas generado por el motor Python. El circuito C6 se trata como dato sensible porque la cocina puede ser a gas o electrica.
+
+Para evitar cerrar una condicion no confirmada, el motor calcula dos escenarios:
+\begin{itemize}
+  \item \textbf{Escenario 1:} cocina a gas o sin cocina electrica de alta potencia.
+  \item \textbf{Escenario 2:} cocina electrica considerada como caso conservador preliminar.
+\end{itemize}
+
+\input{tablas/tabla_escenarios.tex}
+
+\section{POTENCIA INSTALADA}
+
+La potencia instalada se calcula con la suma de las potencias nominales de las salidas y equipos considerados:
+\begin{equation}
+P_{inst}=\sum_{j=1}^{n} \left(N_j \times P_j\right)
+\end{equation}
+
+Donde \(N_j\) es la cantidad de elementos de la carga tipo \(j\) y \(P_j\) es la potencia nominal unitaria en watts. En el escenario sin cocina electrica de alta potencia se obtiene \(P_{inst}=9,058\text{ W}\). En el escenario con cocina electrica considerada se obtiene \(P_{inst}=11,658\text{ W}\).
+
+\section{MAXIMA DEMANDA}
+
+La maxima demanda se verifica por dos criterios y se adopta el mayor resultado para no subdimensionar el alimentador:
+\begin{equation}
+P_{MD,adoptada}=\max\left(P_{MD,circuitos},P_{MD,CNE}\right)
+\end{equation}
+
+El metodo por circuitos calcula:
+\begin{equation}
+P_{MD,circuitos}=\sum \left(P_{inst,circuito}\times FD_{circuito}\right)
+\end{equation}
+
+El metodo de carga basica de vivienda, segun el criterio CNE-U 050-200 revisado en la auditoria, considera:
+\begin{equation}
+P_{base}=2,500\text{ W}+1,000\text{ W}\times
+\left\lceil\frac{\max(A_{techada}-90,0)}{90}\right\rceil
+\end{equation}
+
+Para \(A_{techada}=120\text{ m}^2\), la carga basica es:
+\begin{equation}
+P_{base}=2,500\text{ W}+1,000\text{ W}=3,500\text{ W}
+\end{equation}
+
+Si la vivienda tuviera cocina electrica, el escenario conservador incorpora \(6,000\text{ W}\) para esa carga, obteniendo \(P_{MD,CNE}=9,500\text{ W}\). El metodo por circuitos del mismo escenario arroja \(10,358\text{ W}\); por lo tanto, el valor adoptado provisionalmente para dimensionamiento conservador es:
+\begin{equation}
+P_{MD,adoptada}=10,358\text{ W}
+\end{equation}
+
+Este valor no confirma que la vivienda tendra cocina electrica. Se usa para evitar que el alimentador y las protecciones queden subdimensionados mientras Aquiles confirma el tipo real de cocina.
+
+\section{CORRIENTE DE EMPLEO Y CORRIENTE DE DISENO}
+
+La corriente de empleo del alimentador se calcula como:
+\begin{equation}
+I_b=\frac{P_{MD,adoptada}}{V\times\cos\phi}
+\end{equation}
+
+Para el escenario conservador preliminar:
+\begin{equation}
+I_b=\frac{10,358\text{ W}}{220\text{ V}\times0.90}=52.31\text{ A}
+\end{equation}
+
+La corriente de diseno del conductor se verifica con un margen conservador:
+\begin{equation}
+I_d=1.25\times I_b=1.25\times52.31\text{ A}=65.39\text{ A}
+\end{equation}
+
+El factor \(1.25\) no queda citado como exigencia de la Regla CNE-U 050-204. En esta version se conserva como criterio preliminar de diseno y se mantiene marcado para revision normativa final.
+
+\section{SELECCION DEL ALIMENTADOR PRINCIPAL}
+
+La seleccion del alimentador se realiza con dos controles:
+\begin{itemize}
+  \item Capacidad del conductor: \(I_d \leq I_z\).
+  \item Coordinacion de proteccion: \(I_b \leq I_{ITM} \leq I_z\).
+\end{itemize}
+
+Con el escenario conservador preliminar, el motor selecciona conductor de cobre de \(16.0\text{ mm}^2\), con ampacidad referencial \(I_z=66\text{ A}\), e interruptor termomagnetico bipolar de \(63\text{ A}\). La verificacion principal queda:
+\begin{equation}
+65.39\text{ A}\leq66\text{ A}
+\end{equation}
+\begin{equation}
+52.31\text{ A}\leq63\text{ A}\leq66\text{ A}
+\end{equation}
+
+Si Aquiles confirma cocina a gas y no existe otra carga electrica de alta potencia, el escenario alternativo permite revisar el alimentador a \(10.0\text{ mm}^2\) e interruptor general bipolar de \(40\text{ A}\). Esa opcion no debe cerrarse hasta confirmar las cargas reales.
+
+\section{CIRCUITOS DERIVADOS}
+
+La distribucion preliminar considera ocho circuitos derivados:
+\begin{itemize}
+  \item C1: Alumbrado del primer piso.
+  \item C2: Tomacorrientes generales del primer piso.
+  \item C3: Tomacorriente auxiliar de cocina del primer piso.
+  \item C4: Alumbrado del segundo piso.
+  \item C5: Tomacorrientes generales del segundo piso.
+  \item C6: Cocina del segundo piso o carga de cocina de alta potencia, por confirmar.
+  \item C7: Lavadora del segundo piso.
+  \item C8: Bomba de agua exterior.
+\end{itemize}
+
+Los circuitos C1 y C4 usan \(2.5\text{ mm}^2\) como seccion minima para alumbrado derivado. El circuito C6 se dimensiona de manera conservadora con \(10.0\text{ mm}^2\) en el escenario con cocina electrica preliminar.
+
+\section{VERIFICACION DE CAIDA DE TENSION}
+
+La caida de tension monofasica se calcula con:
+\begin{equation}
+\Delta V=\frac{2\times L\times I_b\times\rho}{S}
+\end{equation}
+
+Y el porcentaje se obtiene mediante:
+\begin{equation}
+\%\Delta V=\frac{\Delta V}{V}\times100
+\end{equation}
+
+Para el alimentador del escenario conservador preliminar, con recorrido supuesto de \(12\text{ m}\), conductor de \(16.0\text{ mm}^2\), \(\rho=0.0178\ \Omega\cdot\text{mm}^2/\text{m}\) e \(I_b=52.31\text{ A}\), la caida de tension calculada es \(0.635\%\). Este resultado cumple el criterio conservador adoptado de \(1.5\%\), aunque la longitud real medidor--TG debe confirmarse.
+
+\section{CUADRO RESUMEN DE CARGAS}
+
+El cuadro siguiente corresponde al escenario de dimensionamiento conservador preliminar con cocina electrica considerada. No confirma que la cocina electrica vaya a instalarse; solo documenta la hipotesis que gobierna el dimensionamiento actual.
+
+\input{tablas/tabla_cargas.tex}
+
+\section{CUADRO RESUMEN DE CONDUCTORES, TUBERIAS Y PROTECCIONES}
+
+La Tabla \ref{tab:conductores-protecciones-cocina-electrica-preliminar} muestra la verificacion de conductor, proteccion y caida de tension generada por el motor Python. En la columna de estado, las tres verificaciones corresponden a conductor, coordinacion e indice de caida de tension.
+
+\input{tablas/tabla_conductores.tex}
+
+\section{SISTEMA DE PUESTA A TIERRA}
+
+El proyecto contempla un sistema de puesta a tierra residencial asociado al tablero general y a los tomacorrientes con contacto de tierra. La resistencia objetivo preliminar se mantiene como dato por confirmar, porque debe validarse con la normativa aplicable, la disponibilidad de terreno natural y la medicion de resistividad o resistencia en obra.
+
+El calculo detallado del pozo de tierra no se cierra en esta version. Deben confirmarse ubicacion, tipo de electrodo, condiciones del suelo y valor objetivo antes de aprobar el dimensionamiento final del S.P.A.T.
+
+\section{OBSERVACIONES TECNICAS}
+
+\begin{itemize}
+  \item Los resultados del presente capitulo son preliminares y estan sujetos a validacion de areas, cargas reales y recorridos de canalizacion.
+  \item El escenario recomendado para no subdimensionar, mientras no haya respuesta de Aquiles, es el escenario conservador con cocina electrica considerada.
+  \item Si Aquiles confirma cocina a gas, ausencia de ducha electrica y ausencia de terma electrica, se podra recalcular y posiblemente reducir alimentador e interruptor general.
+  \item La seleccion de \(2.5\text{ mm}^2\) para alumbrado corrige la observacion critica de la auditoria.
+  \item La cita a CNE-U 050-204 fue retirada como fundamento del factor \(1.25\).
+  \item Las longitudes usadas en caida de tension son supuestas; deben corregirse con el plano electrico y la ubicacion real del medidor y tablero general.
+\end{itemize}

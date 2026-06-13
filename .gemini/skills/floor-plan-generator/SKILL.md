@@ -1,8 +1,8 @@
 ---
 name: floor-plan-generator
-description: Use when the user wants to generate, design, or layout a floor plan using AI constraint-satisfaction solver and room dimensions.
-version: 1.0.0
-author: Zuha Aqib & Antigravity
+description: Use when a croquis or room specification must be converted into a reviewable floor-plan JSON and CAD preview.
+version: 2.0.0
+author: Proyecto de instalaciones electricas
 tags:
   - architecture
   - floor-plan
@@ -11,29 +11,34 @@ tags:
   - ai
 ---
 
-# Floor Plan Generator Using AI Skill
+# Generación de plantas desde croquis
 
-This skill allows the agent to generate AI-based floor plans based on room requirements, sizes, and architectural constraints. It uses a Constraint Satisfaction Problem (CSP) solver.
+Convierte un croquis o una lista de ambientes en datos estructurados compatibles con `herramientas/cad/`.
 
-## When to Use
-- When the user asks to generate a floor plan.
-- When the user wants to layout rooms within a specific total area.
-- When the user asks about architectural floor planning using AI.
+## Cuándo usarla
 
-## How to Use / Instructions
-1. Parse the user's input for the floor plan request, which typically includes:
-   - **Total Area** (e.g., 2000 sq ft)
-   - **List of Rooms** and their desired sizes or quantities (e.g., Kitchen, Lounge Area, Garage, Balcony, Bedroom)
-2. Run the CSP solver script: `python "C:/Users/renzo/Floor-Plan-Generator-Using-AI/src/final.py"`.
-3. The solver will output valid layouts (order of rooms satisfying constraints like: no Kitchen next to Master Bedroom, etc.).
-4. Format the output to present the generated layouts.
-5. You can also offer to open the interactive Visualizer: `C:/Users/renzo/Floor-Plan-Generator-Using-AI/visualizer.html` in the user's browser, which provides a premium, interactive interface to generate and view floor plans.
+- Al interpretar un croquis recibido como imagen o PDF.
+- Al crear o corregir `proyectos/<id>/arquitectura/datos/piso-<n>.json`.
+- Al generar una vista DXF/PDF para revisión antes del diseño eléctrico.
 
-## Output Format
-Render the floor plan list and explain the constraints checked. Emphasize that they can run the graphical visualizer locally.
+## Instrucciones
 
-## Original Repository Reference
-The core solver and logic of this skill is based on the following repository:
-- **Repository URL:** [z-aqib/Floor-Plan-Generator-Using-AI](https://github.com/z-aqib/Floor-Plan-Generator-Using-AI)
-- **Local Clone Path:** [Floor-Plan-Generator-Using-AI](file:///C:/Users/renzo/Floor-Plan-Generator-Using-AI)
+1. Leer `AGENTS.md` y `proyectos/<id>/proyecto.yaml`.
+2. Conservar el croquis original en `proyectos/<id>/fuentes/`; nunca modificarlo.
+3. Extraer muros, ambientes, puertas, ventanas, escaleras y cotas. Marcar como `por confirmar` cualquier dimensión no visible.
+4. Usar `herramientas/cad/examples/layout.json` como esquema de referencia.
+5. Guardar la propuesta en `build/<id>/arquitectura/` durante la revisión.
+6. Generar la vista con:
 
+   ```bash
+   python3 herramientas/cad/scripts/dxf_generator.py \
+     --input build/<id>/arquitectura/piso-<n>.json \
+     --output build/<id>/arquitectura/piso-<n>.dxf
+   ```
+
+7. Comparar visualmente el resultado contra la fuente y documentar diferencias.
+8. Copiar a `arquitectura/datos/` solo después de aprobación humana.
+
+## Salida
+
+Entregar JSON, DXF de revisión, lista de supuestos e incertidumbres pendientes. No afirmar que una planta inferida es un levantamiento real.

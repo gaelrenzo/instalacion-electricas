@@ -155,7 +155,7 @@ def normalizar_nombre_material(nombre: str, equivalencias: Optional[Dict[str, An
             return f"{tipo} pvc sap electrica {fmt_num(diam)} mm"
         return f"{tipo} pvc sap electrica"
 
-    # Reglas explicitas para los materiales mas comunes del BOM de Aquiles.
+    # Reglas explicitas para materiales electricos residenciales frecuentes.
     if categoria == "cables":
         seccion = specs.get("seccion_mm2")
         if seccion:

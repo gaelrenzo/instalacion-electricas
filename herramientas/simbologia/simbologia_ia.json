@@ -1,0 +1,148 @@
+{
+  "name": "Biblioteca de Simbología Eléctrica e Instrucciones para Modelación por IA",
+  "version": "2.0.0",
+  "description": "Especificación de la simbología eléctrica y los formatos JSON de plano individual y multipiso soportados por el repositorio.",
+  "extensions_supported": [".json", ".dxf"],
+  "scripts_compiladores": {
+    "formato_individual": "herramientas/cad/scripts/electrical_overlay.py",
+    "formato_multipiso": "extensión declarada por el manifiesto del proyecto"
+  },
+  "formatos_json": {
+    "formato_individual": {
+      "descripcion": "Estructura por piso único. Los elementos se declaran en la raíz del JSON y la posición usa campos 'x' e 'y'.",
+      "claves_y_propiedades": {
+        "luminarias": {
+          "fields": ["id", "x", "y", "circuit", "label"],
+          "circuit_field": "circuit",
+          "position_fields": ["x", "y"]
+        },
+        "interruptores": {
+          "fields": ["id", "x", "y", "circuit", "label", "kind"],
+          "circuit_field": "circuit",
+          "position_fields": ["x", "y"],
+          "kind_options": {
+            "simple": "Interruptor simple (S)",
+            "conmutado": "Interruptor de 3 vías/conmutado (S3)"
+          }
+        },
+        "tomacorrientes": {
+          "fields": ["id", "x", "y", "circuit", "label", "kind"],
+          "circuit_field": "circuit",
+          "position_fields": ["x", "y"],
+          "kind_options": {
+            "doble": "Tomacorriente doble estándar",
+            "tierra": "Tomacorriente doble con conexión a tierra",
+            "especial": "Carga pesada / especial (rombo en plano)",
+            "bomba": "Dedicado a bomba exterior"
+          }
+        },
+        "tableros": {
+          "fields": ["id", "x", "y", "label", "note"],
+          "position_fields": ["x", "y"]
+        },
+        "medidores": {
+          "fields": ["id", "x", "y", "label", "note"],
+          "position_fields": ["x", "y"]
+        },
+        "equipos": {
+          "fields": ["id", "kind", "x", "y", "circuit", "label"],
+          "position_fields": ["x", "y"],
+          "kind_options": {
+            "bomba": "Bomba de agua (círculo con B)",
+            "ducto": "Ducto vertical (círculo con equis)",
+            "equipo": "Genérico (cuadrado)"
+          }
+        },
+        "rutas": {
+          "fields": ["id", "circuit", "label", "points", "linetype"],
+          "points_format": "Arreglo de coordenadas [[x1, y1], [x2, y2], ...]",
+          "linetype_options": ["DASHED", "CONTINUOUS"]
+        }
+      }
+    },
+    "formato_multipiso": {
+      "descripcion": "Estructura consolidada multipiso. Los elementos se agrupan dentro de un array 'floors' y las posiciones se definen mediante un array 'pos' de dos elementos [x, y].",
+      "claves_y_propiedades": {
+        "floors_array": {
+          "fields": ["nombre", "layout", "base_dxf", "luminarias", "interruptores", "tomacorrientes", "tableros", "medidores", "puesta_tierra", "canalizaciones"],
+          "elemento_fields": {
+            "luminarias": {
+              "fields": ["circuito", "pos"],
+              "circuit_field": "circuito",
+              "position_field": "pos"
+            },
+            "interruptores": {
+              "fields": ["circuito", "pos", "tipo"],
+              "circuit_field": "circuito",
+              "position_field": "pos",
+              "tipo_options": {
+                "simple": "Interruptor simple (S)",
+                "conmutado": "Interruptor de 3 vías/conmutado (S3)"
+              }
+            },
+            "tomacorrientes": {
+              "fields": ["circuito", "pos", "tipo"],
+              "circuit_field": "circuito",
+              "position_field": "pos",
+              "tipo_options": {
+                "doble": "Tomacorriente estándar",
+                "tierra": "Con conexión a tierra",
+                "protegido": "Tomacorriente con protección diferencial (P)",
+                "especial": "Carga pesada especial (E)",
+                "cocina": "Cocina eléctrica (tierra)",
+                "lavadora": "Lavadora (tierra)",
+                "bomba": "Bomba de agua"
+              }
+            },
+            "tableros": {
+              "fields": ["id", "pos"],
+              "position_field": "pos"
+            },
+            "medidores": {
+              "fields": ["pos"],
+              "position_field": "pos"
+            },
+            "puesta_tierra": {
+              "fields": ["pos"],
+              "position_field": "pos"
+            },
+            "canalizaciones": {
+              "fields": ["circuito", "puntos"],
+              "puntos_format": "Arreglo de puntos [[x1, y1], [x2, y2], ...]"
+            }
+          }
+        }
+      }
+    }
+  },
+  "simbologia_grafica_dxf": {
+    "Luminaria": {
+      "layer": "ELEC_LUMINARIAS",
+      "graphics": "Círculo de radio 0.16/0.18 con líneas en cruz (+ o x) centradas"
+    },
+    "Interruptor": {
+      "layer": "ELEC_INTERRUPTORES",
+      "graphics": "Círculo de radio 0.10/0.12 con un trazo inclinado. Texto de apoyo 'S' o 'S3' rotulado a una distancia segura"
+    },
+    "Tomacorriente": {
+      "layer": "ELEC_TOMACORRIENTES",
+      "graphics": "Estándar: Círculo de radio 0.13 con dos paralelas horizontales secantes. Con tierra: Agrega línea perpendicular hacia afuera. Especial: Rombo de dimensiones proporcionales"
+    },
+    "Tablero_General": {
+      "layer": "ELEC_TABLERO o ELEC_TABLEROS",
+      "graphics": "Rectángulo de 0.55x0.38 m (o 0.44x0.32 m) con texto 'TG' o ID del tablero centrado"
+    },
+    "Medidor": {
+      "layer": "ELEC_MEDIDOR",
+      "graphics": "Círculo de radio 0.18/0.22 con la letra 'M' centrada"
+    },
+    "Puesta_a_Tierra": {
+      "layer": "ELEC_PUESTA_TIERRA",
+      "graphics": "Símbolo de tierra estándar de tres trazos horizontales decrecientes en sentido vertical"
+    },
+    "Canalizacion": {
+      "layer": "ELEC_CANALIZACION o ELEC_CIRCUITO_CX",
+      "graphics": "Líneas discontinuas (tipo de línea: 'DASHED') que siguen trayectorias ortogonales y unen los componentes"
+    }
+  }
+}

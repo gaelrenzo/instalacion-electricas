@@ -2025,7 +2025,7 @@ def escribir_reportes_adicionales(
     )
     
     # 7. Generar README.md
-    generar_md_readme(output_dir / "README.md", resumen)
+    generar_md_readme(output_dir / "README.md", raw_bom, resumen)
     if raw_bom is not None:
         generar_informe_latex_imprimible(output_dir, raw_bom, comparativas, resumen)
 
@@ -2199,7 +2199,7 @@ def generar_informe_latex_imprimible(
 \setlength{{\parskip}}{{5pt}}
 \renewcommand{{\arraystretch}}{{1.16}}
 \title{{Informe comparativo de cotizacion de materiales electricos}}
-\author{{Proyecto Aquiles Taylor Ramos Yapo}}
+\author{{{tex(raw_bom.get('propietario', 'Por completar'))}}}
 \date{{{tex(datetime.now().strftime('%d/%m/%Y'))}}}
 \begin{{document}}
 \maketitle
@@ -2207,7 +2207,7 @@ def generar_informe_latex_imprimible(
 \vfill
 \begin{{center}}
 \large Informe listo para revision, impresion y gestion de compra\\[8pt]
-\normalsize BOM de instalaciones electricas interiores de vivienda unifamiliar de dos pisos
+\normalsize {tex(raw_bom.get('proyecto', 'Proyecto de instalaciones electricas'))}
 \end{{center}}
 \vfill
 \newpage
@@ -2217,7 +2217,7 @@ def generar_informe_latex_imprimible(
 \section{{Resumen ejecutivo}}
 Se evaluaron {len(comparativas)} materiales del BOM sin alterar sus unidades de diseno. La cobertura de la recomendacion mixta es {tex(resumen.get('cobertura_bom', '0/0'))} y el costo de compra real, considerando rollos, tubos, paquetes y unidades completas, es \textbf{{S/ {resumen.get('total_compra_real_mixta', 0.0):.2f}}}.
 
-La corrida anterior tenia 23 materiales recomendados, 23 pendientes y un total parcial de S/ 2537.10, basado practicamente solo en Promart. El presente informe separa precio faltante de precio cero, documenta bloqueos y exige URL y confianza tecnica para recomendar.
+El informe separa precio faltante de precio cero, documenta bloqueos y exige URL y confianza tecnica para recomendar.
 
 \textbf{{Estado de calidad:}} {tex(resumen.get('mensaje_calidad', ''))}
 
@@ -2529,11 +2529,11 @@ def generar_md_pendientes(path: Path, comparativas: List[ComparativaItem]) -> No
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def generar_md_readme(path: Path, resumen: Dict[str, Any]) -> None:
+def generar_md_readme(path: Path, raw_bom: Dict[str, Any], resumen: Dict[str, Any]) -> None:
     lines = [
-        "# Cotización de Materiales - Proyecto Aquiles",
+        f"# Cotización de Materiales - {raw_bom.get('proyecto', 'Proyecto')}",
         "",
-        "Este directorio contiene los entregables formales de la cotización multi-proveedor de materiales del proyecto de instalaciones eléctricas de Aquiles Ramos.",
+        "Este directorio contiene los entregables de la cotización multi-proveedor del proyecto.",
         "",
         "## Estructura de Salidas",
         "",
@@ -2579,8 +2579,8 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Cotizador automatico multi-proveedor")
     p.add_argument("--bom", required=True, help="Ruta al BOM JSON")
     p.add_argument("--proveedores", default=",".join(DEFAULT_PROVEEDORES), help="Lista separada por comas")
-    p.add_argument("--output", default=str(BASE_DIR / "salidas" / "aquiles"), help="Directorio de salida")
-    p.add_argument("--output-proyecto-aquiles", help="Copia formal organizada dentro de Aquiles")
+    p.add_argument("--output", default="build/cotizacion", help="Directorio de salida")
+    p.add_argument("--output-proyecto", help="Copia adicional organizada dentro de un proyecto")
     p.add_argument("--max-resultados", type=int, default=5, help="Maximo de resultados por proveedor")
     p.add_argument("--max-materiales", type=int, help="Limitar materiales procesados")
     p.add_argument("--usar-cache", action="store_true", default=True, help="Usar cache local")
@@ -2630,8 +2630,8 @@ def main() -> int:
     print(f"BOM: {bom_path} ({len(materiales)} materiales, hash {hash_b})")
     print(f"Proveedores: {', '.join(proveedores_slugs)}")
     print(f"Salida primaria: {output_dir}")
-    if args.output_proyecto_aquiles:
-        print(f"Salida formal proyecto Aquiles: {args.output_proyecto_aquiles}")
+    if args.output_proyecto:
+        print(f"Salida adicional del proyecto: {args.output_proyecto}")
     if args.offline:
         print("Modo offline activo")
 
@@ -2651,15 +2651,15 @@ def main() -> int:
     escribir_reportes_adicionales(output_dir, comparativas, resumen, manifest, raw_bom)
     entrega_final_primaria = None
     if args.permitir_estimados:
-        from entrega_final_aquiles import generar_entrega_final
+        from entrega_academica import generar_entrega_final
 
         entrega_final_primaria = generar_entrega_final(
             raw_bom, comparativas, output_dir, resultado_aceptable_tienda
         )
     
-    # Generar copia organizada en proyecto Aquiles si se solicita
-    if args.output_proyecto_aquiles:
-        proj_dir = Path(args.output_proyecto_aquiles)
+    # Generar una copia adicional si se solicita.
+    if args.output_proyecto:
+        proj_dir = Path(args.output_proyecto)
         if proj_dir.exists():
             # Limpiar evidencias previas
             shutil.rmtree(proj_dir, ignore_errors=True)
@@ -2667,7 +2667,7 @@ def main() -> int:
         generar_salidas(raw_bom, materiales, comparativas, manifest, proj_dir, hash_b)
         escribir_reportes_adicionales(proj_dir, comparativas, resumen, manifest, raw_bom)
         if args.permitir_estimados:
-            from entrega_final_aquiles import generar_entrega_final
+            from entrega_academica import generar_entrega_final
 
             generar_entrega_final(raw_bom, comparativas, proj_dir, resultado_aceptable_tienda)
 

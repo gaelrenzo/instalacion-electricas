@@ -1,0 +1,60 @@
+{
+  "proyecto": "Instalaciones electricas interiores - vivienda unifamiliar de 3 pisos",
+  "propietario": "Renzo Gabriel Mamani Galindo",
+  "ubicacion": {
+    "distrito": "Por confirmar",
+    "provincia": "Por confirmar",
+    "departamento": "Puno",
+    "direccion": "Por confirmar",
+    "estado": "por confirmar",
+    "fuente": "documentacion del proyecto"
+  },
+  "areas": {
+    "terreno_m2": {"valor": null, "estado": "por confirmar", "fuente": "planos arquitectonicos"},
+    "techada_primer_piso_m2": {"valor": null, "estado": "por confirmar", "fuente": "planos arquitectonicos"},
+    "techada_segundo_piso_m2": {"valor": null, "estado": "por confirmar", "fuente": "planos arquitectonicos"},
+    "techada_total_calculo_m2": {"valor": null, "estado": "por confirmar", "fuente": "planos arquitectonicos"}
+  },
+  "parametros_electricos": {
+    "tension_v": 220,
+    "fases": 1,
+    "frecuencia_hz": 60,
+    "factor_potencia_cosphi": 0.9,
+    "factor_diseno_conductor": 1.25,
+    "factor_diseno_estado": "criterio preliminar",
+    "resistividad_cobre_rho": 0.0175,
+    "resistividad_cobre_fuente": "criterio del motor de calculo",
+    "caida_tension_max_alimentador_porc": 1.5,
+    "caida_tension_max_alimentador_estado": "criterio preliminar",
+    "caida_tension_max_derivados_porc": 2.5,
+    "caida_tension_total_max_cne_porc": 4.0
+  },
+  "alimentacion_principal": {
+    "origen": "Medidor",
+    "destino": "Tablero general",
+    "longitud_m": 10.0,
+    "estado": "por confirmar",
+    "fuente": "estimacion preliminar"
+  },
+  "escenario_dimensionamiento_id": "escenario_base",
+  "circuitos_base": [
+    {"id": "C1", "descripcion": "Alumbrado primer piso", "potencia_instalada_w": 500, "factor_demanda": 1.0, "longitud_m": 20.0, "seccion_conductor_mm2": 1.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C2", "descripcion": "Tomacorrientes generales primer piso", "potencia_instalada_w": 1000, "factor_demanda": 1.0, "longitud_m": 25.0, "seccion_conductor_mm2": 2.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C3", "descripcion": "Tomacorrientes especiales de cocina", "potencia_instalada_w": 1500, "factor_demanda": 1.0, "longitud_m": 18.0, "seccion_conductor_mm2": 2.5, "diametro_tubo_mm": 25, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C4", "descripcion": "Alumbrado segundo piso", "potencia_instalada_w": 500, "factor_demanda": 1.0, "longitud_m": 22.0, "seccion_conductor_mm2": 1.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C5", "descripcion": "Tomacorrientes generales segundo piso", "potencia_instalada_w": 1500, "factor_demanda": 0.7, "longitud_m": 28.0, "seccion_conductor_mm2": 2.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C6", "descripcion": "Alumbrado tercer piso", "potencia_instalada_w": 500, "factor_demanda": 1.0, "longitud_m": 22.0, "seccion_conductor_mm2": 1.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"},
+    {"id": "C7", "descripcion": "Tomacorrientes generales tercer piso", "potencia_instalada_w": 1500, "factor_demanda": 0.7, "longitud_m": 28.0, "seccion_conductor_mm2": 2.5, "diametro_tubo_mm": 20, "estado": "preliminar", "fuente": "diseno electrico Renzo"}
+  ],
+  "escenarios": [
+    {
+      "id": "escenario_base",
+      "nombre": "Escenario base preliminar",
+      "estado": "preliminar",
+      "descripcion": "Circuitos documentados en el diseno electrico actual.",
+      "cocina_electrica": false,
+      "circuito_overrides": {},
+      "cne_050_200": {"aplicar": false, "cocina_electrica_normativa_w": 0}
+    }
+  ]
+}

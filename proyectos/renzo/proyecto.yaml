@@ -1,0 +1,26 @@
+schema_version: 1
+id: renzo
+proyecto: "Instalaciones electricas interiores - vivienda unifamiliar de 3 pisos"
+propietario: "Renzo Gabriel Mamani Galindo"
+estado: "preliminar sujeto a validacion tecnica"
+
+ubicacion:
+  distrito: "Por confirmar"
+  provincia: "Por confirmar"
+  departamento: "Puno"
+  direccion: "Por confirmar"
+
+entradas:
+  calculos_json: datos/calculos.json
+
+automatizacion:
+  pipeline_habilitado: true
+  requiere_revision_humana: true
+  cad_personalizado:
+    script: scripts/generar-planos-electricos.py
+    electrical: diseno-electrico/datos/instalacion.json
+    view: todo
+
+entregables:
+  directorio: entregables
+  expediente: entregables/expediente.pdf

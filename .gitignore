@@ -1,66 +1,51 @@
-# LaTeX auxiliary files
-latex/build/*.aux
-latex/build/*.log
-latex/build/*.out
-latex/build/*.toc
-latex/build/*.lot
-latex/build/*.lof
-latex/build/*.fls
-latex/build/*.fdb_latexmk
-latex/build/*.synctex.gz
+# Resultados reproducibles
+/build/
+**/build/
+**/dist/
+**/output/
+**/salidas/
+**/temp/
+**/tmp/
 
-# Keep compiled PDF
-!latex/build/main.pdf
+# Fuentes pesadas o privadas disponibles solo en la maquina de trabajo
+/referencias/local/
+/proyectos/*/fuentes/local/
 
-# Avance LaTeX auxiliary files
-avance-capitulos-1-2/latex/build/*.aux
-avance-capitulos-1-2/latex/build/*.log
-avance-capitulos-1-2/latex/build/*.out
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
 
-# Keep compiled advance PDFs
-!avance-capitulos-1-2/latex/build/*.pdf
+# Python
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
 
-# Raw source archives copied locally
-S.U. ARICATO_PHRA-SANDIA.rar
+# Cache y evidencias de consultas web
+**/.cache/
+**/cache/
+**/evidencias/*.json
+!proyectos/*/presupuesto/evidencias/manifest.json
 
-# Office and AutoCAD temporary files
+# Temporales de Office y CAD
 ~$*
 *.bak
 *.dwl
 *.dwl2
 plot.log
-
-# Python virtual environments and cache
-venv/
-.venv/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Temporary rendering files
-herramientas/simbologia-ia/temp/
-
-# AutoCAD temporary / lock files
 \#*
 *~
 
-# Temporary Python scripts (one-off corrections)
-corregir_piso2_v4.py
-
-# Temp rendering outputs (PNG, PDF in temp/)
-**/temp/*.png
-**/temp/*.pdf
-
-# Project LaTeX auxiliary files
-proyecto_vivienda_unifamiliar_por_RENZO/*.aux
-proyecto_vivienda_unifamiliar_por_RENZO/*.log
-proyecto_vivienda_unifamiliar_por_RENZO/*.out
-proyecto_vivienda_unifamiliar_por_RENZO/*.synctex.gz
-proyecto_vivienda_unifamiliar_por_RENZO/build/*.aux
-proyecto_vivienda_unifamiliar_por_RENZO/build/*.log
-proyecto_vivienda_unifamiliar_por_RENZO/build/*.out
-proyecto_vivienda_unifamiliar_por_RENZO/build/*.toc
-proyecto_vivienda_unifamiliar_por_RENZO/build/*.synctex.gz
-
-
+# Sistemas operativos y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

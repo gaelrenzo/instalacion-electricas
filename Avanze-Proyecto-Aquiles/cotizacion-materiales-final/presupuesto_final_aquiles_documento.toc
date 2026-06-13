@@ -1,8 +1,0 @@
-\babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Metrados de materiales electricos}{2}{section.1}%
-\contentsline {section}{\numberline {2}Cotizacion por proveedor}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Grupo 1: Promart}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Grupo 2: Sodimac/Maestro}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Grupo 3: Mercado Libre Peru}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Comparativa economica}{4}{section.3}%
-\contentsline {section}{\numberline {4}Presupuesto recomendado}{5}{section.4}%

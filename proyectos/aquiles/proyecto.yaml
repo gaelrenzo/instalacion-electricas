@@ -1,0 +1,28 @@
+schema_version: 1
+id: aquiles
+proyecto: "Instalaciones electricas interiores - vivienda unifamiliar de 2 pisos"
+propietario: "Aquiles Taylor Ramos Yapo"
+estado: "preliminar sujeto a validacion tecnica"
+
+ubicacion:
+  distrito: "San Miguel"
+  provincia: "San Roman"
+  departamento: "Puno"
+  direccion: "Avenida Horacio con Jr. Marineros, Mz F7, lotes 11 y 12"
+
+entradas:
+  calculos_json: datos/calculos.json
+  layout_json: arquitectura/datos/piso-1.json
+  electrico_json: diseno-electrico/datos/piso-1.json
+
+automatizacion:
+  pipeline_habilitado: true
+  alcance_cad: "primer piso como plano primario; segundo piso permanece como entrada canonica separada"
+  requiere_revision_humana: true
+
+entregables:
+  directorio: entregables
+  expediente: entregables/expediente.pdf
+  planos:
+    - diseno-electrico/planos/piso-1.pdf
+    - diseno-electrico/planos/piso-2.pdf

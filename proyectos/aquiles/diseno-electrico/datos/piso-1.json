@@ -1,0 +1,113 @@
+{
+  "project": "Casa de Aquiles - Plano electrico Piso 1 v6",
+  "base_architectural": "proyectos/aquiles/arquitectura/planos/piso-1.dxf",
+  "source_layout": "proyectos/aquiles/arquitectura/datos/piso-1.json",
+  "dxf_maestro": "electrico_piso1_v4.dxf",
+  "status": "documentacion de DXF maestro v6",
+  "floor": "Piso 1",
+  "title": {
+    "text": "PLANO ELECTRICO - PISO 1 V6",
+    "subtitle": "Casa de Aquiles - primer nivel",
+    "x": 7.5,
+    "y": 10.85,
+    "height": 0.28
+  },
+  "legend": {
+    "x": 16.65,
+    "y": 9.35,
+    "width": 5.4,
+    "height": 6.2,
+    "title": "LEYENDA ELECTRICA"
+  },
+  "circuit_summary": [
+    {"id": "C1", "label": "Alumbrado primer piso"},
+    {"id": "C2", "label": "Tomacorrientes primer piso"},
+    {"id": "C3", "label": "Toma especial cocina bajo escalera"},
+    {"id": "C8", "label": "Bomba de agua exterior"},
+    {"id": "TG", "label": "Tablero general"},
+    {"id": "M", "label": "Medidor"},
+    {"id": "PE", "label": "Conductor de proteccion (tierra)"}
+  ],
+  "luminarias": [
+    {"id": "L-P1-01", "x": 0.9, "y": 5.9, "circuit": "C1", "label": "C1"},
+    {"id": "L-P1-02", "x": 6.0, "y": 6.8, "circuit": "C1", "label": "C1"},
+    {"id": "L-P1-03", "x": 12.0, "y": 6.8, "circuit": "C1", "label": "C1"},
+    {"id": "L-P1-05", "x": 11.0, "y": 2.25, "circuit": "C1", "label": "C1"}
+  ],
+  "interruptores": [
+    {"id": "S-P1-01", "x": 1.25, "y": 5.20, "circuit": "C1", "label": "C1", "kind": "conmutado"},
+    {"id": "S-P1-02", "x": 3.75, "y": 5.20, "circuit": "C1", "label": "C1"},
+    {"id": "S-P1-03", "x": 13.25, "y": 5.05, "circuit": "C1", "label": "C1"},
+    {"id": "S-P1-04", "x": 13.80, "y": 4.25, "circuit": "C1", "label": "C1"}
+  ],
+  "tomacorrientes": [
+    {"id": "T-P1-01", "x": 12.0, "y": 0.35, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-02", "x": 8.0, "y": 0.35, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-03", "x": 14.35, "y": 2.0, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-04", "x": 4.0, "y": 8.60, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-05", "x": 8.2, "y": 8.60, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-06", "x": 10.0, "y": 8.60, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-07", "x": 14.35, "y": 8.0, "circuit": "C2", "label": "C2", "kind": "tierra"},
+    {"id": "T-P1-09", "x": 4.05, "y": 4.85, "circuit": "C3", "label": "C3\ncocina", "label_dx": 0.45, "label_dy": -0.65, "kind": "especial"}
+  ],
+  "tableros": [
+    {
+      "id": "TG-P1",
+      "x": 14.35,
+      "y": 4.75,
+      "label": "TG",
+      "note": ""
+    }
+  ],
+  "medidores": [
+    {
+      "id": "M-P1",
+      "x": 15.45,
+      "y": 4.75,
+      "label": "M",
+      "note": ""
+    }
+  ],
+  "puesta_tierra": [
+    {
+      "id": "SPAT-P1",
+      "label": "SPAT",
+      "x": 15.45,
+      "y": 3.60,
+      "circuit": "PE",
+      "capa": "ELEC_PUESTA_TIERRA",
+      "notes": "Sistema de puesta a tierra conectado al TG. Agregado según DXF maestro v6"
+    }
+  ],
+  "equipos": [
+    {
+      "id": "B-P1",
+      "kind": "bomba",
+      "x": -0.55,
+      "y": 1.0,
+      "circuit": "C8",
+      "label": "C8",
+      "label_dx": 0.35,
+      "label_dy": -0.30
+    }
+  ],
+  "rutas": [
+    {"id": "R-P1-M", "circuit": "", "label": "", "points": [[15.45, 4.75], [14.35, 4.75]]},
+    {"id": "R-P1-C1-A", "circuit": "C1", "label": "", "points": [[14.35, 4.75], [14.35, 6.80], [12.0, 6.80], [6.0, 6.80], [0.90, 6.80], [0.90, 5.90]]},
+    {"id": "R-P1-C1-B", "circuit": "C1", "label": "", "points": [[14.35, 4.75], [14.35, 2.25], [11.0, 2.25]]},
+    {"id": "R-P1-C2-A", "circuit": "C2", "label": "", "points": [[14.35, 4.75], [14.35, 8.0], [14.35, 8.60], [10.0, 8.60], [8.2, 8.60], [4.0, 8.60]]},
+    {"id": "R-P1-C2-B", "circuit": "C2", "label": "", "points": [[14.35, 4.75], [14.35, 2.0], [14.35, 0.35], [12.0, 0.35], [8.0, 0.35]]},
+    {"id": "R-P1-C3", "circuit": "C3", "label": "", "points": [[14.35, 4.75], [10.0, 4.75], [8.0, 4.75], [4.05, 4.75], [4.05, 4.85]]},
+    {"id": "R-P1-C8", "circuit": "C8", "label": "C8 bomba exterior", "points": [[14.35, 4.75], [14.35, 0.85], [8.0, 0.85], [3.0, 0.85], [-0.55, 0.85], [-0.55, 1.0]]},
+    {"id": "R-P1-SPAT", "circuit": "PE", "label": "PE", "points": [[15.45, 3.90], [15.45, 4.75], [14.35, 4.75]], "linetype": "DASHED"},
+    {"id": "R-P1-LIMIT", "circuit": "", "label": "Limite de techo", "label_x": 7.25, "label_y": 2.35, "points": [[7.0, 0.0], [7.0, 4.5]]}
+  ],
+  "notes": [
+    {
+      "x": 17.0,
+      "y": 2.65,
+      "height": 0.12,
+      "text": "Notas v6:\n- Este JSON es DOCUMENTACION del DXF maestro v6.\n- NO regenera el DXF; el DXF maestro es la fuente de verdad.\n- v6 agrega SPAT (puesta a tierra) en (15.45, 3.60) cerca del medidor.\n- Conductor PE trazado desde SPAT al TG en linea DASHED.\n- Luminarias corregidas de + a X (cruz diagonal) en el DXF.\n- Todos los elementos previos de v4 preservados sin cambios."
+    }
+  ]
+}

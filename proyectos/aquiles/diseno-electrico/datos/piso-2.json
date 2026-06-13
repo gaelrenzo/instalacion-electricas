@@ -1,0 +1,114 @@
+{
+  "project": "Casa de Aquiles - Plano electrico Piso 2 v6",
+  "base_architectural": "proyectos/aquiles/arquitectura/planos/piso-2.dxf",
+  "source_layout": "proyectos/aquiles/arquitectura/datos/piso-2.json",
+  "dxf_maestro": "electrico_piso2_v4.dxf",
+  "status": "documentacion de DXF maestro v6",
+  "floor": "Piso 2",
+  "title": {
+    "text": "PLANO ELECTRICO - PISO 2 V6",
+    "subtitle": "Casa de Aquiles - segundo nivel",
+    "x": 7.5,
+    "y": 10.85,
+    "height": 0.28
+  },
+  "legend": {
+    "x": 16.65,
+    "y": 9.35,
+    "width": 5.4,
+    "height": 6.2,
+    "title": "LEYENDA ELECTRICA",
+    "panel_label": "Tablero segundo piso",
+    "panel_symbol": "T2",
+    "show_meter": false
+  },
+  "circuit_summary": [
+    {"id": "C4", "label": "Alumbrado segundo piso"},
+    {"id": "C5", "label": "Tomacorrientes segundo piso"},
+    {"id": "C6", "label": "Cocina/carga especial por confirmar"},
+    {"id": "C7", "label": "Lavadora segundo piso"},
+    {"id": "T2", "label": "Tablero segundo piso"},
+    {"id": "PE", "label": "Conductor de proteccion (tierra)"}
+  ],
+  "luminarias": [
+    {"id": "L-P2-01", "x": 1.5, "y": 6.55, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-02", "x": 3.95, "y": 6.15, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-03", "x": 5.15, "y": 7.65, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-04", "x": 7.5, "y": 6.75, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-05", "x": 10.5, "y": 6.75, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-06", "x": 13.10, "y": 6.25, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-07", "x": 14.10, "y": 7.60, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-08", "x": 3.75, "y": 3.75, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-09", "x": 8.25, "y": 1.55, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-10", "x": 11.70, "y": 1.55, "circuit": "C4", "label": "C4"},
+    {"id": "L-P2-11", "x": 14.00, "y": 3.75, "circuit": "C4", "label": "C4"}
+  ],
+  "interruptores": [
+    {"id": "S-P2-01", "x": 0.75, "y": 4.75, "circuit": "C4", "label": "C4", "kind": "conmutado"},
+    {"id": "S-P2-02", "x": 4.15, "y": 4.95, "circuit": "C4", "label": "C4"},
+    {"id": "S-P2-03", "x": 6.05, "y": 4.85, "circuit": "C4", "label": "C4"},
+    {"id": "S-P2-04", "x": 9.10, "y": 4.85, "circuit": "C4", "label": "C4"},
+    {"id": "S-P2-05", "x": 13.05, "y": 4.90, "circuit": "C4", "label": "C4"},
+    {"id": "S-P2-06", "x": 7.35, "y": 2.05, "circuit": "C4", "label": "C4"},
+    {"id": "S-P2-07", "x": 10.15, "y": 3.15, "circuit": "C4", "label": "C4"}
+  ],
+  "tomacorrientes": [
+    {"id": "T-P2-01", "x": 6.25, "y": 6.00, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-02", "x": 8.65, "y": 8.50, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-03", "x": 9.35, "y": 6.00, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-04", "x": 11.65, "y": 8.50, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-05", "x": 12.30, "y": 5.35, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-06", "x": 14.55, "y": 5.50, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-07", "x": 14.55, "y": 8.05, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-08", "x": 9.35, "y": 0.35, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-09", "x": 11.80, "y": 0.35, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-10", "x": 14.55, "y": 1.35, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-11", "x": 14.55, "y": 3.85, "circuit": "C5", "label": "C5", "kind": "tierra"},
+    {"id": "T-P2-12", "x": 7.65, "y": 1.65, "circuit": "C5", "label": "C5\nprotegido", "kind": "tierra"},
+    {"id": "T-P2-13", "x": 3.35, "y": 6.10, "circuit": "C6", "label": "C6\nservicio", "kind": "especial"},
+    {"id": "T-P2-14", "x": 5.35, "y": 8.05, "circuit": "C6", "label": "C6\nservicio", "kind": "especial"},
+    {"id": "T-P2-15", "x": 3.10, "y": 5.25, "circuit": "C6", "label": "C6\ncocina\npor confirmar", "kind": "especial"},
+    {"id": "T-P2-16", "x": 5.55, "y": 5.05, "circuit": "C7", "label": "C7\nlavadora", "kind": "especial"}
+  ],
+  "tableros": [
+    {
+      "id": "T2-P2",
+      "x": 12.55,
+      "y": 4.25,
+      "label": "T2",
+      "note": "Tablero segundo piso"
+    }
+  ],
+  "equipos": [
+    {
+      "id": "VD-P2",
+      "kind": "ducto",
+      "x": 2.65,
+      "y": 4.80,
+      "label": "VD\nsubida desde TG"
+    }
+  ],
+  "rutas": [
+    {"id": "R-P2-VD", "circuit": "", "label": "Subida TG-T2", "points": [[2.65, 4.80], [6.0, 4.80], [10.0, 4.80], [12.55, 4.25]]},
+    {"id": "R-P2-C4", "circuit": "C4", "label": "C4 alumbrado", "points": [[12.55, 4.25], [14.00, 3.75], [14.10, 7.60], [13.10, 6.25], [10.5, 6.75], [7.5, 6.75], [5.15, 7.65], [3.95, 6.15], [1.5, 6.55], [3.75, 3.75], [8.25, 1.55], [11.70, 1.55]]},
+    {"id": "R-P2-C5", "circuit": "C5", "label": "C5 tomac.", "points": [[12.55, 4.25], [14.55, 3.85], [14.55, 5.50], [14.55, 8.05], [11.65, 8.50], [8.65, 8.50], [6.25, 6.00], [9.35, 6.00], [12.30, 5.35], [14.55, 1.35], [11.80, 0.35], [9.35, 0.35], [7.65, 1.65]]},
+    {"id": "R-P2-C6-A", "circuit": "C6", "label": "", "points": [[12.55, 4.25], [8.2, 4.45], [5.6, 4.45], [3.35, 6.10]]},
+    {"id": "R-P2-C6-B", "circuit": "C6", "label": "", "points": [[3.35, 6.10], [5.35, 8.05]]},
+    {"id": "R-P2-C6-C", "circuit": "C6", "label": "", "points": [[3.35, 6.10], [3.10, 5.25]]},
+    {"id": "R-P2-C7", "circuit": "C7", "label": "", "points": [[12.55, 4.25], [8.2, 4.35], [5.55, 4.35], [5.55, 5.05]]}
+  ],
+  "notes": [
+    {
+      "x": 17.0,
+      "y": 2.65,
+      "height": 0.12,
+      "text": "Notas:\n- Piso 2 sin medidor; se grafica tablero T2.\n- T2 corregido segun punto azul indicado por el usuario.\n- Cocina ordenada graficamente; C6 sigue por confirmar."
+    },
+    {
+      "x": 17.0,
+      "y": 1.50,
+      "height": 0.12,
+      "text": "Notas v6:\n- Este JSON es DOCUMENTACION del DXF maestro v6.\n- NO regenera el DXF; el DXF maestro es la fuente de verdad.\n- Conductor PE (tierra) proviene del SPAT ubicado en Piso 1.\n- La proteccion PE sube al piso 2 via ducto vertical (VD).\n- Capa ELEC_PUESTA_TIERRA creada en el DXF maestro v6.\n- Luminarias corregidas de + a X (cruz diagonal) en el DXF.\n- Todos los elementos previos (T2, VD, C4-C7) preservados."
+    }
+  ]
+}

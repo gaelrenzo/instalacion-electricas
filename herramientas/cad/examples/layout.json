@@ -1,0 +1,164 @@
+{
+  "project": "Vivienda Unifamiliar - Primer Piso (Distribución)",
+  "author": "Ejemplo del repositorio",
+  "date": "2026-06-03",
+  "units": "meters",
+  "dimensions": {
+    "width": 8.0,
+    "height": 8.0
+  },
+  "rooms": [
+    {
+      "id": "R1",
+      "name": "Cuarto 1 Grande",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 4.0,
+      "height": 4.0
+    },
+    {
+      "id": "R2",
+      "name": "Cuarto 2 Grande",
+      "x": 4.0,
+      "y": 0.0,
+      "width": 4.0,
+      "height": 4.0
+    },
+    {
+      "id": "R3",
+      "name": "Cocina Pequeña",
+      "x": 0.0,
+      "y": 4.0,
+      "width": 3.0,
+      "height": 4.0
+    },
+    {
+      "id": "R4",
+      "name": "Pasadizo",
+      "x": 3.0,
+      "y": 4.0,
+      "width": 5.0,
+      "height": 1.5
+    },
+    {
+      "id": "R5",
+      "name": "Escalera",
+      "x": 3.0,
+      "y": 5.5,
+      "width": 3.0,
+      "height": 2.5
+    },
+    {
+      "id": "R6",
+      "name": "Patio / Bomba de Agua",
+      "x": 6.0,
+      "y": 5.5,
+      "width": 2.0,
+      "height": 2.5
+    }
+  ],
+  "doors": [
+    {
+      "id": "D1",
+      "room_from": "Exterior",
+      "room_to": "R4",
+      "x": 5.0,
+      "y": 4.0,
+      "width": 1.0,
+      "orientation": "horizontal",
+      "swing": "top-right"
+    },
+    {
+      "id": "D2",
+      "room_from": "R4",
+      "room_to": "R1",
+      "x": 3.1,
+      "y": 4.0,
+      "width": 0.8,
+      "orientation": "horizontal",
+      "swing": "bottom-left"
+    },
+    {
+      "id": "D3",
+      "room_from": "R4",
+      "room_to": "R2",
+      "x": 4.5,
+      "y": 4.0,
+      "width": 0.8,
+      "orientation": "horizontal",
+      "swing": "bottom-right"
+    },
+    {
+      "id": "D4",
+      "room_from": "R4",
+      "room_to": "R3",
+      "x": 3.0,
+      "y": 4.5,
+      "width": 0.8,
+      "orientation": "vertical",
+      "swing": "top-left"
+    },
+    {
+      "id": "D5",
+      "room_from": "R4",
+      "room_to": "R5",
+      "x": 3.5,
+      "y": 5.5,
+      "width": 0.8,
+      "orientation": "horizontal",
+      "swing": "top-left"
+    },
+    {
+      "id": "D6",
+      "room_from": "R5",
+      "room_to": "R6",
+      "x": 6.0,
+      "y": 6.0,
+      "width": 0.8,
+      "orientation": "vertical",
+      "swing": "top-right"
+    }
+  ],
+  "windows": [
+    {
+      "id": "W1",
+      "room": "R1",
+      "x": 1.25,
+      "y": 0.0,
+      "width": 1.5,
+      "orientation": "horizontal"
+    },
+    {
+      "id": "W2",
+      "room": "R2",
+      "x": 5.25,
+      "y": 0.0,
+      "width": 1.5,
+      "orientation": "horizontal"
+    },
+    {
+      "id": "W3",
+      "room": "R2",
+      "x": 8.0,
+      "y": 1.5,
+      "width": 1.2,
+      "orientation": "vertical"
+    },
+    {
+      "id": "W4",
+      "room": "R3",
+      "x": 1.0,
+      "y": 8.0,
+      "width": 1.2,
+      "orientation": "horizontal"
+    },
+    {
+      "id": "W5",
+      "room": "R5",
+      "x": 4.0,
+      "y": 8.0,
+      "width": 1.2,
+      "orientation": "horizontal"
+    }
+  ]
+}
