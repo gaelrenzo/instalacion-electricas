@@ -358,10 +358,13 @@ def build_floor1_electrical():
     for tc_name, (tx, ty) in tcs.items():
         draw_electric_center(msp, tx, ty, symbol_text="TC", layer="ELEC_TOMACORRIENTES", color=6, radius=0.13)
         
-    # Conduits for outlets (C2) - Ring layout loop
+    # Conduits for general outlets (C2) - Ring layout loop
     draw_conduit(msp, (tg_x, tg_y), tcs["Tienda_TC2"], color=6)
     draw_conduit(msp, tcs["Tienda_TC2"], tcs["Tienda_TC1"], color=6)
-    draw_conduit(msp, tcs["Tienda_TC1"], tcs["Cocina_TC1"], color=6)
+    draw_conduit(msp, tcs["Tienda_TC1"], (tg_x, tg_y), color=6)
+    
+    # Conduits for kitchen outlets (C3) - Ring layout loop
+    draw_conduit(msp, (tg_x, tg_y), tcs["Cocina_TC1"], color=6)
     draw_conduit(msp, tcs["Cocina_TC1"], tcs["Cocina_TC2"], color=6)
     draw_conduit(msp, tcs["Cocina_TC2"], tcs["Cocina_TC4"], color=6)
     draw_conduit(msp, tcs["Cocina_TC4"], tcs["Cocina_TC3"], color=6)
@@ -463,7 +466,7 @@ def build_floor2_electrical():
     for tc_name, (tx, ty) in tcs.items():
         draw_electric_center(msp, tx, ty, symbol_text="TC", layer="ELEC_TOMACORRIENTES", color=6, radius=0.13)
         
-    # Conduits for tomacorrientes (C4) - Ring layout loop
+    # Conduits for tomacorrientes (C5) - Ring layout loop
     draw_conduit(msp, (td_x, td_y), tcs["Sala_3"], color=6)
     draw_conduit(msp, tcs["Sala_3"], tcs["Sala_1"], color=6)
     draw_conduit(msp, tcs["Sala_1"], tcs["Sala_2"], color=6)
@@ -570,7 +573,7 @@ def build_floor3_electrical():
     for name, (tx, ty) in tcs.items():
         draw_electric_center(msp, tx, ty, symbol_text="TC", layer="ELEC_TOMACORRIENTES", color=6, radius=0.13)
             
-    # Conduits for outlets (C6) - Ring layout loop
+    # Conduits for outlets (C7) - Ring layout loop
     draw_conduit(msp, (td_x, td_y), tcs["Dorm_4_3"], color=6)
     draw_conduit(msp, tcs["Dorm_4_3"], tcs["Dorm_4_2"], color=6)
     draw_conduit(msp, tcs["Dorm_4_2"], tcs["Dorm_4_1"], color=6)
@@ -654,7 +657,7 @@ def build_diagrama_unifilar():
     # Main Breaker Symbol (box/termomagnetic)
     msp.add_lwpolyline([(0.85, 5.4), (1.15, 5.4), (1.15, 5.8), (0.85, 5.8)], close=True, dxfattribs={'layer': 'DIAGRAMA', 'color': 7})
     msp.add_text("ITM General", dxfattribs={'layer': 'TEXTOS', 'height': 0.10, 'color': 7}).set_placement((1.3, 5.65))
-    msp.add_text("2P, 32A, 10kA", dxfattribs={'layer': 'TEXTOS', 'height': 0.10, 'color': 7}).set_placement((1.3, 5.5))
+    msp.add_text("2P, 40A, 10kA", dxfattribs={'layer': 'TEXTOS', 'height': 0.10, 'color': 7}).set_placement((1.3, 5.5))
     
     # Connect Main Breaker to Differential Breaker
     msp.add_line((1.0, 5.4), (1.0, 4.8), dxfattribs={'layer': 'DIAGRAMA', 'color': 7})
@@ -666,17 +669,18 @@ def build_diagrama_unifilar():
     
     # Connect to TG Busbar (horizontal thick line)
     msp.add_line((1.0, 4.4), (1.0, 3.8), dxfattribs={'layer': 'DIAGRAMA', 'color': 7})
-    msp.add_line((0.5, 3.8), (12.0, 3.8), dxfattribs={'layer': 'DIAGRAMA', 'color': 7, 'lineweight': 50})
+    msp.add_line((0.5, 3.8), (14.0, 3.8), dxfattribs={'layer': 'DIAGRAMA', 'color': 7, 'lineweight': 50})
     msp.add_text("BARRA DE COBRE TABLERO GENERAL TG-01", dxfattribs={'layer': 'TEXTOS', 'height': 0.12, 'color': 7}).set_placement((0.5, 4.0))
     
-    # Branch feeders: C1 to C6
+    # Branch feeders: C1 to C7
     ctos = [
-        {"x": 1.5, "lbl": "C1", "name": "Alum. 1er Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (250 W)"},
-        {"x": 3.4, "lbl": "C2", "name": "T/C 1er Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1080 W)"},
-        {"x": 5.3, "lbl": "C3", "name": "Alum. 2do Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (300 W)"},
-        {"x": 7.2, "lbl": "C4", "name": "T/C 2do Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1980 W)"},
-        {"x": 9.1, "lbl": "C5", "name": "Alum. 3er Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (350 W)"},
-        {"x": 11.0, "lbl": "C6", "name": "T/C 3er Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1800 W)"}
+        {"x": 1.5, "lbl": "C1", "name": "Alum. 1er Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (500 W)"},
+        {"x": 3.4, "lbl": "C2", "name": "T/C 1er Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1000 W)"},
+        {"x": 5.3, "lbl": "C3", "name": "Cocin. 1er Piso", "itm": "2P, 20A", "cond": "3x2.5mm2", "desc": "Cocina (1500 W)"},
+        {"x": 7.2, "lbl": "C4", "name": "Alum. 2do Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (500 W)"},
+        {"x": 9.1, "lbl": "C5", "name": "T/C 2do Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1500 W)"},
+        {"x": 11.0, "lbl": "C6", "name": "Alum. 3er Piso", "itm": "2P, 10A", "cond": "3x1.5mm2", "desc": "Luz LED (500 W)"},
+        {"x": 12.9, "lbl": "C7", "name": "T/C 3er Piso", "itm": "2P, 16A", "cond": "3x2.5mm2", "desc": "Tomacorrientes (1500 W)"}
     ]
     
     for c in ctos:
@@ -697,14 +701,14 @@ def build_diagrama_unifilar():
         msp.add_text(c["desc"], dxfattribs={'layer': 'TEXTOS', 'height': 0.08, 'color': 7}).set_placement((cx, 1.4), align=TextEntityAlignment.MIDDLE_CENTER)
 
     # 3. Load Schedule Table (Cuadro de Cargas) at the bottom
-    ty1, ty2 = -1.2, 0.8
+    ty1, ty2 = -1.5, 0.8
     tx1, tx2 = 0.0, 11.5
     
     # Outer box
     msp.add_lwpolyline([(tx1, ty1), (tx2, ty1), (tx2, ty2), (tx1, ty2)], close=True, dxfattribs={'layer': 'TABLAS', 'color': 8})
     
     # Title of table
-    msp.add_text("CUADRO DE CARGAS DE INSTALACIÓN ELÉCTRICA (C1 - C6)", dxfattribs={'layer': 'TEXTOS', 'height': 0.13, 'color': 7}).set_placement((tx1 + 0.2, ty2 + 0.1))
+    msp.add_text("CUADRO DE CARGAS DE INSTALACIÓN ELÉCTRICA (C1 - C7)", dxfattribs={'layer': 'TEXTOS', 'height': 0.13, 'color': 7}).set_placement((tx1 + 0.2, ty2 + 0.1))
     
     # Headers
     cols = [
@@ -729,13 +733,14 @@ def build_diagrama_unifilar():
             
     # Table rows
     rows_data = [
-        ["C1", "Alumbrado 1er Piso (LED)", "250", "1.00", "250", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
-        ["C2", "Tomacorrientes 1er Piso", "1,080", "0.70", "756", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
-        ["C3", "Alumbrado 2do Piso (LED)", "300", "1.00", "300", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
-        ["C4", "Tomacorrientes 2do Piso", "1,980", "0.70", "1,386", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
-        ["C5", "Alumbrado 3er Piso (LED)", "350", "1.00", "350", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
-        ["C6", "Tomacorrientes 3er Piso", "1,800", "0.70", "1,260", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
-        ["Total", "MÁXIMA DEMANDA ESTIMADA", "5,760", "-", "4,302 W", "Idem: 21.73 A", "Llave Gral: 2P-32A"]
+        ["C1", "Alumbrado 1er Piso (LED)", "500", "1.00", "500", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
+        ["C2", "Tomacorrientes 1er Piso", "1,000", "1.00", "1,000", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
+        ["C3", "Tomacorrientes Cocina", "1,500", "1.00", "1,500", "2P-20A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
+        ["C4", "Alumbrado 2do Piso (LED)", "500", "1.00", "500", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
+        ["C5", "Tomacorrientes 2do Piso", "1,500", "0.70", "1,050", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
+        ["C6", "Alumbrado 3er Piso (LED)", "500", "1.00", "500", "2P-10A", "3 x 1.5 mm2 Cu (PVC 3/4\")"],
+        ["C7", "Tomacorrientes 3er Piso", "1,500", "0.70", "1,050", "2P-16A", "3 x 2.5 mm2 Cu (PVC 3/4\")"],
+        ["Total", "MÁXIMA DEMANDA ESTIMADA", "7,000", "-", "6,100 W", "Idem: 30.81 A", "Llave Gral: 2P-40A"]
     ]
     
     y_curr = ty2 - 0.35
