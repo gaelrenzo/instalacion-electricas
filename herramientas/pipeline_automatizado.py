@@ -27,6 +27,7 @@ import sys
 import math
 from pathlib import Path
 from datetime import date
+from typing import Any, Optional
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -36,11 +37,11 @@ CALCULOS_DIR = HERRAMIENTAS / "calculos"
 CAD_DIR = HERRAMIENTAS / "cad"
 
 
-def log(msg):
+def log(msg: str) -> None:
     print(f"[pipeline] {msg}")
 
 
-def load_config(path):
+def load_config(path: str) -> dict:
     import yaml
     with open(path, "r", encoding="utf-8") as f:
         if str(path).endswith((".yaml", ".yml")):
@@ -48,11 +49,10 @@ def load_config(path):
         return json.load(f)
 
 
-def resolve_path(config_path, value):
-    """Resuelve una entrada absoluta, relativa al proyecto o relativa al repo."""
+def resolve_path(config_path: Path, value: Any) -> Optional[Path]:
     if not value:
         return None
-    path = Path(value).expanduser()
+    path = Path(str(value)).expanduser()
     if path.is_absolute():
         return path
     project_path = config_path.parent / path
@@ -61,11 +61,11 @@ def resolve_path(config_path, value):
     return REPO_ROOT / path
 
 
-def config_input(config, key):
+def config_input(config: dict, key: str) -> Any:
     return config.get("entradas", {}).get(key) or config.get(key)
 
 
-def generar_json_calculo(config, output_path):
+def generar_json_calculo(config: dict, output_path: str) -> str:
     """Genera el JSON de entrada para el motor de calculo a partir de una config simplificada."""
     pisos = config.get("pisos", [])
     circuitos = []
@@ -150,7 +150,7 @@ def generar_json_calculo(config, output_path):
     return output_path
 
 
-def ejecutar_calculos(json_path, output_dir):
+def ejecutar_calculos(json_path: str, output_dir: str) -> Optional[str]:
     """Ejecuta el motor de calculos existente."""
     script = CALCULOS_DIR / "scripts" / "calcular_instalacion.py"
     cmd = [
@@ -167,7 +167,7 @@ def ejecutar_calculos(json_path, output_dir):
     return output_dir
 
 
-def generar_json_electrico(calculo_json_path, config, output_path):
+def generar_json_electrico(calculo_json_path: str, config: dict, output_path: str) -> Optional[str]:
     """Genera el JSON electrico para superposicion a partir de los resultados de calculo y config."""
     with open(calculo_json_path, "r", encoding="utf-8") as f:
         calculo = json.load(f)
@@ -258,7 +258,7 @@ def generar_json_electrico(calculo_json_path, config, output_path):
     return output_path
 
 
-def generar_plano_dxf(layout_json_path, electrico_json_path, output_dxf):
+def generar_plano_dxf(layout_json_path: Optional[str], electrico_json_path: Optional[str], output_dxf: str) -> Optional[str]:
     """Genera plano DXF arquitectonico + superposicion electrica."""
     generator = CAD_DIR / "scripts" / "dxf_generator.py"
     overlay = CAD_DIR / "scripts" / "electrical_overlay.py"
@@ -313,7 +313,7 @@ def generar_plano_dxf(layout_json_path, electrico_json_path, output_dxf):
     return base_dxf
 
 
-def generar_pdf(dxf_path, output_pdf):
+def generar_pdf(dxf_path: Optional[str], output_pdf: str) -> Optional[str]:
     """Genera PDF a partir de DXF usando QCAD o matplotlib."""
     if not dxf_path or not os.path.exists(dxf_path):
         return None
@@ -356,7 +356,7 @@ def generar_pdf(dxf_path, output_pdf):
         return None
 
 
-def ejecutar_cad_personalizado(config_path, cad_config, output_dxf, output_pdf):
+def ejecutar_cad_personalizado(config_path: Path, cad_config: dict, output_dxf: str, output_pdf: str) -> Optional[str]:
     """Ejecuta un generador CAD declarado por el manifiesto del proyecto."""
     script = resolve_path(config_path, cad_config.get("script"))
     electrical = resolve_path(config_path, cad_config.get("electrical"))
@@ -387,7 +387,7 @@ def ejecutar_cad_personalizado(config_path, cad_config, output_dxf, output_pdf):
     return output_dxf
 
 
-def generar_bom(calculo_json_path, config, output_path):
+def generar_bom(calculo_json_path: str, config: dict, output_path: str) -> str:
     """Genera lista de materiales (BOM)."""
     with open(calculo_json_path, "r", encoding="utf-8") as f:
         calculo = json.load(f)
@@ -527,7 +527,7 @@ def generar_bom(calculo_json_path, config, output_path):
     return output_path
 
 
-def generar_config_ejemplo(output_path):
+def generar_config_ejemplo(output_path: str) -> str:
     """Genera un archivo de configuracion YAML de ejemplo."""
     ejemplo = """# Configuracion de proyecto de instalaciones electricas
 # Generado por pipeline_automatizado.py

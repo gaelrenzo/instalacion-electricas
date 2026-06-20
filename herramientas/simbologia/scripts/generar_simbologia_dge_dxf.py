@@ -8,7 +8,10 @@ y genera una lamina catalogo ordenada en grilla por categorias.
 import os
 import json
 import sys
+import math
 from pathlib import Path
+from xml.etree.ElementTree import Element, SubElement, tostring
+from xml.dom import minidom
 
 # Intentar importar ezdxf
 try:
@@ -36,6 +39,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 JSON_PATH = BASE_DIR / "simbologia_normativa_dge.json"
 OUTPUT_DXF = BASE_DIR / "salidas" / "simbologia_dge_completa.dxf"
 OUTPUT_PDF = BASE_DIR / "salidas" / "simbologia_dge_completa.pdf"
+OUTPUT_SVG = BASE_DIR / "salidas" / "simbologia_dge_completa.svg"
 
 # Definicion de colores AutoCAD ACI
 COLOR_ROJO = 1
@@ -297,7 +301,6 @@ def exportar_a_pdf():
         doc = ezdxf.readfile(OUTPUT_DXF)
         msp = doc.modelspace()
         
-        # Configurar lienzo de matplotlib para una hoja de catalogo
         fig = plt.figure(figsize=(22, 34), dpi=150)
         ax = fig.add_axes([0.02, 0.02, 0.96, 0.96])
         ax.set_aspect("equal")
@@ -308,7 +311,6 @@ def exportar_a_pdf():
         out = MatplotlibBackend(ax)
         Frontend(ctx, out).draw_layout(msp, finalize=True)
         
-        # Guardar lamina
         OUTPUT_PDF.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(OUTPUT_PDF, dpi=200, bbox_inches="tight", pad_inches=0.1)
         plt.close(fig)
@@ -317,6 +319,130 @@ def exportar_a_pdf():
     except Exception as e:
         print(f"Error renderizando PDF: {e}")
         return False
+
+
+def exportar_a_svg_simbolos_individuales(data):
+    """Exporta cada simbolo como archivo SVG individual."""
+    svg_dir = BASE_DIR / "salidas" / "svg"
+    svg_dir.mkdir(parents=True, exist_ok=True)
+    simbolos = data.get("simbolos", [])
+    count = 0
+    
+    for sim in simbolos:
+        block_name = sim.get("block_name", f"simbolo_{sim['id']}")
+        primitivas = sim.get("primitivas", [])
+        if not primitivas:
+            continue
+        
+        # Calcular bounding box
+        xs, ys = [], []
+        for p in primitivas:
+            if p["tipo"] in ("linea",):
+                xs.extend([float(p["x1"]), float(p["x2"])])
+                ys.extend([float(p["y1"]), float(p["y2"])])
+            elif p["tipo"] in ("circulo", "circulo_relleno", "arco", "punto"):
+                xs.append(float(p["cx"]) - float(p["r"]))
+                xs.append(float(p["cx"]) + float(p["r"]))
+                ys.append(float(p["cy"]) - float(p["r"]))
+                ys.append(float(p["cy"]) + float(p["r"]))
+            elif p["tipo"] in ("rectangulo", "rectangulo_relleno"):
+                xs.extend([float(p["x"]), float(p["x"]) + float(p["w"])])
+                ys.extend([float(p["y"]), float(p["y"]) + float(p["h"])])
+        
+        if not xs:
+            continue
+        
+        min_x, max_x = min(xs), max(xs)
+        min_y, max_y = min(ys), max(ys)
+        pad = 2
+        width = max_x - min_x + 2 * pad
+        height = max_y - min_y + 2 * pad
+        
+        # Crear SVG
+        svg = Element("svg", {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "viewBox": f"{min_x - pad} {min_y - pad} {width} {height}",
+            "width": f"{width * 10}",
+            "height": f"{height * 10}",
+        })
+        
+        # Estilo
+        style = Element("style")
+        style.text = ".sym { stroke: #FFD700; stroke-width: 0.3; fill: none; } .sym-fill { fill: #FFD700; } .sym-text { fill: white; font-family: monospace; font-size: 0.5px; }"
+        svg.append(style)
+        
+        # Fondo
+        bg = SubElement(svg, "rect", {
+            "x": f"{min_x - pad}", "y": f"{min_y - pad}",
+            "width": f"{width}", "height": f"{height}",
+            "fill": "#1a1a2e",
+        })
+        
+        for p in primitivas:
+            try:
+                if p["tipo"] == "linea":
+                    SubElement(svg, "line", {
+                        "x1": str(p["x1"]), "y1": str(p["y1"]),
+                        "x2": str(p["x2"]), "y2": str(p["y2"]),
+                        "class": "sym",
+                    })
+                elif p["tipo"] == "circulo":
+                    SubElement(svg, "circle", {
+                        "cx": str(p["cx"]), "cy": str(p["cy"]),
+                        "r": str(p["r"]), "class": "sym",
+                    })
+                elif p["tipo"] == "circulo_relleno":
+                    SubElement(svg, "circle", {
+                        "cx": str(p["cx"]), "cy": str(p["cy"]),
+                        "r": str(p["r"]), "class": "sym sym-fill",
+                    })
+                elif p["tipo"] == "rectangulo":
+                    SubElement(svg, "rect", {
+                        "x": str(p["x"]), "y": str(p["y"]),
+                        "width": str(p["w"]), "height": str(p["h"]),
+                        "class": "sym",
+                    })
+                elif p["tipo"] == "rectangulo_relleno":
+                    SubElement(svg, "rect", {
+                        "x": str(p["x"]), "y": str(p["y"]),
+                        "width": str(p["w"]), "height": str(p["h"]),
+                        "class": "sym sym-fill",
+                    })
+                elif p["tipo"] == "arco":
+                    cx, cy, r = float(p["cx"]), float(p["cy"]), float(p["r"])
+                    a1, a2 = math.radians(float(p["ang_ini"])), math.radians(float(p["ang_fin"]))
+                    x1 = cx + r * math.cos(a1)
+                    y1 = cy + r * math.sin(a1)
+                    x2 = cx + r * math.cos(a2)
+                    y2 = cy + r * math.sin(a2)
+                    large = 1 if abs(a2 - a1) > math.pi else 0
+                    SubElement(svg, "path", {
+                        "d": f"M {x1},{y1} A {r},{r} 0 {large} 1 {x2},{y2}",
+                        "class": "sym",
+                    })
+                elif p["tipo"] == "texto":
+                    SubElement(svg, "text", {
+                        "x": str(p["x"]), "y": str(p["y"]),
+                        "class": "sym-text",
+                        "text-anchor": "middle",
+                        "dominant-baseline": "central",
+                    }).text = str(p.get("contenido", ""))
+                elif p["tipo"] == "punto":
+                    SubElement(svg, "circle", {
+                        "cx": str(p["x"]), "cy": str(p["y"]),
+                        "r": str(p.get("r", 0.3)), "class": "sym sym-fill",
+                    })
+            except Exception as e:
+                print(f"Error SVG en {sim['id']}: {e}")
+        
+        xml_str = minidom.parseString(tostring(svg)).toprettyxml(indent="  ")
+        filepath = svg_dir / f"{block_name}.svg"
+        filepath.write_text(xml_str, encoding="utf-8")
+        count += 1
+    
+    print(f"SVGs exportados: {count} simbolos en {svg_dir}")
+    return count
+
 
 def main():
     print("Iniciando Generador de Catalogo DXF de Simbologia DGE...")
@@ -338,6 +464,9 @@ def main():
     
     # Exportar a PDF
     exportar_a_pdf()
+    
+    # Exportar a SVG individuales
+    exportar_a_svg_simbolos_individuales(data)
     
     print("¡Proceso finalizado con exito!")
 

@@ -1,0 +1,97 @@
+# Tablas de ampacidad para conductores
+# Basado en CNE-U (Peru) y NEC (internacional)
+# Temperatura ambiente: 30°C, conductores en ducto
+# Hasta 3 conductores activos en ducto, tipo TW/THW
+
+cobre:
+  etiqueta: "Cobre TW/THW"
+  temp_ambiente_c: 30
+  temp_operacion_c: 75
+  conductividad_rho_mohm: 0.0175
+  ducto:  # hasta 3 conductores
+    1.5: 15
+    2.5: 20
+    4.0: 28
+    6.0: 36
+    10.0: 50
+    16.0: 66
+    25.0: 88
+    35.0: 109
+    50.0: 134
+    70.0: 167
+    95.0: 202
+    120.0: 235
+  aire_libre:
+    1.5: 20
+    2.5: 27
+    4.0: 37
+    6.0: 47
+    10.0: 65
+    16.0: 86
+    25.0: 115
+    35.0: 142
+    50.0: 174
+    70.0: 224
+    95.0: 270
+
+aluminio:
+  etiqueta: "Aluminio TW/THW"
+  temp_ambiente_c: 30
+  temp_operacion_c: 75
+  conductividad_rho_mohm: 0.0282
+  ducto:
+    2.5: 16
+    4.0: 22
+    6.0: 28
+    10.0: 40
+    16.0: 55
+    25.0: 72
+    35.0: 88
+    50.0: 108
+    70.0: 135
+    95.0: 165
+    120.0: 195
+  aire_libre:
+    2.5: 21
+    4.0: 29
+    6.0: 38
+    10.0: 52
+    16.0: 71
+    25.0: 94
+    35.0: 115
+    50.0: 140
+    70.0: 180
+    95.0: 220
+
+# Factores de correccion por temperatura ambiente
+factores_temperatura:
+  etiqueta: "Factores de correccion por temperatura (THW 75°C)"
+  25: 1.05
+  30: 1.00
+  35: 0.94
+  40: 0.88
+  45: 0.82
+  50: 0.75
+
+# Factores de correccion por agrupamiento
+factores_agrupamiento:
+  etiqueta: "Factores de correccion por cantidad de conductores"
+  "2-3": 1.00
+  "4-6": 0.80
+  "7-9": 0.70
+  "10-20": 0.60
+  "21-30": 0.50
+
+# ITM estandar disponibles en el mercado peruano (A)
+itm_estandar_a:
+  - 10
+  - 16
+  - 20
+  - 25
+  - 32
+  - 40
+  - 50
+  - 63
+  - 80
+  - 100
+  - 125

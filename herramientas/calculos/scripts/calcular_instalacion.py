@@ -4,61 +4,137 @@ import copy
 import json
 import math
 import os
+from pathlib import Path
+from typing import Any, Optional
 
 
-STANDARDS_ITM = [10, 16, 20, 25, 32, 40, 50, 63, 80, 100]
-
-# Ampacidad preliminar de conductores de cobre en ducto a 30 C. La tabla debe
-# validarse contra la tabla CNE aplicable antes del cierre definitivo.
-AMPACITIES_CU = {
-    1.5: 15,
-    2.5: 20,
-    4.0: 28,
-    6.0: 36,
-    10.0: 50,
-    16.0: 66,
-    25.0: 88,
-    35.0: 109,
-    50.0: 134,
-    70.0: 167,
-    95.0: 202,
-}
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
 
 
-def load_data(filepath):
+# Ruta al archivo de configuracion de ampacidades
+DEFAULT_AMPACIDADES_PATH = Path(__file__).resolve().parent.parent / "datos" / "ampacidades.yaml"
+
+# Cache global de tablas cargadas
+_AMPACIDADES_CACHE: Optional[dict] = None
+
+
+def cargar_ampacidades(path: Optional[str] = None) -> dict:
+    global _AMPACIDADES_CACHE
+    if _AMPACIDADES_CACHE is not None:
+        return _AMPACIDADES_CACHE
+
+    ruta = Path(path) if path else DEFAULT_AMPACIDADES_PATH
+    if not ruta.exists():
+        _AMPACIDADES_CACHE = _ampacidades_fallback()
+        return _AMPACIDADES_CACHE
+
+    with open(ruta, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f) if HAS_YAML else _cargar_como_txt(ruta)
+    _AMPACIDADES_CACHE = data
+    return data
+
+
+def _cargar_como_txt(path: Path) -> dict:
+    """Fallback cuando pyyaml no esta disponible: carga solo la tabla de cobre."""
+    import re
+    texto = path.read_text(encoding="utf-8")
+    data = {"cobre": {"ducto": {}}, "aluminio": {"ducto": {}}, "itm_estandar_a": [10, 16, 20, 25, 32, 40, 50, 63, 80, 100]}
+    seccion_actual = None
+    modo = None
+    for linea in texto.splitlines():
+        stripped = linea.strip()
+        if stripped.startswith("cobre:"):
+            seccion_actual = "cobre"
+        elif stripped.startswith("aluminio:"):
+            seccion_actual = "aluminio"
+        elif stripped.startswith("  ducto:"):
+            modo = "ducto"
+        elif stripped.startswith("  aire_libre:"):
+            modo = "aire_libre"
+        elif seccion_actual and modo and re.match(r"^\s+[\d.]+:", stripped):
+            parts = stripped.split(":")
+            try:
+                k = float(parts[0].strip())
+                v = float(parts[1].strip())
+                data[seccion_actual][modo][k] = v
+            except ValueError:
+                pass
+    return data
+
+
+def _ampacidades_fallback() -> dict:
+    """Tablas hardcodeadas de respaldo cuando no hay archivo YAML."""
+    return {
+        "cobre": {
+            "conductividad_rho_mohm": 0.0175,
+            "ducto": {1.5: 15, 2.5: 20, 4.0: 28, 6.0: 36, 10.0: 50, 16.0: 66, 25.0: 88, 35.0: 109, 50.0: 134, 70.0: 167, 95.0: 202, 120.0: 235},
+        },
+        "aluminio": {
+            "conductividad_rho_mohm": 0.0282,
+            "ducto": {2.5: 16, 4.0: 22, 6.0: 28, 10.0: 40, 16.0: 55, 25.0: 72, 35.0: 88, 50.0: 108, 70.0: 135, 95.0: 165, 120.0: 195},
+        },
+        "itm_estandar_a": [10, 16, 20, 25, 32, 40, 50, 63, 80, 100],
+    }
+
+
+def load_data(filepath: str) -> dict:
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def write_text(filepath, content):
+def write_text(filepath: str, content: str) -> None:
+    os.makedirs(os.path.dirname(filepath) or ".", exist_ok=True)
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(content)
 
 
-def find_appropriate_itm(ib, max_capacity):
+def _get_itm_list(amp_data: Optional[dict] = None) -> list:
+    data = amp_data or cargar_ampacidades()
+    return data.get("itm_estandar_a", [10, 16, 20, 25, 32, 40, 50, 63, 80, 100])
+
+
+def _get_ampacity_table(material: str = "cobre", modo: str = "ducto", amp_data: Optional[dict] = None) -> dict:
+    data = amp_data or cargar_ampacidades()
+    return data.get(material, {}).get(modo, {})
+
+
+def _get_resistividad(material: str = "cobre", amp_data: Optional[dict] = None) -> float:
+    data = amp_data or cargar_ampacidades()
+    return data.get(material, {}).get("conductividad_rho_mohm", 0.0175)
+
+
+def find_appropriate_itm(ib: float, max_capacity: float, amp_data: Optional[dict] = None) -> int:
     """
     Selecciona una llave comercial bajo el criterio Ib <= In_ITM <= Iz.
-    Ib es la corriente de empleo o carga, no la corriente de diseno con margen.
     """
-    for rating in STANDARDS_ITM:
+    itm_list = _get_itm_list(amp_data)
+    for rating in itm_list:
         if rating >= ib and rating <= max_capacity:
             return rating
-    for rating in STANDARDS_ITM:
+    for rating in itm_list:
         if rating >= ib:
             return rating
-    return STANDARDS_ITM[-1]
+    return itm_list[-1] if itm_list else 100
 
 
-def select_conductor_for_design(id_current, minimum_section=2.5):
-    for section, ampacity in sorted(AMPACITIES_CU.items()):
+def select_conductor_for_design(id_current: float, minimum_section: float = 2.5, material: str = "cobre", modo: str = "ducto", amp_data: Optional[dict] = None) -> tuple:
+    tabla = _get_ampacity_table(material, modo, amp_data)
+    for section, ampacity in sorted(tabla.items()):
         if section >= minimum_section and ampacity >= id_current:
             return section, ampacity
-    section = max(AMPACITIES_CU)
-    return section, AMPACITIES_CU[section]
+    if tabla:
+        section = max(tabla)
+        return section, tabla[section]
+    return minimum_section, 0
 
 
-def get_ampacity(section):
-    return AMPACITIES_CU.get(float(section), 0)
+def get_ampacity(section: float, material: str = "cobre", modo: str = "ducto", amp_data: Optional[dict] = None) -> float:
+    tabla = _get_ampacity_table(material, modo, amp_data)
+    return tabla.get(float(section), 0)
 
 
 def cne_050_200_basic_load(area_m2):
@@ -79,10 +155,12 @@ def apply_scenario(base_circuits, scenario):
     return circuits
 
 
-def calculate_circuit(circ, params):
+def calculate_circuit(circ: dict, params: dict, amp_data: Optional[dict] = None) -> dict:
     v_nominal = params["tension_v"]
     cosphi = params["factor_potencia_cosphi"]
-    rho = params["resistividad_cobre_rho"]
+    material = params.get("material_conductor", "cobre")
+    modo = params.get("modo_instalacion", "ducto")
+    rho = _get_resistividad(material, amp_data) if params.get("resistividad_auto", True) else params.get("resistividad_cobre_rho", 0.0175)
     factor_diseno = params["factor_diseno_conductor"]
 
     pi = circ["potencia_instalada_w"]
@@ -91,11 +169,11 @@ def calculate_circuit(circ, params):
     ib = md / (v_nominal * cosphi)
     id_current = ib * factor_diseno
     section = float(circ["seccion_conductor_mm2"])
-    ampacity = get_ampacity(section)
+    ampacity = get_ampacity(section, material, modo, amp_data)
     length = circ["longitud_m"]
     dv = (2.0 * length * ib * rho) / section
     dv_porc = (dv / v_nominal) * 100.0
-    itm = find_appropriate_itm(ib, ampacity)
+    itm = find_appropriate_itm(ib, ampacity, amp_data)
 
     descripcion = circ.get("descripcion", "").lower()
     requires_diff = circ.get("requiere_diferencial")
@@ -139,11 +217,14 @@ def calculate_circuit(circ, params):
     }
 
 
-def run_scenario(data, scenario):
+def run_scenario(data: dict, scenario: dict, amp_data: Optional[dict] = None) -> dict:
     params = data["parametros_electricos"]
+    material = params.get("material_conductor", "cobre")
+    modo = params.get("modo_instalacion", "ducto")
+    rho = _get_resistividad(material, amp_data) if params.get("resistividad_auto", True) else params.get("resistividad_cobre_rho", 0.0175)
     area_total = data["areas"]["techada_total_calculo_m2"]["valor"]
     circuits = apply_scenario(data["circuitos_base"], scenario)
-    calculated_circuits = [calculate_circuit(circ, params) for circ in circuits]
+    calculated_circuits = [calculate_circuit(circ, params, amp_data) for circ in circuits]
 
     total_pi = sum(c["potencia_instalada_w"] for c in calculated_circuits)
     md_circuitos = sum(c["maxima_demanda_w"] for c in calculated_circuits)
@@ -158,16 +239,15 @@ def run_scenario(data, scenario):
 
     v_nominal = params["tension_v"]
     cosphi = params["factor_potencia_cosphi"]
-    rho = params["resistividad_cobre_rho"]
     factor_diseno = params["factor_diseno_conductor"]
     ib_total = md_adoptada / (v_nominal * cosphi)
     id_total = ib_total * factor_diseno
 
-    alim_section, alim_ampacity = select_conductor_for_design(id_total, minimum_section=10.0)
+    alim_section, alim_ampacity = select_conductor_for_design(id_total, minimum_section=10.0, material=material, modo=modo, amp_data=amp_data)
     alim_length = data["alimentacion_principal"]["longitud_m"]
     alim_dv = (2.0 * alim_length * ib_total * rho) / alim_section
     alim_dv_porc = (alim_dv / v_nominal) * 100.0
-    alim_itm = find_appropriate_itm(ib_total, alim_ampacity)
+    alim_itm = find_appropriate_itm(ib_total, alim_ampacity, amp_data)
 
     return {
         "id": scenario["id"],
@@ -202,10 +282,10 @@ def run_scenario(data, scenario):
     }
 
 
-def run_calculations(data):
+def run_calculations(data: dict, amp_data: Optional[dict] = None) -> dict:
     scenarios = {}
     for scenario in data["escenarios"]:
-        scenarios[scenario["id"]] = run_scenario(data, scenario)
+        scenarios[scenario["id"]] = run_scenario(data, scenario, amp_data)
 
     design_id = data.get("escenario_dimensionamiento_id") or data["escenarios"][0]["id"]
     return {
@@ -452,6 +532,11 @@ def parse_args():
         required=True,
         help="Directorio de salida.",
     )
+    parser.add_argument(
+        "--ampacidades",
+        default=None,
+        help="Ruta al archivo YAML de ampacidades (opcional).",
+    )
     return parser.parse_args()
 
 
@@ -460,7 +545,8 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
 
     data = load_data(args.input)
-    results = run_calculations(data)
+    amp_data = cargar_ampacidades(args.ampacidades)
+    results = run_calculations(data, amp_data)
 
     print("\n--- RESUMEN DE ESCENARIOS ---")
     for scenario in results["escenarios"].values():
