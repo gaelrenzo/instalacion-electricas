@@ -350,7 +350,44 @@ def setup_doc():
         ensure_layer(doc, f"ELEC_CIRCUITO_{cid}", true_color=color, lineweight=20, linetype="DASHED")
     return doc
 
-def render_pdf_and_svg(dxf_path, pdf_path, svg_path, croquis_path=None, extent=None):
+def compute_image_extent(ox, oy, lw, lh, img_w, img_h, padding=0.5):
+    """Compute image extent preserving aspect ratio while covering layout area."""
+    ar_img = img_w / img_h
+    ar_layout = lw / lh
+    if ar_img > ar_layout:
+        extent_h = lh + 2 * padding
+        extent_w = extent_h * ar_img
+    else:
+        extent_w = lw + 2 * padding
+        extent_h = extent_w / ar_img
+    cx = ox + lw / 2
+    cy = oy + lh / 2
+    return [cx - extent_w / 2, cx + extent_w / 2, cy + extent_h / 2, cy - extent_h / 2]
+
+
+def add_north_arrow(ax, x, y, size=0.35):
+    from matplotlib.patches import Polygon
+    tip = (x, y + size * 0.5)
+    bl = (x - size * 0.3, y - size * 0.4)
+    br = (x + size * 0.3, y - size * 0.4)
+    arrow = Polygon([tip, bl, br], closed=True, facecolor='#1a3a5c', edgecolor='black', linewidth=0.8, zorder=200)
+    ax.add_patch(arrow)
+    ax.text(x, y + size * 0.55, 'N', ha='center', va='bottom', fontsize=11, fontweight='bold', fontfamily='sans-serif', zorder=201)
+
+
+def add_scale_bar(ax, x, y, meters=2.0):
+    ax.plot([x, x + meters], [y, y], 'k-', linewidth=3, zorder=200)
+    tick_h = 0.06
+    for i in range(3):
+        xp = x + i * (meters / 2)
+        ax.plot([xp, xp], [y - tick_h, y + tick_h], 'k-', linewidth=2, zorder=200)
+        ax.text(xp, y - tick_h * 2.5, f'{int(i * meters / 2)}', ha='center', va='top', fontsize=7, fontfamily='sans-serif', zorder=200)
+    ax.text(x + meters / 2, y - tick_h * 4, 'metros', ha='center', va='top', fontsize=7, fontfamily='sans-serif', zorder=200)
+
+
+def render_pdf_and_svg(dxf_path, pdf_path, svg_path, croquis_path=None, extent=None, img_shape=None):
+    import matplotlib
+    matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import matplotlib.image as mpimg
     from ezdxf.addons.drawing import RenderContext, Frontend
@@ -359,22 +396,32 @@ def render_pdf_and_svg(dxf_path, pdf_path, svg_path, croquis_path=None, extent=N
     print(f"Renderizando PDF y SVG con matplotlib: '{pdf_path}'...")
     doc = ezdxf.readfile(dxf_path)
     msp = doc.modelspace()
-    
-    fig = plt.figure(figsize=(11.69, 8.27))  # A4 horizontal
+
+    fig = plt.figure(figsize=(11.69, 8.27))
     ax = fig.add_axes([0, 0, 1, 1])
     ax.axis('off')
-    
+
     if croquis_path and Path(croquis_path).exists():
         print(f"  Superponiendo croquis de fondo: {croquis_path}")
         img = mpimg.imread(str(croquis_path))
-        ax.imshow(img, extent=extent, aspect='auto', alpha=0.5, zorder=0)
-    
+        ax.imshow(img, extent=extent, aspect='auto', alpha=0.3, zorder=0)
+
+    arch_layers = ['ARQ_MUROS', 'ARQ_PUERTAS', 'ARQ_VENTANAS', 'ARQ_ESCALERAS', 'ARQ_TEXTOS']
+    for name in arch_layers:
+        try:
+            doc.layers.get(name).off()
+        except Exception:
+            pass
+
     ctx = RenderContext(doc)
     out = MatplotlibBackend(ax)
     Frontend(ctx, out).draw_layout(msp, finalize=True)
-    
-    fig.savefig(pdf_path, dpi=300, bbox_inches='tight', pad_inches=0)
-    fig.savefig(svg_path, format='svg', bbox_inches='tight', pad_inches=0)
+
+    add_north_arrow(ax, extent[1] - 0.4, extent[2] - 0.4 if extent[2] > extent[3] else extent[3] - 0.4)
+    add_scale_bar(ax, extent[0] + 0.3, extent[3] + 0.15 if extent[3] < extent[2] else extent[2] + 0.15, meters=2.0)
+
+    fig.savefig(pdf_path, dpi=600, bbox_inches='tight', pad_inches=0.05)
+    fig.savefig(svg_path, format='svg', bbox_inches='tight', pad_inches=0.05)
     plt.close(fig)
     print("¡Renderizado PDF y SVG completado con éxito!")
 
@@ -451,10 +498,19 @@ def main():
         croquis_path = repo_root / "proyectos" / "renzo" / "fuentes" / "croquis" / f"piso-{floor_num}.png"
         lw = layout["dimensions"]["width"]
         lh = layout["dimensions"]["height"]
-        crop_extent = [ox - 0.3, ox + lw + 0.3, oy + lh + 0.3, oy - 0.3]
+
+        import numpy as np
+        from PIL import Image
+        try:
+            pil_img = Image.open(str(croquis_path))
+            img_w, img_h = pil_img.size
+        except Exception:
+            img_w, img_h = lw * 100, lh * 100
+
+        img_extent = compute_image_extent(ox, oy, lw, lh, img_w, img_h, padding=0.5)
         
         render_pdf_and_svg(str(out_dxf_path), str(out_pdf_path), str(out_svg_path),
-                           croquis_path=str(croquis_path), extent=crop_extent)
+                           croquis_path=str(croquis_path), extent=img_extent)
 
 if __name__ == "__main__":
     main()
