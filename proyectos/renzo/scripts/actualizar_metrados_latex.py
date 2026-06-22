@@ -25,15 +25,15 @@ Los metrados se agrupan por las siguientes categorias: tuberias, conductores, ca
 \toprule
 \textbf{Cto.} & \textbf{Uso} & \textbf{Luminarias} & \textbf{TCs} & \textbf{Interruptores} & \textbf{Long. est. (m)} \\
 \midrule
-C1 & Alumbrado 1er piso & 4 & -- & 2 & 12 \\
-C2 & TCs generales 1er piso & -- & 5 & -- & 15 \\
-C3 & Tomacorrientes Cocina & -- & 3 & -- & 10 \\
-C4 & Alumbrado 2do piso & 4 & -- & 3 & 14 \\
-C5 & TCs generales 2do piso & -- & 8 & -- & 20 \\
-C6 & Alumbrado 3er piso & 4 & -- & 3 & 16 \\
-C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
+C1 & Alumbrado 1er piso & 7 & -- & 5 & 18 \\
+C2 & TCs generales 1er piso & -- & 4 & -- & 12 \\
+C3 & Tomacorrientes Cocina & -- & 4 & -- & 12 \\
+C4 & Alumbrado 2do piso & 6 & -- & 5 & 16 \\
+C5 & TCs generales 2do piso & -- & 8 & -- & 22 \\
+C6 & Alumbrado 3er piso & 6 & -- & 6 & 18 \\
+C7 & TCs generales 3er piso & -- & 8 & -- & 22 \\
 \midrule
-\textbf{Total} & & \textbf{12} & \textbf{22} & \textbf{8} & \textbf{105} \\
+\textbf{Total} & & \textbf{19} & \textbf{24} & \textbf{16} & \textbf{120} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -50,8 +50,8 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Tipo} & \textbf{Und.} & \textbf{Cant.} & \textbf{Circuitos} & \textbf{Observacion} \\
 \midrule
-1 & Tuberia PVC liviana 3/4" para alumbrado & PV-L & m & 120 & C1, C4, C6 & Empotrada en losa de techo \\
-2 & Tuberia PVC pesada 3/4" para tomacorrientes & PV-P & m & 150 & C2, C3, C5, C7 & Empotrada en contrapiso y muros \\
+1 & Tuberia PVC liviana 3/4" para alumbrado & PV-L & m & 140 & C1, C4, C6 & Empotrada en losa de techo \\
+2 & Tuberia PVC pesada 3/4" para tomacorrientes & PV-P & m & 180 & C2, C3, C5, C7 & Empotrada en contrapiso y muros \\
 3 & Tuberia PVC pesada 1" para alimentador & PV-P & m & 25 & Alimentador general & Desde medidor a TG y subtableros \\
 \bottomrule
 \end{tabularx}
@@ -70,12 +70,12 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Und.} & \textbf{Seccion} & \textbf{Cant.} & \textbf{Tipo} & \textbf{Uso} & \textbf{Observacion} \\
 \midrule
-1 & Conductor fase alumbrado & m & 1.5 mm2 & 120 & LSOH & C1, C4, C6 & Cableado unipolar \\
-2 & Conductor neutro alumbrado & m & 1.5 mm2 & 120 & LSOH & C1, C4, C6 & Cableado unipolar \\
-3 & Conductor de proteccion alumbrado & m & 1.5 mm2 & 110 & LSOH & C1, C4, C6 & Segun CNE-U \\
-4 & Conductor fase tomacorrientes & m & 2.5 mm2 & 160 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
-5 & Conductor neutro tomacorrientes & m & 2.5 mm2 & 160 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
-6 & Conductor de proteccion tomacorrientes & m & 2.5 mm2 & 160 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
+1 & Conductor fase alumbrado & m & 1.5 mm2 & 140 & LSOH & C1, C4, C6 & Cableado unipolar \\
+2 & Conductor neutro alumbrado & m & 1.5 mm2 & 140 & LSOH & C1, C4, C6 & Cableado unipolar \\
+3 & Conductor de proteccion alumbrado & m & 1.5 mm2 & 130 & LSOH & C1, C4, C6 & Segun CNE-U \\
+4 & Conductor fase tomacorrientes & m & 2.5 mm2 & 190 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
+5 & Conductor neutro tomacorrientes & m & 2.5 mm2 & 190 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
+6 & Conductor de proteccion tomacorrientes & m & 2.5 mm2 & 190 & LSOH & C2, C3, C5, C7 & Cableado unipolar \\
 7 & Conductor alimentador general fase & m & 10 mm2 & 30 & LSOH & TG & Cableado unipolar \\
 8 & Conductor alimentador general neutro & m & 10 mm2 & 30 & LSOH & TG & Cableado unipolar \\
 \bottomrule
@@ -96,10 +96,10 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Material} & \textbf{Und.} & \textbf{Cant.} & \textbf{Observacion} \\
 \midrule
-1 & Cajas octogonales 4" x 2" para luminarias & Fierro galvanizado & pza & 12 & Puntos de luz y derivacion \\
-2 & Cajas rectangulares 4" x 2" para interruptores & Fierro galvanizado & pza & 8 & Interruptores simples y conmutadores \\
+1 & Cajas octogonales 4" x 2" para luminarias & Fierro galvanizado & pza & 19 & Puntos de luz y derivacion \\
+2 & Cajas rectangulares 4" x 2" para interruptores & Fierro galvanizado & pza & 16 & Interruptores simples y conmutadores \\
 3 & Cajas rectangulares 4" x 2" para tomacorrientes & Fierro galvanizado & pza & 24 & Tomacorrientes generales y especiales \\
-4 & Caja de pase rectangular 4" x 2" & Fierro galvanizado & pza & 6 & Para derivaciones en cambios de direccion \\
+4 & Caja de pase rectangular 4" x 2" & Fierro galvanizado & pza & 8 & Para derivaciones en cambios de direccion \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -116,8 +116,8 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \textbf{Item} & \textbf{Descripcion} & \textbf{Polos} & \textbf{Und.} & \textbf{Cant.} & \textbf{Observacion} \\
 \midrule
 1 & Tablero general TG-01 (metalico empotrable) & 12 polos & u & 1 & Primer piso, zona de ingreso \\
-2 & Tablero de distribucion TD-01 & 8 polos & u & 1 & Segundo piso, zona central \\
-3 & Tablero de distribucion TD-02 & 8 polos & u & 1 & Tercer piso o zona de servicio \\
+2 & Tablero de distribucion TD-02 & 8 polos & u & 1 & Segundo piso, zona central \\
+3 & Tablero de distribucion TD-03 & 8 polos & u & 1 & Tercer piso o zona de servicio \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -134,8 +134,8 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Und.} & \textbf{Cant.} & \textbf{Circuito} & \textbf{Observacion} \\
 \midrule
-1 & Interruptor simple (unipolar) & pza & 4 & C1, C4, C6 & Ambientes generales \\
-2 & Interruptor conmutacion 3 vias (S3) & pza & 4 & C1, C4, C6 & Escaleras y pasadizo \\
+1 & Interruptor simple (unipolar) & pza & 11 & C1, C4, C6 & Ambientes generales \\
+2 & Interruptor conmutacion 3 vias (S3) & pza & 5 & C1, C4, C6 & Escaleras y pasadizo \\
 3 & Tomacorriente doble con toma a tierra & pza & 22 & C2, C3, C5, C7 & Uso general \\
 4 & Tomacorriente doble con proteccion GFCI & pza & 2 & C5, C7 & Banos (protegido) \\
 5 & Interruptor termomagnetico 2P-10A & pza & 3 & C1, C4, C6 & Proteccion alumbrado \\
@@ -144,7 +144,7 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 8 & Interruptor termomagnetico general 2P-40A & pza & 1 & Alimentador & Proteccion general TG \\
 9 & Interruptor diferencial 2P-25A-30mA & pza & 4 & C2, C3, C5, C7 & Proteccion de personas \\
 10 & Interruptor diferencial 2P-40A-30mA (General) & pza & 1 & TG-01 & Proteccion diferencial general \\
-11 & Luminaria LED interior 12 W (circular o rectangular) & pza & 12 & C1, C4, C6 & Iluminacion LED \\
+11 & Luminaria LED interior 12 W (circular o rectangular) & pza & 19 & C1, C4, C6 & Iluminacion LED \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -183,21 +183,21 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Und.} & \textbf{Especificacion} & \textbf{Cant.} & \textbf{Plano ref.} & \textbf{Observacion} \\
 \midrule
-1 & Tuberia PVC liviana 3/4" & m & PV-L & 120 & IE-02, IE-04 & Alumbrado empotrado en techo \\
-2 & Tuberia PVC pesada 3/4" & m & PV-P & 150 & IE-03, IE-04 & Tomacorrientes empotrado en muro \\
+1 & Tuberia PVC liviana 3/4" & m & PV-L & 140 & IE-02, IE-04 & Alumbrado empotrado en techo \\
+2 & Tuberia PVC pesada 3/4" & m & PV-P & 180 & IE-03, IE-04 & Tomacorrientes empotrado en muro \\
 3 & Tuberia PVC pesada 1" & m & PV-P & 25 & IE-05 & Alimentador general \\
-4 & Conductor 1.5 mm2 Cu LSOH & m & LSOH 1.5 mm2 & 350 & IE-02 & Fase+neutro+PE alumbrado \\
-5 & Conductor 2.5 mm2 Cu LSOH & m & LSOH 2.5 mm2 & 480 & IE-03 & Fase+neutro+PE tomacorrientes \\
+4 & Conductor 1.5 mm2 Cu LSOH & m & LSOH 1.5 mm2 & 410 & IE-02 & Fase+neutro+PE alumbrado \\
+5 & Conductor 2.5 mm2 Cu LSOH & m & LSOH 2.5 mm2 & 570 & IE-03 & Fase+neutro+PE tomacorrientes \\
 6 & Conductor 10 mm2 Cu LSOH & m & LSOH 10 mm2 & 30 & IE-05 & Alimentador general \\
 7 & Conductor 6 mm2 Cu & m & Cu desnudo & 25 & IE-06 & Puesta a tierra \\
-8 & Caja octogonal 4" x 2" FG & pza & FG & 12 & IE-02 & Luminarias \\
-9 & Caja rectangular 4" x 2" FG & pza & FG & 32 & IE-02, IE-03 & Interruptores y tomacorrientes \\
-10 & Caja de pase rectangular & pza & FG & 6 & IE-04 & Derivaciones \\
+8 & Caja octogonal 4" x 2" FG & pza & FG & 19 & IE-02 & Luminarias \\
+9 & Caja rectangular 4" x 2" FG & pza & FG & 40 & IE-02, IE-03 & Interruptores y tomacorrientes \\
+10 & Caja de pase rectangular & pza & FG & 8 & IE-04 & Derivaciones \\
 11 & Tablero general TG-01 & u & 12 polos & 1 & IE-05 & Primer piso \\
-12 & Tablero distribucion TD-01 & u & 8 polos & 1 & IE-05 & Segundo piso \\
-13 & Tablero distribucion TD-02 & u & 8 polos & 1 & IE-05 & Tercer piso \\
-14 & Interruptor simple & pza & Unipolar & 4 & IE-02 & Alumbrado \\
-15 & Interruptor conmutador S3 & pza & 3 vias & 4 & IE-02 & Escaleras \\
+12 & Tablero distribucion TD-02 & u & 8 polos & 1 & IE-05 & Segundo piso \\
+13 & Tablero distribucion TD-03 & u & 8 polos & 1 & IE-05 & Tercer piso \\
+14 & Interruptor simple & pza & Unipolar & 11 & IE-02 & Alumbrado \\
+15 & Interruptor conmutador S3 & pza & 3 vias & 5 & IE-02 & Escaleras \\
 16 & Tomacorriente doble c/tierra & pza & 15 A - 250 V & 22 & IE-03 & Uso general \\
 17 & Tomacorriente GFCI & pza & 15 A - 30 mA & 2 & IE-03 & Banos \\
 18 & Interruptor termomagnetico 2P-10A & pza & 10 A & 3 & IE-05 & Alumbrado \\
@@ -206,7 +206,7 @@ C7 & TCs generales 3er piso & -- & 6 & -- & 18 \\
 21 & Interruptor termomagnetico general 2P-40A & pza & 40 A & 1 & IE-05 & General TG \\
 22 & Interruptor diferencial 2P-25A-30mA & pza & 25 A - 30 mA & 4 & IE-05 & Circuitos tomacorrientes \\
 23 & Interruptor diferencial 2P-40A-30mA & pza & 40 A - 30 mA & 1 & IE-05 & General TG \\
-24 & Luminaria LED 12 W & pza & 12 W LED & 12 & IE-02 & Iluminacion interior \\
+24 & Luminaria LED 12 W & pza & 12 W LED & 19 & IE-02 & Iluminacion interior \\
 25 & Kit de puesta a tierra completo & jgo & 5/8" x 2.40 m & 1 & IE-06 & Incluye varilla, conector, caja \\
 \bottomrule
 \end{tabularx}
@@ -264,21 +264,21 @@ La siguiente tabla muestra los precios unitarios estimados para cada material, b
 \toprule
 \textbf{Item} & \textbf{Descripcion} & \textbf{Und.} & \textbf{Cant.} & \textbf{P. Unit. (S/)} & \textbf{Proveedor ref.} & \textbf{Observacion} \\
 \midrule
-1 & Tuberia PVC liviana 3/4" & m & 120 & 3.50 & Ferreteria local & Tuberia SELVA o similar \\
-2 & Tuberia PVC pesada 3/4" & m & 150 & 4.50 & Ferreteria local & Tuberia SELVA o similar \\
+1 & Tuberia PVC liviana 3/4" & m & 140 & 3.50 & Ferreteria local & Tuberia SELVA o similar \\
+2 & Tuberia PVC pesada 3/4" & m & 180 & 4.50 & Ferreteria local & Tuberia SELVA o similar \\
 3 & Tuberia PVC pesada 1" & m & 25 & 8.50 & Ferreteria local & Tuberia SELVA o similar \\
-4 & Conductor LSOH 1.5 mm2 (rollo 100 m) & m & 350 & 2.80 & Indeco / Promel & Cable unipolar cobre \\
-5 & Conductor LSOH 2.5 mm2 (rollo 100 m) & m & 480 & 4.50 & Indeco / Promel & Cable unipolar cobre \\
+4 & Conductor LSOH 1.5 mm2 (rollo 100 m) & m & 410 & 2.80 & Indeco / Promel & Cable unipolar cobre \\
+5 & Conductor LSOH 2.5 mm2 (rollo 100 m) & m & 570 & 4.50 & Indeco / Promel & Cable unipolar cobre \\
 6 & Conductor LSOH 10 mm2 (rollo 100 m) & m & 30 & 16.00 & Indeco / Promel & Cable unipolar cobre \\
 7 & Conductor 6 mm2 Cu desnudo (rollo 50 m) & m & 25 & 8.00 & Indeco / Promel & Puesta a tierra \\
-8 & Caja octogonal FG 4" x 2" & pza & 12 & 3.50 & Ferreteria local & -- \\
-9 & Caja rectangular FG 4" x 2" & pza & 32 & 3.20 & Ferreteria local & -- \\
-10 & Caja de pase rectangular FG & pza & 6 & 4.50 & Ferreteria local & -- \\
+8 & Caja octogonal FG 4" x 2" & pza & 19 & 3.50 & Ferreteria local & -- \\
+9 & Caja rectangular FG 4" x 2" & pza & 40 & 3.20 & Ferreteria local & -- \\
+10 & Caja de pase rectangular FG & pza & 8 & 4.50 & Ferreteria local & -- \\
 11 & Tablero general TG-01 12 polos equipado & u & 1 & 450.00 & SEIN / TICINO & Completo con barra N/T y puerta \\
-12 & Tablero distribucion TD-01 8 polos equipado & u & 1 & 320.00 & SEIN / TICINO & Completo con barra N/T y puerta \\
-13 & Tablero distribucion TD-02 8 polos equipado & u & 1 & 320.00 & SEIN / TICINO & Completo con barra N/T y puerta \\
-14 & Interruptor simple unipolar (placa completa) & pza & 4 & 12.00 & TICINO / BTICINO & Color blanco \\
-15 & Interruptor conmutador S3 (placa completa) & pza & 4 & 15.00 & TICINO / BTICINO & Color blanco \\
+12 & Tablero distribucion TD-02 8 polos equipado & u & 1 & 320.00 & SEIN / TICINO & Completo con barra N/T y puerta \\
+13 & Tablero distribucion TD-03 8 polos equipado & u & 1 & 320.00 & SEIN / TICINO & Completo con barra N/T y puerta \\
+14 & Interruptor simple unipolar (placa completa) & pza & 11 & 12.00 & TICINO / BTICINO & Color blanco \\
+15 & Interruptor conmutador S3 (placa completa) & pza & 5 & 15.00 & TICINO / BTICINO & Color blanco \\
 16 & Tomacorriente doble c/tierra (placa completa) & pza & 22 & 14.50 & TICINO / BTICINO & 15 A - 250 V \\
 17 & Tomacorriente GFCI (placa completa) & pza & 2 & 45.00 & TICINO / BTICINO & Proteccion diferencial integrada \\
 18 & Interruptor termomagnetico 2P-10A & pza & 3 & 35.00 & SEIN / LEGRAND & Curva C \\
@@ -287,7 +287,7 @@ La siguiente tabla muestra los precios unitarios estimados para cada material, b
 21 & Interruptor termomagnetico general 2P-40A & pza & 1 & 85.00 & SEIN / LEGRAND & Curva C \\
 22 & Interruptor diferencial 2P-25A-30mA & pza & 4 & 120.00 & SEIN / LEGRAND & Proteccion de personas \\
 23 & Interruptor diferencial 2P-40A-30mA & pza & 1 & 140.00 & SEIN / LEGRAND & Proteccion general \\
-24 & Luminaria LED interior 12 W & pza & 12 & 25.00 & Philips / OSRAM & Panel LED circular o rectangular \\
+24 & Luminaria LED interior 12 W & pza & 19 & 25.00 & Philips / OSRAM & Panel LED circular o rectangular \\
 25 & Kit de puesta a tierra completo & jgo & 1 & 650.00 & Ferreteria especializada & Varilla 5/8" x 2.40 m + accesorios \\
 26 & Varios (curvas, uniones, cinta aislante, conectores) & glb & 1 & 200.00 & Ferreteria local & Accesorios de instalacion \\
 \bottomrule
@@ -309,33 +309,33 @@ La siguiente tabla muestra los precios unitarios estimados para cada material, b
 \textbf{Item} & \textbf{Descripcion de partida / material} & \textbf{Und.} & \textbf{Cant.} & \textbf{P. Unit. (S/)} & \textbf{Parcial (S/)} & \textbf{Subtotal (S/)} \\
 \midrule
 \multicolumn{7}{l}{\textbf{01.00 TUBERIAS Y CANALIZACIONES}} \\
-01.01 & Tuberia PVC liviana 3/4" para alumbrado & m & 120 & 3.50 & 420.00 & \\
-01.02 & Tuberia PVC pesada 3/4" para tomacorrientes & m & 150 & 4.50 & 675.00 & \\
+01.01 & Tuberia PVC liviana 3/4" para alumbrado & m & 140 & 3.50 & 490.00 & \\
+01.02 & Tuberia PVC pesada 3/4" para tomacorrientes & m & 180 & 4.50 & 810.00 & \\
 01.03 & Tuberia PVC pesada 1" para alimentador & m & 25 & 8.50 & 212.50 & \\
- & & & & & \textbf{Subtotal 01} & \textbf{1,307.50} \\
+ & & & & & \textbf{Subtotal 01} & \textbf{1,512.50} \\
 \midrule
 \multicolumn{7}{l}{\textbf{02.00 CONDUCTORES ELECTRICOS}} \\
-02.01 & Conductor LSOH 1.5 mm2 (fase+neutro+PE) & m & 350 & 2.80 & 980.00 & \\
-02.02 & Conductor LSOH 2.5 mm2 (fase+neutro+PE) & m & 480 & 4.50 & 2,160.00 & \\
+02.01 & Conductor LSOH 1.5 mm2 (fase+neutro+PE) & m & 410 & 2.80 & 1,148.00 & \\
+02.02 & Conductor LSOH 2.5 mm2 (fase+neutro+PE) & m & 570 & 4.50 & 2,565.00 & \\
 02.03 & Conductor LSOH 10 mm2 (fase+neutro) & m & 30 & 16.00 & 480.00 & \\
 02.04 & Conductor Cu desnudo 6 mm2 (PT) & m & 25 & 8.00 & 200.00 & \\
- & & & & & \textbf{Subtotal 02} & \textbf{3,820.00} \\
+ & & & & & \textbf{Subtotal 02} & \textbf{4,393.00} \\
 \midrule
 \multicolumn{7}{l}{\textbf{03.00 CAJAS}} \\
-03.01 & Caja octogonal FG 4" x 2" & pza & 12 & 3.50 & 42.00 & \\
-03.02 & Caja rectangular FG 4" x 2" & pza & 32 & 3.20 & 102.40 & \\
-03.03 & Caja de pase rectangular FG & pza & 6 & 4.50 & 27.00 & \\
- & & & & & \textbf{Subtotal 03} & \textbf{171.40} \\
+03.01 & Caja octogonal FG 4" x 2" & pza & 19 & 3.50 & 66.50 & \\
+03.02 & Caja rectangular FG 4" x 2" & pza & 40 & 3.20 & 128.00 & \\
+03.03 & Caja de pase rectangular FG & pza & 8 & 4.50 & 36.00 & \\
+ & & & & & \textbf{Subtotal 03} & \textbf{230.50} \\
 \midrule
 \multicolumn{7}{l}{\textbf{04.00 TABLEROS}} \\
 04.01 & Tablero general TG-01 12 polos & u & 1 & 450.00 & 450.00 & \\
-04.02 & Tablero distribucion TD-01 8 polos & u & 1 & 320.00 & 320.00 & \\
-04.03 & Tablero distribucion TD-02 8 polos & u & 1 & 320.00 & 320.00 & \\
+04.02 & Tablero distribucion TD-02 8 polos & u & 1 & 320.00 & 320.00 & \\
+04.03 & Tablero distribucion TD-03 8 polos & u & 1 & 320.00 & 320.00 & \\
  & & & & & \textbf{Subtotal 04} & \textbf{1,090.00} \\
 \midrule
 \multicolumn{7}{l}{\textbf{05.00 ACCESORIOS Y PROTECCIONES}} \\
-05.01 & Interruptor simple unipolar & pza & 4 & 12.00 & 48.00 & \\
-05.02 & Interruptor conmutador S3 & pza & 4 & 15.00 & 60.00 & \\
+05.01 & Interruptor simple unipolar & pza & 11 & 12.00 & 132.00 & \\
+05.02 & Interruptor conmutador S3 & pza & 5 & 15.00 & 75.00 & \\
 05.03 & Tomacorriente doble con toma a tierra & pza & 22 & 14.50 & 319.00 & \\
 05.04 & Tomacorriente GFCI (banos) & pza & 2 & 45.00 & 90.00 & \\
 05.05 & Interruptor termomagnetico 2P-10A & pza & 3 & 35.00 & 105.00 & \\
@@ -344,19 +344,19 @@ La siguiente tabla muestra los precios unitarios estimados para cada material, b
 05.08 & Interruptor termomagnetico general 2P-40A & pza & 1 & 85.00 & 85.00 & \\
 05.09 & Interruptor diferencial 2P-25A-30mA & pza & 4 & 120.00 & 480.00 & \\
 05.10 & Interruptor diferencial 2P-40A-30mA (General) & pza & 1 & 140.00 & 140.00 & \\
-05.11 & Luminaria LED interior 12 W & pza & 12 & 25.00 & 300.00 & \\
- & & & & & \textbf{Subtotal 05} & \textbf{1,783.00} \\
+05.11 & Luminaria LED interior 12 W & pza & 19 & 25.00 & 475.00 & \\
+ & & & & & \textbf{Subtotal 05} & \textbf{2,057.00} \\
 \midrule
 \multicolumn{7}{l}{\textbf{06.00 PUESTA A TIERRA Y VARIOS}} \\
 06.01 & Kit de puesta a tierra completo & jgo & 1 & 650.00 & 650.00 & \\
 06.02 & Varios (accesorios de instalacion) & glb & 1 & 200.00 & 200.00 & \\
  & & & & & \textbf{Subtotal 06} & \textbf{850.00} \\
 \midrule
-\multicolumn{5}{r}{\textbf{VALOR TOTAL DE MATERIALES}} & & \textbf{9,021.90} \\
-\multicolumn{5}{r}{Mano de Obra (40\%)} & & \textbf{3,608.76} \\
-\multicolumn{5}{r}{\textbf{SUBTOTAL GENERAL}} & & \textbf{12,630.66} \\
-\multicolumn{5}{r}{Impuesto General a las Ventas (IGV 18\%)} & & \textbf{2,273.52} \\
-\multicolumn{5}{r}{\textbf{PRESUPUESTO TOTAL GENERAL}} & & \textbf{14,904.18} \\
+\multicolumn{5}{r}{\textbf{VALOR TOTAL DE MATERIALES}} & & \textbf{10,133.00} \\
+\multicolumn{5}{r}{Mano de Obra (40\%)} & & \textbf{4,053.20} \\
+\multicolumn{5}{r}{\textbf{SUBTOTAL GENERAL}} & & \textbf{14,186.20} \\
+\multicolumn{5}{r}{Impuesto General a las Ventas (IGV 18\%)} & & \textbf{2,553.52} \\
+\multicolumn{5}{r}{\textbf{PRESUPUESTO TOTAL GENERAL}} & & \textbf{16,739.72} \\
 \bottomrule
 \end{tabularx}
 \end{table}
