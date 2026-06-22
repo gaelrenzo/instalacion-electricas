@@ -350,8 +350,9 @@ def setup_doc():
         ensure_layer(doc, f"ELEC_CIRCUITO_{cid}", true_color=color, lineweight=20, linetype="DASHED")
     return doc
 
-def render_pdf_and_svg(dxf_path, pdf_path, svg_path):
+def render_pdf_and_svg(dxf_path, pdf_path, svg_path, croquis_path=None, extent=None):
     import matplotlib.pyplot as plt
+    import matplotlib.image as mpimg
     from ezdxf.addons.drawing import RenderContext, Frontend
     from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
 
@@ -362,6 +363,11 @@ def render_pdf_and_svg(dxf_path, pdf_path, svg_path):
     fig = plt.figure(figsize=(11.69, 8.27))  # A4 horizontal
     ax = fig.add_axes([0, 0, 1, 1])
     ax.axis('off')
+    
+    if croquis_path and Path(croquis_path).exists():
+        print(f"  Superponiendo croquis de fondo: {croquis_path}")
+        img = mpimg.imread(str(croquis_path))
+        ax.imshow(img, extent=extent, aspect='auto', alpha=0.5, zorder=0)
     
     ctx = RenderContext(doc)
     out = MatplotlibBackend(ax)
@@ -436,12 +442,19 @@ def main():
         doc.saveas(out_dxf_path)
         print(f"DXF generado: {out_dxf_path}")
         
-        # Save PDF and SVG
+        # Save PDF and SVG with croquis background
         out_pdf_path = output_dir / "pdf" / f"IE-{plan_code:02d}-{floor_slug}.pdf"
         out_pdf_path.parent.mkdir(parents=True, exist_ok=True)
         out_svg_path = output_dir / "svg" / f"IE-{plan_code:02d}-{floor_slug}.svg"
         out_svg_path.parent.mkdir(parents=True, exist_ok=True)
-        render_pdf_and_svg(str(out_dxf_path), str(out_pdf_path), str(out_svg_path))
+        
+        croquis_path = repo_root / "proyectos" / "renzo" / "fuentes" / "croquis" / f"piso-{floor_num}.png"
+        lw = layout["dimensions"]["width"]
+        lh = layout["dimensions"]["height"]
+        crop_extent = [ox - 0.3, ox + lw + 0.3, oy + lh + 0.3, oy - 0.3]
+        
+        render_pdf_and_svg(str(out_dxf_path), str(out_pdf_path), str(out_svg_path),
+                           croquis_path=str(croquis_path), extent=crop_extent)
 
 if __name__ == "__main__":
     main()
