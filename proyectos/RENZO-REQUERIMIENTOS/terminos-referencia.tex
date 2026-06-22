@@ -7,96 +7,436 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 \usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{amsmath}
 
-\title{\textbf{TÉRMINOS DE REFERENCIA\\CONTRATACIÓN DEL SERVICIO DE INSTALACIÓN Y PUESTA EN SERVICIO DE\\SISTEMA DE PUESTA A TIERRA, ELECTROBOMBA\\Y GRUPO ELECTRÓGENO (A TODO COSTO)}}
-\author{Proyecto: Renzo Gabriel Mamani Galindo}
-\date{\today}
+\definecolor{navyblue}{RGB}{0, 51, 102}
+\definecolor{lightgray}{gray}{0.95}
+
+\titleformat{\section}{\large\bfseries\color{navyblue}}{}{0em}{\uppercase}[\vspace{-0.3em}\rule{\textwidth}{0.5pt}]
+\titleformat{\subsection}{\bfseries\color{navyblue}}{}{0em}{}
+\titleformat{\subsubsection}{\bfseries}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{navyblue}Términos de Referencia}
+\fancyhead[R]{\small\color{navyblue}EPS EMAPAT S.A.}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=navyblue, urlcolor=navyblue}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \begin{document}
-\maketitle
-\thispagestyle{empty}
+
+% ===== PORTADA =====
+\begin{titlepage}
+\begin{center}
+\vspace*{0.5cm}
+
+{\large\textbf{EPS EMAPAT S.A.}}
+
+\vspace{0.3cm}
+{\small Empresa Prestadora de Servicios de Saneamiento}
+
+\vspace{0.3cm}
+{\small Puerto Maldonado -- Madre de Dios -- Perú}
+
+\vspace{1.5cm}
+
+\rule{\textwidth}{1.5pt}
+
+\vspace{0.5cm}
+{\LARGE\bfseries\color{navyblue} TÉRMINOS DE REFERENCIA}
+
+\vspace{0.3cm}
+{\Large Contratación del Servicio de Instalación y Puesta en Servicio de\\
+Sistema de Puesta a Tierra, Electrobomba\\
+y Grupo Electrógeno (A Todo Costo)}
+
+\vspace{0.3cm}
+\rule{\textwidth}{1.5pt}
+
+\vspace{1.5cm}
+
+\begin{tabular}{ll}
+\textbf{Código del Proyecto:} & RENZO-TDR-2026-001 \\
+\textbf{Versión:} & 01 \\
+\textbf{Fecha de Emisión:} & \today \\
+\end{tabular}
+
+\vspace{1.5cm}
+
+\begin{flushleft}
+\small
+\textbf{Elaborado por:} \\
+Renzo Gabriel Mamani Galindo \\
+Ingeniería Mecánico Eléctrica \\
+\rule{4cm}{0.4pt} \\
+Firma
+\end{flushleft}
+
+\vfill
+{\small \textit{Documento elaborado conforme a la Ley N° 32069, Ley General de Contrataciones Públicas}}
+\end{center}
+\end{titlepage}
+
+% ===== ÍNDICE =====
+\newpage
+\tableofcontents
 \newpage
 
+% ===== 1. ANTECEDENTES =====
+\section{Antecedentes}
+
+EPS EMAPAT S.A., como entidad prestadora de servicios de saneamiento en la ciudad de Puerto Maldonado, requiere implementar mejoras en su infraestructura electromecánica para garantizar la continuidad operativa de sus servicios críticos. Las instalaciones actuales presentan deficiencias en los sistemas de puesta a tierra, bombeo de agua y respaldo eléctrico, lo que genera riesgos operativos y de seguridad.
+
+En este contexto, se ha identificado la necesidad de contratar el servicio integral de suministro, instalación y puesta en servicio de un sistema de puesta a tierra, una electrobomba y un grupo electrógeno de respaldo, bajo la modalidad de llave en mano y a todo costo.
+
+% ===== 2. FINALIDAD PÚBLICA =====
 \section{Finalidad pública}
 
 La presente contratación tiene como finalidad primordial garantizar la seguridad eléctrica, la continuidad operativa y el abastecimiento hídrico de las instalaciones de la EPS EMAPAT S.A. Mediante la implementación de un sistema de puesta a tierra eficiente, un sistema de bombeo de agua y un grupo electrógeno de respaldo, se busca proteger los equipos sensibles contra descargas y fallas, además de asegurar el funcionamiento ininterrumpido de los servicios críticos ante eventuales cortes del suministro eléctrico comercial.
 
-\section{Descripción general del requerimiento}
+% ===== 3. BASE LEGAL =====
+\section{Base legal}
 
-El requerimiento consiste en la contratación del servicio integral a todo costo (suministro, instalación, pruebas y puesta en marcha) de tres (03) componentes electromecánicos:
-\begin{enumerate}
-  \item Sistema de pozo a tierra (resistencia $\leq$ 5 $\Omega$).
-  \item Sistema de bombeo mediante electrobomba de 2 HP.
-  \item Grupo electrógeno de respaldo dimensionado según máxima demanda.
-\end{enumerate}
-
-\section{Condiciones de contratación}
-
+El presente proceso se rige por las siguientes disposiciones:
 \begin{itemize}
-  \item \textbf{Modalidad de pago:} Suma Alzada, conforme al artículo 130 del Reglamento de la Ley N° 32069, Ley General de Contrataciones Públicas.
-  \item \textbf{Sistema de entrega:} Llave en mano. Ejecución integral y a todo costo (materiales, mano de obra especializada, herramientas, pruebas y certificación).
-  \item \textbf{Plazo de ejecución:} Máximo de diez (10) días calendario contados a partir del día siguiente de la notificación de la orden de servicio.
-  \item \textbf{Lugar y horario de prestación:} Jr. Billinghurst C/1, Puerto Maldonado, Departamento de Madre de Dios. Horario: Lunes a Viernes de 7:00 am a 3:00 pm.
-  \item \textbf{Recepción y Conformidad:} Otorgada por el área usuaria en un plazo máximo de siete (07) días hábiles tras la culminación del servicio (art. 144 del Reglamento).
-  \item \textbf{Penalidad por mora:} Aplicación automática por retraso injustificado según la fórmula del artículo 120 del Reglamento de la Ley N° 32069.
-  \item \textbf{Garantía y Vicios Ocultos:} Mínimo de doce (12) meses para equipos, materiales y mano de obra. Responsabilidad por vicios ocultos de un (1) año tras la conformidad.
-  \item \textbf{Subcontratación y Adelantos:} No aplican.
+  \item Ley N° 32069, Ley General de Contrataciones Públicas, y su Reglamento aprobado mediante Decreto Supremo N° XXX-2025-EF.
+  \item Ley N° 27444, Ley del Procedimiento Administrativo General.
+  \item Ley N° 28518, Ley sobre Modalidades Formativas Laborales (si aplica).
+  \item Código Nacional de Electricidad (CNE) -- Utilización.
+  \item Norma Técnica Peruana NTP 370.XXX (Sistemas de Puesta a Tierra).
+  \item Norma Técnica Peruana NTP-ISO 8528 (Grupos electrógenos).
+  \item Demás normas técnicas peruanas e internacionales aplicables.
 \end{itemize}
 
+% ===== 4. OBJETIVOS =====
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Contratar el servicio integral de instalación y puesta en servicio de un sistema de puesta a tierra, una electrobomba y un grupo electrógeno de respaldo, garantizando la operatividad, seguridad y continuidad de los servicios de la EPS EMAPAT S.A.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+  \item Implementar un sistema de puesta a tierra con resistencia menor o igual a 5 $\Omega$ que garantice la protección de los equipos y del personal.
+  \item Instalar un sistema de bombeo mediante electrobomba de 2 HP que asegure el abastecimiento hídrico de las instalaciones.
+  \item Proveer e instalar un grupo electrógeno de respaldo dimensionado para la máxima demanda de 6.10 kW / 10 kVA, con transferencia automática.
+  \item Realizar las pruebas de operatividad y entregar la documentación técnica y certificaciones correspondientes.
+\end{enumerate}
+
+% ===== 5. ALCANCE =====
+\section{Alcance del requerimiento}
+
+El servicio comprende el suministro, instalación, pruebas y puesta en marcha de los siguientes sistemas:
+
+\begin{enumerate}
+  \item \textbf{Sistema de Puesta a Tierra (SPAT):} Diseño, suministro e instalación de electrodo, conductor de bajada, conexiones soldadas exotérmicamente, tratamiento químico del suelo, caja de inspección y certificación con telurómetro calibrado.
+  \item \textbf{Sistema de Bombeo:} Suministro e instalación de electrobomba centrífuga de 2 HP, accesorios hidráulicos (válvulas, niples, tubería PVC) y tablero de control y protección con guardamotor y flotadores.
+  \item \textbf{Grupo Electrógeno de Respaldo:} Suministro e instalación de grupo electrógeno cabinado e insonorizado de 6.10 kW / 10 kVA, tablero de transferencia automática (TTA), primera dotación de insumos y pruebas de funcionamiento.
+\end{enumerate}
+
+\section{Descripción del servicio}
+
+\subsection{Generalidades}
+
+El servicio se ejecutará bajo la modalidad \textbf{``Llave en Mano'' (a todo costo)}, comprendiendo:
+\begin{itemize}
+  \item Ingeniería de detalle y planos de instalación.
+  \item Suministro de todos los materiales, equipos y accesorios.
+  \item Mano de obra calificada (técnicos electricistas y mecánicos).
+  \item Herramientas, equipos de medición y protección.
+  \item Pruebas de operatividad y certificación.
+  \item Capacitación al personal de la entidad sobre operación y mantenimiento básico.
+  \item Documentación técnica: memoria descriptiva, planos \emph{as built}, certificados y manuales.
+\end{itemize}
+
+% ===== 6. ESPECIFICACIONES TÉCNICAS =====
 \section{Especificaciones técnicas mínimas}
 
 \subsection{Sistema de Puesta a Tierra (SPAT)}
 
-\begin{longtable}{p{4.5cm}p{10cm}}
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas del SPAT}
+  \label{tab:spat}\\
   \toprule
-  \textbf{Componente} & \textbf{Especificación Técnica} \\
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
   \midrule
   \endhead
-  Resistencia Exigida & $\leq$ 5 ohmios ($\Omega$) medidos con telurómetro calibrado. \\
-  Electrodo & Varilla de cobre electrolítico, mínimo 5/8" de diámetro y 2.40 metros de longitud, o sistema modular tipo Copperweld. \\
-  Conductor de Bajada & Cable de cobre desnudo, calibre mínimo \#4 AWG. \\
-  Conexiones & Soldadura exotérmica (cadweld) para unión varilla-conductor. \\
-  Tratamiento de Suelo & Sustrato químico reductor de resistividad (ej. Thor Gel, Cemil) y relleno con tierra de cultivo o sal industrial de alta pureza. \\
-  Caja de Inspección & De concreto o polipropileno de alta resistencia con tapa. \\
+  Resistencia Exigida & $\leq$ 5 ohmios ($\Omega$), medida con telurómetro calibrado (certificado de calibración vigente). \\
+  Electrodo & Varilla de cobre electrolítico recubierto (Copperweld), diámetro mínimo 5/8" (15.88 mm), longitud mínima 2.40 m. Se aceptarán sistemas modulares de múltiples varillas si el terreno lo requiere. \\
+  Conductor de Bajada & Cable de cobre desnudo, calibre mínimo \#4 AWG (21.15 mm²), enterrado a profundidad mínima de 0.60 m. \\
+  Conexiones & Soldadura exotérmica tipo cadweld o similar para todas las uniones varilla--conductor. No se aceptan conectores mecánicos. \\
+  Tratamiento de Suelo & Sustrato químico reductor de resistividad (Thor Gel, Cemil o equivalente técnico) y relleno con tierra de cultivo humedecida con sal industrial de alta pureza. \\
+  Caja de Inspección & De concreto armado o polipropileno de alta resistencia, con tapa registrable, dimensiones mínimas 0.30 $\times$ 0.30 m. \\
+  Certificación & Informe técnico firmado por Ingeniero Mecánico Eléctrico o Electricista colegiado y habilitado. \\
   \bottomrule
 \end{longtable}
 
 \subsection{Sistema de Bombeo (Electrobomba)}
 
-\begin{longtable}{p{4.5cm}p{10cm}}
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas de la electrobomba}
+  \label{tab:bomba}\\
   \toprule
-  \textbf{Componente} & \textbf{Especificación Técnica} \\
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
   \midrule
   \endhead
-  Potencia del Motor & \textbf{2 HP} (Requisito estricto), alimentación monofásica/trifásica según disponibilidad del tablero principal. \\
-  Tipo de Bomba & Electrobomba centrífuga para agua limpia. \\
-  Accesorios Hidráulicos & Suministro e instalación de válvulas de compuerta, válvula check (retención), niples y tubería de succión/impulsión en PVC pesado. \\
-  Control y Protección & Tablero eléctrico adosable con protección termomagnética, contactor, relé térmico/guardamotor y accesorios de control (flotadores eléctricos). \\
+  Potencia del Motor & 2 HP (requisito mínimo). Alimentación monofásica 220 V / 60 Hz o trifásica 380 V / 60 Hz, según disponibilidad del tablero principal. \\
+  Tipo de Bomba & Electrobomba centrífuga para agua limpia, cuerpo de fundición de hierro o acero inoxidable, impulsor de bronce o acero inoxidable. \\
+  Caudal y Altura & Mínimo 250 L/min a 15 m.c.a. (o según diseño hidráulico del sistema existente). \\
+  Accesorios Hidráulicos & Incluye válvula de compuerta (succión e impulsión), válvula check tipo clapeta, niples de unión universal, tubería de succión e impulsión en PVC pesado clase 10. \\
+  Control y Protección & Tablero eléctrico adosable con interruptor termomagnético, contactor, relé térmico o guardamotor, selector manual--automático, luces piloto y flotadores eléctricos de nivel (mínimo 02). \\
+  Gabinete del Tablero & Metálico con pintura electrostática, grado de protección IP54 mínimo, con chapa de seguridad. \\
   \bottomrule
 \end{longtable}
 
 \subsection{Grupo Electrógeno de Respaldo}
 
-\begin{longtable}{p{4.5cm}p{10cm}}
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas del grupo electrógeno}
+  \label{tab:ge}\\
   \toprule
-  \textbf{Componente} & \textbf{Especificación Técnica} \\
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica} \\
   \midrule
   \endhead
-  Capacidad (Potencia) & Dimensionado para una Máxima Demanda de \textbf{6.10 kW / 10 kVA} (Régimen Prime/Standby). \\
-  Gabinete & Cabinado e insonorizado (aptitud para trabajo a la intemperie). \\
-  Tablero de Transferencia & Suministro e instalación de Tablero de Transferencia Automática (TTA) integrado o externo, compatible con la potencia del grupo. \\
-  Puesta en Marcha & Incluye primera dotación de combustible, refrigerante, aceite lubricante, sistema de escape y pruebas de funcionamiento en vacío y con carga. \\
+  Capacidad (Potencia) & Dimensionado para una Máxima Demanda de \textbf{6.10 kW / 10 kVA} en régimen \textbf{Prime} (potencia principal variable con carga variable). \\
+  Motor & Diésel, enfriado por agua o aire, con regulador mecánico o electrónico de velocidad. \\
+  Alternador & Síncrono, sin escobillas (brushless), autorregulado, clase de aislamiento H, protección IP23. \\
+  Gabinete & Cabinado e insonorizado con atenuación $\leq$ 70 dB(A) a 1 m. Aptitud para trabajo a la intemperie (IP54). Incluye chasis con amortiguadores, tanque de combustible incorporado para mínimo 8 horas de operación continua. \\
+  Sistema Eléctrico de Salida & Tensión 220 V / 380 V (configurable), 60 Hz, trifásico + neutro. Regulación de voltaje $\pm$ 1 \%. \\
+  Tablero de Transferencia & Tablero de Transferencia Automática (TTA) de dos (02) polos o tres (03) polos + neutro, con contactores motorizados o interruptores con enclavamiento mecánico y eléctrico. Incluye lógica de control con retardo ajustable de arranque (0--30 s) y parada (0--300 s). \\
+  Protecciones & Protección contra bajo voltaje, sobrevoltaje, sobrecarga, cortocircuito, baja presión de aceite, alta temperatura del motor y baja carga de batería. \\
+  Batería y Cargador & Batería de arranque de 12 V o 24 V DC con cargador de batería automático (tipo flotación). \\
+  Puesta en Marcha & Incluye primera dotación de combustible diésel (mínimo 50 \% de capacidad del tanque), aceite lubricante SAE 15W-40, refrigerante (etilenglicol), sistema de escape con silenciador industrial y tubería rígida. \\
+  Pruebas & Pruebas en vacío (sin carga) por 30 minutos y con carga resistiva al 50 \%, 75 \% y 100 \% de la potencia nominal durante 1 hora cada una. Se entregará protocolo de pruebas firmado. \\
   \bottomrule
 \end{longtable}
 
-\section{Experiencia del proveedor y personal clave}
+% ===== 7. CRONOGRAMA =====
+\section{Cronograma de ejecución}
+
+El plazo máximo de ejecución es de \textbf{diez (10) días calendario}, contados a partir del día siguiente de la notificación de la orden de servicio. El cronograma referencial es el siguiente:
+
+\begin{center}
+\begin{tabular}{L{4.5cm}L{1.5cm}L{3.5cm}}
+\toprule
+\textbf{Actividad} & \textbf{Días} & \textbf{Producto} \\
+\midrule
+Movilización y acopio de materiales & 1 & Materiales en obra \\
+Instalación de SPAT (pozo a tierra) & 2 & SPAT operativo \\
+Instalación de electrobomba + tablero & 2 & Bomba operativa \\
+Instalación de grupo electrógeno + TTA & 3 & GE operativo \\
+Pruebas y certificación & 1 & Protocolos firmados \\
+Capacitación y entrega & 1 & Acta de conformidad \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ===== 8. CONDICIONES DE CONTRATACIÓN =====
+\section{Condiciones de contratación}
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Modalidad:} Suma Alzada. El contratista asume la ejecución integral del servicio a todo costo, conforme al artículo 130 del Reglamento de la Ley N° 32069.
+  \item \textbf{Sistema de entrega:} Llave en mano. Incluye materiales, mano de obra, herramientas, equipos de medición, pruebas y certificación.
+  \item \textbf{Plazo:} Máximo diez (10) días calendario desde la orden de servicio.
+  \item \textbf{Lugar:} Jr. Billinghurst C/1, Puerto Maldonado, Madre de Dios.
+  \item \textbf{Horario:} Lunes a viernes de 7:00 a.m. a 3:00 p.m.
+  \item \textbf{Subcontratación:} No está permitida.
+  \item \textbf{Adelantos:} No aplican.
+\end{enumerate}
+
+% ===== 9. PERFIL DEL POSTOR =====
+\section{Perfil del postor y requisitos}
+
+\subsection{Requisitos técnicos}
 
 \begin{itemize}
-  \item \textbf{Experiencia del Proveedor:} Debe acreditar con copias de contratos, órdenes de servicio o actas de conformidad, haber ejecutado un mínimo de dos (02) servicios similares de instalación de equipamiento electromecánico y/o puesta a tierra en los últimos tres (03) años.
-  \item \textbf{Técnico Responsable:} Experiencia mínima de tres (03) años en trabajos de instalaciones eléctricas, montajes electromecánicos y sistemas de bombeo.
-  \item \textbf{Profesional Certificador:} La operatividad y medición de los sistemas (especialmente el SPAT) deberá estar respaldada mediante un informe técnico y certificado firmado por un \textbf{Ingeniero Mecánico Eléctrico o Electricista colegiado y habilitado}.
+  \item Experiencia mínima de dos (02) servicios similares (instalación electromecánica y/o puesta a tierra) en los últimos tres (03) años, acreditada con contratos, órdenes de servicio o actas de conformidad.
+  \item Técnico responsable con mínimo tres (03) años de experiencia en instalaciones eléctricas y sistemas de bombeo.
+  \item Certificación del SPAT firmada por Ingeniero Mecánico Eléctrico o Electricista colegiado y habilitado.
 \end{itemize}
+
+\subsection{Requisitos legales}
+
+\begin{itemize}
+  \item Inscripción vigente en el Registro Nacional de Proveedores (RNP) del OSCE.
+  \item Copia de RUC (Registro Único de Contribuyentes).
+  \item Copia de DNI del representante legal (personas jurídicas) o del titular (personas naturales).
+  \item Constancia de no estar inhabilitado para contratar con el Estado.
+\end{itemize}
+
+\subsection{Requisitos financieros}
+
+\begin{itemize}
+  \item Capacidad financiera para ejecutar el servicio sin adelantos.
+  \item Presentación de garantía de fiel cumplimiento (si aplica según monto).
+\end{itemize}
+
+% ===== 10. FORMA DE PAGO =====
+\section{Forma de pago}
+
+El pago se realizará en un (01) solo armada, contra la presentación de los siguientes documentos:
+
+\begin{enumerate}
+  \item Acta de recepción y conformidad del servicio firmada por el área usuaria.
+  \item Informe técnico de certificación del SPAT firmado por ingeniero colegiado.
+  \item Protocolos de pruebas del grupo electrógeno y la electrobomba.
+  \item Factura electrónica o boleta de pago según corresponda.
+  \item Planos \emph{as built} en formato digital e impreso.
+\end{enumerate}
+
+El plazo de pago es de máximo quince (15) días hábiles contados desde la conformidad, conforme al artículo 145 del Reglamento de la Ley N° 32069.
+
+% ===== 11. PENALIDADES =====
+\section{Penalidades y sanciones}
+
+\subsection{Penalidad por mora}
+
+En caso de retraso injustificado en la ejecución del servicio, se aplicará automáticamente la penalidad por mora según la siguiente fórmula:
+
+\[
+\text{Penalidad diaria} = \frac{0.10 \times \text{Monto del contrato}}{F \times \text{Plazo en días}}
+\]
+
+Donde $F = 0.15$ para plazos menores a 60 días, conforme al artículo 120 del Reglamento de la Ley N° 32069.
+
+\subsection{Otras penalidades}
+
+\begin{itemize}
+  \item Incumplimiento de especificaciones técnicas: resolución del contrato sin perjuicio de las acciones legales correspondientes.
+  \item Retiro unilateral injustificado: el contratista asumirá los mayores costos que genere la contratación de un nuevo proveedor.
+\end{itemize}
+
+% ===== 12. RECEPCIÓN Y CONFORMIDAD =====
+\section{Recepción y conformidad}
+
+La recepción del servicio se realizará dentro de los siete (07) días hábiles siguientes a la culminación del servicio, conforme al artículo 144 del Reglamento de la Ley N° 32069.
+
+El área usuaria emitirá el acta de conformidad si se verifica:
+
+\begin{itemize}
+  \item Correcto funcionamiento de los tres sistemas (SPAT, electrobomba, grupo electrógeno).
+  \item Resultado de la medición del SPAT $\leq$ 5 $\Omega$.
+  \item Operatividad de la electrobomba en modo manual y automático.
+  \item Arranque y transferencia automática del grupo electrógeno.
+  \item Entrega de toda la documentación técnica comprometida.
+\end{itemize}
+
+% ===== 13. GARANTÍA =====
+\section{Garantía y vicios ocultos}
+
+\begin{itemize}
+  \item El contratista otorgará una \textbf{garantía mínima de doce (12) meses} contados desde la fecha de recepción y conformidad, cubriendo equipos, materiales, accesorios y mano de obra.
+  \item Se aplicará la responsabilidad por \textbf{vicios ocultos} conforme al Código Civil Peruano, con un plazo de un (01) año desde la conformidad.
+  \item Durante el periodo de garantía, el contratista deberá atender cualquier falla o desperfecto en un plazo máximo de 48 horas, sin costo adicional.
+\end{itemize}
+
+% ===== 14. OBLIGACIONES =====
+\section{Obligaciones de las partes}
+
+\subsection{Obligaciones del contratista}
+
+\begin{enumerate}
+  \item Ejecutar el servicio conforme a las especificaciones técnicas y condiciones del presente TdR.
+  \item Proveer materiales y equipos nuevos, de primera calidad y con garantía de fábrica.
+  \item Cumplir estrictamente las normas de seguridad y salud en el trabajo (Ley N° 29783).
+  \item Presentar toda la documentación técnica y certificaciones requeridas.
+  \item Capacitar al personal de la entidad en operación y mantenimiento.
+\end{enumerate}
+
+\subsection{Obligaciones de la entidad}
+
+\begin{enumerate}
+  \item Facilitar el acceso a las instalaciones y proporcionar la información técnica disponible.
+  \item Designar un supervisor del servicio.
+  \item Efectuar el pago en los plazos establecidos.
+  \item Otorgar la conformidad del servicio una vez verificada su correcta ejecución.
+\end{enumerate}
+
+% ===== 15. ANEXOS =====
+\section{Anexos}
+
+\subsection{Anexo A: Relación de materiales y equipos mínimos}
+
+\begin{center}
+\begin{tabular}{L{3.5cm}L{2cm}L{2cm}L{7cm}}
+\toprule
+\textbf{Ítem} & \textbf{Cant.} & \textbf{Und.} & \textbf{Descripción} \\
+\midrule
+\multicolumn{4}{l}{\textbf{Sistema de Puesta a Tierra}} \\
+Varilla Copperweld 5/8" $\times$ 2.40 m & 1 & pza & Electrodo principal \\
+Cable Cu desnudo \#4 AWG & 10 & m & Conductor de bajada \\
+Soldadura exotérmica & 2 & und & Cartuchos cadweld \\
+Sustrato químico (Thor Gel) & 1 & saco & Tratamiento de suelo \\
+Caja de inspección 0.30 $\times$ 0.30 m & 1 & pza & Con tapa registrable \\
+\midrule
+\multicolumn{4}{l}{\textbf{Sistema de Bombeo}} \\
+Electrobomba centrífuga 2 HP & 1 & pza & Incluye motor \\
+Válvula de compuerta 2" & 2 & pza & Succión e impulsión \\
+Válvula check 2" & 1 & pza & Retención \\
+Tubería PVC pesado 2" & 6 & m & Succión e impulsión \\
+Tablero de control y protección & 1 & pza & Con guardamotor, contactor, flotadores \\
+\midrule
+\multicolumn{4}{l}{\textbf{Grupo Electrógeno}} \\
+Grupo electrógeno 10 kVA / 6.10 kW & 1 & pza & Cabinado, insonorizado \\
+TTA (Transferencia Automática) & 1 & pza & Para 2P o 3P + N \\
+Batería 12 V / 70 Ah & 1 & pza & Arranque \\
+Cargador de batería & 1 & pza & Flotación automática \\
+Combustible diésel & 1 & gln & Primera dotación \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Anexo B: Formato de protocolo de pruebas}
+
+Se adjuntará a la documentación técnica un protocolo que registre como mínimo:
+
+\begin{itemize}
+  \item SPAT: fecha de medición, equipo utilizado (marca, modelo, N° de serie, calibración), resistencia medida en $\Omega$, ubicación, nombre y firma del responsable.
+  \item Electrobomba: voltaje de alimentación (V), corriente (A), caudal (L/min) y presión (m.c.a.), modo manual y automático.
+  \item Grupo electrógeno: voltaje en vacío y en carga (V), frecuencia (Hz), corriente por fase (A), tiempo de arranque y transferencia, presión de aceite, temperatura.
+\end{itemize}
+
+\subsection{Anexo C: Glosario de términos}
+
+\begin{description}
+  \item[SPAT] Sistema de Puesta a Tierra.
+  \item[TTA] Tablero de Transferencia Automática.
+  \item[OSCE] Organismo Supervisor de las Contrataciones del Estado.
+  \item[CNE] Código Nacional de Electricidad.
+  \item[RNP] Registro Nacional de Proveedores.
+  \item[Llave en mano] Modalidad de contratación que comprende la ejecución integral del servicio a todo costo.
+\end{description}
+
+\vspace{1cm}
+
+\begin{center}
+\rule{8cm}{0.4pt} \\
+\textbf{Vo.Bo. Área Usuaria} \\
+\text{EPS EMAPAT S.A.}
+\end{center}
 
 \end{document}
