@@ -495,7 +495,9 @@ def main():
         out_svg_path = output_dir / "svg" / f"IE-{plan_code:02d}-{floor_slug}.svg"
         out_svg_path.parent.mkdir(parents=True, exist_ok=True)
         
-        croquis_path = repo_root / "proyectos" / "renzo" / "fuentes" / "croquis" / f"piso-{floor_num}.png"
+        croquis_path = repo_root / "proyectos" / "renzo" / "fuentes" / "croquis-mejorados" / f"piso-{floor_num}.png"
+        if not croquis_path.exists():
+            croquis_path = repo_root / "proyectos" / "renzo" / "fuentes" / "croquis" / f"piso-{floor_num}.png"
         lw = layout["dimensions"]["width"]
         lh = layout["dimensions"]["height"]
 
