@@ -4,124 +4,156 @@
 \usepackage[spanish]{babel}
 \usepackage{geometry}
 \geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+\usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{parskip}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{fancyhdr}
+\usepackage{titlesec}
 
 \definecolor{navyblue}{RGB}{0, 51, 102}
+\titleformat{\section}{\Large\bfseries\color{navyblue}}{}{0em}{}[\vspace{-0.3em}\rule{\textwidth}{0.5pt}]
+\titleformat{\subsection}{\large\bfseries\color{navyblue}}{}{0em}{}
 
 \hypersetup{colorlinks=true, linkcolor=navyblue, urlcolor=navyblue}
-
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{navyblue}Términos de Referencia}
+\fancyhead[R]{\small\color{navyblue}RENZO-TDR-2026-001}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
 
 \begin{document}
 
-% ENCABEZADO
-\begin{minipage}{0.7\textwidth}
-\textbf{Renzo Gabriel Mamani Galindo} \\
-DNI: 77447743 \\
-Ingeniería Mecánico Eléctrica \\
-Cel.: 924 287 470
-\end{minipage}
-\begin{minipage}{0.3\textwidth}
-\raggedleft
-Puerto Maldonado, 22 de junio de 2026
-\end{minipage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{2cm}
+{\LARGE\bfseries\color{navyblue} TÉRMINOS DE REFERENCIA}
+
+\vspace{0.5cm}
+{\Large Contratación del Servicio de Instalación y Puesta en Servicio de\\
+Sistema de Puesta a Tierra, Electrobomba\\
+y Grupo Electrógeno (A Todo Costo)}
+
+\vspace{1.5cm}
+
+\rule{\textwidth}{1pt}
+\vspace{0.5cm}
+
+\begin{tabular}{rl}
+\textbf{Proyecto:} & Instalaciones Eléctricas Interiores para Vivienda Unifamiliar de 3 Niveles \\
+\textbf{Propietario:} & Renzo Gabriel Mamani Galindo \\
+\textbf{Ubicación:} & Jr. Lima S/N, Capachica, Puno \\
+\textbf{Código:} & RENZO-TDR-2026-001 \\
+\textbf{Fecha:} & \today \\
+\end{tabular}
+
+\vspace{1.5cm}
+\rule{\textwidth}{1pt}
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ===================================================================
+\section{Finalidad pública}
+% ===================================================================
+
+Garantizar la seguridad eléctrica, la continuidad operativa y el abastecimiento hídrico de la vivienda unifamiliar de tres niveles ubicada en Jr. Lima S/N, Capachica, Puno. Mediante la implementación de un sistema de puesta a tierra eficiente, un sistema de bombeo de agua y un grupo electrógeno de respaldo, se busca proteger los equipos sensibles contra descargas y fallas, además de asegurar el funcionamiento ininterrumpido de los servicios críticos ante eventuales cortes del suministro comercial.
+
+% ===================================================================
+\section{Descripción general del requerimiento}
+% ===================================================================
+
+Contratación del servicio integral a todo costo (suministro, instalación, pruebas y puesta en marcha) de tres (03) componentes electromecánicos para la vivienda unifamiliar:
+
+\begin{enumerate}
+  \item Sistema de pozo a tierra (resistencia no mayor a 5 ohmios).
+  \item Sistema de bombeo mediante electrobomba de 2 HP.
+  \item Grupo electrógeno de respaldo dimensionado según máxima demanda.
+\end{enumerate}
+
+% ===================================================================
+\section{Condiciones de contratación}
+% ===================================================================
+
+\begin{itemize}
+  \item \textbf{Modalidad de pago:} Suma Alzada (Art. 130 del Reglamento de la Ley N° 32069).
+  \item \textbf{Sistema de entrega:} Llave en mano. Ejecución integral y a todo costo (materiales, mano de obra especializada, herramientas, pruebas y certificación).
+  \item \textbf{Plazo de entrega:} Máximo de 10 días calendario a partir del día siguiente de la notificación de la orden de servicio.
+  \item \textbf{Lugar de prestación:} Jr. Lima S/N, Capachica, Puno. Horario: Lunes a Viernes de 7:00 am a 3:00 pm.
+  \item \textbf{Recepción y Conformidad:} Otorgada por el propietario en un plazo máximo de siete (7) días hábiles tras la culminación.
+  \item \textbf{Garantía:} Mínimo 12 meses sobre la mano de obra y materiales. Responsabilidad por vicios ocultos de un (1) año.
+  \item \textbf{Penalidades:} Penalidad por mora aplicable automáticamente por cada día de retraso injustificado.
+  \item \textbf{Subcontratación y Adelantos:} No aplican.
+\end{itemize}
+
+% ===================================================================
+\section{Especificaciones técnicas mínimas}
+% ===================================================================
+
+\subsection{Sistema de Puesta a Tierra}
+
+\begin{tabular}{L{4.5cm}L{10cm}}
+\toprule
+\textbf{Componente} & \textbf{Especificación Técnica} \\
+\midrule
+Resistencia Exigida & No mayor a 5 ohmios ($\Omega$). Medición con telurómetro calibrado. \\
+Electrodo & Varilla de cobre electrolítico, mínimo 5/8" de diámetro y 2.40 m de longitud (tipo Copperweld). \\
+Conductor de Bajada & Cobre desnudo, calibre mínimo \#4 AWG. \\
+Tratamiento de Suelo & Sustrato químico reductor de resistividad, no corrosivo y de larga duración (ej. Thor Gel). \\
+Material de Relleno & Sal industrial de alta pureza o tierra de cultivo seleccionada. \\
+Conexiones & Abrazaderas de cobre o soldadura exotérmica (cadweld). \\
+Caja de Inspección & De concreto o polipropileno de alta resistencia con tapa registrable. \\
+\bottomrule
+\end{tabular}
+
+\subsection{Sistema de Bombeo (Electrobomba)}
+
+\begin{tabular}{L{4.5cm}L{10cm}}
+\toprule
+\textbf{Componente} & \textbf{Especificación Técnica} \\
+\midrule
+Potencia & \textbf{2 HP}. \\
+Tipo & Electrobomba centrífuga para agua limpia. \\
+Accesorios & Suministro e instalación de válvulas de compuerta, válvula check, niples, conexiones y tuberías de succión/impulsión en PVC pesado. \\
+Tablero de Control & Suministro e instalación de tablero eléctrico con protección (llave termomagnética, contactor, relé térmico/guardamotor) y flotadores de nivel. \\
+\bottomrule
+\end{tabular}
+
+\subsection{Grupo Electrógeno de Respaldo}
+
+\begin{tabular}{L{4.5cm}L{10cm}}
+\toprule
+\textbf{Componente} & \textbf{Especificación Técnica} \\
+\midrule
+Capacidad & Dimensionado para una Máxima Demanda de \textbf{6.10 kW / 10 kVA} (régimen Prime/Standby). \\
+Suministro & Grupo electrógeno cabinado e insonorizado, Tablero de Transferencia Automática (TTA) y sistema de escape. \\
+Puesta en servicio & Incluye primera dotación de combustible, aceite, refrigerante y pruebas de funcionamiento en vacío y con carga. \\
+\bottomrule
+\end{tabular}
+
+% ===================================================================
+\section{Experiencia del proveedor y personal}
+% ===================================================================
+
+\begin{itemize}
+  \item \textbf{Experiencia del Proveedor:} Acreditar un mínimo de dos (02) servicios similares de instalación electromecánica o puesta a tierra en los últimos tres (03) años.
+  \item \textbf{Técnico Responsable:} Experiencia mínima de tres (03) años en instalaciones eléctricas y montaje.
+  \item \textbf{Profesional Certificador:} Certificado de operatividad emitido y firmado por un Ingeniero Electricista o Mecánico Electricista colegiado y habilitado.
+\end{itemize}
 
 \vspace{1cm}
 
-\noindent\textbf{Para:} EPS EMAPAT S.A. \\
-Jr. Billinghurst C/1, Puerto Maldonado -- Madre de Dios
-
-\vspace{0.3cm}
-
-\noindent\textbf{Asunto:} Presentación de Requerimiento de Servicio -- Instalación de SPAT, Electrobomba y Grupo Electrógeno
-
-\vspace{0.3cm}
-\noindent\rule{\textwidth}{0.4pt}
-\vspace{0.3cm}
-
-Por medio de la presente, cumplo con presentar el requerimiento de servicio para la adquisición de materiales e instalación de los siguientes sistemas electromecánicos, según la máxima demanda calculada:
-
-\vspace{0.5cm}
-
-\noindent\textbf{\large 1. Sistema de Puesta a Tierra (SPAT)}
-
-\begin{tabular}{L{4.5cm}L{10cm}}
-\toprule
-\textbf{Componente} & \textbf{Especificación} \\
-\midrule
-Resistencia exigida & $\leq$ 5 $\Omega$ \\
-Electrodo & Varilla Copperweld 5/8" $\times$ 2.40 m \\
-Conductor de bajada & Cable Cu desnudo \#4 AWG \\
-Conexiones & Soldadura exotérmica (cadweld) \\
-Tratamiento del suelo & Sustrato químico reductor (Thor Gel) + sal industrial \\
-Caja de inspección & Concreto o PP con tapa registrable \\
-\bottomrule
-\end{tabular}
-
-\vspace{0.5cm}
-
-\noindent\textbf{\large 2. Sistema de Bombeo (Electrobomba)}
-
-\begin{tabular}{L{4.5cm}L{10cm}}
-\toprule
-\textbf{Componente} & \textbf{Especificación} \\
-\midrule
-Potencia del motor & \textbf{2 HP} (1.49 kW) -- 220 V / 60 Hz \\
-Tipo de bomba & Centrífuga para agua limpia \\
-Caudal mínimo & 250 L/min a 15 m.c.a. \\
-Accesorios hidráulicos & Válvula compuerta, check, niples, tubería PVC pesado 2" \\
-Control y protección & Tablero con termomagnética, contactor, guardamotor, flotadores \\
-\bottomrule
-\end{tabular}
-
-\vspace{0.5cm}
-
-\noindent\textbf{\large 3. Grupo Electrógeno de Respaldo}
-
-\begin{tabular}{L{4.5cm}L{10cm}}
-\toprule
-\textbf{Componente} & \textbf{Especificación} \\
-\midrule
-Capacidad & \textbf{6.10 kW / 10 kVA} (Régimen Prime) -- Máxima Demanda calculada \\
-Motor & Diésel, cabinado e insonorizado ($\leq$ 75 dB) \\
-Alternador & Brushless, AVR, clase H \\
-Tablero de transferencia & Automático (TTA), retardo ajustable \\
-Protecciones & Bajo/sobre voltaje, sobrecarga, baja presión aceite, alta temperatura \\
-Pruebas & En vacío y con carga (50\,\%, 75\,\%, 100\,\%) con protocolo firmado \\
-\bottomrule
-\end{tabular}
-
-\vspace{0.5cm}
-
-\noindent\textbf{\large Condiciones del servicio}
-
-\begin{itemize}
-  \item \textbf{Modalidad:} Llave en mano -- a todo costo (materiales + instalación + pruebas + puesta en servicio).
-  \item \textbf{Plazo de ejecución:} 10 días calendario.
-  \item \textbf{Garantía:} 12 meses sobre equipos, materiales y mano de obra.
-  \item \textbf{Certificación:} SPAT certificado por Ingeniero Mecánico Eléctrico colegiado y habilitado.
-  \item \textbf{Documentación:} Planos \emph{as built}, protocolos de pruebas, manuales de operación y mantenimiento.
-\end{itemize}
-
-\vspace{0.5cm}
-
-\noindent Se adjunta: Términos de Referencia detallados (RENZO-TDR-2026-001).
-
-\vspace{1.5cm}
-
-\noindent Atentamente,
-
-\vspace{1.5cm}
-
-\noindent\rule{6cm}{0.4pt} \\
+\begin{center}
+\rule{8cm}{0.4pt} \\
 Renzo Gabriel Mamani Galindo \\
-Ingeniería Mecánico Eléctrica
+Propietario
+\end{center}
 
 \end{document}
