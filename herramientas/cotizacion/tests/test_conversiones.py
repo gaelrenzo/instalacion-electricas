@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 """Pruebas unitarias para conversion de unidades comerciales."""
 
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
 import pytest
-from conversor_unidades import (
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
+
+from electra.infraestructura.presupuestos.conversor_unidades import (
     calcular_compra_comercial,
     detectar_unidad_comercial,
     extraer_contenido_comercial,

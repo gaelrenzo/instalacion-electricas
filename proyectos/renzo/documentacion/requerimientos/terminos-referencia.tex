@@ -1,0 +1,860 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{multirow}
+
+\definecolor{navyblue}{RGB}{0, 51, 102}
+\definecolor{lightgray}{gray}{0.95}
+
+\titleformat{\section}{\large\bfseries\color{navyblue}}{}{0em}{\uppercase}[\vspace{-0.3em}\rule{\textwidth}{0.5pt}]
+\titleformat{\subsection}{\bfseries\color{navyblue}}{}{0em}{}
+\titleformat{\subsubsection}{\bfseries}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{navyblue}Términos de Referencia -- RENZO-TDR-2026-001}
+\fancyhead[R]{\small\color{navyblue}Pág. \thepage}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true, linkcolor=navyblue, urlcolor=navyblue}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+% ===================================================================
+% PORTADA
+% ===================================================================
+\begin{titlepage}
+\begin{center}
+\vspace*{2cm}
+
+{\large\textbf{EPS EMAPAT S.A.}}
+
+\vspace{0.3cm}
+{\small Empresa Prestadora de Servicios de Saneamiento}
+{\small \textbullet{} Puerto Maldonado \textbullet{} Madre de Dios \textbullet{} Perú}
+
+\vspace{2cm}
+
+\rule{\textwidth}{1.5pt}
+\vspace{0.5cm}
+{\LARGE\bfseries\color{navyblue} TÉRMINOS DE REFERENCIA}
+\vspace{0.3cm}
+
+{\Large Contratación del Servicio de Instalación y Puesta en Servicio de\\
+Sistema de Puesta a Tierra, Electrobomba\\
+y Grupo Electrógeno \\ (A Todo Costo)}
+
+\vspace{0.3cm}
+\rule{\textwidth}{1.5pt}
+
+\vspace{1.5cm}
+
+\begin{tabular}{rl}
+\textbf{Código:} & RENZO-TDR-2026-001 \\
+\textbf{Versión:} & 02 \\
+\textbf{Fecha:} & \today \\
+\textbf{Elaborado por:} & Renzo Gabriel Mamani Galindo \\
+\end{tabular}
+
+\vspace{3cm}
+
+\begin{flushleft}
+\small
+\textbf{Vo.Bo. Área Usuaria} \\[0.8cm]
+\rule{5cm}{0.4pt} \\
+Nombre y Firma
+\end{flushleft}
+
+\vfill
+{\footnotesize \textit{Documento elaborado conforme a la Ley N° 32069, Ley General de Contrataciones Públicas,
+y su Reglamento.}}
+\end{center}
+\end{titlepage}
+
+% ===================================================================
+% CONTROL DE VERSIONES
+% ===================================================================
+\newpage
+\section*{Control de versiones}
+\begin{center}
+\begin{tabular}{L{1.5cm}L{2cm}L{8cm}L{3cm}}
+\toprule
+\textbf{Versión} & \textbf{Fecha} & \textbf{Descripción de cambios} & \textbf{Elaboró} \\
+\midrule
+01 & 22/06/2026 & Emisión inicial & R. Mamani \\
+02 & \today & Versión completa: agrega seguros, SST, medio ambiente, \\
+  &  & propiedad intelectual, controversias, resolución, \\
+  &  & valor referencial, supervisión y matriz de riesgos & R. Mamani \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ===================================================================
+% ÍNDICE
+% ===================================================================
+\newpage
+\tableofcontents
+\listoftables
+\newpage
+
+% ===================================================================
+% 1. ANTECEDENTES
+% ===================================================================
+\section{Antecedentes}
+
+EPS EMAPAT S.A., como entidad prestadora de servicios de saneamiento en la ciudad de Puerto Maldonado, provincia de Tambopata, departamento de Madre de Dios, requiere implementar mejoras en su infraestructura electromecánica para garantizar la continuidad operativa de sus servicios críticos.
+
+Las instalaciones actuales presentan las siguientes deficiencias identificadas:
+\begin{itemize}
+  \item El sistema de puesta a tierra existente no cumple con el valor de resistencia exigido por el Código Nacional de Electricidad ($\leq$ 5 $\Omega$), poniendo en riesgo la integridad de los equipos conectados.
+  \item El sistema de bombeo de agua presenta obsolescencia y fallas recurrentes que afectan el abastecimiento hídrico de las oficinas y áreas operativas.
+  \item No se cuenta con un sistema de respaldo eléctrico ante cortes del suministro comercial, lo que interrumpe los servicios críticos de la entidad.
+\end{itemize}
+
+En este contexto, el área usuaria ha identificado la necesidad de contratar el servicio integral de suministro, instalación, pruebas y puesta en servicio de un sistema de puesta a tierra, una electrobomba y un grupo electrógeno de respaldo, bajo la modalidad de llave en mano y a todo costo.
+
+% ===================================================================
+% 2. FINALIDAD PÚBLICA
+% ===================================================================
+\section{Finalidad pública}
+
+La presente contratación tiene como finalidad primordial garantizar la seguridad eléctrica, la continuidad operativa y el abastecimiento hídrico de las instalaciones de la EPS EMAPAT S.A. Mediante la implementación de:
+\begin{itemize}
+  \item un sistema de puesta a tierra eficiente (protección de equipos y personas contra descargas y fallas),
+  \item un sistema de bombeo de agua confiable, y
+  \item un grupo electrógeno de respaldo dimensionado adecuadamente,
+\end{itemize}
+se busca proteger los equipos sensibles, asegurar el funcionamiento ininterrumpido de los servicios críticos ante eventuales cortes del suministro eléctrico comercial y mejorar la calidad del servicio brindado a la comunidad.
+
+% ===================================================================
+% 3. BASE LEGAL
+% ===================================================================
+\section{Base legal}
+
+El presente proceso se rige por el siguiente marco normativo:
+
+\begin{enumerate}[label=\textbf{\arabic{enumi}.}]
+  \item \textbf{Ley N° 32069} -- Ley General de Contrataciones Públicas, y su Reglamento aprobado mediante Decreto Supremo correspondiente.
+  \item \textbf{Ley N° 27444} -- Ley del Procedimiento Administrativo General.
+  \item \textbf{Ley N° 29783} -- Ley de Seguridad y Salud en el Trabajo y su Reglamento (D.S. N° 005-2012-TR).
+  \item \textbf{Ley N° 28611} -- Ley General del Ambiente.
+  \item \textbf{Ley N° 27314} -- Ley General de Residuos Sólidos y su Reglamento (D.S. N° 057-2004-PCM).
+  \item \textbf{Código Nacional de Electricidad (CNE)} -- Tomo V: Utilización.
+  \item \textbf{NTP 370.053} -- Sistemas de puesta a tierra. Conductores y electrodos.
+  \item \textbf{NTP-IEC 60364} -- Instalaciones eléctricas de baja tensión.
+  \item \textbf{NTP-ISO 8528} -- Grupos electrógenos de corriente alterna accionados por motores alternativos de combustión interna.
+  \item \textbf{NTP 399.400} -- Instalaciones de bombeo de agua.
+  \item \textbf{RM N° 175-2008-MEM/DM} -- Norma Técnica de Calidad de los Servicios Eléctricos.
+\end{enumerate}
+
+% ===================================================================
+% 4. OBJETIVOS
+% ===================================================================
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Contratar el servicio integral de instalación y puesta en servicio de un sistema de puesta a tierra, una electrobomba y un grupo electrógeno de respaldo, garantizando la operatividad, seguridad y continuidad de los servicios de la EPS EMAPAT S.A., en cumplimiento de la normativa técnica y legal vigente.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+  \item Implementar un sistema de puesta a tierra con resistencia $\leq$ 5 $\Omega$ que garantice la protección de los equipos y del personal contra descargas atmosféricas y fallas de aislamiento.
+  \item Instalar un sistema de bombeo mediante electrobomba de 2 HP que asegure el abastecimiento hídrico continuo de las instalaciones, con control automático por nivel.
+  \item Proveer e instalar un grupo electrógeno de respaldo dimensionado para la máxima demanda de 6.10 kW / 10 kVA, con tablero de transferencia automática (TTA), garantizando el suministro eléctrico ininterrumpido.
+  \item Realizar las pruebas de operatividad de los tres sistemas y entregar la documentación técnica, certificaciones y planos \emph{as built} correspondientes.
+  \item Capacitar al personal designado por la entidad en la operación y mantenimiento básico de los sistemas instalados.
+\end{enumerate}
+
+% ===================================================================
+% 5. ALCANCE
+% ===================================================================
+\section{Alcance del requerimiento}
+
+El servicio objeto de la presente contratación comprende el suministro, instalación, pruebas y puesta en marcha de los siguientes sistemas:
+
+\begin{enumerate}
+  \item \textbf{Sistema de Puesta a Tierra (SPAT):} Diseño, suministro e instalación de electrodo, conductor de bajada, conexiones soldadas exotérmicamente, tratamiento químico del suelo, caja de inspección, medición con telurómetro calibrado y certificación por ingeniero colegiado.
+
+  \item \textbf{Sistema de Bombeo:} Suministro e instalación de electrobomba centrífuga de 2 HP, accesorios hidráulicos (válvula de compuerta, válvula check, niples, tubería de succión e impulsión en PVC) y tablero de control y protección con guardamotor, contactor, relé térmico, flotadores eléctricos de nivel y selector de modo manual--automático.
+
+  \item \textbf{Grupo Electrógeno de Respaldo:} Suministro e instalación de grupo electrógeno cabinado e insonorizado de 6.10 kW / 10 kVA (régimen Prime), tablero de transferencia automática (TTA), batería de arranque, cargador de batería, sistema de escape, primera dotación de combustible, aceite y refrigerante, y pruebas de funcionamiento en vacío y con carga.
+\end{enumerate}
+
+% ===================================================================
+% 6. DESCRIPCIÓN DEL SERVICIO
+% ===================================================================
+\section{Descripción del servicio}
+
+\subsection{Modalidad de ejecución}
+
+El servicio se ejecutará bajo la modalidad \textbf{``Llave en Mano (a todo costo)''}, por lo que el contratista deberá proveer:
+
+\begin{itemize}
+  \item Ingeniería de detalle y elaboración de planos de instalación.
+  \item Suministro de todos los materiales, equipos, accesorios e insumos necesarios.
+  \item Mano de obra calificada (técnicos electricistas, mecánicos y ayudantes).
+  \item Herramientas, equipos de medición y elementos de protección personal (EPP).
+  \item Pruebas de operatividad, protocolos de prueba y certificación técnica.
+  \item Capacitación al personal de la entidad sobre operación y mantenimiento básico (mínimo 2 horas).
+  \item Documentación técnica final: memoria descriptiva, planos \emph{as built}, certificados de medición, manuales de operación y mantenimiento.
+\end{itemize}
+
+\subsection{Coordinaciones previas}
+
+El contratista deberá coordinar con el supervisor designado por la entidad para:
+\begin{itemize}
+  \item Verificar las condiciones actuales de las instalaciones (ubicación de tableros, tuberías existentes, accesos).
+  \item Definir el punto de instalación del grupo electrógeno y la ruta del sistema de escape.
+  \item Confirmar el punto de conexión del TTA con el tablero general.
+  \item Obtener las autorizaciones de ingreso y los permisos de trabajo correspondientes.
+\end{itemize}
+
+% ===================================================================
+% 7. ESPECIFICACIONES TÉCNICAS
+% ===================================================================
+\section{Especificaciones técnicas mínimas}
+
+\subsection{Sistema de Puesta a Tierra (SPAT)}
+
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas del SPAT}
+  \label{tab:spat}\\
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endhead
+  \multirow{2}{4.5cm}{Resistencia del sistema} & $\leq$ 5 $\Omega$ en cualquier época del año. \\
+  & Medición con telurómetro calibrado (certificado de calibración vigente, no mayor a 12 meses). Se tomarán 3 lecturas en diferentes condiciones de humedad; se reporta el valor promedio. \\
+  Electrodo & Varilla de cobre electrolítico recubierto tipo Copperweld, diámetro mínimo 5/8" (15.88 mm), longitud mínima 2.40 m. Se aceptarán sistemas modulares de 2 o más varillas en paralelo si las condiciones del terreno lo requieren. \\
+  Conductor de bajada & Cable de cobre desnudo, calibre mínimo \#4 AWG (21.15 mm²), enterrado a profundidad mínima de 0.60 m, protegido mecánicamente en los tramos superficiales. \\
+  Conexiones & Soldadura exotérmica tipo cadweld o similar certificada. No se aceptan conectores mecánicos (abrazaderas, pernos, grapas) para la unión varilla--conductor. \\
+  Tratamiento del suelo & Sustrato químico reductor de resistividad (Thor Gel, Cemil o equivalente técnico) aplicado según instrucciones del fabricante. Relleno con tierra de cultivo humedecida con sal industrial de alta pureza (NaCl $\geq$ 99 \%). \\
+  Caja de inspección & De concreto armado o polipropileno de alta resistencia a la intemperie, con tapa registrable, dimensiones interiores mínimas 0.30 $\times$ 0.30 $\times$ 0.30 m. Debe permitir el acceso para mediciones periódicas. \\
+  Certificación & Informe técnico de medición firmado por un Ingeniero Mecánico Eléctrico o Electricista colegiado y habilitado. El informe debe incluir: fecha, condiciones climáticas, equipo utilizado, método de medición (caída de potencial o equivalente), croquis de ubicación y valores obtenidos. \\
+  \bottomrule
+\end{longtable}
+
+\subsection{Sistema de Bombeo (Electrobomba)}
+
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas del sistema de bombeo}
+  \label{tab:bomba}\\
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endhead
+  Potencia del motor & 2 HP (1.49 kW). Alimentación monofásica 220 V / 60 Hz o trifásica 380 V / 60 Hz, según disponibilidad del tablero principal en el punto de instalación. \\
+  Tipo de bomba & Electrobomba centrífuga monocelular para agua limpia. Cuerpo de fundición de hierro grado ASTM A48 o acero inoxidable 304. Impulsor de bronce o acero inoxidable 304. Sello mecánico tipo sencillo. \\
+  Caudal y altura dinámica & Mínimo 250 L/min (15 m³/h) a 15 m.c.a. de altura dinámica total. Curva característica (H--Q) debe entregarse con la propuesta técnica. \\
+  Accesorios hidráulicos & Válvula de compuerta de bronce o hierro fundido (succión e impulsión), diámetro 2". Válvula check tipo clapeta (wafer o bridada) diámetro 2". Nipes de unión universal en bronce o acero galvanizado. Tubería de succión e impulsión en PVC pesado clase 10, diámetro 2". \\
+  Control y protección & Tablero eléctrico adosable con los siguientes componentes mínimos: interruptor termomagnético (según corriente nominal del motor), contactor AC-3, relé térmico o guardamotor ajustable, selector de modo manual--automático (3 posiciones), luces piloto de presencia de tensión y de funcionamiento, y bornera de conexión para flotadores eléctricos de nivel. \\
+  Flotadores & Mínimo 02 flotadores eléctricos de nivel (tipo vertical u horizontal) para control de nivel máximo y mínimo en el tanque de almacenamiento. Cable de alimentación con protección IP68. \\
+  Gabinete del tablero & Metálico (acero laminado en frío 1.5 mm espesor mínimo) con pintura electrostática horneable, color gris RAL 7035, grado de protección IP54 mínimo, con chapa de seguridad y placa de identificación con la designación del tablero. \\
+  Cableado & Conductores de alimentación y control con aislamiento tipo THW (90 °C, 600 V) o equivalente. Secciones según tabla de la NTP-IEC 60364. Tubería conduit metálica pesada (pared gruesa) o PVC pesado para la protección de los conductores. \\
+  \bottomrule
+\end{longtable}
+
+\subsection{Grupo Electrógeno de Respaldo}
+
+\begin{longtable}{L{4.5cm}p{10.5cm}}
+  \caption{Especificaciones técnicas del grupo electrógeno}
+  \label{tab:ge}\\
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Componente / Parámetro} & \textbf{Especificación Técnica Mínima} \\
+  \midrule
+  \endhead
+  Capacidad nominal & \textbf{6.10 kW / 10 kVA} en régimen \textbf{Prime} (potencia principal variable con carga variable, factor de servicio 1.0), según NTP-ISO 8528-1. \\
+  Motor & Diésel, 4 tiempos, enfriado por agua (radiador) o por aire. Regulación de velocidad mecánica o electrónica (isocrona $\pm$ 3 \%). Consumo específico máximo 280 g/kWh a plena carga. \\
+  Alternador & Síncrono, sin escobillas (brushless), con regulador automático de voltaje (AVR), clase de aislamiento H, protección IP23. Tensión regulada $\pm$ 1 \%. \\
+  Gabinete & Cabinado e insonorizado, nivel de ruido $\leq$ 75 dB(A) a 1 metro (según ISO 3744). Aptitud para trabajo a la intemperie (IP54). Incluye: chasis con amortiguadores antivibratorios, tanque de combustible incorporado de capacidad suficiente para mínimo 8 horas de operación continua al 100 \% de carga, tapa de llenado con filtro, indicador de nivel, tapa de drenaje y ventilación adecuada del gabinete. \\
+  Sistema eléctrico de salida & Tensión 220 V / 380 V (configurable en estrella), 60 Hz, trifásico 4 hilos (3F + N + T). Regulación de voltaje $\pm$ 1 \% en estado estable, $\pm$ 5 \% en régimen transitorio. \\
+  Tablero de Transferencia Automática (TTA) & De dos (02) o tres (03) polos + neutro, con interruptores con enclavamiento mecánico y eléctrico, o contactores motorizados. Tensión de operación 220 V / 380 V AC, 60 Hz. Función de retardo ajustable para arranque (0--30 s) y parada (0--300 s). Incluye: indicadores luminosos de red disponible / generador en operación, selector de modo manual--automático--prueba, y precámara de bornes para conexión de señales remotas. \\
+  Tablero de mando y control del GE & Digital (microprocesador) o analógico. Debe indicar como mínimo: voltaje de salida (L--N y L--L), frecuencia, corriente por fase, potencia activa (kW), potencia aparente (kVA), factor de potencia, horas de operación, presión de aceite, temperatura del motor, voltaje de batería. \\
+  Protecciones & Parada automática por las siguientes condiciones: bajo voltaje, sobrevoltaje, sobrecarga, cortocircuito, baja presión de aceite, alta temperatura del motor, bajo nivel de combustible (alarma), bajo voltaje de batería y falla de arranque (después de 3 intentos). \\
+  Sistema de arranque & Motor de arranque eléctrico 12 V o 24 V DC. Batería de arranque libre de mantenimiento tipo AGM o equivalente, con capacidad suficiente para mínimo 5 intentos de arranque consecutivos. Cargador de batería automático tipo flotación (tensión constante), con protección contra sobrecarga y cortocircuito. \\
+  Sistema de escape & Tubería de acero negro cedula 40, con silenciador industrial de tipo residencial o crítico (atenuación $\geq$ 25 dB), junta flexible antivibratoria, abrazaderas de acero inoxidable, aislamiento térmico en los tramos accesibles y drenaje de condensados. La descarga debe dirigirse a un lugar seguro y alejado de ventanas o tomas de aire. \\
+  Puesta en marcha & Incluye, sin costo adicional: primera dotación de combustible diésel (mínimo 50 \% de la capacidad del tanque), aceite lubricante SAE 15W-40 (grado API CI-4 o superior), refrigerante a base de etilenglicol (mezcla 50/50 con agua destilada), y electrolito de batería (si aplica). \\
+  Pruebas de aceptación & Se realizarán las siguientes pruebas en presencia del supervisor de la entidad: (a) prueba en vacío por 30 minutos; (b) prueba con carga resistiva al 50 \% de la potencia nominal por 30 minutos; (c) prueba con carga al 75 \% por 30 minutos; (d) prueba con carga al 100 \% por 60 minutos. Se registrarán cada 10 minutos: V, I, f, kW, kVA, factor de potencia, presión de aceite y temperatura. Se entregará protocolo de pruebas firmado por el responsable técnico del contratista y visado por el supervisor. \\
+  \bottomrule
+\end{longtable}
+
+\subsection{Estándares de calidad}
+
+Todos los equipos, materiales y accesorios suministrados deberán:
+\begin{itemize}
+  \item Ser nuevos, de primera calidad, sin uso previo y con garantía de fábrica vigente.
+  \item Contar con certificación CE, UL, CSA o equivalente.
+  \item Cumplir con las normas técnicas peruanas (NTP) e internacionales (ISO, IEC) aplicables.
+  \item Estar libres de defectos de fabricación, montaje y materiales.
+  \item Presentarse en su empaque original con manuales de instalación, operación y mantenimiento en español.
+\end{itemize}
+
+% ===================================================================
+% 8. VALOR REFERENCIAL
+% ===================================================================
+\section{Valor referencial}
+
+El valor referencial del presente servicio se determinará en función del mercado, considerando los costos de materiales, equipos, mano de obra especializada, herramientas, pruebas, certificación y utilidad.
+
+\begin{center}
+\colorbox{lightgray}{\parbox{0.8\textwidth}{\centering El valor referencial será publicado en las bases del proceso de selección.}}
+\end{center}
+
+El postor deberá presentar su propuesta económica desagregada según el siguiente detalle mínimo:
+
+\begin{center}
+\begin{tabular}{L{4cm}L{2.5cm}L{2.5cm}L{2.5cm}}
+\toprule
+\textbf{Componente} & \textbf{Costo materiales} & \textbf{Costo mano de obra} & \textbf{Subtotal} \\
+\midrule
+SPAT & S/ & S/ & S/ \\
+Electrobomba & S/ & S/ & S/ \\
+Grupo electrógeno & S/ & S/ & S/ \\
+Gastos generales & -- & -- & S/ \\
+Utilidad & -- & -- & S/ \\
+\midrule
+\textbf{Total (IGV incluido)} & & & \textbf{S/ } \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ===================================================================
+% 9. CRONOGRAMA DE EJECUCIÓN
+% ===================================================================
+\section{Cronograma de ejecución}
+
+\subsection{Plazo}
+
+El plazo máximo de ejecución del servicio es de \textbf{diez (10) días calendario}, contados a partir del día siguiente de la notificación de la orden de servicio.
+
+\subsection{Cronograma referencial}
+
+\begin{center}
+\begin{tabular}{L{5cm}L{1.5cm}L{2cm}L{4.5cm}}
+\toprule
+\textbf{Actividad} & \textbf{Días} & \textbf{Acumulado} & \textbf{Hito / Producto} \\
+\midrule
+Movilización, acopio de materiales y verificación de instalaciones & 1 & 1 & Materiales en obra, plan de trabajo aprobado \\
+Instalación del sistema de puesta a tierra (SPAT) & 2 & 3 & SPAT instalado y medido \\
+Instalación de la electrobomba, accesorios hidráulicos y tablero de control & 2 & 5 & Electrobomba operativa (manual) \\
+Instalación del grupo electrógeno y TTA; conexión al tablero general & 3 & 8 & GE instalado y alineado \\
+Pruebas integrales y certificación & 1 & 9 & Protocolos firmados \\
+Capacitación, entrega de documentación y acta de conformidad & 1 & 10 & Acta de conformidad \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent El contratista deberá presentar un cronograma detallado (diagrama de Gantt) en su propuesta técnica, el cual deberá respetar el plazo máximo indicado.
+
+% ===================================================================
+% 10. CONDICIONES DE CONTRATACIÓN
+% ===================================================================
+\section{Condiciones del contrato}
+
+\begin{enumerate}[label=\textbf{\arabic{enumi}.}]
+
+  \item \textbf{Modalidad:} Suma Alzada. El contratista asume la ejecución integral del servicio a todo costo, conforme al artículo 130 del Reglamento de la Ley N° 32069.
+
+  \item \textbf{Sistema de entrega:} Llave en mano. Incluye la totalidad de materiales, equipos, mano de obra, herramientas, equipos de medición, pruebas y certificación.
+
+  \item \textbf{Plazo de ejecución:} Máximo diez (10) días calendario, contados desde el día siguiente de la notificación de la orden de servicio.
+
+  \item \textbf{Lugar de prestación:} Jr. Billinghurst C/1, Puerto Maldonado, departamento de Madre de Dios.
+
+  \item \textbf{Horario:} Lunes a viernes de 7:00 a.m. a 3:00 p.m.
+
+  \item \textbf{Subcontratación:} No está permitida en ningún caso.
+
+  \item \textbf{Adelantos:} No se otorgarán adelantos.
+
+  \item \textbf{Vigencia del contrato:} Desde su suscripción hasta la recepción y conformidad final del servicio.
+
+\end{enumerate}
+
+% ===================================================================
+% 11. PERFIL DEL POSTOR
+% ===================================================================
+\section{Perfil del postor y requisitos mínimos}
+
+\subsection{Requisitos técnicos}
+
+\begin{itemize}
+  \item Experiencia mínima de dos (02) servicios similares de instalación de equipamiento electromecánico y/o sistemas de puesta a tierra, ejecutados en los últimos tres (03) años. La experiencia se acreditará con copias de contratos, órdenes de servicio o actas de conformidad.
+  \item Disponibilidad de técnico responsable con mínimo tres (03) años de experiencia comprobable en instalaciones eléctricas, montajes electromecánicos y sistemas de bombeo.
+  \item El personal técnico del contratista deberá contar con capacitación en trabajos en tensión y uso de EPP (certificados vigentes).
+  \item La certificación del SPAT deberá ser firmada por un Ingeniero Mecánico Eléctrico o Electricista colegiado y habilitado.
+\end{itemize}
+
+\subsection{Requisitos legales}
+
+\begin{itemize}
+  \item Inscripción vigente en el Registro Nacional de Proveedores (RNP) del OSCE, en las especialidades correspondientes al objeto del servicio.
+  \item Copia de RUC (Registro Único de Contribuyentes) con estado activo y condición habido.
+  \item Copia de DNI del representante legal (personas jurídicas) o del titular (personas naturales).
+  \item Constancia de no estar inhabilitado para contratar con el Estado (verificación en el RNP y el SIAL).
+  \item Declaración jurada de cumplimiento de obligaciones laborales y tributarias.
+\end{itemize}
+
+\subsection{Requisitos financieros}
+
+\begin{itemize}
+  \item Capacidad financiera demostrada para ejecutar el servicio sin adelantos.
+  \item Carta fianza de fiel cumplimiento por el 10 \% del monto del contrato (si el monto supera las 5 UIT).
+\end{itemize}
+
+% ===================================================================
+% 12. SEGUROS
+% ===================================================================
+\section{Seguros}
+
+El contratista, previo al inicio del servicio, deberá presentar y mantener vigentes durante toda la ejecución los siguientes seguros:
+
+\begin{enumerate}
+  \item \textbf{Seguro Complementario de Trabajo de Riesgo (SCTR):} Cubre accidentes de trabajo y enfermedades profesionales para todo el personal del contratista que intervenga en la obra. Deberá incluir cobertura para trabajos de alto riesgo (eléctricos, altura, excavaciones).
+  \item \textbf{Seguro de Responsabilidad Civil General:} Con cobertura mínima de 50 UIT (S/ 257,500 para el año 2026), que ampare daños a terceros (personas y bienes) ocasionados durante la ejecución del servicio.
+  \item \textbf{Seguro contra Accidentes Personales:} Para el personal técnico del contratista, con cobertura mínima de 10 UIT por evento.
+\end{enumerate}
+
+Los certificados de los seguros deberán ser entregados al supervisor antes del inicio de cualquier actividad en las instalaciones de la entidad.
+
+% ===================================================================
+% 13. SEGURIDAD Y SALUD EN EL TRABAJO (SST)
+% ===================================================================
+\section{Seguridad y salud en el trabajo}
+
+El contratista deberá cumplir estrictamente lo dispuesto en la Ley N° 29783, Ley de Seguridad y Salud en el Trabajo, y su Reglamento, así como las normas internas de seguridad de la EPS EMAPAT S.A.
+
+\subsection{Obligaciones específicas en SST}
+
+\begin{enumerate}
+  \item Presentar un \textbf{Plan de Seguridad y Salud en el Trabajo} específico para el servicio, antes del inicio de las actividades.
+  \item Designar un \textbf{supervisor de seguridad} en obra durante toda la ejecución.
+  \item Realizar el \textbf{Análisis de Trabajo Seguro (ATS)} diario para cada tarea, firmado por el responsable y el supervisor de la entidad.
+  \item Proveer a todo el personal los \textbf{Elementos de Protección Personal (EPP)} requeridos: casco dieléctrico, guantes aislantes clase 0 (para trabajos eléctricos), zapatos dieléctricos, lentes de seguridad, tapones auditivos, respirador para partículas y arnés de seguridad (para trabajos en altura, si aplica).
+  \item Disponer de un \textbf{extintor de incendios} portátil (tipo ABC, 6 kg) en el área de trabajo durante toda la ejecución.
+  \item Contar con un \textbf{botiquín de primeros auxilios} completo en obra.
+  \item Realizar la \textbf{desconexión, verificación de ausencia de tensión, bloqueo y señalización (LOTO)} antes de cualquier intervención en instalaciones eléctricas existentes, siguiendo la norma OSHA 1910.147 o su equivalente nacional.
+  \item Señalizar adecuadamente el área de trabajo con cintas de peligro, conos y letreros de advertencia.
+\end{enumerate}
+
+\subsection{Procedimiento ante emergencias}
+
+El contratista deberá conocer los números de emergencia locales (bomberos, centro de salud, policía) y coordinar con la entidad la ruta de evacuación y el punto de reunión en caso de emergencia.
+
+% ===================================================================
+% 14. ASPECTOS AMBIENTALES
+% ===================================================================
+\section{Aspectos ambientales}
+
+El contratista deberá gestionar adecuadamente los residuos generados durante la ejecución del servicio, cumpliendo con la Ley N° 27314, Ley General de Residuos Sólidos, y la Ley N° 28611, Ley General del Ambiente.
+
+\subsection{Gestión de residuos}
+
+\begin{enumerate}
+  \item \textbf{Residuos peligrosos:} Los residuos contaminados con aceites, lubricantes, combustibles, baterías usadas, trapos con hidrocarburos y suelos tratados con sales químicas deberán ser almacenados en contenedores debidamente etiquetados y dispuestos a través de una Empresa Prestadora de Servicios de Residuos Sólidos (EPS-RS) autorizada por DIGESA. Se entregará el manifiesto de disposición final.
+  \item \textbf{Residuos no peligrosos:} Los residuos de construcción (retazos de tubería, cables, empaques) serán clasificados y dispuestos según la normativa municipal aplicable.
+  \item \textbf{Derrames:} En caso de derrames accidentales de combustible, aceite o productos químicos, el contratista deberá contener inmediatamente el área afectada con material absorbente (arena, aserrín, paños oleofílicos), limpiar y disponer los residuos como peligrosos.
+  \item \textbf{Orden y limpieza:} Al término de cada jornada y al finalizar el servicio, el área de trabajo deberá quedar libre de escombros, residuos y materiales sobrantes.
+\end{enumerate}
+
+% ===================================================================
+% 15. FORMA DE PAGO
+% ===================================================================
+\section{Forma de pago}
+
+El pago se realizará en una (01) sola armada, contra la presentación y aprobación de los siguientes documentos:
+
+\begin{enumerate}
+  \item Acta de recepción y conformidad del servicio, debidamente suscrita por el área usuaria y el supervisor designado.
+  \item Informe técnico de certificación del SPAT firmado por ingeniero colegiado y habilitado.
+  \item Protocolos de pruebas del grupo electrógeno y de la electrobomba firmados por el responsable técnico y visados por el supervisor.
+  \item Factura electrónica o boleta de pago, según corresponda, por el monto total del servicio.
+  \item Planos \emph{as built} en formato digital (PDF + DWG o DXF) e impreso (juego de 2 copias).
+  \item Manuales de operación y mantenimiento de los equipos instalados (originales, en español).
+  \item Constancia de disposición de residuos peligrosos (manifiesto de EPS-RS), si aplica.
+\end{enumerate}
+
+El plazo máximo de pago es de quince (15) días hábiles contados desde la fecha de emisión del acta de conformidad, conforme al artículo 145 del Reglamento de la Ley N° 32069.
+
+% ===================================================================
+% 16. PENALIDADES
+% ===================================================================
+\section{Penalidades}
+
+\subsection{Penalidad por mora}
+
+En caso de retraso injustificado en la ejecución del servicio respecto al plazo contractual, se aplicará automáticamente la penalidad por mora, calculada según la siguiente fórmula:
+
+\[
+\text{Penalidad diaria} = \frac{0.10 \times M}{F \times P}
+\]
+
+Donde:
+\begin{itemize}
+  \item $M$: monto del contrato (incluido IGV).
+  \item $F$: factor = 0.15 para plazos menores a 60 días.
+  \item $P$: plazo contractual en días.
+\end{itemize}
+
+La penalidad se aplicará por cada día calendario de retraso y se descontará del pago final. El monto máximo de penalidad por mora no excederá el 10 \% del monto del contrato.
+
+\subsection{Penalidades específicas}
+
+\begin{itemize}
+  \item \textbf{Incumplimiento de especificaciones técnicas:} Si al momento de la recepción se verifica que algún sistema no cumple con las especificaciones técnicas mínimas establecidas en el presente TdR, se otorgará un plazo máximo de 5 días calendario para la subsanación. De persistir el incumplimiento, se resolverá el contrato y se aplicará la penalidad correspondiente.
+  \item \textbf{Incumplimiento en SST:} El incumplimiento de las disposiciones de seguridad y salud en el trabajo dará lugar a la paralización de las actividades y, de reiterarse, a la resolución del contrato.
+  \item \textbf{Incumplimiento ambiental:} El manejo inadecuado de residuos peligrosos será sancionado conforme a la normativa ambiental vigente y podrá dar lugar a la resolución del contrato.
+  \item \textbf{Retiro unilateral injustificado:} En caso de abandono de la obra sin causa justificada, el contratista asumirá los mayores costos que genere la contratación de un nuevo proveedor para completar el servicio.
+\end{itemize}
+
+% ===================================================================
+% 17. GARANTÍA
+% ===================================================================
+\section{Garantía}
+
+\subsection{Garantía de fiel cumplimiento}
+
+El contratista deberá presentar una carta fianza o garantía de fiel cumplimiento por el 10 \% del monto del contrato, con vigencia hasta la conformidad del servicio.
+
+\subsection{Garantía de equipos y materiales}
+
+Los equipos, materiales y accesorios instalados contarán con una \textbf{garantía técnica mínima de doce (12) meses}, contados desde la fecha de recepción y conformidad del servicio. Esta garantía cubre defectos de fabricación, materiales y mano de obra, así como cualquier falla de funcionamiento no atribuible a uso indebido por parte de la entidad.
+
+\subsection{Vicios ocultos}
+
+El contratista será responsable por \textbf{vicios ocultos} conforme al artículo 1503 del Código Civil Peruano, con un plazo de un (01) año contado desde la conformidad del servicio.
+
+\subsection{Atención de garantía}
+
+Durante el periodo de garantía, el contratista deberá atender cualquier falla o desperfecto en un plazo máximo de \textbf{48 horas} contadas desde la notificación escrita de la entidad. La atención será sin costo adicional para la entidad, incluyendo repuestos, mano de obra y movilidad.
+
+% ===================================================================
+% 18. RECEPCIÓN Y CONFORMIDAD
+% ===================================================================
+\section{Recepción y conformidad del servicio}
+
+\subsection{Procedimiento de recepción}
+
+La recepción del servicio se realizará dentro de los siete (07) días hábiles siguientes a la comunicación escrita de culminación por parte del contratista, conforme al artículo 144 del Reglamento de la Ley N° 32069.
+
+\subsection{Condiciones para la conformidad}
+
+El área usuaria emitirá el acta de conformidad únicamente si se verifican satisfactoriamente las siguientes condiciones:
+
+\begin{enumerate}
+  \item \textbf{SPAT:} Medición de resistencia $\leq$ 5 $\Omega$ con telurómetro calibrado, certificación firmada por ingeniero colegiado, caja de inspección instalada y accesible.
+  \item \textbf{Electrobomba:} Operación correcta en modo manual y automático (control por flotadores), caudal y presión dentro de los parámetros especificados, tablero de control funcional y correctamente cableado.
+  \item \textbf{Grupo electrógeno:} Arranque manual y automático, transferencia automática de carga (TTA) en menos de 10 segundos, parámetros eléctricos dentro de tolerancia (V, f, I), pruebas de carga completadas según lo especificado, sistema de escape instalado y sin fugas.
+  \item \textbf{Documentación:} Entrega completa de informes, protocolos, planos \emph{as built} y manuales según lo establecido en la cláusula de forma de pago.
+  \item \textbf{Capacitación:} Sesión de capacitación realizada al personal designado.
+  \item \textbf{Limpieza:} Área de trabajo libre de residuos, escombros y materiales sobrantes.
+\end{enumerate}
+
+% ===================================================================
+% 19. SUPERVISIÓN
+% ===================================================================
+\section{Supervisión y coordinación}
+
+\subsection{Supervisor de la entidad}
+
+La EPS EMAPAT S.A. designará a un supervisor del servicio, quien será el responsable de:
+\begin{itemize}
+  \item Verificar el cumplimiento de las especificaciones técnicas y condiciones contractuales.
+  \item Aprobar los hitos del cronograma y dar conformidad a los avances.
+  \item Registrar en un cuaderno de obra (físico o digital) todas las incidencias durante la ejecución.
+  \item Coordinar con el contratista los permisos de ingreso, horarios y medidas de seguridad.
+  \item Emitir el acta de conformidad final.
+\end{itemize}
+
+\subsection{Coordinación periódica}
+
+Se realizarán reuniones de coordinación al inicio del servicio y semanalmente, con la participación del supervisor y del responsable técnico del contratista, para evaluar el avance y resolver contingencias.
+
+% ===================================================================
+% 20. PROPIEDAD INTELECTUAL
+% ===================================================================
+\section{Propiedad intelectual y confidencialidad}
+
+\subsection{Propiedad intelectual}
+
+Toda la documentación técnica generada durante la ejecución del servicio, incluyendo pero no limitándose a planos de instalación, planos \emph{as built}, memorias descriptivas, informes de certificación y protocolos de pruebas, serán de propiedad exclusiva de la EPS EMAPAT S.A. El contratista no podrá reproducir, distribuir ni utilizar dicha documentación para fines distintos al presente servicio sin autorización expresa y por escrito de la entidad.
+
+\subsection{Confidencialidad}
+
+El contratista se obliga a mantener la más estricta confidencialidad sobre toda la información técnica, operativa o administrativa de la EPS EMAPAT S.A. a la que tenga acceso durante la ejecución del servicio. Esta obligación subsistirá por un periodo de dos (02) años contados desde la culminación del servicio.
+
+% ===================================================================
+% 21. RESOLUCIÓN DEL CONTRATO
+% ===================================================================
+\section{Resolución del contrato}
+
+\subsection{Causales de resolución}
+
+Son causas de resolución del contrato, además de las establecidas en el artículo 164 del Reglamento de la Ley N° 32069:
+
+\begin{enumerate}
+  \item El incumplimiento injustificado de las obligaciones contractuales.
+  \item El incumplimiento de las especificaciones técnicas que no sea subsanado en el plazo otorgado.
+  \item El abandono injustificado del servicio por más de dos (02) días consecutivos.
+  \item La subcontratación total o parcial del servicio.
+  \item El incumplimiento reiterado de las normas de seguridad y salud en el trabajo.
+  \item La presentación de documentación falsa o adulterada.
+\end{enumerate}
+
+\subsection{Procedimiento}
+
+La resolución se efectuará conforme al procedimiento establecido en el artículo 165 del Reglamento de la Ley N° 32069, requiriendo el envío de una carta notarial con una anticipación mínima de cinco (05) días hábiles para que el contratista subsane el incumplimiento, bajo apercibimiento de resolución.
+
+% ===================================================================
+% 22. SOLUCIÓN DE CONTROVERSIAS
+% ===================================================================
+\section{Solución de controversias}
+
+Toda controversia que surja entre las partes durante la ejecución del contrato o con motivo de su interpretación, incumplimiento o resolución, se resolverá mediante:
+
+\begin{enumerate}
+  \item \textbf{Tratativa directa:} Las partes procurarán resolver sus diferencias mediante negociación directa en un plazo máximo de diez (10) días hábiles.
+  \item \textbf{Conciliación:} De no prosperar la tratativa directa, las partes podrán someter la controversia a un centro de conciliación extrajudicial.
+  \item \textbf{Arbitraje:} A falta de acuerdo, las controversias se resolverán mediante arbitraje de derecho, administrado por el Centro de Arbitraje del OSCE o por una institución arbitral autorizada, conforme a la Ley N° 32069 y su Reglamento.
+\end{enumerate}
+
+% ===================================================================
+% 23. OBLIGACIONES DE LAS PARTES
+% ===================================================================
+\section{Obligaciones de las partes}
+
+\subsection{Obligaciones del contratista}
+
+\begin{enumerate}
+  \item Ejecutar el servicio conforme a las especificaciones técnicas, el cronograma y las condiciones establecidas en el presente TdR.
+  \item Proveer equipos y materiales nuevos, de primera calidad, certificados y con garantía de fábrica.
+  \item Cumplir estrictamente la Ley N° 29783 (SST) y las normas internas de seguridad de la entidad.
+  \item Mantener los seguros vigentes durante toda la ejecución del servicio.
+  \item Gestionar adecuadamente los residuos generados conforme a la normativa ambiental.
+  \item Presentar la documentación técnica completa requerida.
+  \item Capacitar al personal designado por la entidad en la operación y mantenimiento de los sistemas instalados.
+  \item Atender las observaciones del supervisor y las solicitudes de garantía en los plazos establecidos.
+\end{enumerate}
+
+\subsection{Obligaciones de la entidad}
+
+\begin{enumerate}
+  \item Facilitar el acceso a las instalaciones y proporcionar la información técnica disponible que sea necesaria para la ejecución del servicio.
+  \item Designar a un supervisor del servicio con las facultades necesarias para el seguimiento y control.
+  \item Proporcionar servicios básicos (agua, electricidad) para las pruebas de los sistemas instalados, sin costo para el contratista.
+  \item Otorgar las facilidades razonables para el almacenamiento temporal de materiales y equipos en obra.
+  \item Efectuar el pago en los plazos establecidos en el presente TdR.
+  \item Otorgar la conformidad del servicio una vez verificada su correcta ejecución y cumplimiento de todas las condiciones.
+\end{enumerate}
+
+% ===================================================================
+% 24. ANEXOS
+% ===================================================================
+\section{Anexos}
+
+\subsection{Anexo A: Relación de materiales y equipos mínimos}
+
+\begin{center}
+\begin{tabular}{L{0.5cm}L{3cm}L{1.5cm}L{1.2cm}L{8cm}}
+\toprule
+\textbf{N°} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Und.} & \textbf{Observaciones} \\
+\midrule
+\multicolumn{5}{l}{\textbf{Sistema de Puesta a Tierra}} \\
+1 & Varilla Copperweld 5/8" $\times$ 2.40 m & 1 & pza & Electrodo principal \\
+2 & Cable de cobre desnudo \#4 AWG & 10 & m & Conductor de bajada \\
+3 & Cartucho de soldadura exotérmica (cadweld) & 2 & und & Para unión varilla--conductor \\
+4 & Molde de grafito para cadweld & 1 & pza & Según calibre del conductor \\
+5 & Sustrato químico reductor (Thor Gel o equiv.) & 1 & saco (25 kg) & Tratamiento químico del suelo \\
+6 & Sal industrial (NaCl 99 \%) & 5 & kg & Mejora conductividad del relleno \\
+7 & Caja de inspección 0.30 $\times$ 0.30 $\times$ 0.30 m & 1 & pza & Con tapa registrable de concreto o PP \\
+\midrule
+\multicolumn{5}{l}{\textbf{Sistema de Bombeo}} \\
+8 & Electrobomba centrífuga 2 HP, 220/380 V, 60 Hz & 1 & pza & Incluye motor y sello mecánico \\
+9 & Válvula de compuerta 2" & 2 & pza & Succión e impulsión \\
+10 & Válvula check tipo clapeta 2" & 1 & pza & Retención en tubería de impulsión \\
+11 & Niple de unión universal 2" (bronce o acero galv.) & 2 & pza & \\
+12 & Tubería PVC pesado clase 10, 2" & 6 & m & Succión e impulsión \\
+13 & Codo PVC pesado 2" $\times$ 90° & 4 & pza & \\
+14 & Adaptador PVC--rosca 2" & 2 & pza & \\
+15 & Tablero de control y protección & 1 & pza & Ver especificación técnica \\
+16 & Flotador eléctrico de nivel & 2 & pza & Máximo y mínimo \\
+17 & Cable THW 14 AWG (control) & 15 & m & Para conexión de flotadores \\
+\midrule
+\multicolumn{5}{l}{\textbf{Grupo Electrógeno}} \\
+18 & Grupo electrógeno 10 kVA / 6.10 kW, cabinado & 1 & pza & Insonorizado, diésel \\
+19 & Tablero de Transferencia Automática (TTA) & 1 & pza & 2P/3P + N, según diseño \\
+20 & Batería AGM 12 V / 70 Ah & 1 & pza & Libre de mantenimiento \\
+21 & Cargador de batería automático (flotación) & 1 & pza & Integrado o externo \\
+22 & Junta flexible antivibratoria para escape & 1 & pza & \\
+23 & Silenciador industrial tipo crítico & 1 & pza & Atenuación $\geq$ 25 dB \\
+24 & Tubería de acero negro ced. 40 para escape & 3 & m & Tramo recto + curvas \\
+25 & Abrazaderas de acero inoxidable para escape & 4 & pza & \\
+26 & Aislante térmico para tubería de escape & 1 & juego & Lana de roca + forro de aluminio \\
+27 & Combustible diésel (carga inicial) & 1 & gln & Mínimo 50 \% del tanque \\
+28 & Aceite lubricante SAE 15W-40 (API CI-4) & 1 & gln & Para llenado inicial \\
+29 & Refrigerante etilenglicol (mezcla 50/50) & 1 & gln & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Anexo B: Formato de protocolo de pruebas}
+
+El contratista deberá presentar un protocolo de pruebas para cada sistema, que contenga como mínimo los siguientes registros:
+
+\subsubsection{B.1 Protocolo de pruebas -- SPAT}
+
+\begin{center}
+\begin{tabular}{L{6cm}L{8cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor / Descripción} \\
+\midrule
+Fecha de medición & \\
+Ubicación del electrodo & \\
+Condiciones climáticas & (soleado, nublado, lluvia) \\
+Humedad del suelo estimada & (seco, húmedo, saturado) \\
+Telurómetro (marca, modelo, N° serie) & \\
+Fecha de calibración del telurómetro & \\
+Método de medición & (caída de potencial / 3 puntos) \\
+Distancia entre electrodos (P1, P2) & \\
+Resistencia medida 1 & $\Omega$ \\
+Resistencia medida 2 & $\Omega$ \\
+Resistencia medida 3 & $\Omega$ \\
+\textbf{Resistencia promedio} & \textbf{$\Omega$} \\
+Profundidad del electrodo & m \\
+Tipo de tratamiento químico aplicado & \\
+Nombre y CIP del Ing. certificador & \\
+Firma & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{B.2 Protocolo de pruebas -- Electrobomba}
+
+\begin{center}
+\begin{tabular}{L{6cm}L{8cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+Fecha de prueba & \\
+Voltaje de alimentación (V) & \\
+Corriente nominal (A) & \\
+Caudal medido en impulsión (L/min) & \\
+Altura dinámica total (m.c.a.) & \\
+Presión en descarga (psi o bar) & \\
+Operación en modo manual & (OK / NO OK) \\
+Operación en modo automático (flotadores) & (OK / NO OK) \\
+Tiempo de respuesta de flotadores (s) & \\
+Temperatura del motor tras 30 min ( °C) & \\
+Nivel de ruido a 1 m (dB) & \\
+Observaciones & \\
+Responsable técnico (nombre y firma) & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{B.3 Protocolo de pruebas -- Grupo electrógeno}
+
+\begin{center}
+\begin{tabular}{L{5.5cm}L{2.5cm}L{2.5cm}L{2.5cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Vacío} & \textbf{Carga 50 \%} & \textbf{Carga 100 \%} \\
+\midrule
+Duración de la prueba (min) & 30 & 30 & 60 \\
+Voltaje L1--N (V) & & & \\
+Voltaje L2--N (V) & & & \\
+Voltaje L3--N (V) & & & \\
+Voltaje L1--L2 (V) & & & \\
+Voltaje L2--L3 (V) & & & \\
+Voltaje L3--L1 (V) & & & \\
+Frecuencia (Hz) & & & \\
+Corriente L1 (A) & & & \\
+Corriente L2 (A) & & & \\
+Corriente L3 (A) & & & \\
+Potencia activa (kW) & & & \\
+Potencia aparente (kVA) & & & \\
+Factor de potencia & & & \\
+Presión de aceite (psi) & & & \\
+Temperatura del motor ( °C) & & & \\
+Tiempo de arranque (s) & & & \\
+Tiempo de transferencia (s) & & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+\noindent
+Responsable técnico: \hrulefill \hspace{1cm} Firma: \hrulefill \\
+Supervisor de la entidad: \hrulefill \hspace{1cm} Firma: \hrulefill
+
+\subsection{Anexo C: Glosario de términos}
+
+\begin{description}
+  \item[SPAT] Sistema de Puesta a Tierra. Conjunto de electrodos, conductores, conexiones y elementos asociados que proporcionan una trayectoria de baja impedancia a tierra para corrientes de falla.
+  \item[TTA] Tablero de Transferencia Automática. Dispositivo que detecta la pérdida de la red eléctrica comercial y transfiere automáticamente la carga al grupo electrógeno, y viceversa cuando se restablece el suministro.
+  \item[OSCE] Organismo Supervisor de las Contrataciones del Estado. Entidad encargada de supervisar y promover las contrataciones públicas en el Perú.
+  \item[CNE] Código Nacional de Electricidad. Normativa técnica que establece los requisitos mínimos para las instalaciones eléctricas en el Perú.
+  \item[SCTR] Seguro Complementario de Trabajo de Riesgo. Seguro obligatorio para trabajadores que realizan actividades de alto riesgo.
+  \item[EPP] Elementos de Protección Personal. Equipos y accesorios diseñados para proteger al trabajador de riesgos específicos.
+  \item[LOTO] Lockout/Tagout. Procedimiento de bloqueo y etiquetado para asegurar la desconexión de fuentes de energía durante trabajos de mantenimiento.
+  \item[EPS-RS] Empresa Prestadora de Servicios de Residuos Sólidos. Empresa autorizada para el transporte y disposición final de residuos peligrosos y no peligrosos.
+  \item[ATS] Análisis de Trabajo Seguro. Documento que identifica los peligros y establece las medidas de control para cada tarea antes de su ejecución.
+  \item[RNP] Registro Nacional de Proveedores. Registro administrado por el OSCE donde deben inscribirse los proveedores que deseen contratar con el Estado.
+  \item[Llave en mano] Modalidad de contratación que comprende la ejecución integral del servicio a todo costo, incluyendo diseño, suministro, instalación, pruebas y puesta en marcha.
+\end{description}
+
+\subsection{Anexo D: Matriz de riesgos referencial}
+
+\begin{center}
+\begin{tabular}{L{3cm}L{3.5cm}L{2cm}L{2.5cm}L{3cm}}
+\toprule
+\textbf{Riesgo} & \textbf{Causa} & \textbf{Prob.} & \textbf{Impacto} & \textbf{Mitigación} \\
+\midrule
+Incumplimiento del plazo & Baja productividad, lluvias & Media & Alto & Cronograma realista, supervisión diaria \\
+Resistencia SPAT $>$ 5 $\Omega$ & Suelo de alta resistividad & Media & Alto & Tratamiento químico, varillas múltiples \\
+Daño de equipos durante montaje & Manipulación inadecuada & Baja & Alto & Personal calificado, EPP, supervisión \\
+Derrame de combustible & Falla en tanque o manguera & Baja & Medio & Kit antiderrames, procedimientos \\
+Accidente eléctrico & Error de procedimiento LOTO & Baja & Muy alto & ATS diario, bloqueo y verificación \\
+Falla de garantía & Defecto de fabricación & Baja & Medio & Garantía de 12 meses, repuestos \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+\rule{10cm}{0.4pt} \\
+\textbf{Vo.Bo. Área Usuaria} \\
+EPS EMAPAT S.A.
+\end{center}
+
+\end{document}

@@ -2,10 +2,13 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(BASE))
+sys.path.insert(0, str(BASE.parents[1]))  # src/
 
-from cotizador_multi_proveedor import elegir_recomendado, puntuar_resultados
-from modelos import MaterialBOM, ResultadoProveedor
+from electra.infraestructura.presupuestos.cotizador_multi_proveedor import (
+    elegir_recomendado,
+    puntuar_resultados,
+)
+from electra.infraestructura.presupuestos.modelos import MaterialBOM, ResultadoProveedor
 
 
 def test_matching_prefiere_coincidencia_tecnica():

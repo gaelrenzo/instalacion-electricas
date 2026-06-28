@@ -34,6 +34,11 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
+ignore = [
+    "E402",  # tests legacy insertan rutas antes de imports
+    "E501",  # scripts historicos tienen lineas largas; formatearlos es otra tarea
+    "N806",  # formulas electricas heredadas usan nombres como R
+]
 
 [tool.mypy]
 strict = true
@@ -41,3 +46,4 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]

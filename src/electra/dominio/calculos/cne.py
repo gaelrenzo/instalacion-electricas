@@ -101,7 +101,9 @@ class CNEPeru(EstrategiaNormativa):
         self, resistividad: float, longitud_m: float, diametro_mm: float
     ) -> float:
         d = diametro_mm / 1000
-        return (resistividad / (2 * math.pi * longitud_m)) * math.log(4 * longitud_m / d)
+        return (resistividad / (2 * math.pi * longitud_m)) * (
+            math.log(4 * longitud_m / d) - 1
+        )
 
     def calcular_caida_tension(
         self, cable: Cable, corriente_a: float, largo_metros: float

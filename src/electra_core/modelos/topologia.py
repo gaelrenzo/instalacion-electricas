@@ -38,6 +38,14 @@ class Tablero(BaseModel):
     circuitos: list[Circuito] = Field(default_factory=list)
     carga_total_w: float = 0.0
 
+    def calcular_carga_total(self) -> float:
+        self.carga_total_w = sum(
+            carga.potencia_w * carga.factor_demanda
+            for circuito in self.circuitos
+            for carga in circuito.cargas
+        )
+        return self.carga_total_w
+
 
 class Circuito(BaseModel):
     nombre: str
@@ -65,6 +73,6 @@ class RedElectrica(BaseModel):
     factor_simultaneidad: float = 0.7
 
     def calcular_demanda_total(self) -> float:
-        total = sum(t.carga_total_w for t in self.tableros)
+        total = sum(tablero.calcular_carga_total() for tablero in self.tableros)
         self.demanda_total_w = total * self.factor_simultaneidad
         return self.demanda_total_w

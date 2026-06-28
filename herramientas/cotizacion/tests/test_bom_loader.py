@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(BASE))
+sys.path.insert(0, str(BASE.parents[1]))  # src/
 
-from cotizador_multi_proveedor import cargar_bom
+from electra.infraestructura.presupuestos.cotizador_multi_proveedor import cargar_bom
 
 
 def test_cargar_bom_minimo():
