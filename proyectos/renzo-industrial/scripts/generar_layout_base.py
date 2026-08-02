@@ -19,15 +19,37 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
 
-def svg_from_layout(layout: dict, out_svg: Path) -> None:
+def svg_from_layout(layout: dict, real_entities: list[dict] | None, out_svg: Path) -> None:
     scale = 28.0
     pad = 12.0
-    bbox = layout["edificio"]["bbox_local"]
-    span_x = bbox[2] - bbox[0]
-    span_y = bbox[3] - bbox[1]
+
+    def content_extent() -> tuple[float, float, float, float]:
+        xs: list[float] = []
+        ys: list[float] = []
+        if real_entities:
+            for ent in real_entities:
+                if ent.get("type") == "seg":
+                    for p in ent["pts"]:
+                        xs.append(p[0]); ys.append(p[1])
+        else:
+            bbox = layout["edificio"]["bbox_local"]
+            xs += [bbox[0], bbox[2]]
+            ys += [bbox[1], bbox[3]]
+        lote = layout["lote_a_ejecutar"]["poligono_local"]
+        for p in lote:
+            xs.append(p[0]); ys.append(p[1])
+        for tk in layout["tanques"]:
+            xs.append(tk["pos_local"][0]); ys.append(tk["pos_local"][1])
+        for p in layout["dispensadores_y_surtidores"]["posiciones_local"]:
+            xs.append(p[0]); ys.append(p[1])
+        return min(xs), min(ys), max(xs), max(ys)
+
+    x0, y0, x1, y1 = content_extent()
+    span_x = x1 - x0
+    span_y = y1 - y0
 
     def pt(x: float, y: float) -> tuple[float, float]:
-        return (pad + (x - bbox[0]) * scale, pad + (bbox[3] - y) * scale)
+        return (pad + (x - x0) * scale, pad + (y1 - y) * scale)
 
     width = 2 * pad + span_x * scale
     height = 2 * pad + span_y * scale
@@ -40,17 +62,28 @@ def svg_from_layout(layout: dict, out_svg: Path) -> None:
     pts = " ".join(f"{pt(x, y)[0]:.1f},{pt(x, y)[1]:.1f}" for x, y in lote)
     lines.append(f'<polygon points="{pts}" fill="none" stroke="#243F60" stroke-width="3"/>')
 
-    edificio = layout["edificio"]["bbox_local"]
-    x0, y0, x1, y1 = edificio
-    p0, p1 = pt(x0, y0), pt(x1, y1)
-    lines.append(
-        f'<rect x="{p0[0]:.1f}" y="{p1[1]:.1f}" width="{p1[0]-p0[0]:.1f}" height="{p0[1]-p1[1]:.1f}" '
-        'fill="none" stroke="#2E74B5" stroke-width="2.5"/>'
-    )
+    if real_entities:
+        for ent in real_entities:
+            if ent.get("type") != "seg" or ent.get("layer") not in ("muro", "0"):
+                continue
+            a, b = ent["pts"]
+            color = "#000000" if ent["layer"] == "muro" else "#808080"
+            lw = 2.0 if ent["layer"] == "muro" else 1.0
+            pa, pb = pt(*a), pt(*b)
+            lines.append(f'<line x1="{pa[0]:.1f}" y1="{pa[1]:.1f}" x2="{pb[0]:.1f}" y2="{pb[1]:.1f}" stroke="{color}" stroke-width="{lw}"/>')
+    else:
+        edificio = layout["edificio"]["bbox_local"]
+        ex0, ey0, ex1, ey1 = edificio
+        p0, p1 = pt(ex0, ey0), pt(ex1, ey1)
+        lines.append(
+            f'<rect x="{p0[0]:.1f}" y="{p1[1]:.1f}" width="{p1[0]-p0[0]:.1f}" height="{p0[1]-p1[1]:.1f}" '
+            'fill="none" stroke="#2E74B5" stroke-width="2.5"/>'
+        )
 
-    for amb in layout["ambientes"]:
-        cx, cy = pt(*amb["centro_local"])
-        lines.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-family="Arial" font-size="10" fill="#243F60" text-anchor="middle">{amb["nombre"]}</text>')
+    for ent in real_entities or []:
+        if ent.get("type") == "text" and ent.get("layer") in ("TEXT-AMB", "TEXTO-AMB"):
+            cx, cy = pt(*ent["pos"])
+            lines.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-family="Arial" font-size="10" fill="#243F60" text-anchor="middle">{ent["text"]}</text>')
 
     for tanque in layout["tanques"]:
         cx, cy = pt(*tanque["pos_local"])
@@ -105,16 +138,20 @@ def main() -> int:
     project = root / "proyectos/renzo-industrial"
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--layout", type=Path, default=project / "arquitectura/datos/layout-grifo.json")
+    parser.add_argument("--architecture", type=Path, default=project / "arquitectura/datos/arquitectura-dwg.json")
     parser.add_argument("--output", type=Path, default=root / "build/renzo-industrial/expediente/assets")
     args = parser.parse_args()
 
     layout = json.loads(args.layout.read_text(encoding="utf-8"))
+    real_entities: list[dict] | None = None
+    if args.architecture.exists():
+        real_entities = json.loads(args.architecture.read_text(encoding="utf-8"))
     args.output.mkdir(parents=True, exist_ok=True)
     svg_path = args.output / "layout-base.svg"
     pdf_path = args.output / "layout-base.pdf"
     png_path = args.output / "layout-base.png"
 
-    svg_from_layout(layout, svg_path)
+    svg_from_layout(layout, real_entities, svg_path)
     try:
         from svglib.svglib import svg2rlg
         from reportlab.graphics import renderPDF

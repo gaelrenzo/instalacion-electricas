@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 from datetime import date
 from pathlib import Path
@@ -31,6 +32,8 @@ ARCH = (-3.0, 0.0, 31.0, 23.0)
 ARCH_SCALE = 1.4
 ARCH_OFFSET_X = 4.0
 ARCH_OFFSET_Y = 16.0
+
+ARQ_REAL = "arquitectura/datos/arquitectura-dwg.json"
 
 
 def repository_root() -> Path:
@@ -123,24 +126,84 @@ def local_to_page(x: float, y: float) -> tuple[float, float]:
 
 def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) -> None:
     """Dibuja la arquitectura del grifo desde el layout canonico con jerarquia
-    de espesores: lote y edificio en trazo grueso, ambientes en trazo medio."""
+    de espesores: lote y edificio en trazo grueso, ambientes en trazo medio.
+
+    Prefiere los muros y lote extraidos del DWG original
+    (``arquitectura-dwg.json``) para reflejar la geometria real; si no estan
+    disponibles, cae al layout aproximado.
+    """
     msp = doc.modelspace()
     layer = "ARQ_REFERENCIA"
-    lote = architecture["lote_a_ejecutar"]["poligono_local"]
-    msp.add_lwpolyline([local_to_page(x, y) for x, y in lote], dxfattribs={"layer": layer, "lineweight": 50}, close=True)
 
-    bbox = architecture["edificio"]["bbox_local"]
-    (x0, y0, x1, y1) = bbox
-    msp.add_lwpolyline(
-        [local_to_page(x0, y0), local_to_page(x1, y0), local_to_page(x1, y1), local_to_page(x0, y1)],
-        dxfattribs={"layer": layer, "lineweight": 40}, close=True,
-    )
+    root = repository_root() / "proyectos" / "renzo-industrial"
+    real_path = root / ARQ_REAL
+    real_entities: list[dict[str, Any]] = []
+    if real_path.exists():
+        real_entities = json.loads(real_path.read_text(encoding="utf-8"))
 
-    for ambiente in architecture["ambientes"]:
-        cx, cy = local_to_page(*ambiente["centro_local"])
-        # Volumen aproximado del ambiente: caja de 4.0 x 3.0 m centrada en su centro.
-        rect(msp, cx - 2.0, cy - 1.5, cx + 2.0, cy + 1.5, layer, 8)
-        text_center(msp, ambiente["nombre"], cx, cy, 0.20, layer)
+    def draw_real_walls() -> None:
+        for ent in real_entities:
+            if ent.get("type") != "seg" or ent.get("layer") not in ("muro", "0"):
+                continue
+            a, b = ent["pts"]
+            lw = 40 if ent["layer"] == "muro" else 25
+            msp.add_line(local_to_page(*a), local_to_page(*b), dxfattribs={"layer": layer, "lineweight": lw})
+
+    def draw_lote_real() -> bool:
+        # Reconstruye el poligono del lote a ejecutar desde sus segmentos.
+        segs = [ent["pts"] for ent in real_entities if ent.get("type") == "seg" and ent.get("layer") == "LOTE A EJECUTAR"]
+        if len(segs) < 4:
+            return False
+        # Cadena desde el vertice mas al sur.
+        vertices: list[tuple[float, float]] = []
+        remaining = list(segs)
+        start = min((s[0] for s in remaining), key=lambda p: (p[1], p[0]))
+        current = start
+        vertices.append(current)
+        for _ in range(len(segs) + 2):
+            match = None
+            for s in remaining:
+                if math.dist(s[0], current) < 0.1:
+                    match, nxt = s[0], s[1]
+                    break
+                if math.dist(s[1], current) < 0.1:
+                    match, nxt = s[1], s[0]
+                    break
+            if match is None:
+                break
+            remaining.remove(next(s for s in remaining if s in (s for s in remaining)))
+            remaining = [s for s in remaining if math.dist(s[0], current) >= 0.1 and math.dist(s[1], current) >= 0.1]
+            current = nxt
+            if math.dist(current, start) < 0.1:
+                break
+            vertices.append(current)
+        if len(vertices) < 4:
+            return False
+        msp.add_lwpolyline([local_to_page(x, y) for x, y in vertices], dxfattribs={"layer": layer, "lineweight": 50}, close=True)
+        return True
+
+    if real_entities:
+        draw_real_walls()
+        draw_lote_real()
+        for ent in real_entities:
+            if ent.get("type") == "text" and ent.get("layer") in ("TEXT-AMB", "TEXTO-AMB"):
+                px, py = ent["pos"]
+                text_center(msp, ent["text"], *local_to_page(px, py + 0.25), 0.22, layer)
+    else:
+        lote = architecture["lote_a_ejecutar"]["poligono_local"]
+        msp.add_lwpolyline([local_to_page(x, y) for x, y in lote], dxfattribs={"layer": layer, "lineweight": 50}, close=True)
+
+        bbox = architecture["edificio"]["bbox_local"]
+        (x0, y0, x1, y1) = bbox
+        msp.add_lwpolyline(
+            [local_to_page(x0, y0), local_to_page(x1, y0), local_to_page(x1, y1), local_to_page(x0, y1)],
+            dxfattribs={"layer": layer, "lineweight": 40}, close=True,
+        )
+
+        for ambiente in architecture["ambientes"]:
+            cx, cy = local_to_page(*ambiente["centro_local"])
+            rect(msp, cx - 2.0, cy - 1.5, cx + 2.0, cy + 1.5, layer, 8)
+            text_center(msp, ambiente["nombre"], cx, cy, 0.20, layer)
 
     for tanque in architecture["tanques"]:
         cx, cy = local_to_page(*tanque["pos_local"])
