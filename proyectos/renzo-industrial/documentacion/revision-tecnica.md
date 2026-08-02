@@ -66,9 +66,39 @@ Los resumenes SHA-256 de CAD-001 y CAD-002 desbordaban el ancho de texto
   `\dVMaxTotal`, `\dVMaxCircuit`, `\IllumTotalN`, `\IllumTotalKW`,
   `\IllumTotalLPD`) en lugar de valores hardcodeados.
 
-## 3. Cambios estructurales previos (mejora integral, ya pusheados)
+## 3. Mejora de leyendas y elementos omitidos en las laminas
 
-### 3.1 Arquitectura y equipos reales del DWG
+Se detectaron leyendas de solo texto (sin glifo) y que omitian elementos
+dibujados en las laminas. Cambios en `generar_planos_grifo_renzo.py`:
+
+- Nueva `draw_legend_symbol(msp, key, cx, cy, s)`: dibuja el glifo grafico de
+  cada simbolo (luminaria, tomacorriente, tablero, TG, interruptor, paro, STP,
+  surtidor, PAT, pararrayo, malla, canalizacion, zona 1/2, PM, cilindros,
+  fosa, extintor, totem, direccion del viento) dentro de la leyenda.
+- `add_legend` ahora renderiza `(symbol_key, description)` con el glifo en la
+  primera columna y acepta filas de solo texto (normas/notas) con `None`.
+- Leyenda IE-01 ampliada de 6 a 18 filas: incluye TDE/TDF, TG/TG2, interruptor
+  general, pulsador de paro, surtidores, tanques STP, PAT/PAT2, pararrayo, PM,
+  cilindros, fosa, extintor, totem, direccion del viento, canalizacion y nota
+  CNE (antes solo luminaria, TG, PM, pararrayo, cilindros y CNE).
+- Leyenda IE-02: anade tomacorriente con contacto a tierra y canalizacion;
+  IE-03: anade tableros TDE/TDF, canalizacion, pulsador de paro y notas de
+  carga; IE-04: anade PAT2, malla y conexiones; IE-06: anade zona 1 de venteo,
+  tanque, surtidor y direccion del viento.
+- Elementos nuevos en las laminas:
+  - IE-04: se dibujan lineas punteadas de equipos (fosa, cilindros, extintor,
+    totem, surtidores) a la malla de tierra (vertices mas cercanos), reflejando
+    la equipotencialidad.
+  - IE-06: se dibuja la zona 1 (r=1,5 m) alrededor del ambiente "Tuberias de
+    venteo" del DWG, ademas de las zonas de tanques (r=2,2 m) y surtidores
+    (r=3,5 m).
+- Verificacion: entity_counts IE-01..IE-06 = 396, 395, 303, 290, 234, 287;
+  textos de leyenda confirmados en los DXF; cajas de leyenda dentro del marco
+  (x 55-83, y > 41 en IE-01, arriba del rotulo).
+
+## 4. Cambios estructurales previos (mejora integral, ya pusheados)
+
+### 4.1 Arquitectura y equipos reales del DWG
 
 - DWG convertidos a DXF con AutoCAD 2027 `accoreconsole.exe` (script FILEDIA 0
   + DXFOUT + version 16). Geometria extraida a
@@ -83,7 +113,7 @@ Los resumenes SHA-256 de CAD-001 y CAD-002 desbordaban el ancho de texto
   surtidores (14,44 y 19,85), equipos y circulacion.
 - `generar_layout_base.py`: dibuja muros y equipos reales en el layout base.
 
-### 3.2 Jerarquia de espesores y simbolos normalizados
+### 4.2 Jerarquia de espesores y simbolos normalizados
 
 - Capas ordenadas por lineweight (MARCO 50, ARQ_REFERENCIA 40, IE_TIERRA/IE_ZONA_1
   40, IE_FUERZA/IE_EMERGENCIA/IE_RAYO 35, IE_ALUMBRADO/IE_CANALIZACION 30,
@@ -92,7 +122,7 @@ Los resumenes SHA-256 de CAD-001 y CAD-002 desbordaban el ancho de texto
   (semicirculo), tablero (cuadrado con etiqueta).
 - Render A1 vectorial + PNG 220 dpi con `lineweight_scaling=2.0`.
 
-### 3.3 Memoria de iluminacion y verificacion normativa
+### 4.3 Memoria de iluminacion y verificacion normativa
 
 - `iluminacion-ambientes.yaml` + `calcular_iluminacion.py`: metodo de lumenes
   con FU interpolado y FM 0,80/0,70.
@@ -100,7 +130,7 @@ Los resumenes SHA-256 de CAD-001 y CAD-002 desbordaban el ancho de texto
   Tabla 2, 050-104, 050-102, 050-210/Tabla 14, 060-712/Tabla 16, 120-000/
   Seccion 110, 050-100 y EM.010 arts. 6 y 11.1, con resumen y evidencia.
 
-## 4. Hallazgos pendientes (no bloquean el anteproyecto academico)
+## 5. Hallazgos pendientes (no bloquean el anteproyecto academico)
 
 1. Factibilidad e Icc real de la concesionaria (Electro Puno asumida; Icc 10 kA
    supuesto).
@@ -111,7 +141,7 @@ Los resumenes SHA-256 de CAD-001 y CAD-002 desbordaban el ancho de texto
    en cuestionario DEC-010).
 5. Cotas, alturas y PAT por verificar en campo.
 
-## 5. Veredicto
+## 6. Veredicto
 
 Aceptable como anteproyecto academico. La revision integral de coherencia
 quedo ejecutada: fragmentos y expediente reflejan los calculos vigentes, los

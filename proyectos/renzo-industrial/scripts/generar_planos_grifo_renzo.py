@@ -380,16 +380,94 @@ def add_route(msp: ezdxf.layouts.BaseLayout, points: list[tuple[float, float]], 
     msp.add_lwpolyline([local_to_page(x, y) for x, y in points], dxfattribs={"layer": layer, "linetype": "DASHED"})
 
 
-def add_legend(msp: ezdxf.layouts.BaseLayout, title: str, rows: list[tuple[str, str]], x: float = 55.0, y: float = 55.8, width: float = 28.0) -> None:
+def draw_legend_symbol(msp: ezdxf.layouts.BaseLayout, key: str, cx: float, cy: float, s: float = 0.55) -> None:
+    """Dibuja el glifo de un simbolo en la leyenda (coordenadas relativas al
+    centro ``(cx, cy)`` escaladas por ``s``). Los nombres coinciden con los
+    simbolos usados en las laminas."""
+    def p(x: float, y: float) -> tuple[float, float]:
+        return (cx + x * s, cy + y * s)
+
+    if key == "lum":
+        msp.add_circle(p(0, 0), 0.22 * s, dxfattribs={"layer": "IE_ALUMBRADO", "lineweight": 35})
+        msp.add_line(p(-0.15, -0.15), p(0.15, 0.15), dxfattribs={"layer": "IE_ALUMBRADO", "lineweight": 25})
+        msp.add_line(p(-0.15, 0.15), p(0.15, -0.15), dxfattribs={"layer": "IE_ALUMBRADO", "lineweight": 25})
+    elif key == "lum_e":
+        msp.add_circle(p(0, 0), 0.22 * s, dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 35})
+        msp.add_line(p(-0.15, -0.15), p(0.15, 0.15), dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 25})
+        msp.add_line(p(-0.15, 0.15), p(0.15, -0.15), dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 25})
+        text_left(msp, "E", p(0.22, 0.28)[0], p(0.22, 0.28)[1], 0.10, "IE_EMERGENCIA")
+    elif key == "tc":
+        msp.add_line(p(0, -0.14), p(0, 0.14), dxfattribs={"layer": "IE_FUERZA", "lineweight": 30})
+        msp.add_arc(center=p(0, 0), radius=0.20 * s, start_angle=0.0, end_angle=180.0, dxfattribs={"layer": "IE_FUERZA", "lineweight": 30})
+        msp.add_line(p(-0.20, 0), p(0.20, 0), dxfattribs={"layer": "IE_FUERZA", "lineweight": 30})
+    elif key == "panel":
+        rect(msp, p(-0.32, -0.25)[0], p(-0.32, -0.25)[1], p(0.32, 0.25)[0], p(0.32, 0.25)[1], "IE_FUERZA", 1)
+    elif key == "tg":
+        rect(msp, p(-0.35, -0.28)[0], p(-0.35, -0.28)[1], p(0.35, 0.28)[0], p(0.35, 0.28)[1], "IE_FUERZA", 8)
+    elif key == "ig":
+        rect(msp, p(-0.25, -0.25)[0], p(-0.25, -0.25)[1], p(0.25, 0.25)[0], p(0.25, 0.25)[1], "IE_FUERZA", 8)
+        msp.add_line(p(-0.18, -0.18), p(0.18, 0.18), dxfattribs={"layer": "IE_FUERZA", "lineweight": 25})
+    elif key == "paro":
+        msp.add_circle(p(0, 0), 0.26 * s, dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 35})
+    elif key == "stp":
+        msp.add_circle(p(0, 0), 0.45 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 35})
+        msp.add_line(p(-0.6 * s, 0), p(0.6 * s, 0), dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+        msp.add_line(p(0, -0.6 * s), p(0, 0.6 * s), dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+    elif key == "surt":
+        rect(msp, p(-0.55, -0.35)[0], p(-0.55, -0.35)[1], p(0.55, 0.35)[0], p(0.55, 0.35)[1], "ARQ_REFERENCIA", 8)
+        msp.add_circle(p(0, 0.35 * s), 0.25 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 30})
+    elif key == "pat":
+        msp.add_circle(p(0, 0), 0.3 * s, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
+    elif key == "rayo":
+        msp.add_circle(p(0, 0), 0.4 * s, dxfattribs={"layer": "IE_RAYO", "lineweight": 35})
+        msp.add_circle(p(0, 0), 0.5 * s, dxfattribs={"layer": "IE_RAYO", "lineweight": 25})
+        msp.add_circle(p(0, 0), 1.1 * s, dxfattribs={"layer": "IE_RAYO", "linetype": "DASHED", "lineweight": 25})
+    elif key == "malla":
+        msp.add_lwpolyline([p(-1.0, 0), p(1.0, 0)], dxfattribs={"layer": "IE_TIERRA", "lineweight": 40})
+        msp.add_lwpolyline([p(-0.5, 0.5), p(0.5, 0.5)], dxfattribs={"layer": "IE_TIERRA", "lineweight": 40})
+    elif key == "canal":
+        msp.add_lwpolyline([p(-1.0, 0), p(1.0, 0)], dxfattribs={"layer": "IE_CANALIZACION", "linetype": "DASHED", "lineweight": 30})
+    elif key == "zona1":
+        msp.add_circle(p(0, 0), 0.85 * s, dxfattribs={"layer": "IE_ZONA_1", "linetype": "DASHED", "lineweight": 40})
+        msp.add_circle(p(0, 0), 0.25 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+    elif key == "zona2":
+        msp.add_circle(p(0, 0), 0.85 * s, dxfattribs={"layer": "IE_ZONA_2", "linetype": "DASHED", "lineweight": 30})
+        msp.add_circle(p(0, 0), 0.25 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+    elif key == "pm":
+        text_left(msp, "PM", p(-0.6, 0)[0], p(-0.6, 0)[1], 0.20, "IE_TEXTO")
+        msp.add_line(p(-0.45, 0.12), p(0.45, 0.12), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    elif key == "cilindros":
+        msp.add_circle(p(0, 0), 0.3 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 30})
+        msp.add_circle(p(0, 0), 0.12 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+        msp.add_circle(p(1.0 * s, 0), 0.3 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 30})
+        msp.add_circle(p(1.0 * s, 0), 0.12 * s, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 20})
+    elif key == "fosa":
+        rect(msp, p(-0.35, -0.35)[0], p(-0.35, -0.35)[1], p(0.35, 0.35)[0], p(0.35, 0.35)[1], "ARQ_REFERENCIA", 8)
+    elif key == "ext":
+        msp.add_lwpolyline([p(0, -0.3), p(-0.18, 0.15), p(0.18, 0.15)], dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 25}, close=True)
+    elif key == "totem":
+        rect(msp, p(-0.25, -0.3)[0], p(-0.25, -0.3)[1], p(0.25, 0.3)[0], p(0.25, 0.3)[1], "ARQ_REFERENCIA", 8)
+    elif key == "viento":
+        msp.add_line(p(-0.9, 0), p(0.9, 0), dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 25})
+        msp.add_lwpolyline([p(0.9, 0), p(0.65, 0.3), p(0.65, -0.3)], dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 25}, close=True)
+
+
+def add_legend(msp: ezdxf.layouts.BaseLayout, title: str, rows: list[tuple[str, str]], x: float = 55.0, y: float = 55.8, width: float = 28.0, symbol_col: float = 3.4) -> None:
+    """Cuadro de leyenda con glifo grafico del simbolo y su descripcion.
+
+    ``rows`` es una lista de ``(symbol_key, description)``; ``symbol_key``
+    puede ser un nombre de simbolo dibujable (ver ``draw_legend_symbol``) o
+    ``None``/``""`` para una fila de solo texto (norma o nota)."""
     row_h = 0.72
     height = 1.05 + row_h * len(rows)
     rect(msp, x, y - height, x + width, y, "IE_TABLA")
     text_center(msp, title, x + width / 2, y - 0.48, 0.32, "IE_TEXTO")
     msp.add_line((x, y - 0.90), (x + width, y - 0.90), dxfattribs={"layer": "IE_TABLA"})
-    for index, (code, description) in enumerate(rows):
+    for index, (symbol_key, description) in enumerate(rows):
         yy = y - 1.30 - index * row_h
-        text_left(msp, code, x + 0.25, yy, 0.23, "IE_TEXTO")
-        text_left(msp, description, x + 4.0, yy, 0.22, "IE_TEXTO")
+        if symbol_key:
+            draw_legend_symbol(msp, symbol_key, x + symbol_col / 2, yy - 0.20)
+        text_left(msp, description, x + symbol_col + 0.35, yy, 0.21, "IE_TEXTO")
 
 
 def add_north_arrow(msp: ezdxf.layouts.BaseLayout, cx: float = 49.5, cy: float = 54.0) -> None:
@@ -440,13 +518,25 @@ def sheet_ie01(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-01 | LEYENDA Y CRITERIOS", [
-        ("X", "Luminaria LED; magenta = circuito de emergencia"),
-        ("TG / TG2", "Tableros generales observados en el DWG"),
-        ("PM", "Punto de monitoreo de aire/ruido"),
-        ("PARARRAYO", "Pararrayo R=20 m (h=12 m); circulo punteado = radio"),
-        ("ARENA/TRAPO", "Cilindros de seguridad para emergencias"),
-        ("CNE", "dV ramal <= 2.5 % y total <= 4 %; PE en todo circuito"),
-    ])
+        ("lum_e", "Luminaria LED - circuito de emergencia (L-01, marquesina/despacho)"),
+        ("lum", "Luminaria LED - alumbrado exterior normal (L-02, postes de patio)"),
+        ("panel", "Tablero de distribucion TDE / TDF"),
+        ("tg", "Tablero general TG / TG2 (observados en el DWG)"),
+        ("ig", "Interruptor general de la instalacion"),
+        ("paro", "Pulsador de paro de emergencia de playa"),
+        ("surt", "Surtidor de doble manguera con cabeza electronica"),
+        ("stp", "Tanque subterraneo TK con bomba sumergible (STP)"),
+        ("pat", "Pozo de puesta a tierra (PAT / PAT2)"),
+        ("rayo", "Pararrayo R=20 m (h=12 m); circulo punteado = radio"),
+        ("pm", "Punto de monitoreo de aire/ruido (PM A1/R1/A2/R2)"),
+        ("cilindros", "Cilindros de seguridad (arena / trapo humedo)"),
+        ("fosa", "Fosa de agua"),
+        ("ext", "Extintor"),
+        ("totem", "Totem de precios / letrero (L-03)"),
+        ("viento", "Direccion del viento"),
+        ("canal", "Canalizacion subterranea proyectada"),
+        (None, "CNE: dV ramal <= 2.5 % y total <= 4 %; PE en todo circuito"),
+    ], y=55.2)
 
 
 def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
@@ -473,10 +563,12 @@ def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-02 | LEYENDA", [
-        ("X", "Luminaria LED interior"),
-        ("TC", "Tomacorriente"),
-        ("TD-A1", "Tablero de distribucion edificio"),
-        ("CNE", "Tomacorrientes con diferencial 30 mA"),
+        ("lum", "Luminaria LED interior (A1-01: admin./oficina; A1-02: SS.HH y sala de maquinas)"),
+        ("tc", "Tomacorriente doble (TC), con contacto a tierra"),
+        ("panel", "Tablero de distribucion TD-A1"),
+        ("canal", "Canalizacion empotrada proyectada"),
+        (None, "Tomacorrientes con interruptor diferencial 30 mA"),
+        (None, "CNE: conductor minimo 2.5 mm2; dV ramal <= 2.5 %"),
     ])
 
 
@@ -501,11 +593,14 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-03 | LEYENDA", [
-        ("STP", "Bomba sumergible de tanque (emergencia)"),
-        ("SURT", "Surtidor / cabeza electronica"),
-        ("C-AIRE", "Compresor de aire"),
-        ("B-AGUA / B-FOSA", "Bombas de agua y efluentes"),
-        ("NOTA", "Paro de emergencia y pulsador segun normativa"),
+        ("stp", "STP - bomba sumergible de tanque (emergencia, TDE)"),
+        ("surt", "Surtidor / cabeza electronica (UPS-FUEL)"),
+        ("panel", "Tablero de distribucion TDE (emergencia) / TDF (fuerza)"),
+        ("canal", "Canalizacion subterranea proyectada"),
+        ("paro", "Pulsador de paro de emergencia de playa (S-04)"),
+        (None, "C-AIRE = compresor de aire (F-07); B-AGUA = bomba de agua (F-08); B-FOSA = bomba de efluentes (F-09)"),
+        (None, "Cargas criticas (STP, surtidores, ATG, POS) con respaldo de emergencia"),
+        (None, "CNE: areas clasificadas con equipo de proteccion apropiada"),
     ])
 
 
@@ -524,18 +619,37 @@ def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
             msp.add_circle((cx, cy), 0.4, dxfattribs={"layer": "IE_RAYO"})
             msp.add_circle((cx, cy), 0.5, dxfattribs={"layer": "IE_RAYO"})
             text_left(msp, "PARARRAYO h=12 m", cx + 0.6, cy, 0.18, "IE_RAYO")
-    msp.add_lwpolyline([
+    malla_pts = [
         local_to_page(6.0, 5.0), local_to_page(9.0, 6.0), local_to_page(10.0, 5.0),
         local_to_page(12.0, 7.0), local_to_page(14.0, 8.0), local_to_page(17.0, 12.0),
         local_to_page(21.0, 8.0),
-    ], dxfattribs={"layer": "IE_TIERRA"})
+    ]
+    msp.add_lwpolyline(malla_pts, dxfattribs={"layer": "IE_TIERRA"})
+
+    def nearest_malla(pos: tuple[float, float]) -> tuple[float, float]:
+        page = local_to_page(*pos)
+        return min(malla_pts, key=lambda pt: (pt[0] - page[0]) ** 2 + (pt[1] - page[1]) ** 2)
+
+    for equipo in architecture.get("equipos_electricos_observados", []):
+        if "pos_local" not in equipo:
+            continue
+        pos = equipo["pos_local"]
+        if pos and isinstance(pos[0], (list, tuple)):
+            pos = pos[0]
+        if not pos:
+            continue
+        if equipo["tipo"] in ("tablero_general", "interruptor_general", "pozo_tierra", "pozo_tierra_secundario", "pararrayo", "monitoreo"):
+            continue
+        msp.add_line(local_to_page(*pos), nearest_malla(pos), dxfattribs={"layer": "IE_TIERRA", "linetype": "DASHED"})
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-04 | PUESTA A TIERRA Y RAYO", [
-        ("PAT", "Pozo de puesta a tierra"),
-        ("=O", "Pararrayo con radio de proteccion 20 m (h=12 m)"),
-        ("----", "Malla de tierra / equipotencialidad"),
-        ("CNE", "Resistencia de PAT <= 10 ohm y <= 25 ohm para rayo"),
+        ("pat", "Pozo de puesta a tierra PAT / PAT2 (resis. <= 10 ohm)"),
+        ("rayo", "Pararrayo con radio de proteccion 20 m (h=12 m)"),
+        ("malla", "Malla / enlace equipotencial (conductor de tierra)"),
+        ("canal", "Conductor de tierra enterrado proyectado"),
+        ("tg", "Tableros generales TG / TG2 y equipos a conectar a la malla"),
+        (None, "Resistencia de PAT <= 10 ohm y <= 25 ohm para rayo"),
     ])
 
 
@@ -597,13 +711,22 @@ def sheet_ie06(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
         cx, cy = local_to_page(*punto)
         msp.add_circle((cx, cy), scale_length(3.5), dxfattribs={"layer": "IE_ZONA_2", "linetype": "DASHED"})
+    for ambiente in architecture.get("ambientes", []):
+        if "venteo" not in ambiente["nombre"].lower():
+            continue
+        cx, cy = local_to_page(*ambiente["centro_local"])
+        msp.add_circle((cx, cy), scale_length(1.5), dxfattribs={"layer": "IE_ZONA_1", "linetype": "DASHED"})
+        msp.add_circle((cx, cy), 0.15, dxfattribs={"layer": "ARQ_REFERENCIA", "lineweight": 30})
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-06 | CLASIFICACION DE AREAS", [
-        ("Zona 1", "Area peligrosa alrededor de tanques y venteos"),
-        ("Zona 2", "Area de despacho alrededor de surtidores"),
-        ("NOTA", "Limites propuesta academica; trazado segun CNE-U cap. 6 y revision competente"),
-        ("CNE", "Equipo electrico de areas clasificadas con proteccion apropiada"),
+        ("zona1", "Zona 1 - area peligrosa alrededor de tanques y venteos"),
+        ("zona2", "Zona 2 - area de despacho alrededor de surtidores"),
+        ("stp", "Tanque subterraneo TK (punto de riesgo)"),
+        ("surt", "Surtidor de despacho"),
+        ("viento", "Direccion del viento (referencia para dispersion de vapores)"),
+        (None, "Limites: propuesta academica; trazado segun CNE-U cap. 6 y revision competente"),
+        (None, "CNE: equipo electrico de areas clasificadas con proteccion apropiada"),
     ])
 
 
