@@ -42,6 +42,13 @@ def svg_from_layout(layout: dict, real_entities: list[dict] | None, out_svg: Pat
             xs.append(tk["pos_local"][0]); ys.append(tk["pos_local"][1])
         for p in layout["dispensadores_y_surtidores"]["posiciones_local"]:
             xs.append(p[0]); ys.append(p[1])
+        for eq in layout.get("equipos_electricos_observados", []):
+            if "pos_local" not in eq:
+                continue
+            pos = eq["pos_local"]
+            if pos and isinstance(pos[0], (list, tuple)):
+                pos = pos[0]
+            xs.append(pos[0]); ys.append(pos[1])
         return min(xs), min(ys), max(xs), max(ys)
 
     x0, y0, x1, y1 = content_extent()
@@ -98,17 +105,28 @@ def svg_from_layout(layout: dict, real_entities: list[dict] | None, out_svg: Pat
     for eq in layout["equipos_electricos_observados"]:
         if "pos_local" not in eq:
             continue
-        cx, cy = pt(*eq["pos_local"])
+        pos = eq["pos_local"]
+        if pos and isinstance(pos[0], (list, tuple)):
+            pos = pos[0]
+        cx, cy = pt(*pos)
         if eq["tipo"] in ("pozo_tierra", "pozo_tierra_secundario"):
             lines.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4" fill="none" stroke="#007000" stroke-width="2"/>')
             lines.append(f'<text x="{cx:.1f}" y="{cy - 6:.1f}" font-family="Arial" font-size="8" fill="#007000" text-anchor="middle">PAT</text>')
         elif eq["tipo"] == "pararrayo":
+            lines.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="12" fill="none" stroke="#B00000" stroke-width="1" stroke-dasharray="3,3"/>')
             lines.append(f'<polygon points="{cx-5:.1f},{cy+6:.1f} {cx+5:.1f},{cy+6:.1f} {cx:.1f},{cy-7:.1f}" fill="none" stroke="#000000" stroke-width="1.5"/>')
             lines.append(f'<text x="{cx:.1f}" y="{cy + 16:.1f}" font-family="Arial" font-size="8" fill="#000000" text-anchor="middle">PARARRAYO</text>')
         elif eq["tipo"] == "pulsador_emergencia":
             lines.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="3" fill="#C00000"/>')
         elif eq["tipo"] == "tablero_general":
             lines.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-family="Arial" font-size="9" font-weight="bold" fill="#243F60" text-anchor="middle">{eq["sigla"]}</text>')
+        elif eq["tipo"] in ("cilindro_arena", "cilindro_trapo_empapado"):
+            lines.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4" fill="none" stroke="#C08000" stroke-width="1.5"/>')
+            lines.append(f'<text x="{cx:.1f}" y="{cy + 12:.1f}" font-family="Arial" font-size="7" fill="#C08000" text-anchor="middle">ARENA/TRAPO</text>')
+        elif eq["tipo"] == "monitoreo":
+            lines.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-family="Arial" font-size="8" font-weight="bold" fill="#800080" text-anchor="middle">{eq["sigla"]}</text>')
+        elif eq["tipo"] == "totem":
+            lines.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-family="Arial" font-size="8" fill="#000000" text-anchor="middle">TOTEM</text>')
 
     # Norte
     lines.append(f'<text x="{width-14:.1f}" y="18" font-family="Arial" font-size="12" font-weight="bold" fill="#000000">N &#8593;</text>')

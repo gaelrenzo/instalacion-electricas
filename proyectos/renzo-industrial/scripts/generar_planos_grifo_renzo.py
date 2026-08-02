@@ -208,12 +208,72 @@ def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) 
     for tanque in architecture["tanques"]:
         cx, cy = local_to_page(*tanque["pos_local"])
         msp.add_circle((cx, cy), 0.45, dxfattribs={"layer": layer, "lineweight": 35})
-        text_left(msp, f"{tanque['numero']} {tanque['combustible']}", cx + 0.5, cy, 0.18, layer)
+        msp.add_line((cx - 0.6, cy), (cx + 0.6, cy), dxfattribs={"layer": layer, "lineweight": 20})
+        msp.add_line((cx, cy - 0.6), (cx, cy + 0.6), dxfattribs={"layer": layer, "lineweight": 20})
+        text_left(msp, f"{tanque['numero']} {tanque['combustible']}", cx + 0.7, cy, 0.16, layer)
 
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
         cx, cy = local_to_page(*punto)
-        rect(msp, cx - 0.4, cy - 0.4, cx + 0.4, cy + 0.4, layer, 8)
-        text_center(msp, "SURT", cx, cy - 0.55, 0.16, layer)
+        # Surtidor de doble manguera: cuerpo + cabeza electronica.
+        rect(msp, cx - 0.55, cy - 0.35, cx + 0.55, cy + 0.35, layer, 8)
+        msp.add_circle((cx, cy + 0.35), 0.25, dxfattribs={"layer": layer, "lineweight": 30})
+        text_center(msp, "SURT", cx, cy - 0.6, 0.15, layer)
+
+    add_observed_equipment(msp, architecture)
+
+
+def add_observed_equipment(msp: ezdxf.layouts.BaseLayout, architecture: dict[str, Any]) -> None:
+    """Dibuja los equipos observados en el DWG original (tableros, monitoreo,
+    cilindros de seguridad, fosa, extintores, totem y direccion del viento)."""
+    layer = "ARQ_REFERENCIA"
+    for eq in architecture.get("equipos_electricos_observados", []):
+        if "pos_local" not in eq:
+            continue
+        pos = eq["pos_local"]
+        if pos and isinstance(pos[0], (list, tuple)):
+            pos = pos[0]
+        cx, cy = local_to_page(*pos)
+        tipo = eq["tipo"]
+        if tipo == "tablero_general":
+            rect(msp, cx - 0.35, cy - 0.28, cx + 0.35, cy + 0.28, "IE_FUERZA", 8)
+            text_center(msp, eq["sigla"], cx, cy, 0.16, "IE_FUERZA")
+        elif tipo == "pozo_tierra":
+            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
+            text_left(msp, "PAT", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
+        elif tipo == "pozo_tierra_secundario":
+            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
+            text_left(msp, "PAT2", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
+        elif tipo == "pararrayo":
+            msp.add_circle((cx, cy), 0.4, dxfattribs={"layer": "IE_RAYO", "lineweight": 35})
+            msp.add_circle((cx, cy), 0.5, dxfattribs={"layer": "IE_RAYO", "lineweight": 25})
+            msp.add_circle((cx, cy), eq.get("radio_proteccion_m", 20.0), dxfattribs={"layer": "IE_RAYO", "linetype": "DASHED", "lineweight": 25})
+            text_left(msp, f"PARARRAYO R={eq.get('radio_proteccion_m', 20.0):.0f} m (h={eq.get('altura_m', 12.0):.0f} m)", cx + 0.7, cy, 0.15, "IE_RAYO")
+        elif tipo in ("cilindro_arena", "cilindro_trapo_empapado"):
+            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": layer, "lineweight": 30})
+            msp.add_circle((cx, cy), 0.12, dxfattribs={"layer": layer, "lineweight": 20})
+            text_center(msp, "ARENA" if tipo == "cilindro_arena" else "TRAPO HUM.", cx, cy - 0.5, 0.14, layer)
+        elif tipo == "fosa_de_agua":
+            rect(msp, cx - 0.35, cy - 0.35, cx + 0.35, cy + 0.35, layer, 8)
+            text_center(msp, "FOSA", cx, cy + 0.55, 0.14, layer)
+        elif tipo == "monitoreo":
+            text_center(msp, f"{eq['sigla']}", cx, cy, 0.16, "IE_TEXTO")
+            msp.add_line((cx - 0.45, cy), (cx + 0.45, cy), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+        elif tipo == "extintor":
+            msp.add_lwpolyline([(cx, cy - 0.3), (cx - 0.18, cy + 0.15), (cx + 0.18, cy + 0.15)], dxfattribs={"layer": layer, "lineweight": 25}, close=True)
+        elif tipo == "totem":
+            rect(msp, cx - 0.25, cy - 0.3, cx + 0.25, cy + 0.3, layer, 8)
+            text_center(msp, "TOTEM", cx, cy - 0.5, 0.14, layer)
+
+    circulacion = architecture.get("circulacion", {})
+    for giro in circulacion.get("radios_giro_local", []):
+        cx, cy = local_to_page(*giro["centro"])
+        msp.add_circle((cx, cy), 0.35, dxfattribs={"layer": layer, "linetype": "DASHED", "lineweight": 20})
+    direccion = circulacion.get("direccion_viento", {}).get("pos_local")
+    if direccion:
+        cx, cy = local_to_page(*direccion)
+        msp.add_line((cx, cy), (cx + 1.6, cy), dxfattribs={"layer": layer, "lineweight": 25})
+        msp.add_lwpolyline([(cx + 1.6, cy), (cx + 1.3, cy + 0.35), (cx + 1.3, cy - 0.35)], dxfattribs={"layer": layer, "lineweight": 25}, close=True)
+        text_left(msp, "DIRECCION DEL VIENTO", cx, cy + 0.4, 0.14, layer)
 
 
 def add_title_block(msp: ezdxf.layouts.BaseLayout, title_data: dict[str, Any], sheet: dict[str, str], number: int, total: int, scale: str) -> None:
@@ -351,9 +411,10 @@ def sheet_ie01(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_scale_bar(msp)
     add_legend(msp, "IE-01 | LEYENDA Y CRITERIOS", [
         ("X", "Luminaria LED; magenta = circuito de emergencia"),
-        ("TDE", "Tablero de emergencia mediante ATS"),
-        ("TDF", "Tablero de fuerza normal"),
-        ("---", "Canalizacion enterrada/techo segun tramo; verificar recorrido"),
+        ("TG / TG2", "Tableros generales observados en el DWG"),
+        ("PM", "Punto de monitoreo de aire/ruido"),
+        ("PARARRAYO", "Pararrayo R=20 m (h=12 m); circulo punteado = radio"),
+        ("ARENA/TRAPO", "Cilindros de seguridad para emergencias"),
         ("CNE", "dV ramal <= 2.5 % y total <= 4 %; PE en todo circuito"),
     ])
 

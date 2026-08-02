@@ -53,48 +53,49 @@
   },
 
   "ambientes": [
-    {"nombre": "Administracion y facturacion", "centro_utm": [380428.0, 8325993.0], "centro_local": [3.0, 3.0], "tipo": "oficina", "estado": "observado", "confianza": "media"},
-    {"nombre": "Oficina 01", "centro_utm": [380433.0, 8325993.0], "centro_local": [8.0, 3.0], "tipo": "oficina", "estado": "observado", "confianza": "media"},
-    {"nombre": "Sala de maquinas", "centro_utm": [380439.0, 8325993.0], "centro_local": [14.0, 3.0], "tipo": "sala_maquinas", "estado": "observado", "confianza": "media"},
-    {"nombre": "SS.HH 1", "centro_utm": [380441.0, 8325992.0], "centro_local": [16.0, 2.0], "tipo": "sshh", "estado": "observado", "confianza": "media"},
-    {"nombre": "SS.HH 2", "centro_utm": [380443.0, 8325992.0], "centro_local": [18.0, 2.0], "tipo": "sshh", "estado": "observado", "confianza": "media"},
-    {"nombre": "Vereda", "centro_utm": [380428.0, 8325995.0], "centro_local": [3.0, 5.0], "tipo": "vereda", "estado": "observado", "confianza": "media"},
-    {"nombre": "Tuberias de venteo", "centro_utm": [380426.0, 8325994.0], "centro_local": [1.0, 4.0], "tipo": "venteo", "estado": "observado", "confianza": "media"}
+    {"nombre": "OFICINA N 01", "centro_utm": [380432.75, 8325992.63], "centro_local": [7.75, 2.63], "tipo": "oficina", "estado": "observado", "confianza": "alta", "nota": "texto 'OFICINA N 01' en capa TEXT-AMB"},
+    {"nombre": "SALA DE MAQUINAS", "centro_utm": [380438.83, 8325993.34], "centro_local": [13.83, 3.34], "tipo": "sala_maquinas", "estado": "observado", "confianza": "alta", "nota": "textos 'SALA DE' + 'MAQUINAS'"},
+    {"nombre": "SS.HH 1", "centro_utm": [380440.76, 8325992.52], "centro_local": [15.76, 2.52], "tipo": "sshh", "estado": "observado", "confianza": "alta", "nota": "texto 'SS.HH'"},
+    {"nombre": "SS.HH 2", "centro_utm": [380442.6, 8325992.46], "centro_local": [17.6, 2.46], "tipo": "sshh", "estado": "observado", "confianza": "alta", "nota": "texto 'SS.HH'"},
+    {"nombre": "SS.HH 3", "centro_utm": [380443.33, 8325992.53], "centro_local": [18.33, 2.53], "tipo": "sshh", "estado": "observado", "confianza": "alta", "nota": "texto 'SS.HH'"},
+    {"nombre": "VEREDA", "centro_utm": [380428.47, 8325994.71], "centro_local": [3.47, 4.71], "tipo": "vereda", "estado": "observado", "confianza": "alta", "nota": "texto 'VEREDA'"},
+    {"nombre": "Tuberias de venteo", "centro_utm": [380425.83, 8325994.37], "centro_local": [0.83, 4.37], "tipo": "venteo", "estado": "observado", "confianza": "alta", "nota": "texto 'TUBERIAS DE VENTEO'"}
   ],
 
   "tanques": [
-    {"numero": "TK-1", "combustible": "Gasohol Premium", "capacidad_gls": 2469.53, "pos_utm": [380440.0, 8326001.0], "pos_local": [15.0, 11.0], "estado": "observado", "confianza": "alta", "nota": "texto 'G-Premium / 2,469.53 Gls' con manhole"},
-    {"numero": "TK-2", "combustible": "Gasohol Regular", "capacidad_gls": 3292.71, "pos_utm": [380442.0, 8325998.0], "pos_local": [17.0, 8.0], "estado": "observado", "confianza": "media", "nota": "manhole asociado"},
-    {"numero": "TK-3", "combustible": "Diesel B5-S50", "capacidad_gls": 4939.07, "pos_utm": [380446.0, 8325998.0], "pos_local": [21.0, 8.0], "estado": "observado", "confianza": "alta", "nota": "texto 'DB5-S50UV / 4,939.07 Gls' con manhole"}
+    {"numero": "TK-1", "combustible": "Gasohol Premium", "capacidad_gls": 2469.53, "pos_utm": [380439.57, 8325997.95], "pos_local": [14.57, 7.95], "estado": "observado", "confianza": "alta", "nota": "manhole MANHOLE + texto 'TK. N1 / G-Premiun / 2,469.53 Gls'"},
+    {"numero": "TK-2", "combustible": "Gasohol Regular", "capacidad_gls": 3292.71, "pos_utm": [380442.49, 8325998.21], "pos_local": [17.49, 8.21], "estado": "observado", "confianza": "alta", "nota": "manhole MANHOLE + texto 'TK. N2 / G-Regular / 3,292.71 Gls'"},
+    {"numero": "TK-3", "combustible": "Diesel B5-S50", "capacidad_gls": 4939.07, "pos_utm": [380446.04, 8325998.42], "pos_local": [21.04, 8.42], "estado": "observado", "confianza": "alta", "nota": "manhole MANHOLE + texto 'TK. N3 / DB5-S50UV / 4,939.07 Gls'"}
   ],
 
   "dispensadores_y_surtidores": {
     "islas": ["D", "M", "V"],
-    "posiciones_utm": [[380439.0, 8326001.0], [380444.0, 8326001.0]],
-    "posiciones_local": [[14.0, 11.0], [19.0, 11.0]],
+    "posiciones_utm": [[380439.44, 8326000.92], [380444.85, 8326000.93]],
+    "posiciones_local": [[14.44, 10.92], [19.85, 10.93]],
     "productos": ["DB5-S50", "G-Premium", "G-Regular"],
     "estado": "observado",
-    "confianza": "media"
+    "confianza": "alta",
+    "nota": "Textos 'DB5-S50' y 'G-Premium' en dos islas de despacho"
   },
 
   "equipos_electricos_observados": [
-    {"tipo": "tablero_general", "sigla": "TG", "pos_utm": [380435.0, 8325995.0], "pos_local": [10.0, 5.0], "estado": "observado", "confianza": "alta"},
-    {"tipo": "tablero_general", "sigla": "TG2", "pos_utm": [380434.0, 8325995.0], "pos_local": [9.0, 5.0], "estado": "observado", "confianza": "media"},
-    {"tipo": "interruptor_general", "pos_utm": [380436.0, 8325995.0], "pos_local": [11.0, 5.0], "estado": "observado", "confianza": "media"},
-    {"tipo": "pulsador_emergencia", "pos_utm": [380435.0, 8325996.0], "pos_local": [10.0, 6.0], "estado": "observado", "confianza": "media"},
-    {"tipo": "pozo_tierra", "sigla": "PAT", "pos_utm": [380434.0, 8325996.0], "pos_local": [9.0, 6.0], "estado": "observado", "confianza": "alta"},
-    {"tipo": "pozo_tierra_secundario", "pos_utm": [380442.0, 8326002.0], "pos_local": [17.0, 12.0], "estado": "observado", "confianza": "media"},
-    {"tipo": "pararrayo", "altura_m": 12.0, "radio_proteccion_m": 20.0, "pos_utm": [380435.0, 8325994.0], "pos_local": [10.0, 4.0], "estado": "observado", "confianza": "alta", "nota": "texto 'RADIO DE PROTECCION DE PARARRAYO R=20m (h=12m)'"},
-    {"tipo": "extintor", "sigla": "extint", "cantidad": 2, "estado": "observado", "confianza": "media"},
-    {"tipo": "monitoreo", "sigla": "PM A1/R1, PM A2/R2", "estado": "observado", "confianza": "media", "nota": "posible referencia a puntos de monitoreo de areas"}
+    {"tipo": "tablero_general", "sigla": "TG", "pos_utm": [380434.55, 8325994.7], "pos_local": [9.55, 4.7], "estado": "observado", "confianza": "alta", "nota": "bloque TG en capa DB TOTEN"},
+    {"tipo": "tablero_general", "sigla": "TG2", "pos_utm": [380434.09, 8325994.66], "pos_local": [9.09, 4.66], "estado": "observado", "confianza": "alta", "nota": "bloque TG en capa DB TOTEN"},
+    {"tipo": "interruptor_general", "pos_utm": [380435.66, 8325995.31], "pos_local": [10.66, 5.31], "estado": "observado", "confianza": "media", "nota": "texto 'INTERRUPTOR GENERAL'"},
+    {"tipo": "pulsador_emergencia", "pos_utm": [380435.28, 8325995.73], "pos_local": [10.28, 5.73], "estado": "observado", "confianza": "media", "nota": "texto 'PULSADOR DE EMERGENCIA'"},
+    {"tipo": "pozo_tierra", "sigla": "PAT", "pos_utm": [380434.37, 8325996.1], "pos_local": [9.37, 6.1], "estado": "observado", "confianza": "alta", "nota": "bloque P. TIERRA"},
+    {"tipo": "pozo_tierra_secundario", "pos_utm": [380442.33, 8326002.01], "pos_local": [17.33, 12.01], "estado": "observado", "confianza": "alta", "nota": "bloque P. TIERRA en area de tanques"},
+    {"tipo": "pararrayo", "altura_m": 12.0, "radio_proteccion_m": 20.0, "pos_utm": [380434.86, 8325994.05], "pos_local": [9.86, 4.05], "estado": "observado", "confianza": "alta", "nota": "bloque PARARRAYO con arcos R=20 m (h=12 m)"},
+    {"tipo": "cilindro_arena", "pos_utm": [380437.92, 8326000.65], "pos_local": [12.92, 10.65], "estado": "observado", "confianza": "alta", "nota": "bloque ARENA"},
+    {"tipo": "cilindro_trapo_empapado", "pos_utm": [380437.29, 8326000.65], "pos_local": [12.29, 10.65], "estado": "observado", "confianza": "alta", "nota": "bloque TRAPO HUMEDO"},
+    {"tipo": "fosa_de_agua", "pos_utm": [380445.8, 8325993.77], "pos_local": [20.8, 3.77], "estado": "observado", "confianza": "alta", "nota": "bloque FOSA DE AGUA"},
+    {"tipo": "monitoreo", "sigla": "PM A1", "pos_utm": [380448.1, 8325993.08], "pos_local": [23.1, 3.08], "estado": "observado", "confianza": "alta", "nota": "bloque PM A1 (aire)"},
+    {"tipo": "monitoreo", "sigla": "PM R1", "pos_utm": [380449.81, 8325993.49], "pos_local": [24.81, 3.49], "estado": "observado", "confianza": "alta", "nota": "bloque PM R1 (ruido)"},
+    {"tipo": "monitoreo", "sigla": "PM A2", "pos_utm": [380443.02, 8326004.62], "pos_local": [18.02, 14.62], "estado": "observado", "confianza": "alta", "nota": "bloque PM A2 (aire)"},
+    {"tipo": "monitoreo", "sigla": "PM R2", "pos_utm": [380444.83, 8326004.8], "pos_local": [19.83, 14.8], "estado": "observado", "confianza": "alta", "nota": "bloque PM R2 (ruido)"},
+    {"tipo": "extintor", "sigla": "extint", "cantidad": 2, "pos_utm": [[380445.61, 8326001.45], [380438.88, 8325993.88]], "pos_local": [[20.61, 11.45], [13.88, 3.88]], "estado": "observado", "confianza": "alta"},
+    {"tipo": "totem", "pos_utm": [380452.42, 8326004.89], "pos_local": [27.42, 14.89], "estado": "observado", "confianza": "alta", "nota": "texto 'TOTEM'"}
   ],
-
-  "infraestructura_complementaria": {
-    "fosa_de_agua": {"pos_utm": [380446.0, 8325994.0], "pos_local": [21.0, 4.0], "estado": "observado"},
-    "cilindro_arena": {"pos_utm": [380438.0, 8326001.0], "pos_local": [13.0, 11.0], "estado": "observado"},
-    "cilindro_trapo_empapado": {"estado": "observado"},
-    "totem": {"estado": "observado", "confianza": "media"}
-  },
 
   "circulacion": {
     "ingreso": {"pos_utm": [380433.0, 8326008.0], "pos_local": [8.0, 18.0], "estado": "observado"},
@@ -102,6 +103,13 @@
     "despacho_combustible": "circulacion de vehiculos mayores/menores",
     "radio_giro_vehiculos_mayores_m": 14.0,
     "radio_giro_vehiculos_menores_m": 6.5,
+    "radios_giro_local": [
+      {"centro": [21.16, 11.52], "radio": 0.2, "nota": "arco de giro ingreso mayor"},
+      {"centro": [21.2, 10.92], "radio": 0.2, "nota": "arco de giro ingreso"},
+      {"centro": [13.58, 10.91], "radio": 0.2, "nota": "arco de giro salida"},
+      {"centro": [13.63, 10.31], "radio": 0.2, "nota": "arco de giro salida"}
+    ],
+    "direccion_viento": {"pos_local": [28.31, 3.6], "nota": "MTEXT 'DIRECCION DEL VIENTO' en capa MONITOREO"},
     "estado": "observado"
   },
 
