@@ -34,7 +34,7 @@ system:
 
 calculation:
   demand_method: CNE-U_Regla_050-210_Tabla_14_para_usos_no_residenciales_mas_EM.010_art_7
-  demand_method_nota: "Griffo (uso comercial/industrial): carga basica por Tabla 14 CNE-U (25 W/m2, fd 100%) como cota minima; el diseno dimensiona por cargas reales proyectadas con factores de demanda y simultaneidad justificados (EM.010 art. 7)."
+  demand_method_nota: "Grifo (uso comercial/industrial): carga basica por Tabla 14 CNE-U (25 W/m2, fd 100%) como cota minima; el diseno dimensiona por cargas reales proyectadas con factores de demanda y simultaneidad justificados (EM.010 art. 7)."
   cne_voltage_drop_branch_percent_max: 2.5
   cne_voltage_drop_total_percent_max: 4.0
   cne_voltage_drop_regla: "CNE-U Regla 050-102: alimentador y circuito derivado max 2,5% c/u; total hasta salida mas alejada max 4%."
@@ -268,12 +268,12 @@ circuits:
     source_state: adopted_design_criterion
     source_ref: sanitary_coordination_pending
 
-  - {id: L-01, profile: lighting_D_2_5, description: "Alumbrado de marquesina y area de despacho, LED", panel: TDE, phase: R, emergency: true, installed_kw: 0.80, length_m: 30, source_ref: "luminarias LED de playa y despacho"}
-  - {id: L-02, profile: lighting_D_2_5, description: "Alumbrado exterior de postes", panel: TDF, phase: S, emergency: false, installed_kw: 0.80, length_m: 40, source_ref: "postes exteriores de patio"}
-  - {id: L-03, profile: lighting_D_2_5, description: "Letrero y totem de precios", panel: TDF, phase: T, emergency: false, installed_kw: 0.40, length_m: 30, source_state: adopted_design_criterion}
+  - {id: L-01, profile: lighting_D_2_5, description: "Alumbrado de marquesina y area de despacho, LED", panel: TDE, phase: R, emergency: true, installed_kw: 0.80, length_m: 30, source_ref: "memoria de iluminacion: 8 proyectores LED de 100 W"}
+  - {id: L-02, profile: lighting_D_2_5, description: "Alumbrado exterior de postes", panel: TDF, phase: S, emergency: false, installed_kw: 0.64, length_m: 40, source_ref: "memoria de iluminacion: 8 luminarias de poste LED de 80 W"}
+  - {id: L-03, profile: lighting_D_2_5, description: "Letrero y totem de precios", panel: TDF, phase: T, emergency: false, installed_kw: 0.40, length_m: 30, source_state: adopted_design_criterion, source_ref: "carga de rotulo luminoso/totem; no forma parte del calculo de iluminancia por ambiente"}
 
-  - {id: A1-01, profile: lighting_B1, description: "Alumbrado interior administrativo", panel: TD-A1, phase: R, emergency: false, installed_kw: 0.80, length_m: 20, source_ref: "oficina y administracion"}
-  - {id: A1-02, profile: lighting_B1, description: "Alumbrado SS.HH y sala de maquinas", panel: TD-A1, phase: S, emergency: false, installed_kw: 0.40, length_m: 18}
+  - {id: A1-01, profile: lighting_B1, description: "Alumbrado interior administrativo", panel: TD-A1, phase: R, emergency: false, installed_kw: 0.54, length_m: 20, source_ref: "memoria de iluminacion: administracion y oficina 01, 15 paneles LED de 36 W"}
+  - {id: A1-02, profile: lighting_B1, description: "Alumbrado SS.HH, sala de maquinas y vereda tecnica", panel: TD-A1, phase: S, emergency: false, installed_kw: 0.222, length_m: 18, source_ref: "memoria de iluminacion: sala de maquinas, SS.HH 1-3 y vereda/venteo"}
   - {id: A1-03, profile: outlets_4, description: "Tomacorrientes oficina y administracion", panel: TD-A1, phase: R, emergency: false, installed_kva: 1.20, length_m: 22}
   - {id: A1-04, profile: outlets_4, description: "Tomacorrientes sala de maquinas y SS.HH", panel: TD-A1, phase: T, emergency: false, installed_kva: 1.00, length_m: 20}
   - {id: A1-05, profile: service_2_5, description: "Tomacorrientes criticos de caja/POS", panel: TDE, phase: T, emergency: true, installed_kva: 0.80, length_m: 15, breaker_a: 16}

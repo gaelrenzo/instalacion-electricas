@@ -25,6 +25,13 @@ def fmt(value: float) -> str:
     return f"{value:.2f}"
 
 
+def fmt_size(value: float | int) -> str:
+    number = float(value)
+    if number.is_integer():
+        return f"{number:.0f}"
+    return f"{number:.1f}"
+
+
 def main() -> int:
     root = repo_root()
     project = root / "proyectos/renzo-industrial"
@@ -42,6 +49,7 @@ def main() -> int:
     s = result["summary"]
     g = result["generator"]
     system = cargas["system"]
+    worst_vd = max(result["circuits"], key=lambda c: c["total_voltage_drop_percent"])
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
 
@@ -67,6 +75,8 @@ def main() -> int:
         f"\\renewcommand{{\\GrupoModelo}}{{Cummins C30D6}}",
         f"\\renewcommand{{\\IccAsumido}}{{10}}",
         f"\\renewcommand{{\\Icu}}{{{fmt(system.get('main_breaker_icu_ka_min', 25))}}}",
+        f"\\providecommand{{\\dVMaxCircuit}}{{{worst_vd['id']}}}",
+        f"\\providecommand{{\\dVMaxTotal}}{{{fmt(worst_vd['total_voltage_drop_percent'])}\\%}}",
     ]
 
     feeder_breaker = {fdr["id"]: fdr["breaker_a"] for fdr in result["feeders"]}
@@ -86,7 +96,7 @@ def main() -> int:
     for fdr in result["feeders"]:
         feeder_rows.append(
             f"{fdr['id']} & {fdr['panel']} & {fdr['breaker_a']:.0f} A & "
-            f"{fdr['phase_mm2']:.0f}/{fdr['neutral_mm2']:.0f}/{fdr['pe_mm2']:.0f} & "
+            f"{fmt_size(fdr['phase_mm2'])}/{fmt_size(fdr['neutral_mm2'])}/{fmt_size(fdr['pe_mm2'])} & "
             f"{fdr['corrected_ampacity_a']:.1f} & {fdr['max_phase_current_a']:.2f} & "
             f"{fdr['voltage_drop_percent']:.2f}\\% \\\\"
         )
@@ -126,6 +136,8 @@ def main() -> int:
         "\\providecommand{\\GrupoModelo}{}",
         "\\providecommand{\\IccAsumido}{}",
         "\\providecommand{\\Icu}{}",
+        "\\providecommand{\\dVMaxCircuit}{}",
+        "\\providecommand{\\dVMaxTotal}{}",
         f"\\providecommand{{\\ITMAlTDE}}{{{feeder_breaker.get('AL-TDE', 40)}}}",
         f"\\providecommand{{\\ITMAlTDF}}{{{feeder_breaker.get('AL-TDF', 32)}}}",
         f"\\providecommand{{\\ITMAlTDA}}{{{feeder_breaker.get('AL-TD-A1', 20)}}}",

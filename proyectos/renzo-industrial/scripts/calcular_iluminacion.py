@@ -139,10 +139,14 @@ def main() -> int:
         latex_rows.append(
             f"{esc_tex(amb['nombre'])} & {amb['largo_m']:.1f}~m $\\times$ {amb['ancho_m']:.1f}~m & "
             f"{fmt(area)} & {amb['iluminancia_lux']} & {fmt(k)} & {fmt(fu)} & {fm} & "
-            f"{n} & {lum['potencia_w']} & {fmt(potencia)} & {fmt(lpd)} & {lux_result} \\\\"
+            f"{n} & {lum['potencia_w']} & {fmt(potencia)} & {fmt(lpd)} & {round(lux_result)} \\\\"
         )
 
     adquis = next(r for r in results if r["id"] == "ADM")
+    total_luminarias = sum(r["n_luminarias"] for r in results)
+    total_potencia_w = sum(r["potencia_instalada_w"] for r in results)
+    total_area_m2 = sum(r["area_m2"] for r in results)
+    total_lpd = total_potencia_w / total_area_m2
 
     macros = [
         "\\providecommand{\\IllumTitulo}{Memoria de calculo de iluminacion}",
@@ -162,6 +166,10 @@ def main() -> int:
         f"\\providecommand{{\\IllumEjPot}}{{{fmt(adquis['potencia_instalada_w'])}}}",
         f"\\providecommand{{\\IllumEjLpd}}{{{fmt(adquis['lpd_w_m2'])}}}",
         f"\\providecommand{{\\IllumEjResult}}{{{adquis['iluminancia_resultado_lux']}}}",
+        f"\\providecommand{{\\IllumTotalN}}{{{total_luminarias}}}",
+        f"\\providecommand{{\\IllumTotalW}}{{{total_potencia_w}}}",
+        f"\\providecommand{{\\IllumTotalKW}}{{{total_potencia_w / 1000:.3f}}}",
+        f"\\providecommand{{\\IllumTotalLPD}}{{{total_lpd:.2f}}}",
     ]
 
     tabla = "\n".join(latex_rows)
@@ -186,12 +194,10 @@ def main() -> int:
             "status": "PASS" if all(r["cumple"] for r in results) else "REVISION",
             "ambientes": results,
             "totales": {
-                "n_luminarias": sum(r["n_luminarias"] for r in results),
-                "potencia_instalada_w": sum(r["potencia_instalada_w"] for r in results),
-                "area_m2": round(sum(r["area_m2"] for r in results), 2),
-                "lpd_promedio_w_m2": round(
-                    sum(r["potencia_instalada_w"] for r in results) / sum(r["area_m2"] for r in results), 2
-                ),
+                "n_luminarias": total_luminarias,
+                "potencia_instalada_w": total_potencia_w,
+                "area_m2": round(total_area_m2, 2),
+                "lpd_promedio_w_m2": round(total_lpd, 2),
             },
         }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -199,11 +205,9 @@ def main() -> int:
         "status": "PASS" if all(r["cumple"] for r in results) else "REVISION",
         "ambientes": len(results),
         "totales": {
-            "n_luminarias": sum(r["n_luminarias"] for r in results),
-            "potencia_instalada_w": sum(r["potencia_instalada_w"] for r in results),
-            "lpd_promedio_w_m2": round(
-                sum(r["potencia_instalada_w"] for r in results) / sum(r["area_m2"] for r in results), 2
-            ),
+            "n_luminarias": total_luminarias,
+            "potencia_instalada_w": total_potencia_w,
+            "lpd_promedio_w_m2": round(total_lpd, 2),
         },
     }, ensure_ascii=False, indent=2))
     return 0

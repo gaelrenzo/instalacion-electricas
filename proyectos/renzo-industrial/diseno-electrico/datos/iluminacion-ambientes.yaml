@@ -64,6 +64,12 @@ luminarias:
     flujo_lm: 8000
     eficacia_lm_w: 100
     fuente: "familia de catalogo comparable"
+  aplique_exterior:
+    tipo: "Aplique LED exterior estanco"
+    potencia_w: 18
+    flujo_lm: 1800
+    eficacia_lm_w: 100
+    fuente: "familia de catalogo comparable para vereda tecnica y venteo"
 
 ambientes:
   - id: ADM
@@ -78,7 +84,7 @@ ambientes:
     plano_trabajo_m: 0.85
     factor_mantenimiento: 0.80
     luminaria: panel_oficina
-    distribucion: "2 hileras x 4 luminarias, 4 x 3"
+    distribucion: "2 hileras x 4 luminarias (8 en total)"
     estado: criterio_academico
   - id: OFI
     nombre: "Oficina 01"
@@ -92,7 +98,7 @@ ambientes:
     plano_trabajo_m: 0.85
     factor_mantenimiento: 0.80
     luminaria: panel_oficina
-    distribucion: "2 hileras x 3 luminarias"
+    distribucion: "2 hileras, 3 + 4 luminarias (7 en total)"
     estado: criterio_academico
   - id: SMAQ
     nombre: "Sala de maquinas"
@@ -106,13 +112,13 @@ ambientes:
     plano_trabajo_m: 0.80
     factor_mantenimiento: 0.80
     luminaria: industrial_highbay
-    distribucion: "1 hilera x 2 luminarias"
+    distribucion: "1 hilera x 3 luminarias"
     estado: criterio_academico
   - id: SS1
     nombre: "SS.HH 1"
     uso: "Servicio higienico"
-    largo_m: 2.5
-    ancho_m: 2.0
+    largo_m: 2.0
+    ancho_m: 1.5
     altura_m: 2.8
     iluminancia_lux: 150
     iluminancia_fuente: "NTP ISO 8995: servicios higienicos 150 lux"
@@ -125,8 +131,8 @@ ambientes:
   - id: SS2
     nombre: "SS.HH 2"
     uso: "Servicio higienico"
-    largo_m: 2.5
-    ancho_m: 2.0
+    largo_m: 2.0
+    ancho_m: 1.5
     altura_m: 2.8
     iluminancia_lux: 150
     iluminancia_fuente: "NTP ISO 8995: servicios higienicos 150 lux"
@@ -135,6 +141,34 @@ ambientes:
     factor_mantenimiento: 0.80
     luminaria: panel_sshh
     distribucion: "1 luminaria central"
+    estado: criterio_academico
+  - id: SS3
+    nombre: "SS.HH 3"
+    uso: "Servicio higienico"
+    largo_m: 2.0
+    ancho_m: 1.5
+    altura_m: 2.8
+    iluminancia_lux: 150
+    iluminancia_fuente: "NTP ISO 8995: servicios higienicos 150 lux"
+    reflectancias: ["techo_oficina", "pared_oficina", "piso_oficina"]
+    plano_trabajo_m: 0.80
+    factor_mantenimiento: 0.80
+    luminaria: panel_sshh
+    distribucion: "1 luminaria central"
+    estado: criterio_academico
+  - id: VER
+    nombre: "Vereda tecnica y tuberias de venteo"
+    uso: "Circulacion peatonal tecnica y acceso a venteos"
+    largo_m: 3.0
+    ancho_m: 2.0
+    altura_m: 3.0
+    iluminancia_lux: 50
+    iluminancia_fuente: "NTP ISO 8995: areas de circulacion exterior 50 lux"
+    reflectancias: ["exterior"]
+    plano_trabajo_m: 0.0
+    factor_mantenimiento: 0.70
+    luminaria: aplique_exterior
+    distribucion: "1 aplique exterior junto a vereda/venteo"
     estado: criterio_academico
   - id: DESP
     nombre: "Area de despacho y marquesina"

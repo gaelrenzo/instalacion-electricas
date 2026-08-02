@@ -16,7 +16,7 @@ Frecuencia & 60~Hz & sistema peruano \\
 Sistema de puesta a tierra & TN-S & DEC-005 \\
 Capacidad de servicio & \ServCap & propuesta \\
 Factor de reserva & 1,20 & margen de diseno \\
-Factor de potencia de demanda & 0,83 & MD 15,67~kW / 18,83~kVA \\
+Factor de potencia de demanda & 0,83 & MD \MDkw~kW / \MDkva~kVA \\
 Desbalance de fases & \Desb & objetivo \(\leq\) 10~\% \\
 Resistividad del cobre (en servicio) & 0,021~\(\Omega\cdot\)mm\textsuperscript{2}/m & Tabla del calculo \\
 Reactancia del conductor & 0,08~\(\Omega\)/km & hipotesis \\
@@ -121,7 +121,8 @@ Coordinacion de protecciones & CNE-U Regla 050-104 &
   \(I_b \leq I_n \leq I_z\) en todos los circuitos y subalimentadores \\
 Caida de tension & CNE-U Regla 050-102 &
   ramal \(\leq\) 2,5~\% y total \(\leq\) 4~\%; el peor caso del anteproyecto
-  es \dVAlim~en el alimentador principal \\
+  es \dVMaxTotal~en el circuito \dVMaxCircuit, con \dVAlim~en el alimentador
+  principal \\
 Demanda para usos no residenciales & CNE-U Regla 050-210 y Tabla 14 &
   cota de 25~W/m\textsuperscript{2} superada por las cargas instaladas del
   grifo; la demanda se calcula con cargas proyectadas (EM.010 art. 7) \\

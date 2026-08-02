@@ -124,6 +124,35 @@ def local_to_page(x: float, y: float) -> tuple[float, float]:
     return (ARCH_OFFSET_X + (x - ARCH[0]) * ARCH_SCALE, ARCH_OFFSET_Y + (y - ARCH[1]) * ARCH_SCALE)
 
 
+def scale_length(meters: float) -> float:
+    return meters * ARCH_SCALE
+
+
+def add_basic_dimensions(msp: ezdxf.layouts.BaseLayout, architecture: dict[str, Any]) -> None:
+    """Cotas referenciales del lote de trabajo tomadas del layout canonico."""
+    lote = architecture["lote_a_ejecutar"]
+    xs = [point[0] for point in lote["poligono_local"]]
+    ys = [point[1] for point in lote["poligono_local"]]
+    x0, x1 = min(xs), max(xs)
+    y0, y1 = min(ys), max(ys)
+    largo = lote["dimensiones"]["largo"]
+    ancho = lote["dimensiones"]["ancho"]
+
+    a = local_to_page(x0, y0 - 0.65)
+    b = local_to_page(x1, y0 - 0.65)
+    msp.add_line(a, b, dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    msp.add_line(local_to_page(x0, y0 - 0.35), local_to_page(x0, y0 - 0.95), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    msp.add_line(local_to_page(x1, y0 - 0.35), local_to_page(x1, y0 - 0.95), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    text_center(msp, f"{largo:.0f} m referencial", (a[0] + b[0]) / 2, a[1] - 0.35, 0.18, "IE_TEXTO")
+
+    c = local_to_page(x1 + 0.65, y0)
+    d = local_to_page(x1 + 0.65, y1)
+    msp.add_line(c, d, dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    msp.add_line(local_to_page(x1 + 0.35, y0), local_to_page(x1 + 0.95, y0), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    msp.add_line(local_to_page(x1 + 0.35, y1), local_to_page(x1 + 0.95, y1), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+    text_center(msp, f"{ancho:.0f} m referencial", d[0] + 0.45, (c[1] + d[1]) / 2, 0.18, "IE_TEXTO")
+
+
 def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) -> None:
     """Dibuja la arquitectura del grifo desde el layout canonico con jerarquia
     de espesores: lote y edificio en trazo grueso, ambientes en trazo medio.
@@ -150,36 +179,19 @@ def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) 
             msp.add_line(local_to_page(*a), local_to_page(*b), dxfattribs={"layer": layer, "lineweight": lw})
 
     def draw_lote_real() -> bool:
-        # Reconstruye el poligono del lote a ejecutar desde sus segmentos.
+        # Dibuja los segmentos reales extraidos del DWG. Se evita reconstruir
+        # un poligono unico porque el DXF original trae duplicados y tramos
+        # cortados; representar los segmentos conserva mejor la evidencia.
         segs = [ent["pts"] for ent in real_entities if ent.get("type") == "seg" and ent.get("layer") == "LOTE A EJECUTAR"]
         if len(segs) < 4:
             return False
-        # Cadena desde el vertice mas al sur.
-        vertices: list[tuple[float, float]] = []
-        remaining = list(segs)
-        start = min((s[0] for s in remaining), key=lambda p: (p[1], p[0]))
-        current = start
-        vertices.append(current)
-        for _ in range(len(segs) + 2):
-            match = None
-            for s in remaining:
-                if math.dist(s[0], current) < 0.1:
-                    match, nxt = s[0], s[1]
-                    break
-                if math.dist(s[1], current) < 0.1:
-                    match, nxt = s[1], s[0]
-                    break
-            if match is None:
-                break
-            remaining.remove(next(s for s in remaining if s in (s for s in remaining)))
-            remaining = [s for s in remaining if math.dist(s[0], current) >= 0.1 and math.dist(s[1], current) >= 0.1]
-            current = nxt
-            if math.dist(current, start) < 0.1:
-                break
-            vertices.append(current)
-        if len(vertices) < 4:
-            return False
-        msp.add_lwpolyline([local_to_page(x, y) for x, y in vertices], dxfattribs={"layer": layer, "lineweight": 50}, close=True)
+        seen: set[tuple[tuple[float, float], tuple[float, float]]] = set()
+        for a, b in segs:
+            key = tuple(sorted(((round(a[0], 2), round(a[1], 2)), (round(b[0], 2), round(b[1], 2)))))
+            if key in seen:
+                continue
+            seen.add(key)
+            msp.add_line(local_to_page(*a), local_to_page(*b), dxfattribs={"layer": layer, "lineweight": 50})
         return True
 
     if real_entities:
@@ -219,6 +231,7 @@ def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) 
         msp.add_circle((cx, cy + 0.35), 0.25, dxfattribs={"layer": layer, "lineweight": 30})
         text_center(msp, "SURT", cx, cy - 0.6, 0.15, layer)
 
+    add_basic_dimensions(msp, architecture)
     add_observed_equipment(msp, architecture)
 
 
@@ -229,40 +242,49 @@ def add_observed_equipment(msp: ezdxf.layouts.BaseLayout, architecture: dict[str
     for eq in architecture.get("equipos_electricos_observados", []):
         if "pos_local" not in eq:
             continue
-        pos = eq["pos_local"]
-        if pos and isinstance(pos[0], (list, tuple)):
-            pos = pos[0]
-        cx, cy = local_to_page(*pos)
+        raw_positions = eq["pos_local"]
+        positions = raw_positions if raw_positions and isinstance(raw_positions[0], (list, tuple)) else [raw_positions]
         tipo = eq["tipo"]
-        if tipo == "tablero_general":
-            rect(msp, cx - 0.35, cy - 0.28, cx + 0.35, cy + 0.28, "IE_FUERZA", 8)
-            text_center(msp, eq["sigla"], cx, cy, 0.16, "IE_FUERZA")
-        elif tipo == "pozo_tierra":
-            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
-            text_left(msp, "PAT", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
-        elif tipo == "pozo_tierra_secundario":
-            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
-            text_left(msp, "PAT2", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
-        elif tipo == "pararrayo":
-            msp.add_circle((cx, cy), 0.4, dxfattribs={"layer": "IE_RAYO", "lineweight": 35})
-            msp.add_circle((cx, cy), 0.5, dxfattribs={"layer": "IE_RAYO", "lineweight": 25})
-            msp.add_circle((cx, cy), eq.get("radio_proteccion_m", 20.0), dxfattribs={"layer": "IE_RAYO", "linetype": "DASHED", "lineweight": 25})
-            text_left(msp, f"PARARRAYO R={eq.get('radio_proteccion_m', 20.0):.0f} m (h={eq.get('altura_m', 12.0):.0f} m)", cx + 0.7, cy, 0.15, "IE_RAYO")
-        elif tipo in ("cilindro_arena", "cilindro_trapo_empapado"):
-            msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": layer, "lineweight": 30})
-            msp.add_circle((cx, cy), 0.12, dxfattribs={"layer": layer, "lineweight": 20})
-            text_center(msp, "ARENA" if tipo == "cilindro_arena" else "TRAPO HUM.", cx, cy - 0.5, 0.14, layer)
-        elif tipo == "fosa_de_agua":
-            rect(msp, cx - 0.35, cy - 0.35, cx + 0.35, cy + 0.35, layer, 8)
-            text_center(msp, "FOSA", cx, cy + 0.55, 0.14, layer)
-        elif tipo == "monitoreo":
-            text_center(msp, f"{eq['sigla']}", cx, cy, 0.16, "IE_TEXTO")
-            msp.add_line((cx - 0.45, cy), (cx + 0.45, cy), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
-        elif tipo == "extintor":
-            msp.add_lwpolyline([(cx, cy - 0.3), (cx - 0.18, cy + 0.15), (cx + 0.18, cy + 0.15)], dxfattribs={"layer": layer, "lineweight": 25}, close=True)
-        elif tipo == "totem":
-            rect(msp, cx - 0.25, cy - 0.3, cx + 0.25, cy + 0.3, layer, 8)
-            text_center(msp, "TOTEM", cx, cy - 0.5, 0.14, layer)
+        for pos in positions:
+            cx, cy = local_to_page(*pos)
+            if tipo == "tablero_general":
+                rect(msp, cx - 0.35, cy - 0.28, cx + 0.35, cy + 0.28, "IE_FUERZA", 8)
+                text_center(msp, eq["sigla"], cx, cy, 0.16, "IE_FUERZA")
+            elif tipo == "interruptor_general":
+                rect(msp, cx - 0.25, cy - 0.25, cx + 0.25, cy + 0.25, "IE_FUERZA", 8)
+                msp.add_line((cx - 0.18, cy - 0.18), (cx + 0.18, cy + 0.18), dxfattribs={"layer": "IE_FUERZA", "lineweight": 25})
+                text_left(msp, "INT. GRAL", cx + 0.35, cy - 0.10, 0.14, "IE_FUERZA")
+            elif tipo == "pulsador_emergencia":
+                msp.add_circle((cx, cy), 0.26, dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 35})
+                text_center(msp, "PARO", cx, cy - 0.46, 0.14, "IE_EMERGENCIA")
+            elif tipo == "pozo_tierra":
+                msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
+                text_left(msp, "PAT", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
+            elif tipo == "pozo_tierra_secundario":
+                msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": "IE_TIERRA", "lineweight": 35})
+                text_left(msp, "PAT2", cx + 0.38, cy - 0.12, 0.14, "IE_TIERRA")
+            elif tipo == "pararrayo":
+                radio = scale_length(eq.get("radio_proteccion_m", 20.0))
+                msp.add_circle((cx, cy), 0.4, dxfattribs={"layer": "IE_RAYO", "lineweight": 35})
+                msp.add_circle((cx, cy), 0.5, dxfattribs={"layer": "IE_RAYO", "lineweight": 25})
+                msp.add_circle((cx, cy), radio, dxfattribs={"layer": "IE_RAYO", "linetype": "DASHED", "lineweight": 25})
+                text_left(msp, f"PARARRAYO R={eq.get('radio_proteccion_m', 20.0):.0f} m (h={eq.get('altura_m', 12.0):.0f} m)", cx + 0.7, cy, 0.15, "IE_RAYO")
+            elif tipo in ("cilindro_arena", "cilindro_trapo_empapado"):
+                msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": layer, "lineweight": 30})
+                msp.add_circle((cx, cy), 0.12, dxfattribs={"layer": layer, "lineweight": 20})
+                text_center(msp, "ARENA" if tipo == "cilindro_arena" else "TRAPO HUM.", cx, cy - 0.5, 0.14, layer)
+            elif tipo == "fosa_de_agua":
+                rect(msp, cx - 0.35, cy - 0.35, cx + 0.35, cy + 0.35, layer, 8)
+                text_center(msp, "FOSA", cx, cy + 0.55, 0.14, layer)
+            elif tipo == "monitoreo":
+                text_center(msp, f"{eq['sigla']}", cx, cy, 0.16, "IE_TEXTO")
+                msp.add_line((cx - 0.45, cy), (cx + 0.45, cy), dxfattribs={"layer": "IE_TEXTO", "lineweight": 18})
+            elif tipo == "extintor":
+                msp.add_lwpolyline([(cx, cy - 0.3), (cx - 0.18, cy + 0.15), (cx + 0.18, cy + 0.15)], dxfattribs={"layer": layer, "lineweight": 25}, close=True)
+                text_center(msp, "EXT", cx, cy - 0.48, 0.12, layer)
+            elif tipo == "totem":
+                rect(msp, cx - 0.25, cy - 0.3, cx + 0.25, cy + 0.3, layer, 8)
+                text_center(msp, "TOTEM", cx, cy - 0.5, 0.14, layer)
 
     circulacion = architecture.get("circulacion", {})
     for giro in circulacion.get("radios_giro_local", []):
@@ -399,14 +421,22 @@ def add_scale_bar(msp: ezdxf.layouts.BaseLayout, cx: float = 30.0, cy: float = 1
 def sheet_ie01(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
     msp = doc.modelspace()
     add_architecture(doc, architecture)
-    for x in (6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0, 27.0, 30.0):
-        add_luminaire(msp, local_to_page(x, 12.0), f"L{x:02.0f}", emergency=x in (15.0, 24.0))
+    despacho = [(14.0, 9.5), (16.5, 9.7), (19.0, 9.9), (21.5, 10.1), (14.4, 12.0), (16.9, 12.2), (19.4, 12.4), (21.9, 12.6)]
+    patio = [(4.0, 7.0), (6.5, 14.0), (9.5, 14.4), (12.5, 14.8), (15.5, 15.1), (18.5, 15.3), (21.5, 15.5), (24.5, 15.8)]
+    for index, point in enumerate(despacho, 1):
+        add_luminaire(msp, local_to_page(*point), "L-01" if index in (1, 8) else "", emergency=True)
+    for index, point in enumerate(patio, 1):
+        add_luminaire(msp, local_to_page(*point), "L-02" if index in (1, 8) else "", emergency=False)
+    add_panel(msp, local_to_page(27.42, 14.89), "L-03", "IE_ALUMBRADO")
     tde = local_to_page(9.0, 6.0)
     tdf = local_to_page(10.0, 5.0)
     add_panel(msp, tde, "TDE", "IE_EMERGENCIA")
     add_panel(msp, tdf, "TDF")
-    for x in (6.0, 12.0, 18.0, 24.0, 30.0):
-        add_route(msp, [(9.0, 6.0), (9.0, 8.0), (x, 8.0), (x, 12.0)])
+    for point in despacho:
+        add_route(msp, [(9.0, 6.0), (12.0, 8.0), point])
+    for point in patio:
+        add_route(msp, [(10.0, 5.0), (12.0, 8.0), point])
+    add_route(msp, [(10.0, 5.0), (17.0, 10.0), (27.42, 14.89)])
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-01 | LEYENDA Y CRITERIOS", [
@@ -424,11 +454,21 @@ def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_architecture(doc, architecture)
     td1 = local_to_page(9.0, 5.0)
     add_panel(msp, td1, "TD-A1")
-    for x, y in ((4.0, 4.0), (8.0, 4.0), (13.0, 3.0), (16.0, 2.0), (18.0, 2.0), (22.0, 3.0)):
-        add_luminaire(msp, local_to_page(x, y))
-    for x, y in ((5.0, 2.0), (10.0, 2.0), (12.0, 4.0), (20.0, 2.0), (24.0, 3.0)):
+    a101 = [
+        (3.2, 1.4), (5.2, 1.4), (7.2, 1.4), (9.2, 1.4),
+        (3.2, 2.6), (5.2, 2.6), (7.2, 2.6), (9.2, 2.6),
+        (6.5, 3.7), (7.8, 3.7), (9.1, 3.7),
+        (6.5, 4.5), (7.8, 4.5), (9.1, 4.5), (10.4, 4.5),
+    ]
+    a102 = [(13.0, 2.4), (13.7, 3.2), (14.4, 4.0), (15.76, 2.52), (17.60, 2.46), (18.33, 2.53), (3.47, 4.71)]
+    for index, point in enumerate(a101, 1):
+        add_luminaire(msp, local_to_page(*point), "A1-01" if index in (1, 15) else "")
+    for index, point in enumerate(a102, 1):
+        add_luminaire(msp, local_to_page(*point), "A1-02" if index in (1, 7) else "")
+    tomas = ((5.0, 2.0), (10.0, 2.0), (12.0, 4.0), (16.0, 2.0), (18.5, 2.5))
+    for x, y in tomas:
         add_outlet(msp, local_to_page(x, y))
-    for x, y in ((4.0, 4.0), (8.0, 4.0), (13.0, 3.0), (16.0, 2.0), (18.0, 2.0), (22.0, 3.0), (5.0, 2.0), (10.0, 2.0), (12.0, 4.0), (20.0, 2.0), (24.0, 3.0)):
+    for x, y in (*a101, *a102, *tomas):
         add_route(msp, [(9.0, 5.0), (9.0, 6.0), (x, 6.0), (x, y)])
     add_north_arrow(msp)
     add_scale_bar(msp)
@@ -451,9 +491,9 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         add_panel(msp, local_to_page(*tanque["pos_local"]), tanque["numero"], "IE_EMERGENCIA")
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
         add_panel(msp, local_to_page(*punto), "SURT", "IE_FUERZA")
-    add_panel(msp, local_to_page(22.0, 2.0), "C-AIRE", "IE_FUERZA")
-    add_panel(msp, local_to_page(24.0, 2.0), "B-AGUA", "IE_FUERZA")
-    add_panel(msp, local_to_page(26.0, 2.0), "B-FOSA", "IE_FUERZA")
+    add_panel(msp, local_to_page(13.0, 2.2), "C-AIRE", "IE_FUERZA")
+    add_panel(msp, local_to_page(14.6, 2.2), "B-AGUA", "IE_FUERZA")
+    add_panel(msp, local_to_page(16.2, 2.2), "B-FOSA", "IE_FUERZA")
     for tanque in architecture["tanques"]:
         add_route(msp, [(9.0, 6.0), (12.0, 6.0), tanque["pos_local"]])
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
@@ -499,6 +539,28 @@ def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     ])
 
 
+def add_load_schedule(msp: ezdxf.layouts.BaseLayout, calc: dict[str, Any], x: float = 30.0, y: float = 52.0) -> None:
+    circuits = calc["circuits"]
+    row_h = 0.55
+    width = 49.0
+    height = 1.0 + row_h * (len(circuits) + 1)
+    rect(msp, x, y - height, x + width, y, "IE_TABLA")
+    text_center(msp, "CUADRO RESUMIDO DE CARGAS", x + width / 2, y - 0.40, 0.28, "IE_TEXTO")
+    msp.add_line((x, y - 0.78), (x + width, y - 0.78), dxfattribs={"layer": "IE_TABLA"})
+    headers = [("ID", 0.3), ("TAB", 4.2), ("FASE", 10.0), ("kVA", 15.0), ("ITM", 20.0), ("Cu/PE", 25.5), ("dV total", 33.0)]
+    for label, dx in headers:
+        text_left(msp, label, x + dx, y - 1.15, 0.17, "IE_TEXTO")
+    for index, circuit in enumerate(circuits):
+        yy = y - 1.65 - index * row_h
+        text_left(msp, circuit["id"], x + 0.3, yy, 0.15, "IE_TEXTO")
+        text_left(msp, circuit["panel"], x + 4.2, yy, 0.15, "IE_TEXTO")
+        text_left(msp, circuit["phase"], x + 10.0, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['installed_kva_calc']:.2f}", x + 15.0, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['breaker_a']} A", x + 20.0, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['conductor_mm2']}/{circuit['pe_mm2']}", x + 25.5, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['total_voltage_drop_percent']:.2f}%", x + 33.0, yy, 0.15, "IE_TEXTO")
+
+
 def sheet_ie05(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
     msp = doc.modelspace()
     s = calc["summary"]
@@ -522,6 +584,8 @@ def sheet_ie05(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         yy -= 1.2
     text_left(msp, "Cargas criticas del grifo se mantienen en TDE mediante grupo electrogeno y UPS.", 6.0, yy - 1.2, 0.24, "IE_TEXTO")
     text_left(msp, "Ver cuadro de cargas en build/renzo-industrial/calculos/cuadro-cargas.csv.", 6.0, yy - 1.8, 0.24, "IE_TEXTO")
+    text_left(msp, f"PI={s['installed_kw']:.2f} kW / MD={s['maximum_demand_kva']:.2f} kVA / Servicio={s['service_capacity_kva']:.0f} kVA", 6.0, yy - 2.6, 0.24, "IE_TEXTO")
+    add_load_schedule(msp, calc)
 
 
 def sheet_ie06(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
@@ -529,10 +593,10 @@ def sheet_ie06(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_architecture(doc, architecture)
     for tanque in architecture["tanques"]:
         cx, cy = local_to_page(*tanque["pos_local"])
-        msp.add_circle((cx, cy), 2.2, dxfattribs={"layer": "IE_ZONA_1", "linetype": "DASHED"})
+        msp.add_circle((cx, cy), scale_length(2.2), dxfattribs={"layer": "IE_ZONA_1", "linetype": "DASHED"})
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
         cx, cy = local_to_page(*punto)
-        msp.add_circle((cx, cy), 3.5, dxfattribs={"layer": "IE_ZONA_2", "linetype": "DASHED"})
+        msp.add_circle((cx, cy), scale_length(3.5), dxfattribs={"layer": "IE_ZONA_2", "linetype": "DASHED"})
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-06 | CLASIFICACION DE AREAS", [
