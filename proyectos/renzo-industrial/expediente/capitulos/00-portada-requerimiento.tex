@@ -1,0 +1,41 @@
+\newcommand{\PortadaFondoReq}{%
+\IfFileExists{capitulos/fondo-portada.pdf}{%
+  \AddToShipoutPictureBG*{%
+    \AtPageLowerLeft{%
+      \includegraphics[width=\paperwidth,height=\paperheight]{capitulos/fondo-portada.pdf}%
+    }%
+  }%
+}{}%
+}
+
+\PortadaFondoReq
+
+\begin{titlepage}
+\centering
+
+{\Large \textbf{UNIVERSIDAD NACIONAL DEL ALTIPLANO}\\[0.3cm]}
+{\large \textbf{FACULTAD DE INGENIERIA MECANICA ELECTRICA, ELECTRONICA Y SISTEMAS}\\[0.3cm]}
+{\large \textbf{CARRERA PROFESIONAL DE INGENIERIA MECANICA ELECTRICA}\\[0.3cm]}
+
+{\LARGE \textbf{ANTEPROYECTO ACADEMICO NUEVO}\\[0.3cm]}
+{\LARGE \textbf{REQUERIMIENTO DE SERVICIO}\\[0.2cm]}
+{\large \textbf{ESTACION DE SERVICIO (GRIFO) DE COMBUSTIBLES LIQUIDOS}\\[0.3cm]}
+{\large \textbf{DIESEL B5-S50 / GASOHOL REGULAR / GASOHOL PREMIUM}\\[0.1cm]}
+{\large \textbf{SIN GLP NI GNV}\\[1.0cm]}
+
+\begin{tabular}{>{\bfseries}p{5cm}p{8cm}}
+Estudiante: & Renzo Gabriel Mamani Galindo \tabularnewline
+Codigo: & 228447 \tabularnewline
+Docente: & Mg. Gregorio Meza Marocho\tabularnewline
+Curso: & Instalaciones Electricas I\tabularnewline
+Modalidad: & Individual\tabularnewline
+Semestre: & 2026-II\tabularnewline
+Entregable: & Puesta a tierra, grupo electrogeno y paro de emergencia\tabularnewline
+\end{tabular}
+
+\vfill
+
+{\large Puno -- Peru\\}
+{\large Agosto 2026}
+
+\end{titlepage}

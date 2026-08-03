@@ -149,3 +149,92 @@ planos ubican los elementos dentro de la arquitectura real del DWG, y las
 cifras de iluminacion coinciden con los circuitos de alumbrado. Antes de copiar
 de `build/` a `entregables/` se requiere revision humana competente conforme a
 `AGENTS.md`.
+
+## 7. Mejoras de legibilidad en laminas (canalizaciones y notas tecnicas)
+
+Cambios en `scripts/generar_planos_grifo_renzo.py` (misma sesion que la
+seccion 3):
+
+- `tuberia_mm(conductor_mm2)` mapea seccion a diametro comercial de tubo:
+  2,5 mm2 -> PVC 20 mm; 4 mm2 -> PVC 25 mm; 10 mm2 -> PVC 32 mm; 16 mm2 ->
+  PVC 40 mm.
+- `add_route` acepta `label`: texto en el punto medio de cada tramo con la
+  canalizacion indicada.
+- Nueva `add_notes(msp, title, lines, x, y, width)` para bloques de notas
+  tecnicas con titulo destacado.
+- Etiquetas "PVC 20 mm"/"PVC 25 mm" sobre las rutas de IE-01, IE-02 e IE-03
+  (17, 27 y 5 textos PVC respectivamente en los DXF).
+- Bloques "NOTAS TECNICAS" anadidos a IE-01, IE-02, IE-03, IE-04 e IE-06
+  (verificado 1 por lamina en DXF). IE-04 e IE-06 conservan sus notas previas
+  de equipotencialidad y zonas.
+- Verificacion: planos regenerados PASS (6 laminas); cajas de notas y rutas
+  sin solape con cajas de leyenda ni rotulo.
+
+## 8. Cuadro de zonas clasificadas en el expediente
+
+- `expediente/capitulos/04-seguridad-normativa.tex`: nueva tabla con las seis
+  zonas clasificadas (TK-1, TK-2, TK-3 r=2,2 m; venteo r=1,5 m; surtidor isla 1
+  e isla 2 r=3,5 m) con radios y coordenadas locales, coherente con la lamina
+  IE-06. Verificada en la pagina 21 del PDF.
+
+## 9. Overfull de la tabla de circuitos (capitulo 02)
+
+- `scripts/generar_fragmentos_expediente.py`: `tabcolsep` 2pt -> 1pt y columna
+  de observacion `p{2.7cm}` -> `p{3.0cm}` para eliminar el desborde del cuadro
+  de circuitos. Recompilado: 45 paginas, unico overfull mayor de 5,2 pt en la
+  tabla de referencias cruzadas (rutas largas, aceptado).
+
+## 10. Bibliografia y referencias cruzadas
+
+- Nuevo `expediente/capitulos/09-bibliografia.tex`: bibliografia (CNE-U,
+  EM.010, NTP ISO 8995, OSINERGMIN, IEC 60617 y textos didacticos) y tabla de
+  referencias cruzadas capitulo -> norma. Incluido en `main.tex` despues de
+  conclusiones.
+- Labels `chap:calculo`, `chap:iluminacion`, `chap:metrados` y `chap:planos-base`
+  anadidos a los capitulos correspondientes para refs cruzadas.
+
+## 11. BOM, metrados, presupuesto y comparativa (estandar Aquiles)
+
+Para cerrar la brecha de entregables con el proyecto Aquiles se agregaron:
+
+- `scripts/generar_bom_renzo.py`: deriva el BOM desde
+  `resumen-calculos.json` (22 circuitos x tuberia/cable/PE/ITM/RCD; 3
+  alimentadores x tubo/3F/neutro/PE; tableros, luminarias por ambiente, tomas,
+  equipos de playa, puesta a tierra, pararrayo y montaje). Salidas:
+  `bom_renzo.json` (153 partidas, total S/ 156 928,70),
+  `metrados-renzo.md` y `metrados-renzo.xlsx` en `build/` y `presupuesto/datos/`.
+- `scripts/generar_comparativa.py`: dispersion de cotizaciones entre Promart,
+  Sodimac y Mercado Libre con factores de margen por categoria. Salidas:
+  `comparativa-proveedores.md` y `cotizacion-comparativa.xlsx`. Totales:
+  Sodimac S/ 156 126,01 (-0,5 %); Promart S/ 158 364,58 (+0,9 %); Mercado Libre
+  S/ 163 841,98 (+4,4 %).
+- `expediente/capitulos/06-metrados-presupuesto.tex` reescrito: metrados y
+  presupuesto coherentes con el BOM generado (588 m tuberia; 1444 m conductores
+  activos; total S/ 156 928,70) mas tabla de comparativa de proveedores.
+- Standalone `metrados_presupuesto_renzo.tex` (5 paginas) con portada propia.
+- `expediente/capitulos/04-ejecucion-partidas.tex`: ejecucion de partidas y
+  ACU-01..05 con rendimientos y jornales academicos.
+
+## 12. Especificaciones tecnicas y requerimiento de servicio
+
+- `especificaciones_tecnicas_renzo.tex`: documento standalone (10 paginas) que
+  reutiliza `03-especificaciones.tex` (materiales) y agrega
+  `04-ejecucion-partidas.tex` (montaje, ACU y pruebas), con portada propia.
+- `requerimiento_servicios_renzo.tex`: requerimiento de servicio (11 paginas)
+  para puesta a tierra + malla equipotencial (2 pozos), grupo electrogeno 30 kVA
+  con ATS (reserva 50 % sobre MD 18,20 kVA) y sistema de paro de emergencia de
+  playa, con base tecnica, normativa (R.M. N. 186-2014-MEM/DM, CNE-U 060 y
+  110/120), condiciones de contratacion, especificaciones por item, criterios de
+  aceptacion y observaciones.
+
+## 13. Compilaciones y verificacion final de la sesion
+
+- `main.pdf` (expediente): 45 paginas, total S/ 156 928,70, cuadro de zonas en
+  p.21, referencias en p.38, conclusiones p.35-36.
+- `planos-electricos-grifo-renzo.pdf`: 6 laminas con notas tecnicas y
+  canalizaciones PVC verificadas en DXF.
+- `especificaciones-tecnicas-renzo.pdf`: 10 paginas; `requerimiento-servicios-renzo.pdf`:
+  11 paginas; `metrados-y-presupuesto-renzo.pdf`: 5 paginas. Sin overfull
+  mayores.
+- Pendiente: revision humana competente antes de copiar de `build/` a
+  `entregables/` (segun `AGENTS.md`).

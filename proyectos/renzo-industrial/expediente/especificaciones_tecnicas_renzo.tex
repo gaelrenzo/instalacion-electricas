@@ -1,0 +1,31 @@
+\documentclass[12pt,letterpaper]{report}
+
+\input{preambulo}
+\input{../../../build/renzo-industrial/expediente/generated/datos}
+
+\hypersetup{
+  pdftitle={Especificaciones tecnicas de materiales y de ejecucion - Renzo},
+  pdfsubject={Especificaciones tecnicas, montaje y verificaciones}
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\pagenumbering{gobble}
+\input{capitulos/00-portada-ete}
+\clearpage
+\hypersetup{pageanchor=true}
+
+\pagestyle{memoria}
+\pagenumbering{roman}
+\renewcommand{\documentfootertext}{ESPECIFICACIONES TECNICAS - INSTALACIONES ELECTRICAS}
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\input{capitulos/03-especificaciones}
+\clearpage
+\renewcommand{\documentfootertext}{EJECUCION DE PARTIDAS - INSTALACIONES ELECTRICAS}
+\input{capitulos/04-ejecucion-partidas}
+
+\end{document}

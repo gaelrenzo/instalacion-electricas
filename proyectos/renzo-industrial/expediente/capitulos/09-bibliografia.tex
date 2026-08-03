@@ -1,0 +1,50 @@
+\chapter{Bibliografia y referencias cruzadas}
+
+\section{Bibliografia}
+
+\begin{itemize}
+\item Ministerio de Energia y Minas. \textit{Codigo Nacional de Electricidad --
+      Utilizacion}. Aprobado por R.M. N.\textsuperscript{o}037-2006-MEM/DM y
+      modificado por R.M. N.\textsuperscript{o}175-2008-MEM/DM. Lima, Peru.
+\item Ministerio de Vivienda, Construccion y Saneamiento. \textit{Reglamento
+      Nacional de Edificaciones, Norma EM.010 Instalaciones Electricas
+      Interiores}. Aprobado por R.M. N.\textsuperscript{o}083-2019-VIVIENDA.
+      Lima, Peru.
+\item NTP ISO 8995-1:2021. \textit{Iluminacion de lugares de trabajo}.
+      INACAL, Peru.
+\item OSINERGMIN. \textit{Reglamento de Seguridad para Establecimientos de
+      Venta al Publico de Combustibles}. Normativa sectorial vigente.
+\item International Electrotechnical Commission. \textit{IEC 60617: Graphical
+      symbols for diagrams}. Ginebra, Suiza.
+\item Castejon, A. y Santamaria, G. \textit{Tecnologia de alta tension} y
+      textos de diseno de instalaciones de baja tension (referencia didactica).
+\item Zapata, C. \textit{Instalaciones electricas interiores: calculo y
+      diseno}. Editorial Macro (referencia didactica).
+\end{itemize}
+
+\section{Referencias cruzadas entre capitulos}
+
+Las tablas, planos y valores citados en este expediente se corresponden con los
+siguientes archivos canonicos y con las laminas del juego adjunto:
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\toprule
+Referencia & Contenido & Ubicacion \\
+\midrule
+Cuadro de circuitos (22) y alimentadores (3) & \CIRCUITOS ~circuitos; ver
+  cap.\ref{chap:calculo}s de calculos & cap.\ref{chap:calculo} y lamina IE-05 \\
+Cargas canonicas & \texttt{diseno-electrico/datos/}\linebreak\texttt{cargas.yaml} & entrada del
+  pipeline \\
+Geometria y equipos & \texttt{arquitectura/datos/}\linebreak\texttt{layout-grifo.json}\\ & \texttt{arquitectura-dwg.json} & laminas IE-01..IE-06 \\
+Memoria de iluminacion (38 luminarias, 2202~W) & \texttt{calculos/}\linebreak\texttt{iluminacion-resumen.json} & cap.\ref{chap:iluminacion} \\
+Metrados y presupuesto & \texttt{expediente/capitulos/}\linebreak\texttt{06-}\linebreak\texttt{metrados-presupuesto.tex} & cap.\ref{chap:metrados} \\
+Trazabilidad CAD-001/CAD-002 & resumenes SHA-256 & cap.\ref{chap:planos-base} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Esta seccion se mantiene sincronizada con \texttt{documentacion/
+revision-tecnica.md}, que registra la auditoria de coherencia ejecutada y los
+hallazgos pendientes.

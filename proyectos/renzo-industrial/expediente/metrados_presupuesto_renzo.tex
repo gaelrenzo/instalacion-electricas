@@ -1,0 +1,27 @@
+\documentclass[12pt,letterpaper]{report}
+
+\input{preambulo}
+\input{../../../build/renzo-industrial/expediente/generated/datos}
+
+\hypersetup{
+  pdftitle={Metrados y presupuesto - Renzo},
+  pdfsubject={Metrados, presupuesto referencial y comparativa de proveedores}
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\pagenumbering{gobble}
+\input{capitulos/00-portada-metrados}
+\clearpage
+\hypersetup{pageanchor=true}
+
+\pagestyle{memoria}
+\pagenumbering{arabic}
+\renewcommand{\documentfootertext}{METRADOS Y PRESUPUESTO - INSTALACIONES ELECTRICAS}
+\tableofcontents
+\clearpage
+
+\input{capitulos/06-metrados-presupuesto}
+
+\end{document}

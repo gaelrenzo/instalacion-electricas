@@ -1,0 +1,368 @@
+\documentclass[12pt,letterpaper]{report}
+
+\input{preambulo}
+
+\hypersetup{
+  pdftitle={Requerimiento de servicio - Renzo},
+  pdfsubject={Puesta a tierra, grupo electrogeno y paro de emergencia}
+}
+
+\newcommand{\reqnote}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{8pt}%
+  \colorbox{azulunap!8}{%
+    \begin{minipage}{0.94\textwidth}
+      #1
+    \end{minipage}%
+  }%
+  \endgroup
+}
+
+\newcommand{\reqheader}{\rowcolor{azulunap!14}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\pagenumbering{gobble}
+\input{capitulos/00-portada-requerimiento}
+\clearpage
+\hypersetup{pageanchor=true}
+
+\pagestyle{memoria}
+\pagenumbering{arabic}
+\renewcommand{\documentfootertext}{REQUERIMIENTO DE SERVICIO - INSTALACIONES ELECTRICAS}
+
+\tableofcontents
+\clearpage
+
+\chapter*{REQUERIMIENTO DE SERVICIO}
+\addcontentsline{toc}{chapter}{REQUERIMIENTO DE SERVICIO}
+
+\section{DATOS GENERALES}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{P{0.34\textwidth} L}
+\toprule
+\reqheader \textbf{Concepto} & \textbf{Dato} \\
+\midrule
+Proyecto & Instalaciones electricas interiores -- estacion de servicio (grifo) de combustibles liquidos \\
+Estudiante & Renzo Gabriel Mamani Galindo \\
+Codigo & 228447 \\
+Docente del curso & Mg. Gregorio Meza Marocho \\
+Ubicacion & Por confirmar (Puno, Peru) \\
+Sistema electrico de referencia & Trifasico, 380/220 V, 60 Hz \\
+Tipo de requerimiento & Adquisicion de equipos, instalacion y puesta en servicio \\
+Base de calculo & Maxima demanda del proyecto: 15,08 kW / 18,20 kVA \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\reqnote{%
+\textbf{Alcance del documento.} Este requerimiento se emite como documento tecnico academico para el Proyecto Renzo (grifo de combustibles liquidos, sin GLP ni GNV). Los valores finales deben verificarse en obra por profesional competente antes de una ejecucion real.%
+}
+
+\section{FINALIDAD}
+
+El presente requerimiento tiene por finalidad garantizar la seguridad electrica,
+la continuidad operativa y la disponibilidad de servicios auxiliares del grifo,
+mediante la contratacion integral de los siguientes servicios:
+
+\begin{itemize}
+  \item Sistema de puesta a tierra de la instalacion electrica interior.
+  \item Grupo electrogeno dimensionado segun la maxima demanda adoptada.
+  \item Sistema de paro de emergencia de playa con bombas sumergibles de tanque (STP) y surtidores.
+\end{itemize}
+
+La puesta a tierra reduce el riesgo de choque electrico en areas clasificadas y
+asegura la operacion de las protecciones. El grupo electrogeno permite la
+continuidad de los servicios criticos ante la falta de la red de distribucion.
+El paro de emergencia permite desenergizar bombas y surtidores en situacion de
+peligro, conforme a la normativa sectorial de establecimientos de venta al
+publico de combustibles.
+
+\section{DESCRIPCION GENERAL DEL REQUERIMIENTO}
+
+El servicio sera ejecutado bajo modalidad integral o a todo costo, incluyendo
+suministro de materiales, equipos, herramientas, mano de obra, montaje, pruebas,
+mediciones, informe tecnico, puesta en servicio y garantia.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{C{0.10\textwidth} P{0.25\textwidth} C{0.14\textwidth} L}
+\toprule
+\reqheader \textbf{Item} & \textbf{Servicio requerido} & \textbf{Cantidad} & \textbf{Alcance} \\
+\midrule
+1 & Sistema de puesta a tierra y malla equipotencial & 2 pozos + malla & Pozos PAT y PAT2, conductor de enlace, malla de equipotencialidad en areas clasificadas, medicion con telurometro y puesta en servicio. \\
+2 & Grupo electrogeno con ATS & 1 equipo & Adquisicion, instalacion, tablero de transferencia automatica, pruebas con carga y puesta en servicio. \\
+3 & Sistema de paro de emergencia de playa & 1 sistema & Pulsadores, contactor de paro, desconexion de STP y surtidores, senalizacion y pruebas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{BASE TECNICA DE DIMENSIONAMIENTO}
+
+La base de calculo se toma del expediente del Proyecto Renzo (expediente de
+anteproyecto, 2026-II). La maxima demanda del proyecto y el grupo electrogeno
+se resumen en la Tabla \ref{tab:resumen-dimensionamiento}.
+
+\begin{table}[H]
+\centering
+\caption{Resumen tecnico de dimensionamiento.}
+\label{tab:resumen-dimensionamiento}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{L C{0.32\textwidth}}
+\toprule
+\reqheader \textbf{Concepto} & \textbf{Valor} \\
+\midrule
+Potencia instalada & 18,25 kW \\
+Maxima demanda & 15,08 kW \\
+Potencia aparente de maxima demanda & 18,20 kVA \\
+Tension de servicio & 380/220 V, 60 Hz, trifasica \\
+Potencia de suministro solicitada & 30 kVA \\
+Interruptor general & 50 A, 4P \\
+Corriente de empleo del alimentador & 27,65 A \\
+Factor de potencia adoptado & 0.90 \\
+Potencia aparente para respaldo & 18,20 kVA \\
+\textbf{Capacidad recomendada del grupo electrogeno} & \textbf{30 kVA, trifasico, 380/220 V, 60 Hz} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Para el grupo electrogeno se adopta una reserva aproximada del 50\% sobre la
+potencia aparente de maxima demanda para cubrir arranque de motores y equipos de
+playa:
+
+\begin{equation}
+S_{grupo}=18,20\ \text{kVA}\times1.50=27,30\ \text{kVA}
+\end{equation}
+
+Por disponibilidad comercial y margen de arranque, se solicita grupo electrogeno
+de \(30\ \text{kVA}\) nominal. Si el proveedor no garantiza el arranque
+simultaneo de las cargas criticas con el grupo, debera ofertar una capacidad
+superior dentro del rango comercial inmediato.
+
+\section{NORMATIVA TECNICA APLICABLE}
+
+La ejecucion debera tomar como referencia minima:
+
+\begin{itemize}
+  \item Codigo Nacional de Electricidad -- Utilizacion, aprobado por R.M. N. 0037-2006-MEM, y su modificatoria R.M. N. 0175-2008-MEM.
+  \item Reglamento Nacional de Edificaciones, Norma Tecnica EM.010 Instalaciones Electricas Interiores.
+  \item Reglamento de Seguridad para Establecimientos de Venta al Publico de Combustibles de Uso Publico (R.M. N. 186-2014-MEM/DM) y normas sectoriales de OSINERGMIN.
+  \item Ley N. 29783, Ley de Seguridad y Salud en el Trabajo.
+  \item Manuales tecnicos del fabricante del grupo electrogeno, tableros, UPS y accesorios.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Aplicacion normativa al requerimiento.}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{P{0.32\textwidth} L}
+\toprule
+\reqheader \textbf{Referencia} & \textbf{Aplicacion en el Proyecto Renzo} \\
+\midrule
+RNE EM.010 & Alcance de las instalaciones electricas interiores: alimentadores, tableros, circuitos, protecciones y puesta a tierra; potencia instalada y maxima demanda. \\
+CNE-Utilizacion, Seccion 060 & Sistema de puesta a tierra y enlace equipotencial; resistencia final no mayor a \(25\ \Omega\), meta recomendada de \(10\ \Omega\). \\
+CNE-Utilizacion, Seccion 110/120 & Requisitos para instalaciones en areas clasificadas y estaciones de servicio; sellos y protecciones. \\
+R.M. N. 186-2014-MEM/DM & Seguridad de establecimientos de venta al publico de combustibles; paro de emergencia y distancias. \\
+CNE-Utilizacion, equipos de emergencia & Suministro de emergencia con grupo electrogeno, transferencia segura y puesta a tierra. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{CONDICIONES DE CONTRATACION Y EJECUCION}
+
+\subsection{Modalidad}
+
+El servicio se solicita bajo modalidad a todo costo, con entrega llave en mano.
+El proveedor debe incluir materiales, equipos, herramientas, transporte, mano de
+obra, pruebas, mediciones, documentacion tecnica y puesta en servicio.
+
+\subsection{Lugar de prestacion}
+
+El servicio se ejecutara en el terreno del grifo ubicado en Puno (ubicacion
+exacta por confirmar por el estudiante).
+
+\subsection{Plazo referencial}
+
+El plazo referencial de ejecucion sera de 15 dias calendario desde la aprobacion
+del requerimiento y disponibilidad del area de trabajo, ajustable segun tiempos
+de adquisicion de equipos.
+
+\subsection{Seguridad y salud en el trabajo}
+
+El proveedor sera responsable de ejecutar los trabajos con personal calificado,
+herramientas adecuadas, equipos de proteccion personal y procedimientos seguros.
+Debe evitar energizacion accidental, retroalimentacion hacia la red publica,
+excavaciones sin senalizacion y trabajos en areas clasificadas sin permiso de
+trabajo en caliente.
+
+\subsection{Recepcion y conformidad}
+
+La conformidad se otorgara despues de verificar la instalacion completa de los
+tres items, las pruebas electricas, la medicion de resistencia de puesta a
+tierra, el funcionamiento del grupo con carga, la prueba del paro de emergencia
+y la entrega del informe tecnico con fichas, garantias y recomendaciones.
+
+\subsection{Garantia}
+
+La garantia minima sera de 12 meses para mano de obra y materiales instalados,
+sin perjuicio de la garantia mayor que otorgue el fabricante de los equipos
+principales.
+
+\section{ESPECIFICACIONES TECNICAS MINIMAS POR ITEM}
+
+\subsection{Item 1: Sistema de puesta a tierra y malla equipotencial}
+
+\begin{longtable}{P{0.30\textwidth} P{0.62\textwidth}}
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endfirsthead
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endhead
+Estudio preliminar & Verificar ubicacion de los pozos, distancia a tableros, accesibilidad y condicion del terreno. \\
+Electrodo & Varilla de cobre o acero recubierto de cobre, minimo 5/8 pulg y 2.40 m, compatible con el CNE. \\
+Caja de registro & Caja de concreto o polipropileno resistente, con tapa removible para inspeccion. \\
+Conductor de puesta a tierra & Cobre aislado verde/amarillo o desnudo; 10 mm\(^2\) referencial para conexion a tablero o mayor si la verificacion normativa final lo exige. \\
+Conector & Abrazadera de cobre, conector certificado o soldadura exotermica de baja resistencia. \\
+Tratamiento de suelo & Bentonita, cemento conductivo o gel reductor segun condicion del terreno. \\
+Malla equipotencial & Enlace de masas en areas clasificadas (tanques, surtidores, estructuras) conforme a la Seccion 110/120 del CNE-U. \\
+Conexion al tablero & Conexion a barra de tierra del tablero general; continuidad hacia tableros y circuitos con conductor PE. \\
+Medicion & Medicion con telurometro antes/despues del tratamiento, registrando metodo y resultado. \\
+Valor de aceptacion & Resistencia final no mayor a \(25\ \Omega\); meta recomendada: \(10\ \Omega\) o menor. \\
+Entregable & Informe de medicion, fotos, croquis de ubicacion, materiales instalados y recomendaciones de mantenimiento. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Item 2: Grupo electrogeno de 30 kVA con ATS}
+
+\begin{longtable}{P{0.30\textwidth} P{0.62\textwidth}}
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endfirsthead
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endhead
+Capacidad & No menor a \(30\ \text{kVA}\) trifasico, 380/220 V, 60 Hz. \\
+Potencia base & Maxima demanda: 15,08 kW; potencia aparente base: 18,20 kVA; reserva 50\%. \\
+Regulacion & AVR o sistema de regulacion compatible con cargas del grifo. \\
+Proteccion & Interruptor termomagnetico de salida y proteccion contra sobrecarga/cortocircuito. \\
+Transferencia & ATS de cuatro polos con neutro conmutado, con enclavamiento que impida retroalimentacion hacia la red publica. \\
+Conexion & Alimentacion a los tableros de emergencia (AL-TDE/AL-TDF) con conductores dimensionados por corriente, longitud y caida de tension. \\
+Puesta a tierra & Conexion del chasis y tablero del grupo al sistema de puesta a tierra. \\
+Ubicacion & Zona ventilada, accesible, protegida de lluvia, con manejo de gases de escape y combustible segun normativa. \\
+Pruebas & Prueba en vacio, con carga parcial y plena, verificacion de transferencia, tension y frecuencia. \\
+Entregable & Ficha tecnica, manual, garantia, registro de pruebas y esquema de conexion. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Item 3: Sistema de paro de emergencia de playa}
+
+\begin{longtable}{P{0.30\textwidth} P{0.62\textwidth}}
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endfirsthead
+\toprule
+\reqheader \textbf{Componente / actividad} & \textbf{Requerimiento minimo} \\
+\midrule
+\endhead
+Alcance & Desenergizar bombas sumergibles de tanque (STP) y surtidores ante emergencia. \\
+Pulsadores & Pulsador de paro de emergencia tipo hongo, debidamente rotulado, ubicado en despacho y playa. \\
+Logica & Circuito de seguridad con contactor o rele de paro que desenergice los circuitos de equipos de playa. \\
+Senalizacion & Rotulacion visible y esquema de operacion junto al pulsador. \\
+Protecciones & Compatibilidad con la proteccion diferencial y los tableros de fuerza (AL-TDE/AL-TDF). \\
+Pruebas & Verificacion de desconexion real de STP y surtidores al accionar el paro, y de la reposicion segura. \\
+Entregable & Registro de prueba, esquema de conexion y recomendaciones de operacion. \\
+\bottomrule
+\end{longtable}
+
+\section{EXPERIENCIA MINIMA DEL PROVEEDOR Y PERSONAL}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{P{0.26\textwidth} L}
+\toprule
+\reqheader \textbf{Perfil} & \textbf{Requerimiento minimo} \\
+\midrule
+Proveedor & Haber ejecutado al menos 2 servicios similares de instalaciones electricas, puesta a tierra o grupos electrogenos en los ultimos 3 anos. \\
+Tecnico responsable & Experiencia minima de 2 anos en instalaciones electricas, tableros, puesta a tierra o equipos electromecanicos. \\
+Profesional certificador & Ingeniero Electricista o Mecanico Electricista colegiado y habilitado para validar mediciones y protocolos, si el servicio se ejecuta de manera real. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{ENTREGABLES TECNICOS}
+
+Al concluir el servicio, el proveedor debera entregar:
+
+\begin{itemize}
+  \item Informe tecnico general del servicio ejecutado.
+  \item Relacion de materiales y equipos instalados.
+  \item Fichas tecnicas y manuales de grupo electrogeno, ATS, tableros y accesorios.
+  \item Protocolo de medicion de puesta a tierra con resultado en ohmios.
+  \item Registro de pruebas de continuidad del conductor de proteccion.
+  \item Registro de prueba de paro de emergencia.
+  \item Registro de prueba de grupo electrogeno, tension, frecuencia y transferencia.
+  \item Croquis o esquema unifilar actualizado de conexion.
+  \item Garantias de equipos y mano de obra.
+  \item Recomendaciones de mantenimiento preventivo.
+\end{itemize}
+
+\section{CRITERIOS DE ACEPTACION}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{P{0.25\textwidth} L}
+\toprule
+\reqheader \textbf{Criterio} & \textbf{Condicion de aceptacion} \\
+\midrule
+Puesta a tierra & Resistencia medida no mayor a \(25\ \Omega\); continuidad PE hacia tableros y circuitos. \\
+Grupo electrogeno & Tension y frecuencia estables, soporte de carga de prueba y transferencia sin retorno hacia red publica. \\
+Paro de emergencia & Desconexion efectiva de STP y surtidores al accionar el pulsador. \\
+Seguridad & Tableros cerrados, conductores protegidos, identificacion de circuitos y conexion a tierra. \\
+Documentacion & Informe, mediciones, fichas tecnicas, garantias y esquemas entregados. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{OBSERVACIONES TECNICAS}
+
+\begin{itemize}
+  \item El calculo del grupo electrogeno usa la maxima demanda del anteproyecto con reserva del 50\% para arranque de motores y equipos de playa.
+  \item La ubicacion exacta, el suministro y la concesionaria aun estan por confirmar; el dimensionamiento de la puesta a tierra depende de la resistividad medida en campo.
+  \item Las areas clasificadas (tanques, venteos y surtidores) deben ser revisadas por profesional competente antes de la ejecucion.
+  \item La capacidad final del grupo debe confirmarse con el proveedor mediante prueba de arranque de las cargas criticas.
+  \item La puesta a tierra debe medirse en obra; la conformidad depende del valor medido y de la continuidad del conductor de proteccion.
+\end{itemize}
+
+\section{FECHA Y FIRMA}
+
+Puno, agosto de 2026.
+
+\vspace{0.45in}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{0.92\textwidth}{C{0.42\textwidth} C{0.42\textwidth}}
+\toprule
+\textbf{Elaborado por} & \textbf{Revisado por} \\
+\midrule
+\vspace{0.42in} Proyecto Renzo -- Instalaciones Electricas I & \vspace{0.42in} Mg. Gregorio Meza Marocho \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

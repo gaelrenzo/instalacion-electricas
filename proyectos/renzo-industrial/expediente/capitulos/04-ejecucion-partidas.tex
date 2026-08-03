@@ -1,0 +1,180 @@
+\chapter{Ejecucion de partidas y analisis de costos unitarios}
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{4.\arabic{section}.}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}.}
+\renewcommand{\theHsection}{partidas.\arabic{section}}
+\renewcommand{\theHsubsection}{partidas.\arabic{section}.\arabic{subsection}}
+
+\section{Alcance y fuentes del analisis}
+
+Los analisis de costos unitarios (ACU) de este capitulo son una base academica
+para explicar la ejecucion de las partidas; no constituyen una cotizacion de
+obra ni una orden de compra. Los metrados proceden de
+\texttt{build/renzo-industrial/presupuesto/metrados-renzo.md} y de los datos
+electricos canonicos del grifo. Los precios unitarios son referenciales de
+mercado peruano y cada partida se identifica por su codigo de circuito. Los
+montos no incluyen IGV, gastos generales, utilidad ni transporte extraordinario.
+
+Para mano de obra se adopta, solo con fines academicos, un jornal de
+S/ 80.00 para tecnico electricista y S/ 60.00 para ayudante. Las herramientas
+menores equivalen al 5\% de la mano de obra directa.
+
+\section{Metrado base conciliado}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{L c r X}
+\toprule
+\textbf{Partida o recurso} & \textbf{Unidad} & \textbf{Cantidad} & \textbf{Observacion} \\
+\midrule
+Tuberia PVC SAP de circuitos y alimentadores & m & 588 & Suma de circuitos (555,0~m) y alimentadores (33,0~m). \\
+Conductores activos (fase/neutro) & m & 1444 & 2,5; 4 y 10 mm\(^2\), segun cuadro de circuitos. \\
+Conductores de proteccion (PE) & m & 588 & Igual seccion que la fase en circuitos de motor. \\
+Interruptores termomagneticos & und & 22 & Curva C/D segun cuadro de circuitos. \\
+Interruptores diferenciales 30~mA & und & 22 & Todos los circuitos derivados. \\
+Tableros metalicos & und & 3 & AL-TDE, AL-TDF y AL-TD-A1. \\
+Luminarias LED & und & 38 & Interiores, estancas, alta bahia y exterior. \\
+Salidas de tomacorrientes & pto & 5 & Zona de despacho y servicios. \\
+Interruptores de pared & pto & 8 & Zonas interiores. \\
+Sistema de puesta a tierra & cj & 2 & Pozos PAT y PAT2, mas malla equipotencial. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Las cantidades se concilian con \texttt{metrados-renzo.md} y con los planos
+IE-01 a IE-06. Los valores de tuberia y conductores se obtienen de la suma por
+circuito; las salidas y luminarias, de las laminas y la memoria de iluminacion.
+
+\section{Secuencia general de ejecucion}
+
+\begin{enumerate}
+  \item Revisar planos, cuadro de cargas, unifilar, metrados y fichas tecnicas.
+  Cerrar las cargas de equipos de playa antes de comprar protecciones.
+  \item Replantear tableros, cajas, rutas y alturas; coordinar interferencias
+  con arquitectura, estructura y redes de agua/combustibles.
+  \item Ejecutar picado, cajas y canalizaciones, en particular las enterradas
+  de playa. Inspeccionar y probar con guia antes del resane o vaciado.
+  \item Tender, identificar y conectar conductores con la obra civil seca.
+  \item Instalar tableros, protecciones, ATS, UPS y puesta a tierra conforme al
+  unifilar aprobado.
+  \item Ejecutar pruebas, corregir observaciones, actualizar planos conforme a
+  obra y emitir el protocolo de puesta en servicio.
+\end{enumerate}
+
+\section{ACU-01: canalizacion PVC SAP empotrada o enterrada}
+
+\textbf{Unidad:} m. \textbf{Rendimiento:} 16~m/dia por cuadrilla.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{p{0.16\textwidth} L r r r c}
+\toprule
+\textbf{Tipo} & \textbf{Recurso} & \textbf{Cantidad} & \textbf{P.U. S/} & \textbf{Parcial S/} & \textbf{Base} \\
+\midrule
+Material & Tuberia PVC SAP + accesorios (20--40 mm) & 1,00 & 5,00 & 5,00 & E \\
+Mano de obra & Tecnico electricista & 0,06 & 80,00 & 4,80 & E \\
+Mano de obra & Ayudante & 0,06 & 60,00 & 3,60 & E \\
+Herramientas & Herramientas menores & 5\% & 8,40 & 0,42 & E \\
+\midrule
+\multicolumn{5}{r}{\textbf{Total por metro}} & 13,82 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{ACU-02: tendido de conductores}
+
+\textbf{Unidad:} m. \textbf{Rendimiento:} 40~m/dia por cuadrilla.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{p{0.16\textwidth} L r r r c}
+\toprule
+\textbf{Tipo} & \textbf{Recurso} & \textbf{Cantidad} & \textbf{P.U. S/} & \textbf{Parcial S/} & \textbf{Base} \\
+\midrule
+Material & Conductor de cobre XLPE (2,5--10 mm\(^2\)) & 1,00 & 6,00 & 6,00 & E \\
+Mano de obra & Tecnico electricista & 0,03 & 80,00 & 2,40 & E \\
+Mano de obra & Ayudante & 0,03 & 60,00 & 1,80 & E \\
+Herramientas & Herramientas menores & 5\% & 4,20 & 0,21 & E \\
+\midrule
+\multicolumn{5}{r}{\textbf{Total por metro}} & 10,41 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{ACU-03: salida de luminaria LED}
+
+\textbf{Unidad:} pto. \textbf{Rendimiento:} 4~pto/dia por cuadrilla.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{p{0.16\textwidth} L r r r c}
+\toprule
+\textbf{Tipo} & \textbf{Recurso} & \textbf{Cantidad} & \textbf{P.U. S/} & \textbf{Parcial S/} & \textbf{Base} \\
+\midrule
+Material & Luminaria LED + caja + accesorios & 1,00 & 180,00 & 180,00 & E \\
+Mano de obra & Tecnico electricista & 0,25 & 80,00 & 20,00 & E \\
+Mano de obra & Ayudante & 0,25 & 60,00 & 15,00 & E \\
+Herramientas & Herramientas menores & 5\% & 35,00 & 1,75 & E \\
+\midrule
+\multicolumn{5}{r}{\textbf{Total por punto}} & 216,75 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{ACU-04: tablero con protecciones y diferenciales}
+
+\textbf{Unidad:} und. \textbf{Rendimiento:} 0,5~und/dia por cuadrilla.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{p{0.16\textwidth} L r r r c}
+\toprule
+\textbf{Tipo} & \textbf{Recurso} & \textbf{Cantidad} & \textbf{P.U. S/} & \textbf{Parcial S/} & \textbf{Base} \\
+\midrule
+Material & Tablero metalico con barra N y PE & 1,00 & 650,00 & 650,00 & E \\
+Material & ITM y diferenciales segun cuadro & 1,00 & 900,00 & 900,00 & E \\
+Mano de obra & Tecnico electricista & 2,00 & 80,00 & 160,00 & E \\
+Mano de obra & Ayudante & 2,00 & 60,00 & 120,00 & E \\
+Herramientas & Herramientas menores & 5\% & 280,00 & 14,00 & E \\
+\midrule
+\multicolumn{5}{r}{\textbf{Total por tablero}} & 1844,00 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{ACU-05: puesta a tierra y malla equipotencial}
+
+\textbf{Unidad:} cj. \textbf{Rendimiento:} 1~und/2~dias.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{p{0.16\textwidth} L r r r c}
+\toprule
+\textbf{Tipo} & \textbf{Recurso} & \textbf{Cantidad} & \textbf{P.U. S/} & \textbf{Parcial S/} & \textbf{Base} \\
+\midrule
+Material & Varilla de Cu 5/8''x2,4~m y conexiones & 1,00 & 220,00 & 220,00 & E \\
+Material & Conductor de tierra Cu 10 mm\(^2\) & 30,00 & 9,00 & 270,00 & E \\
+Material & Registro, soldadura y bentonita & 1,00 & 300,00 & 300,00 & E \\
+Mano de obra & Tecnico electricista & 2,00 & 80,00 & 160,00 & E \\
+Mano de obra & Ayudante & 2,00 & 60,00 & 120,00 & E \\
+Herramientas & Herramientas menores & 5\% & 280,00 & 14,00 & E \\
+\midrule
+\multicolumn{5}{r}{\textbf{Total por pozo}} & 1084,00 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Pruebas y verificaciones}
+
+\begin{enumerate}
+  \item Continuidad de conductores de proteccion (CNE-U 060-020).
+  \item Aislamiento de cada circuito: \(R_{ais} \geq 1\)~M\(\Omega\) a 500~Vdc.
+  \item Resistencia de puesta a tierra \(\leq 25~\Omega\) con telurimetro.
+  \item Funcionamiento del paro de emergencia de playa y del ATS con carga.
+  \item Diferenciales: disparo por boton de prueba y medicion de corriente de
+  fuga.
+  \item Iluminancia y alumbrado de emergencia segun EM.010.
+\end{enumerate}
+
+Todos los protocolos se registran y forman parte del expediente de entrega.

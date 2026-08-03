@@ -79,14 +79,23 @@ resultados_build:
   iluminacion: "build/renzo-industrial/calculos/iluminacion-resumen.json (PASS, metodo de lumanes, 38 luminarias, ~2,2 kW)"
   planos: "build/renzo-industrial/cad/planos/ (6 laminas IE-01..IE-06 + PDF combinado + manifest.json, espesores jerarquicos A1)"
   layout_base: "build/renzo-industrial/expediente/assets/layout-base.pdf (vista esquematica de la geometria base CAD-002)"
-  expediente: "build/renzo-industrial/expediente/main.pdf (44 paginas: memoria, calculos, iluminacion, especificaciones, seguridad, cronograma, metrados, planos, planos base, conclusiones)"
+  expediente: "build/renzo-industrial/expediente/main.pdf (45 paginas: memoria, calculos, iluminacion, especificaciones, seguridad, cronograma, metrados, planos, planos base, conclusiones, bibliografia)"
+  presupuesto: "build/renzo-industrial/presupuesto/ (bom_renzo.json 153 partidas S/ 156 928,70; metrados-renzo.md/xlsx; cotizacion-comparativa.xlsx; comparativa-proveedores.md)"
+  documentos_standalone: "build/renzo-industrial/presupuesto/ (especificaciones-tecnicas-renzo.pdf 10 pp; requerimiento-servicios-renzo.pdf 11 pp; metrados-y-presupuesto-renzo.pdf 5 pp)"
 
 entregables:
   directorio: entregables
-  expediente: "entregables/expediente-renzo-industrial.pdf (44 paginas, compilado 2026-08-02)"
+  expediente: "entregables/expediente-renzo-industrial.pdf (45 paginas, compilado 2026-08-02)"
   planos:
     - "entregables/planos-electricos-grifo-renzo.pdf (IE-01..IE-06, A1)"
-  nota: "anteproyecto academico; no construir sin factibilidad, placas reales y revision humana competente"
+  documentos:
+    - "entregables/especificaciones-tecnicas-renzo.pdf (10 paginas)"
+    - "entregables/requerimiento-servicios-renzo.pdf (11 paginas)"
+    - "entregables/metrados-y-presupuesto-renzo.pdf (5 paginas)"
+  libros:
+    - "entregables/metrados.xlsx (153 partidas, total S/ 156 928,70)"
+    - "entregables/cotizacion-comparativa.xlsx (Promart/Sodimac/Mercado Libre)"
+  nota: "anteproyecto academico; no construir sin factibilidad, placas reales y revision humana competente. Copiado de build/ a entregables/ por decision del estudiante (2026-08-02)."
 
 siguiente_hito:
   nombre: "definir cargas y diseno electrico de anteproyecto"

@@ -1,50 +1,57 @@
-\chapter{Metrados y presupuesto}
+﻿\chapter{Metrados y presupuesto}
+\label{chap:metrados}
 
 \section{Base del metrado}
-Los metrados de este anteproyecto se estiman a partir del cuadro de circuitos
-y las longitudes de diseno registradas en las entradas canonicas
-(\texttt{diseno-electrico/datos/cargas.yaml}) y los planos IE-01..IE-06. Las
-longitudes de circuitos y alimentadores suman aproximadamente 620~m de
-canalizacion. Son valores referenciales de anteproyecto; el metrado definitivo
-se realiza sobre planos de construccion aprobados y verificados en campo.
-
-\section{Alcance economico}
-El presupuesto considera partidas de canalizaciones, conductores, tableros,
-protecciones, luminarias, tomacorrientes, equipos de playa, grupo electrogeno
-con ATS, UPS, puesta a tierra, pararrayo y montaje. No incluye obra civil
-estructural, redes de distribuidora, ni gestion de permisos sectoriales. Los
-precios unitarios son referenciales de mercado (tercer trimestre 2026,
-mercado peruano) y deben actualizarse con cotizaciones vigentes antes de la
-ejecucion.
+Los metrados de este anteproyecto se estiman a partir del cuadro de circuitos,
+las longitudes de diseno registradas en las entradas canonicas
+(\texttt{diseno-electrico/datos/cargas.yaml}) y los planos IE-01..IE-06. El
+desglose detallado se genera en \texttt{build/renzo-industrial/presupuesto/} y
+se reproduce en \texttt{presupuesto/datos/}. Son valores referenciales de
+anteproyecto; el metrado definitivo se realiza sobre planos de construccion
+aprobados y verificados en campo.
 
 \begin{center}
 \small
-\begin{tabularx}{\linewidth}{@{}l l l L r r@{}}
+\begin{tabularx}{\linewidth}{@{}l l L r@{}}
 \toprule
-Partida & Cant. & Und. & Descripcion & P.U. (S/) & Parcial (S/) \\
+Partida & Cant. & Descripcion & Parcial (S/) \\
 \midrule
-Tuberia PVC SAP y accesorios & 620 & m & circuitos y alimentadores & 3,50 & 2\,170,00 \\
-Conductor de cobre XLPE 2,5~mm\textsuperscript{2} & 1400 & m & alumbrado, tomacorrientes, servicios & 4,20 & 5\,880,00 \\
-Conductor de cobre XLPE 4~mm\textsuperscript{2} & 450 & m & circuitos de fuerza y tomacorrientes & 5,80 & 2\,610,00 \\
-Conductor de cobre XLPE 10~mm\textsuperscript{2} & 80 & m & alimentadores TDE y TDF & 11,50 & 920,00 \\
-Conductor de cobre XLPE 16~mm\textsuperscript{2} & 50 & m & alimentador principal + PE & 15,00 & 750,00 \\
-Tableros TDE, TDF y TD-A1 & 3 & und & metalicos, con barra N y PE & 650,00 & 1\,950,00 \\
-Interruptores termomagneticos y diferenciales & 22 & und & segun cuadro de circuitos & 95,00 & 2\,090,00 \\
-Interruptor general y subalimentadores & 4 & und & ITM 50 A 4P y 40/32/20 A & 320,00 & 1\,280,00 \\
-Luminarias LED interior y exterior & 38 & und & segun memoria de iluminacion: interior, marquesina, patio y vereda tecnica & 180,00 & 6\,840,00 \\
-Alumbrado de emergencia y senales & 6 & und & EM.010 art. 11.1 & 140,00 & 840,00 \\
-Tomacorrientes y dispositivos & 24 & und & cajas, placas y salidas & 55,00 & 1\,320,00 \\
-Bombas sumergibles de tanque (STP) & 3 & und & 1,5~hp, arranque directo & 3\,200,00 & 9\,600,00 \\
-Surtidores con cabeza electronica & 2 & und & islas de despacho & 18\,000,00 & 36\,000,00 \\
-Compresor de aire de servicio & 1 & und & 2,2~kW & 4\,800,00 & 4\,800,00 \\
-Bombas de agua y de efluentes & 2 & und & 1,5~kW & 1\,900,00 & 3\,800,00 \\
-Grupo \GrupoModelo~\GrupoNom~kVA con ATS & 1 & und & standby, 4 polos, neutro conmutado & 45\,000,00 & 45\,000,00 \\
-UPS combustible/control y POS-CCTV & 2 & und & 1,5 y 2,0~kVA, 15~min & 2\,400,00 & 4\,800,00 \\
-Pozo de puesta a tierra & 2 & und & con enlace equipotencial & 1\,200,00 & 2\,400,00 \\
-Pararrayo h=12~m & 1 & und & con radio de proteccion 20~m & 6\,500,00 & 6\,500,00 \\
-Montaje, pruebas y verificaciones & 1 & gbl & instalacion, telurometro, ensayos & 15\,000,00 & 15\,000,00 \\
+Tuberia PVC SAP 20/25/32 mm y accesorios & 588~m & circuitos y alimentadores & 2\,394,10 \\
+Conductores activos 2,5/4/10~mm\textsuperscript{2} & 1444~m & fase/neutro segun cuadro & 10\,477,60 \\
+Conductores de proteccion (PE) & 588~m & igual seccion que la fase & -- \\
+Interruptores termomagneticos & 23 & curva C/D segun cuadro + general 50~A 4P & 1\,469,00 \\
+Interruptores diferenciales 30~mA & 22 & todos los circuitos derivados & 2\,090,00 \\
+Tableros TDE, TDF y TD-A1 & 3 & metalicos, con barra N y PE & 1\,950,00 \\
+Luminarias LED interior y exterior & 38 & segun memoria de iluminacion & 9\,110,00 \\
+Tomacorrientes e interruptores & 13 & cajas, placas y salidas & 555,00 \\
+Bombas sumergibles de tanque (STP) & 3 & 1,5~hp, arranque directo & 9\,600,00 \\
+Surtidores con cabeza electronica & 2 & islas de despacho & 36\,000,00 \\
+Compresor y bombas de servicio & 3 & compresor, agua y efluentes & 8\,600,00 \\
+Grupo \GrupoModelo~\GrupoNom~kVA con ATS & 1 & standby, 4 polos, neutro conmutado & 45\,000,00 \\
+UPS combustible/control y POS-CCTV & 2 & 1,5 y 2,0~kVA, 15~min & 4\,800,00 \\
+Puesta a tierra y pararrayo & 2+1 & pozos, malla y rayo h=12~m & 9\,440,00 \\
+Montaje, pruebas y verificaciones & 1~gbl & instalacion, telurometro, ensayos & 15\,000,00 \\
 \midrule
-\multicolumn{5}{r}{\bfseries TOTAL REFERENCIAL} & \bfseries 155\,550,00 \\
+\multicolumn{3}{r}{\bfseries TOTAL REFERENCIAL} & \bfseries 156\,928,70 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Comparativa de proveedores}
+Sobre la base del BOM se estima la dispersion de cotizaciones entre
+proveedores del mercado peruano. El detalle se genera en
+\texttt{build/renzo-industrial/presupuesto/comparativa-proveedores.md} y en el
+libro \texttt{cotizacion-comparativa.xlsx}.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l r r@{}}
+\toprule
+Proveedor & Total (S/) & Delta vs base \\
+\midrule
+Sodimac & 156\,126,01 & -0,5\% \\
+Promart & 158\,364,58 & +0,9\% \\
+Mercado Libre & 163\,841,98 & +4,4\% \\
 \bottomrule
 \end{tabularx}
 \end{center}
@@ -52,4 +59,4 @@ Montaje, pruebas y verificaciones & 1 & gbl & instalacion, telurometro, ensayos 
 \section{Regla de actualizacion}
 Todos los precios unitarios son referenciales. El monto total se define solo
 con cotizaciones vigentes a la fecha de ejecucion y con los metrados de
-construccion aprobados. Este capítulo no sustituye al presupuesto de obra.
+construccion aprobados. Este capitulo no sustituye al presupuesto de obra.

@@ -376,8 +376,23 @@ def add_panel(msp: ezdxf.layouts.BaseLayout, point: tuple[float, float], label: 
     text_center(msp, label, x, y, 0.18, layer)
 
 
-def add_route(msp: ezdxf.layouts.BaseLayout, points: list[tuple[float, float]], layer: str = "IE_CANALIZACION") -> None:
+def add_route(msp: ezdxf.layouts.BaseLayout, points: list[tuple[float, float]], layer: str = "IE_CANALIZACION", label: str | None = None) -> None:
     msp.add_lwpolyline([local_to_page(x, y) for x, y in points], dxfattribs={"layer": layer, "linetype": "DASHED"})
+    if label:
+        mid = points[len(points) // 2]
+        text_left(msp, label, *local_to_page(mid[0] + 0.4, mid[1] + 0.35), 0.15, "IE_TEXTO")
+
+
+def tuberia_mm(conductor_mm2: float) -> str:
+    """Tuberia PVC SAP recomendada por calibre de conductor (3F+N+PE o por
+    numero de conductores del circuito; criterio de ocupacion)."""
+    if conductor_mm2 <= 4:
+        return "PVC 20 mm"
+    if conductor_mm2 <= 10:
+        return "PVC 25 mm"
+    if conductor_mm2 <= 16:
+        return "PVC 32 mm"
+    return "PVC 40 mm"
 
 
 def draw_legend_symbol(msp: ezdxf.layouts.BaseLayout, key: str, cx: float, cy: float, s: float = 0.55) -> None:
@@ -470,6 +485,17 @@ def add_legend(msp: ezdxf.layouts.BaseLayout, title: str, rows: list[tuple[str, 
         text_left(msp, description, x + symbol_col + 0.35, yy, 0.21, "IE_TEXTO")
 
 
+def add_notes(msp: ezdxf.layouts.BaseLayout, title: str, lines: list[str], x: float = 55.0, y: float = 40.0, width: float = 28.0, height: float = 8.0) -> None:
+    """Bloque de notas tecnicas: titulo y lineas de texto dentro de una caja."""
+    rect(msp, x, y - height, x + width, y, "IE_TABLA")
+    text_center(msp, title, x + width / 2, y - 0.45, 0.26, "IE_TEXTO")
+    msp.add_line((x, y - 0.80), (x + width, y - 0.80), dxfattribs={"layer": "IE_TABLA"})
+    row_h = 0.55
+    for index, line in enumerate(lines):
+        yy = y - 1.15 - index * row_h
+        text_left(msp, line, x + 0.3, yy, 0.16, "IE_TEXTO")
+
+
 def add_north_arrow(msp: ezdxf.layouts.BaseLayout, cx: float = 49.5, cy: float = 54.0) -> None:
     msp.add_lwpolyline([(cx, cy - 1.4), (cx - 0.5, cy), (cx, cy + 1.4), (cx + 0.5, cy)], dxfattribs={"layer": "IE_TEXTO", "color": 7}, close=True)
     msp.add_lwpolyline([(cx, cy + 0.15), (cx - 0.35, cy - 0.55), (cx + 0.35, cy - 0.55)], dxfattribs={"layer": "IE_TEXTO", "color": 7}, close=True)
@@ -511,10 +537,10 @@ def sheet_ie01(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_panel(msp, tde, "TDE", "IE_EMERGENCIA")
     add_panel(msp, tdf, "TDF")
     for point in despacho:
-        add_route(msp, [(9.0, 6.0), (12.0, 8.0), point])
+        add_route(msp, [(9.0, 6.0), (12.0, 8.0), point], label="PVC 20 mm")
     for point in patio:
-        add_route(msp, [(10.0, 5.0), (12.0, 8.0), point])
-    add_route(msp, [(10.0, 5.0), (17.0, 10.0), (27.42, 14.89)])
+        add_route(msp, [(10.0, 5.0), (12.0, 8.0), point], label="PVC 20 mm")
+    add_route(msp, [(10.0, 5.0), (17.0, 10.0), (27.42, 14.89)], label="PVC 20 mm")
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-01 | LEYENDA Y CRITERIOS", [
@@ -537,6 +563,14 @@ def sheet_ie01(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         ("canal", "Canalizacion subterranea proyectada"),
         (None, "CNE: dV ramal <= 2.5 % y total <= 4 %; PE en todo circuito"),
     ], y=55.2)
+    add_notes(msp, "NOTAS TECNICAS", [
+        "Tension: 380/220 V, 60 Hz, 3F+N+PE (sistema TN-S).",
+        "Canalizaciones subterraneas enterradas a 0.60 m bajo nivel de piso.",
+        "Tuberia PVC SAP 20/25/32 mm segun calibre de conductores.",
+        "Conductor de cobre XLPE, seccion minima 2.5 mm2.",
+        "Toda luminaria de playa con proteccion IP66 y circuito de emergencia.",
+        "Alimentadores a TDE/TDF con ITM 40/32 A y cable 10 mm2 (ver IE-05).",
+    ])
 
 
 def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
@@ -558,8 +592,10 @@ def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     tomas = ((5.0, 2.0), (10.0, 2.0), (12.0, 4.0), (16.0, 2.0), (18.5, 2.5))
     for x, y in tomas:
         add_outlet(msp, local_to_page(x, y))
-    for x, y in (*a101, *a102, *tomas):
-        add_route(msp, [(9.0, 5.0), (9.0, 6.0), (x, 6.0), (x, y)])
+    for x, y in (*a101, *a102):
+        add_route(msp, [(9.0, 5.0), (9.0, 6.0), (x, 6.0), (x, y)], label="PVC 20 mm")
+    for x, y in tomas:
+        add_route(msp, [(9.0, 5.0), (9.0, 6.0), (x, 6.0), (x, y)], label="PVC 20 mm")
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-02 | LEYENDA", [
@@ -569,6 +605,13 @@ def sheet_ie02(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         ("canal", "Canalizacion empotrada proyectada"),
         (None, "Tomacorrientes con interruptor diferencial 30 mA"),
         (None, "CNE: conductor minimo 2.5 mm2; dV ramal <= 2.5 %"),
+    ])
+    add_notes(msp, "NOTAS TECNICAS", [
+        "Alumbrado interior con paneles LED 36 W y luminarias estancas 18 W.",
+        "Tomas de corriente con puesta a tierra; circuito independiente por zona.",
+        "Tuberia empotrada en muros y losa; cajas octogonales y rectangulares.",
+        "Interruptores de pared a 1.20 m; tomacorrientes a 0.40 m del piso.",
+        "Tablero TD-A1 alimentado desde TG (ver IE-05).",
     ])
 
 
@@ -587,9 +630,9 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     add_panel(msp, local_to_page(14.6, 2.2), "B-AGUA", "IE_FUERZA")
     add_panel(msp, local_to_page(16.2, 2.2), "B-FOSA", "IE_FUERZA")
     for tanque in architecture["tanques"]:
-        add_route(msp, [(9.0, 6.0), (12.0, 6.0), tanque["pos_local"]])
+        add_route(msp, [(9.0, 6.0), (12.0, 6.0), tanque["pos_local"]], label="PVC 25 mm")
     for punto in architecture["dispensadores_y_surtidores"]["posiciones_local"]:
-        add_route(msp, [(10.0, 5.0), (12.0, 7.0), punto])
+        add_route(msp, [(10.0, 5.0), (12.0, 7.0), punto], label="PVC 20 mm")
     add_north_arrow(msp)
     add_scale_bar(msp)
     add_legend(msp, "IE-03 | LEYENDA", [
@@ -601,6 +644,13 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         (None, "C-AIRE = compresor de aire (F-07); B-AGUA = bomba de agua (F-08); B-FOSA = bomba de efluentes (F-09)"),
         (None, "Cargas criticas (STP, surtidores, ATG, POS) con respaldo de emergencia"),
         (None, "CNE: areas clasificadas con equipo de proteccion apropiada"),
+    ])
+    add_notes(msp, "NOTAS TECNICAS", [
+        "STP de 1.5 hp con arranque directo; circuito de emergencia desde TDE.",
+        "Surtidores con cabeza electronica 103 VA (UPS-FUEL 1.5 kVA).",
+        "Pulsador de paro de emergencia de playa (S-04) accesible en cada isla.",
+        "Equipos de servicio (compresor, bombas) en sala de maquinas desde TDF.",
+        "Canalizaciones a tanques y surtidores en zanja a 0.60 m.",
     ])
 
 
@@ -650,6 +700,13 @@ def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         ("canal", "Conductor de tierra enterrado proyectado"),
         ("tg", "Tableros generales TG / TG2 y equipos a conectar a la malla"),
         (None, "Resistencia de PAT <= 10 ohm y <= 25 ohm para rayo"),
+    ])
+    add_notes(msp, "NOTAS TECNICAS", [
+        "PAT principal junto al TG: 2 pozos (PAT/PAT2) con varilla Cu 5/8 x 2.4 m.",
+        "Enlace equipotencial de tableros, surtidores, tanques y fosa a la malla.",
+        "Pararrayo h=12 m con radio de proteccion 20 m (electrogeometrico).",
+        "Conductor de tierra desnudo Cu 10 mm2 enterrado a 0.50 m.",
+        "Verificar resistencia con telurometro en campo.",
     ])
 
 
@@ -727,6 +784,13 @@ def sheet_ie06(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
         ("viento", "Direccion del viento (referencia para dispersion de vapores)"),
         (None, "Limites: propuesta academica; trazado segun CNE-U cap. 6 y revision competente"),
         (None, "CNE: equipo electrico de areas clasificadas con proteccion apropiada"),
+    ])
+    add_notes(msp, "NOTAS TECNICAS", [
+        "Zona 1 (r=2.2 m) alrededor de tanques y venteos; Zona 2 (r=3.5 m) en despacho.",
+        "Venteo de tanques con zona 1 (r=1.5 m) adicional.",
+        "Equipo electrico en Zona 1/2: certificado para clasificacion de gases (Ej. ex d / ex e).",
+        "Surtidores con cabeza electronica intrinsecamente segura.",
+        "Clasificacion preliminar: sujeto a revision competente y normativa sectorial.",
     ])
 
 

@@ -144,7 +144,7 @@ def main() -> int:
         "\\providecommand{\\CIRCUITOS}{}",
         "\\providecommand{\\ALIMENTADORES}{}",
         *macros,
-        f"\\providecommand{{\\CIRCUITOSTAB}}{{\\setlength{{\\tabcolsep}}{{2pt}}\\begin{{longtable}}{{l >{{\\raggedright\\arraybackslash}}p{{2.7cm}} c c c c c c c c}}\\toprule",
+        f"\\providecommand{{\\CIRCUITOSTAB}}{{\\setlength{{\\tabcolsep}}{{1pt}}\\begin{{longtable}}{{l >{{\\raggedright\\arraybackslash}}p{{3.0cm}} c c c c c c c c}}\\toprule",
         "ID & Descripcion & Tablero & Fase & kVA inst. & kVA MD & Ib (A) & ITM & Cu/PE & dV ramal/total \\\\\\midrule",
         circuitos,
         "\\bottomrule\\end{longtable}}",
