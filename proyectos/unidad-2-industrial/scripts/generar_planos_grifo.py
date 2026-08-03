@@ -29,6 +29,31 @@ FRAME = (0.5, 0.5, 83.6, 58.9)
 ARCH_SCALE = 0.5
 TITLE_REFERENCE_EXTENTS = (56.4, 1.5, 83.0, 7.6)
 
+# Ventanas utiles de la A-01 local. La fuente contiene marco, cuadricula UTM,
+# detalles de aprobacion y tres plantas separadas; importar la hoja completa
+# vuelve secundarios los circuitos y deja elementos sin relacion aparente.
+SITE_VIEW = (45.0, 12.0, 113.0, 78.5)
+LEVEL_VIEWS = {
+    # Las plantas son en L. En N1 la ventana compuesta evita importar los
+    # tanques que ocupan la misma franja de coordenadas a la derecha.
+    "N1": ((59.0, 70.0, 79.0, 78.0), (59.0, 64.0, 68.5, 70.0)),
+    "N2": ((58.0, 87.0, 79.0, 94.0), (58.0, 82.0, 64.5, 87.0)),
+    "N3": ((58.0, 105.0, 80.0, 112.0), (58.0, 100.0, 64.8, 105.0)),
+}
+LEVEL_LAYOUTS = {
+    "N1": {"windows": LEVEL_VIEWS["N1"], "scale": 0.90, "offset": (-50.1, -33.6)},
+    "N2": {"windows": LEVEL_VIEWS["N2"], "scale": 0.90, "offset": (-22.2, -49.8)},
+    "N3": {"windows": LEVEL_VIEWS["N3"], "scale": 0.90, "offset": (4.8, -66.0)},
+}
+BACKGROUND_LAYERS_OMITTED = {
+    "cuadricula coordenadas",
+    "letras",
+    "instalaciones electricas",
+    "puesta a tierra",
+    "seguridad",
+}
+LEVEL_LAYERS_OMITTED = {"voladizos", "radio de giro", "tanques", "cotras", "contorno-01"}
+
 
 def repository_root() -> Path:
     return Path(__file__).resolve().parents[3]
@@ -121,33 +146,150 @@ def entity_center(entity: ezdxf.entities.DXFGraphic, cache: bbox.Cache) -> tuple
     return float(center.x), float(center.y)
 
 
-def add_architecture(doc: ezdxf.document.Drawing, source_path: Path) -> int:
-    """Importa la base A-01 a media escala y omite su cajetin empresarial."""
+def entity_bounds(entity: ezdxf.entities.DXFGraphic, cache: bbox.Cache) -> tuple[float, float, float, float] | None:
+    try:
+        ext = bbox.extents([entity], cache=cache)
+    except Exception:
+        return None
+    if not ext.has_data:
+        return None
+    return float(ext.extmin.x), float(ext.extmin.y), float(ext.extmax.x), float(ext.extmax.y)
+
+
+def point_in_window(point: tuple[float, float], window: tuple[float, float, float, float]) -> bool:
+    x, y = point
+    x0, y0, x1, y1 = window
+    return x0 <= x <= x1 and y0 <= y <= y1
+
+
+def bounds_intersect_window(bounds: tuple[float, float, float, float], window: tuple[float, float, float, float]) -> bool:
+    bx0, by0, bx1, by1 = bounds
+    wx0, wy0, wx1, wy1 = window
+    return bx1 >= wx0 and bx0 <= wx1 and by1 >= wy0 and by0 <= wy1
+
+
+def entity_matches_windows(
+    bounds: tuple[float, float, float, float] | None,
+    center: tuple[float, float] | None,
+    windows: tuple[tuple[float, float, float, float], ...],
+) -> bool:
+    if bounds is None:
+        return center is not None and any(point_in_window(center, window) for window in windows)
+    bx0, by0, bx1, by1 = bounds
+    wx0 = min(window[0] for window in windows)
+    wy0 = min(window[1] for window in windows)
+    wx1 = max(window[2] for window in windows)
+    wy1 = max(window[3] for window in windows)
+    oversized = (bx1 - bx0) > (wx1 - wx0) * 1.5 or (by1 - by0) > (wy1 - wy0) * 1.5
+    if oversized:
+        effective_center = center or ((bx0 + bx1) / 2, (by0 + by1) / 2)
+        return any(point_in_window(effective_center, window) for window in windows)
+    return any(bounds_intersect_window(bounds, window) for window in windows)
+
+
+def add_architecture(doc: ezdxf.document.Drawing, source_path: Path, sheet_code: str) -> int:
+    """Importa solo la arquitectura pertinente, sin cuadricula ni detalles sueltos."""
     source = ezdxf.readfile(source_path)
     cache = bbox.Cache()
-    entities: list[ezdxf.entities.DXFGraphic] = []
+    entities_by_view: dict[str, list[ezdxf.entities.DXFGraphic]] = (
+        {level: [] for level in LEVEL_LAYOUTS} if sheet_code == "IE-02" else {"SITE": []}
+    )
     for entity in source.modelspace():
         # Las DIMENSION de la copia derivada perdieron sus bloques graficos al
         # separarse de la lamina fuente; se omiten para evitar entidades rotas.
         if entity.dxftype() in {"HATCH", "SOLID", "TRACE", "WIPEOUT", "IMAGE", "DIMENSION"}:
             continue
-        center = entity_center(entity, cache)
-        # El cajetin original ocupa la banda inferior derecha. Se conserva la
-        # arquitectura, pero no se reproduce la autoria empresarial de la fuente.
-        if center is not None and center[0] > 108.0 and center[1] < 28.0:
+        if entity.dxf.layer.casefold() in BACKGROUND_LAYERS_OMITTED:
             continue
-        entities.append(entity)
+        if sheet_code == "IE-02" and entity.dxf.layer.casefold() in LEVEL_LAYERS_OMITTED:
+            continue
+        if entity.dxftype() == "INSERT" and entity.dxf.name.upper() == "ROTULO":
+            continue
+        bounds = entity_bounds(entity, cache)
+        center = entity_center(entity, cache)
+        if bounds is None and center is None:
+            continue
+        if sheet_code == "IE-02":
+            for level, layout in LEVEL_LAYOUTS.items():
+                selected = entity_matches_windows(bounds, center, layout["windows"])
+                if selected:
+                    entities_by_view[level].append(entity)
+                    break
+        elif point_in_window(center, SITE_VIEW):
+            entities_by_view["SITE"].append(entity)
 
-    block = doc.blocks.new(name="ARQUITECTURA_A01_REFERENCIA")
-    importer = Importer(source, doc)
-    importer.import_entities(entities, block)
-    importer.finalize()
-    doc.modelspace().add_blockref(
-        "ARQUITECTURA_A01_REFERENCIA",
-        (0.0, 0.0),
-        dxfattribs={"xscale": ARCH_SCALE, "yscale": ARCH_SCALE, "zscale": ARCH_SCALE, "layer": "ARQ_REFERENCIA"},
-    )
-    return len(entities)
+    imported_count = 0
+    for view, entities in entities_by_view.items():
+        block_name = f"ARQUITECTURA_A01_{view}"
+        block = doc.blocks.new(name=block_name)
+        importer = Importer(source, doc)
+        importer.import_entities(entities, block)
+        importer.finalize()
+        if view == "SITE":
+            scale, offset = ARCH_SCALE, (0.0, 0.0)
+        else:
+            scale = float(LEVEL_LAYOUTS[view]["scale"])
+            offset = tuple(LEVEL_LAYOUTS[view]["offset"])
+        doc.modelspace().add_blockref(
+            block_name,
+            offset,
+            dxfattribs={"xscale": scale, "yscale": scale, "zscale": scale, "layer": "ARQ_REFERENCIA"},
+        )
+        imported_count += len(entities)
+    return imported_count
+
+
+def source_point(level: str, point: tuple[float, float]) -> tuple[float, float]:
+    """Lleva una coordenada arquitectonica A-01 al panel ampliado del nivel."""
+    layout = LEVEL_LAYOUTS[level]
+    dx, dy = layout["offset"]
+    scale = float(layout["scale"])
+    return point[0] * scale + dx, point[1] * scale + dy
+
+
+def validate_ie02_electrical_zones(doc: ezdxf.document.Drawing) -> None:
+    """Impide publicar instalaciones interiores fuera de sus tres paneles."""
+    panels = {
+        "N1": (1.5, 18.0, 27.5, 42.0),
+        "N2": (28.5, 18.0, 54.5, 42.0),
+        "N3": (55.5, 18.0, 82.0, 42.0),
+    }
+    electrical_layers = {"IE_ALUMBRADO", "IE_FUERZA", "IE_EMERGENCIA", "IE_CANALIZACION"}
+    cache = bbox.Cache()
+    counts = {level: 0 for level in panels}
+    outside: list[str] = []
+    for entity in doc.modelspace():
+        if entity.dxf.layer not in electrical_layers or entity.dxftype() in {"TEXT", "MTEXT"}:
+            continue
+        center = entity_center(entity, cache)
+        if center is None:
+            continue
+        matches = [level for level, window in panels.items() if point_in_window(center, window)]
+        if not matches:
+            outside.append(f"{entity.dxftype()}#{entity.dxf.handle}@{center[0]:.2f},{center[1]:.2f}")
+        else:
+            counts[matches[0]] += 1
+    if outside:
+        raise RuntimeError("IE-02 contiene entidades electricas fuera de panel: " + "; ".join(outside[:8]))
+    sparse = [level for level, count in counts.items() if count < 20]
+    if sparse:
+        raise RuntimeError(f"IE-02 no contiene suficiente detalle electrico en: {', '.join(sparse)}")
+
+
+def validate_ie03_site_zone(doc: ezdxf.document.Drawing) -> None:
+    """Evita paros, bombas, surtidores o rutas electricas fuera del predio util."""
+    site = (28.5, 9.0, 54.0, 39.0)
+    layers = {"IE_FUERZA", "IE_EMERGENCIA", "IE_CANALIZACION"}
+    cache = bbox.Cache()
+    outside: list[str] = []
+    for entity in doc.modelspace():
+        if entity.dxf.layer not in layers or entity.dxftype() in {"TEXT", "MTEXT"}:
+            continue
+        center = entity_center(entity, cache)
+        if center is not None and not point_in_window(center, site):
+            outside.append(f"{entity.dxftype()}#{entity.dxf.handle}@{center[0]:.2f},{center[1]:.2f}")
+    if outside:
+        raise RuntimeError("IE-03 contiene equipos o rutas fuera del predio: " + "; ".join(outside[:8]))
 
 
 def add_title_block(
@@ -252,7 +394,8 @@ def add_outlet(msp: ezdxf.layouts.BaseLayout, point: tuple[float, float], label:
     msp.add_circle((x, y), 0.20, dxfattribs={"layer": "IE_FUERZA"})
     msp.add_line((x - 0.13, y), (x + 0.13, y), dxfattribs={"layer": "IE_FUERZA"})
     msp.add_line((x, y), (x, y + 0.13), dxfattribs={"layer": "IE_FUERZA"})
-    text_left(msp, label, x + 0.25, y + 0.10, 0.17, "IE_FUERZA")
+    if label:
+        text_left(msp, label, x + 0.25, y + 0.10, 0.17, "IE_FUERZA")
 
 
 def add_panel(msp: ezdxf.layouts.BaseLayout, point: tuple[float, float], label: str, layer: str = "IE_FUERZA") -> None:
@@ -296,6 +439,62 @@ def add_legend(msp: ezdxf.layouts.BaseLayout, title: str, rows: list[tuple[str, 
         yy = y - 1.30 - index * row_h
         text_left(msp, code, x + 0.25, yy, 0.23, "IE_TEXTO")
         text_left(msp, description, x + 4.0, yy, 0.22, "IE_TEXTO")
+
+
+def add_symbol_legend(
+    msp: ezdxf.layouts.BaseLayout,
+    title: str,
+    rows: list[tuple[str, str, str]],
+    x: float = 2.0,
+    y: float = 55.8,
+    width: float = 31.0,
+) -> None:
+    """Leyenda grafica compacta en la franja superior libre de las A1."""
+    row_h = 1.02
+    height = 1.05 + row_h * len(rows)
+    rect(msp, x, y - height, x + width, y, "IE_TABLA")
+    text_center(msp, title, x + width / 2, y - 0.48, 0.31, "IE_TEXTO")
+    msp.add_line((x, y - 0.90), (x + width, y - 0.90), dxfattribs={"layer": "IE_TABLA"})
+    for index, (symbol, code, description) in enumerate(rows):
+        cy = y - 1.38 - index * row_h
+        sx = x + 1.35
+        if symbol == "LUM":
+            msp.add_circle((sx, cy), 0.20, dxfattribs={"layer": "IE_TABLA"})
+            msp.add_line((sx - 0.14, cy - 0.14), (sx + 0.14, cy + 0.14), dxfattribs={"layer": "IE_TABLA"})
+            msp.add_line((sx - 0.14, cy + 0.14), (sx + 0.14, cy - 0.14), dxfattribs={"layer": "IE_TABLA"})
+        elif symbol == "OUTLET":
+            msp.add_circle((sx, cy), 0.20, dxfattribs={"layer": "IE_TABLA"})
+            msp.add_line((sx - 0.13, cy), (sx + 0.13, cy), dxfattribs={"layer": "IE_TABLA"})
+            msp.add_line((sx, cy), (sx, cy + 0.13), dxfattribs={"layer": "IE_TABLA"})
+        elif symbol == "PANEL":
+            rect(msp, sx - 0.28, cy - 0.20, sx + 0.28, cy + 0.20, "IE_TABLA")
+        elif symbol == "PUMP":
+            msp.add_circle((sx, cy), 0.23, dxfattribs={"layer": "IE_TABLA"})
+            text_center(msp, "M", sx, cy, 0.15, "IE_TABLA")
+        elif symbol == "ESTOP":
+            msp.add_circle((sx, cy), 0.25, dxfattribs={"layer": "IE_TABLA"})
+            text_center(msp, "PE", sx, cy, 0.13, "IE_TABLA")
+        elif symbol == "EARTH":
+            msp.add_line((sx, cy + 0.26), (sx, cy), dxfattribs={"layer": "IE_TABLA"})
+            for half, dy in ((0.26, 0.0), (0.18, -0.10), (0.09, -0.20)):
+                msp.add_line((sx - half, cy + dy), (sx + half, cy + dy), dxfattribs={"layer": "IE_TABLA"})
+        elif symbol == "CAP":
+            msp.add_circle((sx, cy), 0.22, dxfattribs={"layer": "IE_TABLA"})
+            msp.add_line((sx, cy - 0.35), (sx, cy + 0.35), dxfattribs={"layer": "IE_TABLA"})
+        elif symbol == "ZONE1":
+            msp.add_circle((sx, cy), 0.28, dxfattribs={"layer": "IE_TABLA", "linetype": "DASHED"})
+            text_center(msp, "Z1", sx, cy, 0.12, "IE_TABLA")
+        elif symbol == "ZONE2":
+            rect(msp, sx - 0.32, cy - 0.22, sx + 0.32, cy + 0.22, "IE_TABLA")
+            text_center(msp, "Z2", sx, cy, 0.12, "IE_TABLA")
+        else:  # rutas normal, emergencia o equipotencial
+            line = msp.add_line((sx - 0.55, cy), (sx + 0.55, cy), dxfattribs={"layer": "IE_TABLA"})
+            if symbol == "ROUTE":
+                line.dxf.linetype = "DASHED"
+            elif symbol == "EMERGENCY":
+                msp.add_circle((sx, cy), 0.11, dxfattribs={"layer": "IE_TABLA"})
+        text_left(msp, code, x + 2.55, cy - 0.08, 0.20, "IE_TEXTO")
+        text_left(msp, description, x + 7.0, cy - 0.08, 0.20, "IE_TEXTO")
 
 
 def sheet_ie01(doc: ezdxf.document.Drawing, _: dict[str, Any], __: dict[str, Any]) -> None:
@@ -361,44 +560,98 @@ def sheet_ie01(doc: ezdxf.document.Drawing, _: dict[str, Any], __: dict[str, Any
         ("NOTA", "18 x 100 W marquesina y 8 x 120 W exterior como criterio"),
         ("CNE", "dV ramal <= 2.5 % y total <= 4 %; PE en todo circuito"),
     ])
+    add_symbol_legend(msp, "SIMBOLOGIA IE-01", [
+        ("LUM", "L", "Luminaria LED exterior o de marquesina"),
+        ("PANEL", "TGE/TDE", "Tablero general o de emergencia"),
+        ("ROUTE", "CAN", "Canalizacion de circuito normal"),
+        ("EMERGENCY", "EM", "Circuito critico o de emergencia"),
+    ])
 
 
 def sheet_ie02(doc: ezdxf.document.Drawing, _: dict[str, Any], __: dict[str, Any]) -> None:
     msp = doc.modelspace()
-    # Los tres planos administrativos aparecen apilados en la lamina A-01.
-    levels = (
-        ("N1", (30.0, 33.8), "TD-A1", ((28.5, 33.5), (30.2, 33.5), (31.8, 33.5), (29.2, 31.8), (31.0, 31.8))),
-        ("N2", (30.0, 43.0), "TD-A2", ((28.5, 43.0), (30.2, 43.0), (31.8, 43.0), (29.2, 41.4), (31.0, 41.4))),
-        ("N3", (30.0, 52.2), "TD-A3", ((28.5, 52.2), (30.2, 52.2), (31.8, 52.2), (29.2, 50.6), (31.0, 50.6))),
-    )
-    circuit_map = {
-        "N1": ("A1-01", "A1-02", "A1-03"),
-        "N2": ("A2-01", "A2-02", "A2-03"),
-        "N3": ("A3-01", "A3-02", "A3-03"),
+    # Coordenadas tomadas de los nombres de ambiente de la A-01. Cada nivel se
+    # representa como un panel independiente, con recorridos ortogonales dentro
+    # de su huella y sin prolongaciones hacia el espacio vacio de la lamina.
+    levels = {
+        "N1": {
+            "panel": (62.6, 70.4),
+            "panel_name": "TD-A1",
+            "lights": ((71.5, 75.0), (76.0, 75.0), (64.8, 73.1), (66.0, 71.1), (62.9, 68.6), (63.0, 66.0)),
+            "outlets": ((69.5, 74.1), (77.0, 74.1), (64.0, 72.2), (67.0, 70.2), (62.0, 67.5), (64.2, 65.5)),
+            "corridor_y": 71.8,
+            "circuits": ("A1-01", "A1-02", "A1-03"),
+        },
+        "N2": {
+            "panel": (60.7, 85.7),
+            "panel_name": "TD-A2",
+            "lights": ((69.3, 90.5), (74.0, 90.5), (64.5, 88.0), (61.8, 87.8), (60.5, 83.5)),
+            "outlets": ((68.0, 89.6), (75.0, 89.6), (63.8, 87.2), (62.5, 86.8), (59.7, 84.1), (62.0, 82.9)),
+            "corridor_y": 88.7,
+            "circuits": ("A2-01", "A2-02", "A2-03"),
+        },
+        "N3": {
+            "panel": (61.0, 103.6),
+            "panel_name": "TD-A3",
+            "lights": ((69.6, 108.3), (74.3, 108.3), (64.7, 105.8), (62.1, 105.6), (60.7, 101.4)),
+            "outlets": ((68.3, 107.4), (75.3, 107.4), (64.0, 105.0), (62.7, 104.7), (59.9, 102.0), (62.2, 100.8)),
+            "corridor_y": 106.5,
+            "circuits": ("A3-01", "A3-02", "A3-03"),
+        },
     }
-    for level, panel_point, panel_name, lights in levels:
-        panel = (panel_point[0] - 2.2, panel_point[1] + 1.2)
+    for level, data in levels.items():
+        panel = source_point(level, data["panel"])
+        lights = tuple(source_point(level, point) for point in data["lights"])
+        outlets = tuple(source_point(level, point) for point in data["outlets"])
+        corridor_y = source_point(level, (0.0, data["corridor_y"]))[1]
+        panel_name = str(data["panel_name"])
         add_panel(msp, panel, panel_name)
         for index, point in enumerate(lights, 1):
-            add_luminaire(msp, point, f"{level}-L{index}")
-        outlets = ((lights[0][0] - 0.7, lights[0][1] - 0.7), (lights[2][0] + 0.7, lights[2][1] - 0.7), (lights[4][0] + 0.7, lights[4][1] - 0.7))
+            add_luminaire(msp, point)
         for index, point in enumerate(outlets, 1):
-            add_outlet(msp, point, f"{level}-TC{index}")
-        lighting_id, outlet_a, outlet_b = circuit_map[level]
-        light_route = [panel, (27.8, lights[0][1]), lights[0], lights[1], lights[2], (lights[2][0], lights[3][1]), lights[4], lights[3]]
-        add_route(msp, light_route, "IE_CANALIZACION", lighting_id, (27.8, lights[0][1]))
-        add_route(msp, [panel, (27.35, panel[1]), (27.35, outlets[0][1]), outlets[0], (outlets[1][0], outlets[0][1]), outlets[1]], "IE_FUERZA", outlet_a, (27.35, outlets[0][1]))
-        add_route(msp, [panel, (27.05, panel[1]), (27.05, outlets[2][1]), outlets[2]], "IE_FUERZA", outlet_b, (27.05, outlets[2][1]))
+            add_outlet(msp, point, "")
+        lighting_id, outlet_a, outlet_b = data["circuits"]
+
+        light_end_x = max(point[0] for point in lights)
+        add_route(
+            msp,
+            [panel, (panel[0], corridor_y), (light_end_x, corridor_y)],
+            "IE_CANALIZACION",
+            lighting_id,
+            ((panel[0] + light_end_x) / 2, corridor_y),
+        )
+        for light in lights:
+            msp.add_lwpolyline([(light[0], corridor_y), light], dxfattribs={"layer": "IE_CANALIZACION", "linetype": "DASHED"})
+
+        outlet_groups = (outlets[:3], outlets[3:])
+        for circuit_id, group, lane_offset in ((outlet_a, outlet_groups[0], -0.45), (outlet_b, outlet_groups[1], -0.85)):
+            lane_y = corridor_y + lane_offset
+            end_x = max(point[0] for point in group)
+            add_route(msp, [panel, (panel[0], lane_y), (end_x, lane_y)], "IE_FUERZA", circuit_id, ((panel[0] + end_x) / 2, lane_y))
+            for outlet in group:
+                msp.add_lwpolyline([(outlet[0], lane_y), outlet], dxfattribs={"layer": "IE_FUERZA"})
+
+        title_x = {"N1": 3.0, "N2": 30.0, "N3": 57.0}[level]
+        text_left(msp, f"{level} | INSTALACIONES INTERIORES", title_x, 41.5, 0.36, "IE_TEXTO")
 
     # Cargas dedicadas del primer nivel, visibles y separadas de los circuitos
     # generales de tomacorrientes.
-    for circuit_id, label, point, source_x in (
-        ("A1-04", "POS", (28.6, 30.3), 26.75),
-        ("A1-05", "REF-1", (30.4, 30.3), 26.45),
-        ("A1-06", "REF-2", (32.2, 30.3), 26.15),
+    dedicated_points: list[tuple[str, tuple[float, float]]] = []
+    for circuit_id, label, source_location in (
+        ("A1-04", "POS", (70.3, 73.8)),
+        ("A1-05", "REF-1", (72.6, 73.8)),
+        ("A1-06", "REF-2", (74.9, 73.8)),
     ):
+        point = source_point("N1", source_location)
         add_service_point(msp, point, label, "IE_EMERGENCIA")
-        add_route(msp, [(27.8, 35.0), (source_x, 35.0), (source_x, point[1]), point], "IE_EMERGENCIA", circuit_id, (source_x, 32.2))
+        dedicated_points.append((circuit_id, point))
+    panel = source_point("N1", levels["N1"]["panel"])
+    lane_y = source_point("N1", (0.0, 72.8))[1]
+    end_x = max(point[0] for _, point in dedicated_points)
+    add_route(msp, [panel, (panel[0], lane_y), (end_x, lane_y)], "IE_EMERGENCIA", "A1-04/06", ((panel[0] + end_x) / 2, lane_y))
+    for circuit_id, point in dedicated_points:
+        msp.add_lwpolyline([(point[0], lane_y), point], dxfattribs={"layer": "IE_EMERGENCIA"})
+        text_left(msp, circuit_id, point[0] - 0.30, point[1] - 0.42, 0.15, "IE_EMERGENCIA")
     add_legend(msp, "IE-02 | EDIFICIO ADMINISTRATIVO", [
         ("N1", "120.35 m2: minimarket, administracion, atencion y servicios"),
         ("N2", "160.20 m2: oficinas 1 a 3 y SS.HH."),
@@ -407,6 +660,13 @@ def sheet_ie02(doc: ezdxf.document.Drawing, _: dict[str, Any], __: dict[str, Any
         ("L", "Punto de alumbrado LED; conductor minimo 2.5 mm2 Cu"),
         ("(A#-##)", "Burbuja de circuito; alumbrado, tomas y cargas dedicadas separados"),
         ("NOTA", "Posiciones sujetas a replanteo con arquitectura acotada"),
+    ])
+    add_symbol_legend(msp, "SIMBOLOGIA IE-02", [
+        ("LUM", "L", "Punto de alumbrado LED"),
+        ("OUTLET", "TC", "Tomacorriente doble 220 V, 2P+T"),
+        ("PANEL", "TD-A#", "Tablero de distribucion del nivel"),
+        ("ROUTE", "A#-##", "Canalizacion del circuito identificado"),
+        ("EMERGENCY", "DED", "Carga dedicada o circuito respaldado"),
     ])
 
 
@@ -437,17 +697,20 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], __: di
         tank_points.append(point)
         msp.add_circle(point, 0.25, dxfattribs={"layer": "IE_FUERZA"})
         text_left(msp, f"STP-{index} 1.5 hp", point[0] + 0.32, point[1], 0.19, "IE_FUERZA")
-    for circuit_id, source, point, lane_x, layer in (
-        ("F-01", tde, tank_points[0], 34.40, "IE_EMERGENCIA"),
-        ("F-02", tdf, tank_points[1], 34.75, "IE_FUERZA"),
-        ("F-03", tde, tank_points[2], 35.10, "IE_EMERGENCIA"),
-        ("F-04", tdf, tank_points[3], 35.45, "IE_FUERZA"),
+    # Cuatro carriles cortos y paralelos sobre el banco de tanques. Se evita la
+    # columna de trazos coincidentes que ocultaba bombas y rotulos.
+    for circuit_id, source, point, lane_y, layer in (
+        ("F-01", tde, tank_points[0], 35.75, "IE_EMERGENCIA"),
+        ("F-02", tdf, tank_points[1], 35.40, "IE_FUERZA"),
+        ("F-03", tde, tank_points[2], 35.05, "IE_EMERGENCIA"),
+        ("F-04", tdf, tank_points[3], 34.70, "IE_FUERZA"),
     ):
-        add_route(msp, [source, (lane_x, source[1]), (lane_x, point[1]), point], layer, circuit_id, (lane_x, point[1]))
-    for index, point in enumerate(((27.0, 15.7), (46.0, 34.8)), 1):
+        add_route(msp, [source, (source[0], lane_y), (point[0], lane_y), point], layer, circuit_id, ((source[0] + point[0]) / 2, lane_y))
+    # Paros ubicados en accesos reconocibles: ingreso vehicular y edificio.
+    for index, (point, label_point) in enumerate((((32.0, 16.0), (32.45, 16.0)), ((52.8, 27.0), (50.7, 27.0))), 1):
         msp.add_circle(point, 0.32, dxfattribs={"layer": "IE_EMERGENCIA"})
         text_center(msp, "PE", point[0], point[1], 0.20, "IE_EMERGENCIA")
-        text_left(msp, f"PARO-{index}", point[0] + 0.38, point[1], 0.20, "IE_EMERGENCIA")
+        text_left(msp, f"PARO-{index}", label_point[0], label_point[1], 0.20, "IE_EMERGENCIA")
     add_legend(msp, "IE-03 | FUERZA Y CONTROL DE COMBUSTIBLE", [
         ("STP", "4 bombas sumergibles 1.5 hp; arranque secuencial"),
         ("SD", "6 cabezales de surtidor 220 V, 103 VA de referencia"),
@@ -456,6 +719,13 @@ def sheet_ie03(doc: ezdxf.document.Drawing, architecture: dict[str, Any], __: di
         ("CNE", "Equipos y sellos certificados para la zona donde se instalen"),
         ("(F-##)", "Burbuja de circuito; troncales y derivaciones se leen por separado"),
         ("NOTA", "Rutas y placas definitivas requieren coordinacion del proveedor"),
+    ])
+    add_symbol_legend(msp, "SIMBOLOGIA IE-03", [
+        ("PANEL", "SD", "Cabezal electrico de surtidor"),
+        ("PUMP", "STP", "Bomba sumergible de combustible"),
+        ("ESTOP", "PE", "Paro de emergencia remoto"),
+        ("ROUTE", "F-##", "Canalizacion de fuerza o control"),
+        ("EMERGENCY", "UPS", "Circuito respaldado para control"),
     ])
 
 
@@ -469,17 +739,17 @@ def earth_symbol(msp: ezdxf.layouts.BaseLayout, point: tuple[float, float], labe
 
 def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], __: dict[str, Any]) -> None:
     msp = doc.modelspace()
-    ring = [(24.7, 10.3), (51.7, 10.3), (51.7, 38.3), (25.8, 38.3), (24.7, 10.3)]
+    ring = [(30.0, 10.8), (53.0, 10.8), (53.0, 38.0), (31.0, 38.0), (30.0, 10.8)]
     msp.add_lwpolyline(ring, dxfattribs={"layer": "IE_TIERRA", "closed": True})
-    rods = ((25.0, 11.0), (38.0, 10.6), (51.2, 11.0), (51.2, 24.0), (51.2, 37.7), (39.0, 38.0), (27.0, 38.0), (25.0, 24.0))
+    rods = ((30.2, 11.1), (41.5, 11.1), (52.7, 11.1), (52.7, 24.0), (52.7, 37.7), (42.0, 37.7), (31.2, 37.7), (30.2, 24.0))
     for index, point in enumerate(rods, 1):
         earth_symbol(msp, point, f"PT-{index}")
     for dispenser in architecture["dispensing"]["dispensers_local_A01"]:
         point = tuple(value * ARCH_SCALE for value in dispenser["point"])
-        add_route(msp, [point, (point[0], 32.5), (25.8, 32.5)], "IE_TIERRA")
+        add_route(msp, [point, (point[0], 32.5), (31.0, 32.5)], "IE_TIERRA")
     for tank in architecture["fuel_storage"]["tanks"]:
         point = tuple(value * ARCH_SCALE for value in tank["local_A01_center"])
-        add_route(msp, [point, (43.2, point[1]), (43.2, 38.3)], "IE_TIERRA")
+        add_route(msp, [point, (43.2, point[1]), (43.2, 38.0)], "IE_TIERRA")
     # Captadores convencionales y anillo de marquesina.
     lps = [(35.0, 16.5), (41.8, 16.5), (41.8, 32.5), (35.0, 32.5), (35.0, 16.5)]
     msp.add_lwpolyline(lps, dxfattribs={"layer": "IE_RAYO", "closed": True})
@@ -493,6 +763,12 @@ def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], __: di
         ("BOND", "Unir tanques, tuberias, surtidores, marquesina y masas"),
         ("LPS", "Sistema convencional coordinado; evaluar riesgo IEC 62305"),
         ("SPD", "SPD Tipo 1+2 en TGE y Tipo 2 en tableros sensibles"),
+    ])
+    add_symbol_legend(msp, "SIMBOLOGIA IE-04", [
+        ("EARTH", "PT", "Electrodo del sistema de puesta a tierra"),
+        ("ROUTE", "ANILLO", "Conductor perimetral de cobre desnudo"),
+        ("BOND", "BOND", "Conexion equipotencial de masas metalicas"),
+        ("CAP", "CAP", "Captador del sistema contra rayos"),
     ])
 
 
@@ -622,29 +898,50 @@ def sheet_ie05(doc: ezdxf.document.Drawing, _: dict[str, Any], calculations: dic
 
 def zone_circle(msp: ezdxf.layouts.BaseLayout, point: tuple[float, float], radius: float, label: str, layer: str) -> None:
     msp.add_circle(point, radius, dxfattribs={"layer": layer})
-    text_left(msp, label, point[0] + radius * 0.72, point[1] + radius * 0.72, 0.18, layer)
+    if label:
+        text_left(msp, label, point[0] + radius * 0.72, point[1] + radius * 0.72, 0.18, layer)
 
 
 def sheet_ie06(doc: ezdxf.document.Drawing, architecture: dict[str, Any], __: dict[str, Any]) -> None:
     msp = doc.modelspace()
-    for dispenser in architecture["dispensing"]["dispensers_local_A01"]:
-        point = tuple(value * ARCH_SCALE for value in dispenser["point"])
-        zone_circle(msp, point, 3.0, "Z2 r=6m (CNE)", "IE_ZONA_2")
-    for fill in architecture["fuel_storage"]["fill_points_local_A01"]:
-        point = tuple(value * ARCH_SCALE for value in fill["point"])
-        zone_circle(msp, point, 1.5, "Z1/Z2 llenado", "IE_ZONA_1")
-    for vent in architecture["fuel_storage"]["vent_points_local_A01"]:
-        point = tuple(value * ARCH_SCALE for value in vent["point"])
-        zone_circle(msp, point, 0.45, "Z1", "IE_ZONA_1")
-        zone_circle(msp, point, 0.75, "Z2", "IE_ZONA_2")
+    dispenser_points = [tuple(value * ARCH_SCALE for value in item["point"]) for item in architecture["dispensing"]["dispensers_local_A01"]]
+    # La union conservadora reemplaza seis circulos superpuestos. Los nodos de
+    # surtidor permanecen visibles y la nota conserva el radio normativo.
+    min_x = min(point[0] for point in dispenser_points) - 3.0
+    max_x = max(point[0] for point in dispenser_points) + 3.0
+    min_y = min(point[1] for point in dispenser_points) - 3.0
+    max_y = max(point[1] for point in dispenser_points) + 3.0
+    rect(msp, min_x, min_y, max_x, max_y, "IE_ZONA_2")
+    text_left(msp, "ENVOLVENTE CONSERVADORA Z2 | r=6 m DESDE CADA SURTIDOR", max_x + 0.35, max_y - 0.20, 0.20, "IE_ZONA_2")
+    for point in dispenser_points:
+        msp.add_circle(point, 0.25, dxfattribs={"layer": "IE_ZONA_2"})
+
+    fill_points = [tuple(value * ARCH_SCALE for value in item["point"]) for item in architecture["fuel_storage"]["fill_points_local_A01"]]
+    fill_center = (sum(point[0] for point in fill_points) / len(fill_points), sum(point[1] for point in fill_points) / len(fill_points))
+    zone_circle(msp, fill_center, 1.5, "", "IE_ZONA_1")
+
+    vent_points = [tuple(value * ARCH_SCALE for value in item["point"]) for item in architecture["fuel_storage"]["vent_points_local_A01"]]
+    vent_center = (sum(point[0] for point in vent_points) / len(vent_points), sum(point[1] for point in vent_points) / len(vent_points))
+    zone_circle(msp, vent_center, 0.45, "", "IE_ZONA_1")
+    zone_circle(msp, vent_center, 0.75, "", "IE_ZONA_2")
+    msp.add_line(fill_center, (45.2, 40.4), dxfattribs={"layer": "IE_ZONA_1"})
+    msp.add_line(vent_center, (45.2, 39.8), dxfattribs={"layer": "IE_ZONA_2"})
+    text_left(msp, "LLENADO | ENVOLVENTE Z1/Z2", 45.4, 40.4, 0.20, "IE_ZONA_1")
+    text_left(msp, "VENTEO | ENVOLVENTE Z1/Z2", 45.4, 39.8, 0.20, "IE_ZONA_2")
     add_legend(msp, "IE-06 | AREAS PELIGROSAS - PROPUESTA ACADEMICA", [
         ("ZONA 0", "Interior de tanques y tuberias con vapor inflamable"),
         ("ZONA 1", "Envolventes de llenado/venteo segun CNE-U 120"),
-        ("ZONA 2", "Alrededor de surtidores: radio horizontal 6 m"),
+        ("ZONA 2", "Union conservadora; radio horizontal 6 m desde cada surtidor"),
         ("EQUIPO", "Seleccion Ex y temperatura compatibles con combustible"),
         ("SELLO", "Sellos y canalizaciones conforme a limite de zona"),
         ("ALERTA", "Validar alturas, ventilacion y geometria con especialista"),
         ("DS 054", "Las divisiones sectoriales se contrastan; no se igualan 1:1"),
+    ])
+    add_symbol_legend(msp, "SIMBOLOGIA IE-06", [
+        ("ZONE1", "Z1", "Area con presencia probable de atmosfera peligrosa"),
+        ("ZONE2", "Z2", "Area con presencia poco probable o breve"),
+        ("PANEL", "EQ-Ex", "Equipo electrico certificado para la zona"),
+        ("ROUTE", "SELLO", "Limite sellado de canalizacion clasificada"),
     ])
     # Detalle esquematico para que la altura no quede implicita solo en planta.
     x0, y0 = 55.0, 32.0
@@ -760,8 +1057,12 @@ def main() -> int:
         msp = doc.modelspace()
         add_frame(msp)
         if code != "IE-05":
-            architecture_count = add_architecture(doc, args.architecture_base.resolve())
+            architecture_count = add_architecture(doc, args.architecture_base.resolve(), code)
         SHEET_BUILDERS[code](doc, architecture, calculations)
+        if code == "IE-02":
+            validate_ie02_electrical_zones(doc)
+        elif code == "IE-03":
+            validate_ie03_site_zone(doc)
         scale = "1:100 / IND." if code != "IE-05" else "S/E"
         add_title_block(msp, args.architecture_base.resolve(), title_data, sheet, number, len(all_sheets), scale)
         stem = sheet_stem(sheet)
@@ -775,7 +1076,7 @@ def main() -> int:
         audit = doc.audit()
         if audit.errors:
             raise RuntimeError(
-                f"DXF invalido para {sheet['code']}: "
+                f"DXF invalido para {sheet['codigo']}: "
                 + "; ".join(error.message for error in audit.errors)
             )
         doc.saveas(dxf_path)
@@ -805,22 +1106,26 @@ def main() -> int:
     if not args.skip_render:
         all_pdf_paths = [output / f"{sheet_stem(sheet)}.pdf" for sheet in all_sheets]
         missing = [path.name for path in all_pdf_paths if not path.is_file()]
-        if missing:
+        if missing and not args.sheet:
             raise SystemExit(f"Faltan PDF vectoriales para componer el juego: {', '.join(missing)}")
-        combined = output / "planos-electricos-grifo-unap-aquiles.pdf"
-        temporary = output / ".planos-electricos-grifo-unap-aquiles.tmp.pdf"
-        if temporary.exists():
-            temporary.unlink()
-        from pypdf import PdfWriter
+        if not missing:
+            combined = output / "planos-electricos-grifo-unap-aquiles.pdf"
+            temporary = output / ".planos-electricos-grifo-unap-aquiles.tmp.pdf"
+            if temporary.exists():
+                temporary.unlink()
+            from pypdf import PdfWriter
 
-        writer = PdfWriter()
-        for path in all_pdf_paths:
-            writer.append(str(path))
-        with temporary.open("wb") as stream:
-            writer.write(stream)
-        writer.close()
-        temporary.replace(combined)
-        manifest["combined_pdf"] = str(combined.relative_to(root))
+            writer = PdfWriter()
+            for path in all_pdf_paths:
+                writer.append(str(path))
+            with temporary.open("wb") as stream:
+                writer.write(stream)
+            writer.close()
+            temporary.replace(combined)
+            manifest["combined_pdf"] = str(combined.relative_to(root))
+        else:
+            manifest["combined_pdf"] = None
+            manifest["missing_for_combined_pdf"] = missing
         manifest["pdf_quality"] = "vectorial_directo_A1; PNG_solo_vista_previa_220_dpi"
     if args.sheet and previous_manifest:
         records = {record["code"]: record for record in previous_manifest.get("sheets", [])}
