@@ -295,3 +295,62 @@ corrigieron y recompilo todo el pipeline:
   PASS (45 paginas). Entregables actualizados: `planos-electricos-grifo-renzo.pdf`
   y `expediente-renzo-industrial.pdf`.
 
+## 15. Auditoria de coherencia post-correcciones (2026-08-02, cierre)
+
+Auditoria integral ejecutada despues del push `553d15e` para confirmar que
+todo el pipeline y los entregables estan sincronizados.
+
+### 15.1 Verificacion SHA-256 build vs entregables
+
+- `expediente-renzo-industrial.pdf`: build == entregable (SHA identico).
+- `especificaciones-tecnicas-renzo.pdf`, `metrados-y-presupuesto-renzo.pdf` y
+  `requerimiento-servicios-renzo.pdf` (en `build/presupuesto/`): SHA identicos a
+  los de `entregables/`.
+- `cotizacion-comparativa.xlsx` y `metrados.xlsx`: SHA identicos.
+- `planos-electricos-grifo-renzo.pdf`: el PDF regenerado difería solo en el
+  `/ID` del trailer (metadata no sustantiva; misma longitud 1 091 306 bytes y
+  mismo contenido). Se re-sincronizo `entregables/` desde `build/`; tras la
+  copia los SHA coinciden.
+
+### 15.2 Coherencia de cifras (fuentes -> calculos -> expediente)
+
+- `calcular_proyecto.py` PASS: PI 18,25 kW / 22,05 kVA; MD 15,08 kW / 18,20 kVA;
+  desbalance 1,85 %; dV 0,22 %; Ipase 33,43 A; 22 circuitos; 3 alimentadores;
+  servicio 30 kVA; ITM 50 A.
+- `calcular_iluminacion.py` PASS: 2202 W en alumbrado (L-01 800 + L-02 640 +
+  A1-01 540 + A1-02 222), coherente con los circuitos de `cargas.yaml`.
+- `generar_fragmentos_expediente.py` PASS (22 macros, 22 circuitos). El archivo
+  `generated/datos` refleja los valores vigentes (MD 15.08/18.20, Ipase 33.43,
+  Desb 1.85 %, dVAlim 0.22 %, IccAsumido 10, Icu 25).
+- BOM `bom_renzo.json`: 153 partidas, total S/ 156 928,70, coherente con
+  `metrados-renzo.md` y con el capitulo 06 del expediente (588 m tuberia,
+  1444 m conductores activos).
+- `pdftotext main.pdf`: figuras 9.1, total S/ 156 928,70 y MD 15,08 kW /
+  18,20 kVA presentes en el texto.
+
+### 15.3 Verificacion DXF/SVG de las correcciones
+
+- Pararrayo (14.1): en IE-04 la capa `IE_RAYO` queda como 3 polilíneas con
+  tramos x 0,55..50,00 e y 1,03..49,67; todo dentro del marco y sin invadir el
+  rotulo (x < 54,2). Idem IE-01/02/03/06 (3 polilíneas por lamina).
+- Arquitectura (14.2): `ARQ_REFERENCIA` con 243-246 lineas por lamina
+  (IE-01..IE-04, IE-06), consistente con los 227 segmentos dibujables.
+- Figura 9.1 (14.3): `layout-base.svg` con 9 segmentos del lote real
+  (stroke-width 3), 242 lineas de muros/estructuras y el unico `<polygon>`
+  restante es la flecha de direccion del viento. `layout-grifo.json` mantiene
+  el pentagono real (area 352 m2, confianza alta).
+
+### 15.4 Compilacion final
+
+- pdflatex 2 pasadas PASS: 45 paginas, 1 417 986 bytes. Overfull menores
+  (max 20,5 pt en la tabla de referencias cruzadas, aceptado segun seccion 9).
+- `build/` esta en `.gitignore` (regenerable); las unicas diferencias de los
+  PDFs rastreados frente al commit anterior son timestamps y `/ID` de metadata,
+  sin cambios de contenido.
+
+### 15.5 Veredicto
+
+Todas las etapas PASS y los entregables estan sincronizados con `build/`. No se
+requieren correcciones adicionales. Sigue pendiente la revision humana
+competente conforme a `AGENTS.md` antes de usar los entregables como definitivos.
+
