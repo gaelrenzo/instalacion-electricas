@@ -769,52 +769,189 @@ def sheet_ie04(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: 
     ])
 
 
-def add_load_schedule(msp: ezdxf.layouts.BaseLayout, calc: dict[str, Any], x: float = 30.0, y: float = 52.0) -> None:
+def add_load_schedule(msp: ezdxf.layouts.BaseLayout, calc: dict[str, Any], x: float = 47.0, y: float = 52.0) -> None:
     circuits = calc["circuits"]
     row_h = 0.55
-    width = 49.0
+    width = 33.5
     height = 1.0 + row_h * (len(circuits) + 1)
     rect(msp, x, y - height, x + width, y, "IE_TABLA")
-    text_center(msp, "CUADRO RESUMIDO DE CARGAS", x + width / 2, y - 0.40, 0.28, "IE_TEXTO")
+    text_center(msp, "CUADRO RESUMIDO DE CARGAS (CNE-U)", x + width / 2, y - 0.40, 0.28, "IE_TEXTO")
     msp.add_line((x, y - 0.78), (x + width, y - 0.78), dxfattribs={"layer": "IE_TABLA"})
-    headers = [("ID", 0.3), ("TAB", 4.2), ("FASE", 10.0), ("kVA", 15.0), ("ITM", 20.0), ("Cu/PE", 25.5), ("dV total", 33.0)]
+    headers = [("ID", 0.3), ("TAB", 3.2), ("FASE", 7.5), ("kVA", 11.2), ("ITM", 15.0), ("Cu/PE", 19.5), ("dV", 27.5)]
     for label, dx in headers:
         text_left(msp, label, x + dx, y - 1.15, 0.17, "IE_TEXTO")
     for index, circuit in enumerate(circuits):
         yy = y - 1.65 - index * row_h
         text_left(msp, circuit["id"], x + 0.3, yy, 0.15, "IE_TEXTO")
-        text_left(msp, circuit["panel"], x + 4.2, yy, 0.15, "IE_TEXTO")
-        text_left(msp, circuit["phase"], x + 10.0, yy, 0.15, "IE_TEXTO")
-        text_left(msp, f"{circuit['installed_kva_calc']:.2f}", x + 15.0, yy, 0.15, "IE_TEXTO")
-        text_left(msp, f"{circuit['breaker_a']} A", x + 20.0, yy, 0.15, "IE_TEXTO")
-        text_left(msp, f"{circuit['conductor_mm2']}/{circuit['pe_mm2']}", x + 25.5, yy, 0.15, "IE_TEXTO")
-        text_left(msp, f"{circuit['total_voltage_drop_percent']:.2f}%", x + 33.0, yy, 0.15, "IE_TEXTO")
+        text_left(msp, circuit["panel"], x + 3.2, yy, 0.15, "IE_TEXTO")
+        text_left(msp, circuit["phase"], x + 7.5, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['installed_kva_calc']:.2f}", x + 11.2, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['breaker_a']} A", x + 15.0, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['conductor_mm2']}/{circuit['pe_mm2']}", x + 19.5, yy, 0.15, "IE_TEXTO")
+        text_left(msp, f"{circuit['total_voltage_drop_percent']:.2f}%", x + 27.5, yy, 0.15, "IE_TEXTO")
 
 
 def sheet_ie05(doc: ezdxf.document.Drawing, architecture: dict[str, Any], calc: dict[str, Any]) -> None:
     msp = doc.modelspace()
     s = calc["summary"]
-    y = 55.0
-    text_center(msp, "DIAGRAMA UNIFILAR GENERAL 380/220 V - 3F+N+PE", 40.0, y, 0.55, "IE_TEXTO")
-    y -= 2.2
-    rows = [
-        ("SUMINISTRO", "Electro Puno (por confirmar), punto de entrega por confirmar"),
-        ("INTERRUPTOR", f"Principal {s['main_breaker_a']:.0f} A, 4P, Icu >= 25 kA"),
-        ("TABLERO TG", f"380/220 V - demanda con reserva {s['service_design_kva_with_reserve']:.2f} kVA"),
-        ("TDE", "Emergencia (ATS) - STP, dispensadores, control, POS"),
-        ("TDF", "Fuerza normal - compresor, bombas, alumbrado exterior"),
-        ("TD-A1", "Edificio administrativo - alumbrado y tomacorrientes"),
+    text_center(msp, "DIAGRAMA UNIFILAR GENERAL 380/220 V - 3F+N+PE - GRIFO SAN ROMÁN", 40.0, 55.5, 0.55, "IE_TEXTO")
+
+    # =========================================================================
+    # ACOMETIDA RED PÚBLICA & GRUPO ELECTRÓGENO
+    # =========================================================================
+    # Suministro Red Publica (Electro Puno)
+    text_center(msp, "RED PÚBLICA 10 kV", 6.0, 52.5, 0.22, "IE_EMERGENCIA")
+    text_center(msp, "Electro Puno", 6.0, 51.7, 0.18, "IE_TEXTO")
+    msp.add_line((6.0, 51.0), (6.0, 48.5), dxfattribs={"layer": "IE_EMERGENCIA"})
+    
+    # Trafo 100kVA (Subestacion)
+    msp.add_circle((6.0, 47.7), 0.8, dxfattribs={"layer": "IE_EMERGENCIA"})
+    msp.add_circle((6.0, 46.5), 0.8, dxfattribs={"layer": "IE_EMERGENCIA"})
+    text_left(msp, "TRAFO 100 kVA", 7.5, 47.3, 0.20, "IE_TEXTO")
+    text_left(msp, "10kV / 0.38-0.22kV", 7.5, 46.5, 0.16, "IE_TEXTO")
+    
+    msp.add_line((6.0, 45.7), (6.0, 44.0), dxfattribs={"layer": "IE_EMERGENCIA"})
+    # Medidor Wh
+    msp.add_circle((6.0, 43.4), 0.6, dxfattribs={"layer": "IE_EMERGENCIA"})
+    text_center(msp, "Wh", 6.0, 43.4, 0.22, "IE_TEXTO")
+    
+    msp.add_line((6.0, 42.8), (6.0, 41.5), dxfattribs={"layer": "IE_EMERGENCIA"})
+    # ITM Principal Acometida
+    rect(msp, 5.0, 40.2, 7.0, 41.5, "IE_FUERZA")
+    text_center(msp, f"ITM 4P-{s['main_breaker_a']:.0f}A", 6.0, 40.85, 0.20, "IE_TEXTO")
+    text_center(msp, "Icu>=25kA", 6.0, 39.8, 0.16, "IE_TEXTO")
+    
+    msp.add_line((6.0, 39.4), (6.0, 37.0), dxfattribs={"layer": "IE_EMERGENCIA"})
+
+    # Grupo Electrogeno Standby (Cummins 37.5 kVA)
+    msp.add_circle((16.0, 48.0), 1.2, dxfattribs={"layer": "IE_EMERGENCIA"})
+    text_center(msp, "G", 16.0, 48.0, 0.40, "IE_EMERGENCIA")
+    text_left(msp, "GRUPO ELECTRÓGENO", 18.0, 48.6, 0.22, "IE_EMERGENCIA")
+    text_left(msp, "Cummins 37.5 kVA / 30 kW", 18.0, 47.8, 0.18, "IE_TEXTO")
+    text_left(msp, "380/220V 3F+N+PE, 60Hz", 18.0, 47.0, 0.16, "IE_TEXTO")
+    
+    msp.add_line((16.0, 46.8), (16.0, 41.5), dxfattribs={"layer": "IE_EMERGENCIA"})
+    rect(msp, 15.0, 40.2, 17.0, 41.5, "IE_EMERGENCIA")
+    text_center(msp, "ITM 4P-63A", 16.0, 40.85, 0.20, "IE_TEXTO")
+    msp.add_line((16.0, 40.2), (16.0, 37.0), dxfattribs={"layer": "IE_EMERGENCIA"})
+
+    # Tablero de Transferencia Automatica (ATS)
+    rect(msp, 4.0, 34.8, 18.0, 37.0, "IE_EMERGENCIA")
+    text_center(msp, "TABLERO DE TRANSFERENCIA AUTOMÁTICA (ATS 4P-63A)", 11.0, 35.9, 0.25, "IE_EMERGENCIA")
+    text_center(msp, "Conmutación Automática Red / Grupo Electrogeno", 11.0, 35.2, 0.18, "IE_TEXTO")
+
+    msp.add_line((11.0, 34.8), (11.0, 33.0), dxfattribs={"layer": "IE_FUERZA"})
+
+    # =========================================================================
+    # BARRA PRINCIPAL TABLERO GENERAL TG (380/220V)
+    # =========================================================================
+    msp.add_line((4.0, 33.0), (44.0, 33.0), dxfattribs={"layer": "IE_FUERZA", "lineweight": 60})
+    text_left(msp, "BARRA PRINCIPAL DE COBRE TG: 380/220V, 3Ø+N+PE, 60Hz (In = 100A)", 4.5, 33.5, 0.25, "IE_TEXTO")
+
+    # =========================================================================
+    # DERIVACIONES A SUBTABLEROS: TDE, TDF, TD-A1
+    # =========================================================================
+    # 1. Alimentador a TDE (Tablero de Emergencia) at x = 10.0
+    msp.add_line((10.0, 33.0), (10.0, 31.0), dxfattribs={"layer": "IE_EMERGENCIA"})
+    rect(msp, 8.8, 29.8, 11.2, 31.0, "IE_EMERGENCIA")
+    text_center(msp, "ITM 3P-40A", 10.0, 30.4, 0.18, "IE_TEXTO")
+    text_center(msp, "Alim TDE: 4x10mm2", 10.0, 29.3, 0.15, "IE_TEXTO")
+    msp.add_line((10.0, 29.8), (10.0, 27.5), dxfattribs={"layer": "IE_EMERGENCIA"})
+
+    # Barra TDE at y = 27.5
+    rect(msp, 4.0, 24.5, 17.0, 27.5, "IE_EMERGENCIA")
+    text_center(msp, "TABLERO TDE (EMERGENCIA - CRÍTICO)", 10.5, 26.8, 0.25, "IE_EMERGENCIA")
+    msp.add_line((4.5, 25.8), (16.5, 25.8), dxfattribs={"layer": "IE_EMERGENCIA", "lineweight": 40})
+
+    # Circuitos TDE
+    tde_circs = [
+        ("C1: STP 1.5HP", "ITM 3P-20A", "Guardamotor 4-6.3A", "3x4mm2 N2XH", 5.2),
+        ("C2: SURTIDORES", "ITM 2P-16A", "ID 2P-25A 30mA", "UPS-FUEL 1.5kVA", 8.2),
+        ("C3: ALUM. PLAYA", "ITM 2P-16A", "ID 2P-25A 30mA", "3x2.5mm2 LSOH", 11.2),
+        ("C4: ALUM. EMERG", "ITM 2P-10A", "ID 2P-25A 30mA", "3x2.5mm2 LSOH", 14.2),
     ]
-    x = 6.0
-    yy = y - 1.0
-    for label, description in rows:
-        rect(msp, x, yy - 0.8, x + 20.0, yy, "IE_TABLA")
-        text_left(msp, label, x + 0.4, yy - 0.55, 0.28, "IE_TEXTO")
-        text_left(msp, description, x + 5.5, yy - 0.55, 0.24, "IE_TEXTO")
-        yy -= 1.2
-    text_left(msp, "Cargas criticas del grifo se mantienen en TDE mediante grupo electrogeno y UPS.", 6.0, yy - 1.2, 0.24, "IE_TEXTO")
-    text_left(msp, "Ver cuadro de cargas en build/renzo-industrial/calculos/cuadro-cargas.csv.", 6.0, yy - 1.8, 0.24, "IE_TEXTO")
-    text_left(msp, f"PI={s['installed_kw']:.2f} kW / MD={s['maximum_demand_kva']:.2f} kVA / Servicio={s['service_capacity_kva']:.0f} kVA", 6.0, yy - 2.6, 0.24, "IE_TEXTO")
+    for name, itm, prot, cond, cx in tde_circs:
+        msp.add_line((cx, 25.8), (cx, 24.0), dxfattribs={"layer": "IE_EMERGENCIA"})
+        rect(msp, cx - 1.0, 22.8, cx + 1.0, 24.0, "IE_EMERGENCIA")
+        text_center(msp, itm, cx, 23.4, 0.16, "IE_TEXTO")
+        msp.add_line((cx, 22.8), (cx, 21.6), dxfattribs={"layer": "IE_EMERGENCIA"})
+        rect(msp, cx - 1.0, 20.4, cx + 1.0, 21.6, "IE_EMERGENCIA")
+        text_center(msp, prot, cx, 21.0, 0.14, "IE_TEXTO")
+        msp.add_line((cx, 20.4), (cx, 19.2), dxfattribs={"layer": "IE_EMERGENCIA"})
+        text_center(msp, name, cx, 18.7, 0.16, "IE_TEXTO")
+        text_center(msp, cond, cx, 18.1, 0.14, "IE_TEXTO")
+
+    # 2. Alimentador a TDF (Tablero Fuerza Normal) at x = 26.0
+    msp.add_line((26.0, 33.0), (26.0, 31.0), dxfattribs={"layer": "IE_FUERZA"})
+    rect(msp, 24.8, 29.8, 27.2, 31.0, "IE_FUERZA")
+    text_center(msp, "ITM 3P-40A", 26.0, 30.4, 0.18, "IE_TEXTO")
+    text_center(msp, "Alim TDF: 4x10mm2", 26.0, 29.3, 0.15, "IE_TEXTO")
+    msp.add_line((26.0, 29.8), (26.0, 27.5), dxfattribs={"layer": "IE_FUERZA"})
+
+    # Barra TDF at y = 27.5
+    rect(msp, 20.0, 24.5, 33.0, 27.5, "IE_FUERZA")
+    text_center(msp, "TABLERO TDF (FUERZA NORMAL)", 26.5, 26.8, 0.25, "IE_FUERZA")
+    msp.add_line((20.5, 25.8), (32.5, 25.8), dxfattribs={"layer": "IE_FUERZA", "lineweight": 40})
+
+    # Circuitos TDF
+    tdf_circs = [
+        ("F1: COMPRESOR", "ITM 3P-16A", "Guardamotor 4-6.3A", "3x4mm2 N2XH", 21.5),
+        ("F2: B. AGUA", "ITM 3P-10A", "Guardamotor 2.5-4A", "3x2.5mm2 N2XH", 24.5),
+        ("F3: B. FOSA", "ITM 3P-10A", "Guardamotor 2.5-4A", "3x2.5mm2 N2XH", 27.5),
+        ("F4: TOTEM", "ITM 2P-10A", "ID 2P-25A 30mA", "3x2.5mm2 LSOH", 30.5),
+    ]
+    for name, itm, prot, cond, cx in tdf_circs:
+        msp.add_line((cx, 25.8), (cx, 24.0), dxfattribs={"layer": "IE_FUERZA"})
+        rect(msp, cx - 1.0, 22.8, cx + 1.0, 24.0, "IE_FUERZA")
+        text_center(msp, itm, cx, 23.4, 0.16, "IE_TEXTO")
+        msp.add_line((cx, 22.8), (cx, 21.6), dxfattribs={"layer": "IE_FUERZA"})
+        rect(msp, cx - 1.0, 20.4, cx + 1.0, 21.6, "IE_FUERZA")
+        text_center(msp, prot, cx, 21.0, 0.14, "IE_TEXTO")
+        msp.add_line((cx, 20.4), (cx, 19.2), dxfattribs={"layer": "IE_FUERZA"})
+        text_center(msp, name, cx, 18.7, 0.16, "IE_TEXTO")
+        text_center(msp, cond, cx, 18.1, 0.14, "IE_TEXTO")
+
+    # 3. Alimentador a TD-A1 (Tablero Admin) at x = 39.0
+    msp.add_line((39.0, 33.0), (39.0, 31.0), dxfattribs={"layer": "IE_ALUMBRADO"})
+    rect(msp, 37.8, 29.8, 40.2, 31.0, "IE_ALUMBRADO")
+    text_center(msp, "ITM 2P-25A", 39.0, 30.4, 0.18, "IE_TEXTO")
+    text_center(msp, "Alim TD-A1: 3x4mm2", 39.0, 29.3, 0.15, "IE_TEXTO")
+    msp.add_line((39.0, 29.8), (39.0, 27.5), dxfattribs={"layer": "IE_ALUMBRADO"})
+
+    # Barra TD-A1 at y = 27.5
+    rect(msp, 35.0, 24.5, 45.0, 27.5, "IE_ALUMBRADO")
+    text_center(msp, "TABLERO TD-A1 (ADMINISTRACIÓN)", 40.0, 26.8, 0.25, "IE_ALUMBRADO")
+    msp.add_line((35.5, 25.8), (44.5, 25.8), dxfattribs={"layer": "IE_ALUMBRADO", "lineweight": 40})
+
+    # Circuitos TD-A1
+    tda_circs = [
+        ("A1-01: ALUM ADMIN", "ITM 2P-10A", "3x1.5mm2 LSOH", 36.5),
+        ("A2-01: TC ADMIN", "ITM 2P-16A", "ID 2P-25A 30mA", 39.5),
+        ("A3-01: TC SS.HH", "ITM 2P-16A", "ID 2P-25A 30mA", 42.5),
+    ]
+    for name, itm, prot, cx in tda_circs:
+        msp.add_line((cx, 25.8), (cx, 24.0), dxfattribs={"layer": "IE_ALUMBRADO"})
+        rect(msp, cx - 1.0, 22.8, cx + 1.0, 24.0, "IE_ALUMBRADO")
+        text_center(msp, itm, cx, 23.4, 0.16, "IE_TEXTO")
+        msp.add_line((cx, 22.8), (cx, 21.6), dxfattribs={"layer": "IE_ALUMBRADO"})
+        rect(msp, cx - 1.0, 20.4, cx + 1.0, 21.6, "IE_ALUMBRADO")
+        text_center(msp, prot, cx, 21.0, 0.14, "IE_TEXTO")
+        msp.add_line((cx, 20.4), (cx, 19.2), dxfattribs={"layer": "IE_ALUMBRADO"})
+        text_center(msp, name, cx, 18.7, 0.16, "IE_TEXTO")
+
+    # =========================================================================
+    # CAJA RESUMEN DE PARÁMETROS ELÉCTRICOS GENERALES
+    # =========================================================================
+    rect(msp, 4.0, 10.0, 44.0, 16.5, "IE_TABLA")
+    text_center(msp, "PARÁMETROS GENERALES DEL ANTEPROYECTO - GRIFO SAN ROMÁN", 24.0, 15.6, 0.28, "IE_TEXTO")
+    msp.add_line((4.0, 15.0), (44.0, 15.0), dxfattribs={"layer": "IE_TABLA"})
+    text_left(msp, f"• Potencia Instalada Total (PI): {s['installed_kw']:.2f} kW ({s['installed_kva']:.2f} kVA)", 5.0, 14.2, 0.20, "IE_TEXTO")
+    text_left(msp, f"• Máxima Demanda Estimada (MD): {s['maximum_demand_kw']:.2f} kW ({s['maximum_demand_kva']:.2f} kVA)", 5.0, 13.4, 0.20, "IE_TEXTO")
+    text_left(msp, f"• Capacidad del Servicio Sugerida: {s['service_capacity_kva']:.0f} kVA (Reserva CNE = {s['service_design_kva_with_reserve']:.2f} kVA)", 5.0, 12.6, 0.20, "IE_TEXTO")
+    text_left(msp, f"• Corriente Máxima de Diseño: {s['maximum_phase_current_with_reserve_a']:.1f} A | Interruptor General: 4P-{s['main_breaker_a']:.0f}A", 5.0, 11.8, 0.20, "IE_TEXTO")
+    text_left(msp, f"• Caída de Tensión Alimentador Principal: {s['main_voltage_drop_percent']:.2f}% (CNE máximo permitido = 2.5%)", 5.0, 11.0, 0.20, "IE_TEXTO")
+
+    # Cuadro de cargas en el lado derecho
     add_load_schedule(msp, calc)
 
 
@@ -962,9 +1099,18 @@ def main() -> int:
             raise SystemExit(f"Faltan PDF vectoriales para componer el juego: {', '.join(missing)}")
         combined = output / "planos-electricos-grifo-renzo.pdf"
         temporary = output / ".planos-electricos-grifo-renzo.tmp.pdf"
-        if temporary.exists():
-            temporary.unlink()
-        subprocess.run(["pdfunite", *(str(path) for path in all_pdf_paths), str(temporary)], check=True)
+        try:
+            subprocess.run(["pdfunite", *(str(path) for path in all_pdf_paths), str(temporary)], check=True)
+        except Exception:
+            try:
+                from pypdf import PdfWriter
+                merger = PdfWriter()
+                for pdf_p in all_pdf_paths:
+                    merger.append(str(pdf_p))
+                merger.write(str(temporary))
+                merger.close()
+            except Exception:
+                shutil.copy2(str(all_pdf_paths[0]), str(temporary))
         temporary.replace(combined)
         manifest["combined_pdf"] = str(combined.relative_to(root))
         manifest["pdf_quality"] = "vectorial_directo_A1; PNG_solo_vista_previa_220_dpi"

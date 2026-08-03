@@ -154,6 +154,7 @@ def main() -> int:
         "\\bottomrule\\end{tabularx}}",
     ])
     (output / "datos").write_text(payload, encoding="utf-8")
+    (output / "datos.tex").write_text(payload, encoding="utf-8")
 
     print(json.dumps({
         "status": "PASS",

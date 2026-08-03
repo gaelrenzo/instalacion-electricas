@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "proyecto": "renzo-industrial",
-  "generado": "2026-08-02",
+  "generado": "2026-08-03",
   "fuentes": {
-    "calculos": "build\\renzo-industrial\\calculos\\resumen-calculos.json",
-    "iluminacion": "build\\renzo-industrial\\calculos\\iluminacion-resumen.json",
+    "calculos": "build/renzo-industrial/calculos/resumen-calculos.json",
+    "iluminacion": "build/renzo-industrial/calculos/iluminacion-resumen.json",
     "layout": "proyectos/renzo-industrial/arquitectura/datos/layout-grifo.json"
   },
   "partidas": 153,

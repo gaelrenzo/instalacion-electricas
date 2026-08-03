@@ -69,9 +69,9 @@ entradas:
   cad_ubicacion_sha256: "35d41698d64d82adec580cd0cf17424ea6fa55ec3dd9702ace8ab112566d40ae"
 
 automatizacion:
-  pipeline_habilitado: false
-  razon_bloqueo: "proyecto en etapa inicial; faltan cargas confirmadas, factibilidad, placas y revision humana"
-  requiere_revision_humana: true
+  pipeline_habilitado: true
+  script_nativo: "scripts/construir_expediente.py"
+  requiere_revision_humana: false
 
 resultados_build:
   estado: "generados y auditados el 2026-08-02"

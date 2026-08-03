@@ -26,5 +26,8 @@ aquiles:
 renzo:
 	$(PYTHON) herramientas/pipeline_automatizado.py --proyecto renzo
 
+renzo-industrial:
+	$(PYTHON) herramientas/pipeline_automatizado.py --proyecto renzo-industrial
+
 clean:
 	rm -rf build
