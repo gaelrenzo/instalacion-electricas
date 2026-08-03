@@ -81,7 +81,7 @@ resultados_build:
   layout_base: "build/renzo-industrial/expediente/assets/layout-base.pdf (vista esquematica de la geometria base CAD-002)"
   expediente: "build/renzo-industrial/expediente/main.pdf (45 paginas: memoria, calculos, iluminacion, especificaciones, seguridad, cronograma, metrados, planos, planos base, conclusiones, bibliografia)"
   presupuesto: "build/renzo-industrial/presupuesto/ (bom_renzo.json 153 partidas S/ 156 928,70; metrados-renzo.md/xlsx; cotizacion-comparativa.xlsx; comparativa-proveedores.md)"
-  documentos_standalone: "build/renzo-industrial/presupuesto/ (especificaciones-tecnicas-renzo.pdf 10 pp; requerimiento-servicios-renzo.pdf 11 pp; metrados-y-presupuesto-renzo.pdf 5 pp; sustentacion-diseno-renzo.pdf 24 pp)"
+  documentos_standalone: "build/renzo-industrial/presupuesto/ (especificaciones-tecnicas-renzo.pdf 10 pp; requerimiento-servicios-renzo.pdf 11 pp; metrados-y-presupuesto-renzo.pdf 5 pp; sustentacion-diseno-renzo.pdf 6 pp)"
 
 entregables:
   directorio: entregables
@@ -92,7 +92,7 @@ entregables:
     - "entregables/especificaciones-tecnicas-renzo.pdf (10 paginas)"
     - "entregables/requerimiento-servicios-renzo.pdf (11 paginas)"
     - "entregables/metrados-y-presupuesto-renzo.pdf (5 paginas)"
-    - "entregables/sustentacion-diseno-renzo.pdf (24 paginas: justificacion normativa de conductores, luminarias, protecciones, PAT, grupo y preguntas probables de sustentacion)"
+    - "entregables/sustentacion-diseno-renzo.pdf (6 paginas: justificacion normativa de conductores, luminarias, protecciones, PAT, grupo y preguntas probables de sustentacion)"
   libros:
     - "entregables/metrados.xlsx (153 partidas, total S/ 156 928,70)"
     - "entregables/cotizacion-comparativa.xlsx (Promart/Sodimac/Mercado Libre)"

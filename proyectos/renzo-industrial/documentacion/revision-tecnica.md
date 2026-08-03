@@ -356,7 +356,7 @@ competente conforme a `AGENTS.md` antes de usar los entregables como definitivos
 
 ## 16. Sustentacion tecnica para revision con el ingeniero (2026-08-02)
 
-Nuevo documento standalone `sustentacion_diseno_renzo.tex` (24 paginas,
+Nuevo documento standalone `sustentacion_diseno_renzo.tex` (6 paginas,
 `entregables/sustentacion-diseno-renzo.pdf` y `build/renzo-industrial/presupuesto/`)
 que prepara al estudiante para sustentar el diseno electrico ante su ingeniero.
 
@@ -372,6 +372,6 @@ Contenido:
   10 ohm y no 25, porque el grupo de 37,5 kVA standby, porque ATS de 4 polos,
   porque LED, como se garantiza el nivel de lux, y el estado de las zonas
   clasificadas como propuesta academica.
-- Compilacion PASS: 24 paginas, un unico overfull menor de 4,5 pt. Copiado a
-  `build/` y `entregables/`.
+- Compilacion PASS: 6 paginas, sin overfull. Copiado a `build/` y
+  `entregables/`.
 

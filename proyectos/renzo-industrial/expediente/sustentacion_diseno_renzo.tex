@@ -12,6 +12,11 @@
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
+% Compacidad: secciones (sin portadas de capitulo) y espaciado reducido
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=1cm,itemsep=0pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1cm,itemsep=0pt,topsep=2pt}
+
 \begin{document}
 
 \hypersetup{pageanchor=false}
@@ -24,23 +29,18 @@
 \pagenumbering{arabic}
 \renewcommand{\documentfootertext}{SUSTENTACION TECNICA - INSTALACIONES ELECTRICAS}
 
-\tableofcontents
-\clearpage
-
-\chapter{Objeto y alcance}
-
+\section*{Objeto}
+\addcontentsline{toc}{section}{Objeto}
 Este documento sustenta, ante la revision tecnica, el \textbf{porque de cada
 decision de diseno} del anteproyecto de instalaciones electricas en baja
-tension de la estacion de servicio (grifo) de combustibles liquidos. Para cada
-parametro se indica: el valor adoptado, la base normativa que lo exige o
-justifica, el resultado obtenido y la evidencia del proyecto. Tambien se
-anticipan las preguntas tipicas de la sustentacion, con su respuesta lista.
-
-El proyecto tiene estos parametros base:
+tension de la estacion de servicio (grifo). Para cada parametro se indica el
+valor adoptado, la base normativa, el resultado y las preguntas tipicas de la
+sustentacion con su respuesta.
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.18}
+\small
+\renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{P{0.32\textwidth} C{0.24\textwidth} L}
 \toprule
 \suheader \textbf{Parametro} & \textbf{Valor} & \textbf{Fuente} \\
@@ -48,296 +48,160 @@ El proyecto tiene estos parametros base:
 Tension nominal & 380/220 V, 3F+N+PE & criterio adoptado (DEC-004) \\
 Frecuencia & 60 Hz & sistema peruano \\
 Sistema de puesta a tierra & TN-S & criterio adoptado (DEC-005) \\
-Potencia instalada & 18,25 kW (22,05 kVA) & cuadro de cargas \\
-Maxima demanda & 15,08 kW (18,20 kVA) & cuadro de cargas \\
-Capacidad de servicio & 30 kVA & propuesta \\
-Interruptor general & 50 A, 4P & cuadro de cargas \\
+Potencia instalada / maxima demanda & 18,25 kW (22,05 kVA) / 15,08 kW (18,20 kVA) & cuadro de cargas \\
+Capacidad de servicio / ITM & 30 kVA / 50 A, 4P & propuesta \\
 Icc en punto de entrega & 10 kA (supuesto) & pendiente factibilidad \\
 Altitud de sitio & 3830 m s.n.m. & confirmada por el estudiante \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section{Normativa de referencia}
+\textbf{Normativa de referencia:} CNE-U (R.M. 037-2006-MEM/DM y 175-2008); EM.010
+(R.M. 083-2019-VIVIENDA); NTP ISO 8995; R.M. 186-2014-MEM/DM y OSINERGMIN; NTP
+370.301 y NTP IEC 60617.
 
-\begin{itemize}
-\item Codigo Nacional de Electricidad -- Utilizacion (CNE-U), aprobado por
-  R.M. N.{} 037-2006-MEM/DM y modificado por R.M. N.{} 175-2008-MEM/DM.
-\item Norma EM.010 del RNE, Instalaciones Electricas Interiores, aprobada por
-  R.M. N.{} 083-2019-VIVIENDA.
-\item NTP ISO 8995:2008, Iluminacion de lugares de trabajo.
-\item Reglamento de Seguridad para Establecimientos de Venta al Publico de
-  Combustibles, R.M. N.{} 186-2014-MEM/DM, y normas sectoriales de OSINERGMIN.
-\item NTP 370.301 (metodos de instalacion) y NTP IEC 60617 (simbolos).
-\end{itemize}
-
-\chapter{Seleccion de conductores}
-
-\section{Seccion minima y tipo de conductor}
+\section{Conductores}
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.32\textwidth} C{0.22\textwidth} L}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{P{0.30\textwidth} P{0.24\textwidth} L}
 \toprule
-\suheader \textbf{Decision} & \textbf{Valor} & \textbf{Justificacion} \\
+\suheader \textbf{Decision} & \textbf{Valor} & \textbf{Justificacion normativa} \\
 \midrule
-Conductor & Cobre, XLPE/EPR, 450/750 V & CNE-U Tabla 2 (90~\({}^\circ\)C);
-  cobre por conductividad, resistencia a temperatura y agrupamiento \\
-Seccion minima & 2,5 mm\textsuperscript{2} & CNE-U Regla 030-002: minimo en
-  fuerza y alumbrado \\
-Circuitos derivados & 2,5 y 4 mm\textsuperscript{2} & dimensionados por
-  corriente con factor 1,25 en motores \\
-Alimentador principal & 16 mm\textsuperscript{2} fase/neutro, 10 mm\textsuperscript{2} PE & por corriente, caida y coordinacion \\
+Conductor & Cobre XLPE/EPR 450/750 V & CNE-U Tabla 2 (90~\({}^\circ\)C), metodos B1/D (NTP 370.301) \\
+Seccion minima & 2,5 mm\textsuperscript{2} & CNE-U Regla 030-002 (obligatoria en fuerza y alumbrado) \\
+Circuitos derivados & 2,5--4 mm\textsuperscript{2} & por corriente; motores con factor 1,25 \\
+Alimentador principal & 16/16/10 mm\textsuperscript{2} (F/N/PE) & por corriente, caida y coordinacion \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\textbf{Pregunta probable:} \emph{?`Por que no se usa 1,5 mm\textsuperscript{2}
-en alumbrado, que seria suficiente?}
+\textbf{Ampacidad y desrating.} Se verifica \(I_b \leq I_z\) con capacidades de
+la Tabla 2 (cobre, 3 conductores cargados) corregidas por un factor compuesto
+de \(0,80\) (Tabla 5A/5C: temperatura, agrupamiento y altitud de Puno). Aplicar
+un unico factor conservador evita sobreestimar la capacidad real en un grifo de
+3830~m con canalizaciones agrupadas.
 
-Respuesta: La Regla 030-002 del CNE-U fija la seccion minima de
-2,5~mm\textsuperscript{2} para circuitos derivados de fuerza y alumbrado, por lo
-que usar seccion menor no cumple el Codigo aunque la carga no la requiera. Este
-es un requisito obligatorio, no un criterio de ingenieria.
+\textbf{Caida de tension.} Limite 2,5~\% por alimentador/derivado y 4~\% total
+(CNE-U Regla 050-102). El alimentador principal (12~m, 16~mm\textsuperscript{2},
+33,43~A) da 0,22~\%; el peor caso del proyecto es el circuito \dVMaxCircuit~con
+\dVMaxTotal~\%.
 
-\section{Capacidad de corriente (ampacidad)}
+\textbf{Preguntas probables.}
+\begin{enumerate}
+\item \emph{?`Por que no 1,5 mm\textsuperscript{2} en alumbrado?} Regla 030-002
+  fija el minimo en 2,5~mm\textsuperscript{2}; es requisito obligatorio.
+\item \emph{?`De donde sale el 0,80 de desrating?} Factor compuesto por
+  temperatura, agrupamiento y altitud (Tabla 5A/5C); en obra pueden usarse
+  factores separados medidos.
+\item \emph{?`Por que el alimentador cae solo 0,22~\%?} Es corto (12~m), de
+  16~mm\textsuperscript{2} y con 33,43~A; el peor circuito sigue bajo el limite.
+\item \emph{?`Y si el Icc real supera 10~kA?} Se recalcula poder de corte y
+  selectividad con la factibilidad; el ITM de 25~kA ya da holgura.
+\item \emph{?`Por que el PE de motores es igual a la fase?} Tabla 16 permite
+  menor seccion, pero se adopta igual por proteccion fisica y continuidad en
+  falla.
+\end{enumerate}
 
-Los conductores se verifican con la condicion \(I_b \leq I_z\), siendo \(I_b\)
-la corriente de diseno y \(I_z\) la capacidad corregida por desrating. Las
-capacidades base se toman de la Tabla 2 del CNE-U (cobre, XLPE/EPR, tres
-conductores cargados, metodos B1 y D de la NTP 370.301).
+\section{Luminarias}
 
-El factor de desrating adoptado es \(0,80\), que agrupa conservadoramente:
-\begin{itemize}
-\item correccion por temperatura ambiente;
-\item agrupamiento de conductores; y
-\item altitud del sitio (Puno, aproximadamente 3830 m s.n.m.).
-\end{itemize}
+Se usa el \textbf{metodo de lumenes}:
+\(K = \frac{L\cdot A}{H_m(L+A)}\), \(\Phi = \frac{E\,S}{F_U\,F_M}\),
+\(N = \lceil\Phi/\phi_l\rceil\), exigiendo \(E_{res} \geq E\) (NTP ISO 8995 y
+EM.010 art. 6). Factores: \(F_M=0,80\) interior / 0,70 exterior; reflectancias
+tipicas.
 
-El CNE-U permite aplicar factores de la Tabla 5A/5C; en el anteproyecto se
-adopta un unico factor compuesto de 0,80 sin aplicar factores separados, lo que
-queda del lado de la seguridad.
+Se adoptan \textbf{luminarias LED} por eficacia (100 lm/W), menor densidad de
+potencia (LPD promedio 3,19~W/m\textsuperscript{2}), encendido instantaneo,
+larga vida y menor mantenimiento. Panel 36~W (ADM/OFI), panel 18~W (SS.HH),
+high-bay 50~W (sala de maquinas), proyector 100~W (marquesina/despacho), poste
+80~W (patio). Niveles: oficinas 300--500 lux, sala de maquinas 200, SS.HH 150,
+despacho 150--200, exterior 50.
 
-\textbf{Pregunta probable:} \emph{?`De donde sale el 0,80 de desrating y por que
-no aplicas factores separados?}
+\textbf{Preguntas probables.}
+\begin{enumerate}
+\item \emph{?`Como garantizas el nivel de lux?} Metodo de lumenes con
+  \(E_{res} \geq E\) en cada ambiente; todos cumplen (verificado en la memoria).
+\item \emph{?`Por que 2202~W de alumbrado?} Es el resultado del metodo; coincide
+  exactamente con L-01+L-02+A1-01+A1-02.
+\item \emph{?`Los valores de catalogo son reales?} Son familias de catalogo
+  comparables (criterio adoptado, con referencia); las placas se sustituyen
+  antes de construir.
+\item \emph{?`Por que LED y no HID/fluorescente?} Mayor eficacia, menor LPD,
+  encendido instantaneo y menor mantenimiento.
+\end{enumerate}
 
-Respuesta: El 0,80 es un factor compuesto conservador que cubre temperatura,
-agrupamiento y altitud (CNE-U Tabla 5A/5C). En un grifo de altura (3830 m) y con
-canalizaciones agrupadas, el enfriamiento de los conductores se reduce; aplicar
-un factor unico de 0,80 asegura que la capacidad real nunca supere la base de la
-Tabla 2. En la etapa de construccion se pueden usar factores separados medidos
-en campo.
+\section{Protecciones y tableros}
 
-\section{Caida de tension}
+\textbf{Coordinacion.} Regla 050-104: \(I_b \leq I_n \leq I_z\) en todos los
+circuitos; Regla 050-100 para el interruptor general (\(I_{cu} \geq\)
+\Icu~kA, cubriendo el Icc supuesto de \IccAsumido~kA).
 
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.32\textwidth} C{0.22\textwidth} L}
-\toprule
-\suheader \textbf{Parametro} & \textbf{Valor} & \textbf{Norma} \\
-\midrule
-Caida en alimentador o derivado & \(\leq\) 2,5 \% & CNE-U Regla 050-102 \\
-Caida total a salida mas alejada & \(\leq\) 4 \% & CNE-U Regla 050-102 \\
-Alimentador principal (resultado) & 0,22 \% & calculo del anteproyecto \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\textbf{Curvas C y D.} Alumbrado/servicios curva C (10--16~A); tomacorrientes
+curva C (20~A); bombas STP y motores curva D (20~A); compresor/bombas 3F curva D
+(10--16~A). La curva D tolera el inrush de arranque (5--7 veces la nominal) sin
+disparos intempestivos; la C es suficiente y mas sensible para cargas sin
+inrush.
 
-Formula empleada para el alimentador trifasico (380 V):
-\[
-\Delta V(\%) = \frac{100 \cdot \sqrt{3} \cdot L \cdot I \cdot (\rho \cos\varphi + x_L \sin\varphi)}{V \cdot S}
-\]
-con \(\rho = 0{,}021~\Omega\cdot\text{mm}^2/\text{m}\) (cobre en servicio) y
-\(x_L = 0{,}08~\Omega/\text{km}\) (reactancia hipotesis).
+\textbf{Diferencial de 30~mA} en tomacorrientes y areas clasificadas: proteccion
+de personas (contacto indirecto) y riesgo por combustibles (Seccion 110/120).
+300~mA seria solo proteccion contra incendio.
 
-\textbf{Pregunta probable:} \emph{?`Por que la caida del alimentador es tan
-baja (0,22 \%)?}
+\textbf{Tableros.} Metalicos con barras de neutro y tierra separadas (TN-S):
+evita corrientes de retorno por el PE, reduce ruido y garantiza el funcionamiento
+de los diferenciales. Distribucion TG \(\rightarrow\) TDE, TDF, TD-A1.
 
-Respuesta: El alimentador principal es corto (12 m), la seccion adoptada es
-16~mm\textsuperscript{2} y la corriente con reserva es 33,43~A; el producto de
-estos tres factores da una caida minima. El peor caso del proyecto es el
-circuito \dVMaxCircuit~con \dVMaxTotal~\%, que tambien queda dentro del limite.
+\textbf{Preguntas probables.}
+\begin{enumerate}
+\item \emph{?`Por que curva D en motores?} Inrush de arranque 5--7\(\times\)I\(_n\);
+  curva D evita disparos intempestivos y protege el conductor (050-104).
+\item \emph{?`Por que 30~mA y no 300?} Proteccion de personas; 300~mA es solo
+  contra incendio.
+\item \emph{?`Por que separar neutro y tierra?} Es el TN-S: evita corrientes por
+  el PE y asegura los diferenciales.
+\item \emph{?`Por que el desbalance es 1,85~\%?} Cargas monofasicas repartidas
+  en R/S/T; muy bajo el objetivo de 10~\% de la EM.010.
+\end{enumerate}
 
-\chapter{Seleccion de luminarias}
-
-\section{Metodo de calculo}
-
-Se usa el \textbf{metodo de lumenes} (rendimiento o factor de utilizacion):
-\[
-K = \frac{L \cdot A}{H_m\,(L+A)}, \qquad
-\Phi = \frac{E \cdot S}{F_U \cdot F_M}, \qquad
-N = \left\lceil \frac{\Phi}{\phi_l} \right\rceil
-\]
-con \(K\) indice de local, \(E\) iluminancia objetivo (NTP ISO 8995),
-\(S\) area, \(F_U\) factor de utilizacion (interpolado por \(K\) y
-reflectancias), \(F_M\) factor de mantenimiento (0,80 interior, 0,70 exterior)
-y \(\phi_l\) flujo de la luminaria.
-
-\section{Justificacion de la luminaria seleccionada}
-
-Se adoptan \textbf{luminarias LED} porque combinan alta eficacia luminosa,
-larga vida util, bajo mantenimiento y buen rendimiento en arranques frecuentes
-(ideal para iluminancia de emergencia y encendido automatico de marquesina):
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.34\textwidth} C{0.16\textwidth} C{0.16\textwidth} L}
-\toprule
-\suheader \textbf{Luminaria} & \textbf{Potencia} & \textbf{Eficacia} & \textbf{Uso} \\
-\midrule
-Panel LED oficina & 36 W & \(\approx\)100 lm/W & ADM, OFI 01 \\
-Panel LED SS.HH & 18 W & \(\approx\)100 lm/W & SS.HH 1--3 \\
-High-bay LED & 50 W & \(\approx\)100 lm/W & sala de maquinas \\
-Proyector LED & 100 W & \(\approx\)100 lm/W & marquesina/despacho \\
-Poste de patio LED & 80 W & \(\approx\)100 lm/W & circulacion exterior \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\textbf{Por que la iluminancia objetivo y por que LED:}
-\begin{itemize}
-\item Los niveles de iluminancia (oficinas 300--500 lux, sala de maquinas
-  200 lux, SS.HH 150 lux, despacho 150--200 lux, exterior 50 lux) provienen de
-  la NTP ISO 8995 y de la practica recomendada para estaciones de servicio.
-\item El LED reduce la densidad de potencia de iluminacion (LPD): el promedio
-  del proyecto es 3,19~W/m\textsuperscript{2}, muy por debajo de los limites
-  practicos para alumbrado convencional.
-\item La EM.010 art. 6 exige niveles de iluminancia; el art. 11.1 exige
-  alumbrado de emergencia y senales de evacuacion (cubierto con el circuito
-  S-03).
-\end{itemize}
-
-\textbf{Pregunta probable:} \emph{?`Como garantizas que el nivel de iluminancia
-cumple?}
-
-Respuesta: Con el metodo de lumenes se calcula la iluminancia resultante y se
-exige \(E_{res} \geq E\). En el ambiente de ejemplo la iluminancia resultante
-supera el objetivo (verificado en la memoria de iluminacion), y el total de
-2,2~kW instalado se reparte en los circuitos L-01, L-02, A1-01 y A1-02, cuya
-suma coincide exactamente con la memoria.
-
-\textbf{Pregunta probable:} \emph{?`Los valores de fabrica de donde salen?}
-
-Respuesta: Son familias de catalogo comparables (100 lm/W), marcadas en el
-proyecto como \emph{criterio de fabricante} con su referencia. Las placas reales
-se sustituyen antes de la construccion, conforme a la regla del proyecto de no
-presentar como observado lo que es un criterio adoptado.
-
-\chapter{Protecciones y tableros}
-
-\section{Coordinacion de protecciones}
-
-Todas las protecciones cumplen la Regla 050-104 del CNE-U:
-\[
-I_b \leq I_n \leq I_z
-\]
-siendo \(I_b\) corriente de empleo, \(I_n\) corriente nominal del dispositivo e
-\(I_z\) capacidad del conductor. Se complementa con la Regla 050-100 para el
-interruptor general (\(I_{cu} \geq\) \Icu~kA, cubriendo el Icc supuesto de
-\IccAsumido~kA).
-
-\section{Curvas C y D}
+\section{Puesta a tierra, rayo y sobretensiones}
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.22\textwidth} C{0.14\textwidth} C{0.14\textwidth} L}
-\toprule
-\suheader \textbf{Carga} & \textbf{Curva} & \textbf{Calibre} & \textbf{Justificacion} \\
-\midrule
-Alumbrado / servicios & C & 10--16 A & corrientes de arranque bajas \\
-Tomacorrientes & C & 20 A & uso general \\
-Bombas STP y motores & D & 20 A & soportan inrush del arranque \\
-Compresor / bombas 3F & D & 10--16 A & arranque de motores \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\textbf{Pregunta probable:} \emph{?`Por que curva D en los motores y C en los
-demas?}
-
-Respuesta: La curva C dispara entre 5 y 10 veces la corriente nominal; la curva
-D entre 10 y 20 veces. Los motores (bombas sumergibles STP, compresor, bombas de
-servicio) presentan corriente de arranque que puede alcanzar 5 a 7 veces la
-nominal; la curva D evita disparos intempestivos en el arranque y aun asi
-protege el conductor. Las cargas resistivas y de alumbrado no tienen inrush
-significativo, por lo que la curva C es suficiente y mas sensible.
-
-\section{Proteccion diferencial}
-
-Todos los circuitos de tomacorrientes y equipos de area clasificada llevan
-proteccion diferencial de 30~mA, por proteccion contra contacto indirecto y por
-el riesgo de instalacion en area con combustibles (Seccion 110/120 del CNE-U).
-
-\textbf{Pregunta probable:} \emph{?`Por que 30 mA y no 300 mA?}
-
-Respuesta: 30~mA es el umbral de proteccion de personas (regla de la Seccion
-060/Regla 050 y practica de seguridad); 300~mA se reserva para proteccion contra
-incendio. En areas clasificadas de un grifo la prioridad es la proteccion de
-personas y la continuidad controlada, por lo que se adopta 30~mA.
-
-\section{Tableros}
-
-Tableros metalicos con barra de neutro y de tierra separadas, conforme al
-sistema TN-S. El cuadro de cargas organiza la distribucion en TG (acometida)
-con subalimentadores a TDE (fuerza y emergencia), TDF (fuerza) y TD-A1
-(administrativo).
-
-\textbf{Pregunta probable:} \emph{?`Por que separar neutro y tierra en el
-tablero?}
-
-Respuesta: En el sistema TN-S el neutro y el conductor de proteccion son
-independientes a lo largo de toda la instalacion; separar las barras en el
-tablero evita corrientes de retorno por el PE, reduce ruido electromagnetico y
-mejora el funcionamiento de los diferenciales. Es un requisito del sistema de
-puesta a tierra elegido.
-
-\chapter{Puesta a tierra, rayo y sobretensiones}
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.34\textwidth} C{0.20\textwidth} L}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{P{0.34\textwidth} P{0.20\textwidth} L}
 \toprule
 \suheader \textbf{Elemento} & \textbf{Valor} & \textbf{Justificacion} \\
 \midrule
-Resistencia de puesta a tierra & objetivo 10~\(\Omega\) (limite 25~\(\Omega\)) &
-  CNE-U Regla 060-712; el objetivo es mas exigente que el limite \\
-Enlace equipotencial & segun Tabla 16 & CNE-U Tabla 16; en motores se adopta
-  igual seccion que la fase \\
-Pararrayo & 12 m, radio 20 m & observado en DWG; circulo de proteccion recortado
-  al marco de la lamina \\
+Resistencia de puesta a tierra & objetivo 10~\(\Omega\) (limite 25~\(\Omega\)) & CNE-U Regla 060-712; objetivo mas exigente \\
+Enlace equipotencial & segun Tabla 16; PE = fase en motores & CNE-U Tabla 16 \\
+Pararrayo & 12 m, radio 20 m & observado en DWG (lamina IE-04) \\
 Malla equipotencial & areas clasificadas & Seccion 110/120 CNE-U \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\textbf{Pregunta probable:} \emph{?`Por que el objetivo es 10~\(\Omega\) si el
-limite es 25~\(\Omega\)?}
+\textbf{Preguntas probables.}
+\begin{enumerate}
+\item \emph{?`Por que 10~\(\Omega\) si el limite es 25?} Margen de diseno frente
+  a la variacion estacional de resistividad y criticidad de las areas
+  clasificadas; el valor final se mide con telurimetro.
+\item \emph{?`Por que el PE de motores es igual a la fase?} Proteccion fisica y
+  continuidad en falla (Tabla 16 permite menor, pero se adopta mayor).
+\item \emph{?`Por que se recorta el circulo del pararrayo?} El circulo de R=20~m
+  a escala 1,4 excedia el marco; se dibuja recortado al area util de la lamina
+  sin invadir el rotulo.
+\end{enumerate}
 
-Respuesta: La Regla 060-712 fija un limite de 25~\(\Omega\); el proyecto adopta
-como objetivo 10~\(\Omega\) para disponer de margen frente a la variacion
-estacional de la resistividad del terreno y para mejorar la operacion de las
-protecciones en un grifo, donde la continuidad de tierra es critica por las
-areas clasificadas. El valor final depende de la medicion con telurimetro.
-
-\textbf{Pregunta probable:} \emph{?`Por que el PE de los circuitos de motor es
-igual a la fase?}
-
-Respuesta: La Tabla 16 del CNE-U permite secciones menores para el enlace
-equipotencial, pero en circuitos con motor se adopta el PE de igual seccion que
-la fase por proteccion fisica y continuidad de la puesta a tierra en caso de
-falla, criterio conservador y usual en instalaciones industriales.
-
-\chapter{Grupo electrogeno, ATS y UPS}
+\section{Grupo electrogeno, ATS y UPS}
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{P{0.34\textwidth} C{0.22\textwidth} L}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{P{0.34\textwidth} P{0.22\textwidth} L}
 \toprule
 \suheader \textbf{Parametro} & \textbf{Valor} & \textbf{Justificacion} \\
 \midrule
@@ -346,180 +210,79 @@ Escenario de arranque & \ArranqueKVA~kVA & mayor motor (STP) secuencial \\
 Margen de arranque & \ArranqueMargen~kVA & factor 1,25 \\
 Factor de altitud & \AltFactor & grupo a 3830 m s.n.m. \\
 Grupo seleccionado & \GrupoModelo, \GrupoNom~kVA standby & entrega \GrupoDisp~kVA a altitud \\
-ATS & 4P, neutro conmutado, 63 A & TN-S, evita retorno a la red \\
+ATS & 4P, neutro conmutado, 63 A & TN-S; evita retorno a la red \\
 UPS & 1,5 y 2,0 kVA, senoidal, 15 min & control de playa y POS/CCTV \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\textbf{Pregunta probable:} \emph{?`Por que el grupo se dimensiona para el
-arranque y no para la maxima demanda?}
+\textbf{Preguntas probables.}
+\begin{enumerate}
+\item \emph{?`Por que se dimensiona por el arranque y no por la MD?} La carga
+  critica es \EmergKVA~kVA, pero al arrancar el STP mas grande la corriente sube
+  con multiplicador 5; con margen 1,25 queda \ArranqueMargen~kVA. El grupo de
+  \GrupoNom~kVA, corregido por altitud, entrega \GrupoDisp~kVA y CUMPLE.
+\item \emph{?`Por que el ATS conmuta el neutro?} Mantiene el TN-S, evita
+  corrientes circulantes y retroalimentacion a la red.
+\item \emph{?`Por que UPS senoidal?} Las cabezas electronicas, el ATG y el
+  POS/CCTV requieren tension estable y 15~min de autonomia para un corte
+  ordenado.
+\end{enumerate}
 
-Respuesta: La maxima demanda permanente es \EmergKVA~kVA, pero al arrancar la
-bomba sumergible mas grande la corriente momentanea sube con un multiplicador de
-5; el escenario de arranque (un STP a la vez) demanda \ArranqueKVA~kVA y con
-margen de 1,25 queda en \ArranqueMargen~kVA. El grupo de \GrupoNom~kVA standby,
-corregido por altitud (\AltFactor), entrega \GrupoDisp~kVA, por lo que la
-verificacion CUMPLE.
-
-\textbf{Pregunta probable:} \emph{?`Por que el ATS conmuta el neutro?}
-
-Respuesta: El sistema es TN-S y el grupo debe mantener la referencia de neutro
-del sistema. Un ATS de cuatro polos con neutro conmutado impide que el neutro
-del grupo y el de la red se puenteen, evitando corrientes circulantes y la
-puesta a tierra doble; ademas impide retroalimentacion hacia la red publica.
-
-\textbf{Pregunta probable:} \emph{?`Por que UPS senoidal para los surtidores?}
-
-Respuesta: Las cabezas electronicas de los surtidores, el control de
-combustible (ATG) y el POS/CCTV son cargas sensibles que requieren tension
-senoidal estable y autonomia minima para un corte ordenado; las UPS senoidales
-de 1,5 y 2,0 kVA con 15 minutos de autonomia cubren ese requerimiento y protegen
-el equipo de facturacion y monitoreo.
-
-\chapter{Areas clasificadas}
+\section{Areas clasificadas}
 
 El grifo es un lugar de manipulacion de combustibles de la Regla 120-000 del
-CNE-U, complementada por la Seccion 110. La propuesta academica delimita zonas
-en la lamina IE-06:
+CNE-U (complementada por la Seccion 110). Propuesta academica en la lamina
+IE-06: zona 1 en tanques (r=2,2~m) y venteos (r=1,5~m); zona 2 en surtidores
+(r=3,5~m).
+
+\textbf{Pregunta probable:} \emph{?`Son definitivos esos limites?} No. Son una
+propuesta academica; los limites definitivos y los equipos para area clasificada
+requieren revision de ingeniero colegiado habilitado y normativa sectorial
+(R.M. 186-2014-MEM/DM).
+
+\section{Resumen de respuestas rapidas}
 
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{L C{0.14\textwidth} C{0.16\textwidth} C{0.20\textwidth}}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{L L}
 \toprule
-\suheader \textbf{Elemento} & \textbf{Zona} & \textbf{Radio (m)} & \textbf{Coordenada (x, y)} \\
+\suheader \textbf{Si el ingeniero pregunta...} & \textbf{Respuesta corta} \\
 \midrule
-Tanques TK-1/2/3 & 1 & 2,2 & (14,57;7,95), (17,49;8,21), (21,04;8,42) \\
-Tuberias de venteo & 1 & 1,5 & (0,83;4,37) \\
-Surtidor isla 1 y 2 & 2 & 3,5 & (14,44;10,92), (19,85;10,93) \\
+?`Por que 2,5 mm\textsuperscript{2} minimo? & Regla 030-002 (obligatorio). \\
+?`Por que curva D en motores? & Inrush de arranque; evita disparos intempestivos (050-104). \\
+?`Por que RCD 30 mA? & Proteccion de personas; 300 mA es solo anti-incendio. \\
+?`Por que 10~\(\Omega\) y no 25? & Margen de diseno y areas clasificadas (060-712). \\
+?`Por que el grupo de \GrupoNom~kVA standby? & Arranque del STP + altitud (entrega \GrupoDisp~kVA). \\
+?`Por que ATS de 4 polos? & Neutro conmutado: TN-S y sin retorno a red. \\
+?`Por que LED? & Eficacia, LPD, encendido instantaneo, mantenimiento. \\
+?`Como se garantiza el lux? & Metodo de lumenes con \(E_{res} \geq E\) (NTP ISO 8995). \\
+?`Son definitivas las zonas? & No: propuesta academica, revision competente. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\textbf{Pregunta probable:} \emph{?`Son definitivos esos limites de zona?}
-
-Respuesta: No. La clasificacion es una propuesta academica del anteproyecto
-para visualizar las zonas de riesgo en la lamina IE-06; los limites definitivos
-y la seleccion de equipos para area clasificada requieren revision de un
-ingeniero colegiado habilitado y la aplicacion de la normativa sectorial de
-establecimientos de venta de combustibles, tal como se advierte en el
-expediente.
-
-\chapter{Preguntas probables de la sustentacion}
-
-\section{Preguntas sobre conductores}
-
-\begin{enumerate}
-\item \emph{?`Por que 2,5 mm\textsuperscript{2} de minimo y no 1,5?}
-  \begin{itemize}
-  \item CNE-U Regla 030-002: seccion minima obligatoria en fuerza y alumbrado.
-  \end{itemize}
-\item \emph{?`Como justificas el calibre del alimentador principal?}
-  \begin{itemize}
-  \item Por corriente (33,43 A con reserva \(\leq I_z\) corregida), por caida de
-    tension (0,22 \%, limite 2,5 \%) y por coordinacion con el ITM de 50 A.
-  \end{itemize}
-\item \emph{?`Por que PE igual a fase en motores?}
-  \begin{itemize}
-  \item Tabla 16 permite menor, pero se adopta igual seccion por proteccion
-    fisica y continuidad en falla.
-  \end{itemize}
-\item \emph{?`Y si el Icc real de la concesionaria supera 10 kA?}
-  \begin{itemize}
-  \item Se recalcula el poder de corte y la selectividad con el dato de
-    factibilidad; el ITM general de 25 kA ya da holgura (Icu \(\geq\) Icc).
-  \end{itemize}
-\end{enumerate}
-
-\section{Preguntas sobre luminarias}
-
-\begin{enumerate}
-\item \emph{?`Por que LED y no fluorescente o HID?}
-  \begin{itemize}
-  \item Mayor eficacia (100 lm/W vs 60--80 de HID), menor LPD, encendido
-    instantaneo, larga vida y menor mantenimiento.
-  \end{itemize}
-\item \emph{?`Como sabes que cumples el nivel de lux?}
-  \begin{itemize}
-  \item Metodo de lumenes: se exige \(E_{res} \geq E\) en cada ambiente; el
-    ejemplo de la memoria lo demuestra y todos los ambientes cumplen.
-  \end{itemize}
-\item \emph{?`Por que 2202 W de alumbrado y no mas?}
-  \begin{itemize}
-  \item Porque es el resultado del metodo de lumenes con niveles NTP ISO 8995;
-    coincide exactamente con la suma de los circuitos L-01+L-02+A1-01+A1-02.
-  \end{itemize}
-\item \emph{?`Los valores de catalogo son reales?}
-  \begin{itemize}
-  \item Son familias de catalogo comparables (criterio adoptado, con
-    referencia); las placas se sustituyen antes de construir.
-  \end{itemize}
-\end{enumerate}
-
-\section{Preguntas sobre protecciones}
-
-\begin{enumerate}
-\item \emph{?`Por que curva D en motores?}
-  \begin{itemize}
-  \item Inrush de arranque de 5--7 veces la nominal; curva D tolera el
-    transitorio y protege el conductor (Regla 050-104).
-  \end{itemize}
-\item \emph{?`Por que diferencial de 30 mA en todo?}
-  \begin{itemize}
-  \item Proteccion de personas (contacto indirecto) y riesgo en area con
-    combustibles; 300 mA seria solo proteccion contra incendio.
-  \end{itemize}
-\item \emph{?`Por que el desbalance es 1,85 \%?}
-  \begin{itemize}
-  \item Se distribuyeron las cargas monofasicas (STP, surtidores, alumbrado)
-    repartidas en fases R/S/T; el resultado esta muy por debajo del objetivo de
-    10 \% de la EM.010.
-  \end{itemize}
-\end{enumerate}
-
-\section{Preguntas sobre puesta a tierra y grupos}
-
-\begin{enumerate}
-\item \emph{?`Por que 10~\(\Omega\) si el limite es 25?}
-  \begin{itemize}
-  \item Margen de diseno (Regla 060-712) y criticidad de las areas clasificadas.
-  \end{itemize}
-\item \emph{?`Por que el grupo de \GrupoNom~kVA y no otro?}
-  \begin{itemize}
-  \item Por el escenario de arranque (\ArranqueMargen~kVA con margen) y la
-    correccion por altitud; entrega \GrupoDisp~kVA a 3830 m y CUMPLE.
-  \end{itemize}
-\item \emph{?`Por que ATS de 4 polos?}
-  \begin{itemize}
-  \item Neutro conmutado para mantener el TN-S y evitar retorno a la red.
-  \end{itemize}
-\item \emph{?`Que pasa con las zonas clasificadas?}
-  \begin{itemize}
-  \item Son propuesta academica (IE-06); revision competente antes de obra.
-  \end{itemize}
-\end{enumerate}
-
-\chapter{Veredicto}
-
-Cada decision de diseno del anteproyecto se sustenta en una regla del CNE-U, de
-la EM.010 o de la NTP ISO 8995, o en un criterio de ingenieria conservador
-identificado como tal. Los valores pendientes (Icc real, placas de equipos,
-medicion de puesta a tierra y factibilidad de la concesionaria) quedan
-registrados como pendientes obligatorios antes de la construccion, y no
-inhabilitan el anteproyecto academico.
+\section*{Veredicto}
+\addcontentsline{toc}{section}{Veredicto}
+Cada decision se sustenta en una regla del CNE-U, la EM.010 o la NTP ISO 8995,
+o en un criterio de ingenieria conservador identificado como tal. Los valores
+pendientes (Icc real, placas, medicion de PAT, factibilidad) quedan registrados
+como pendientes obligatorios antes de la construccion y no inhabilitan el
+anteproyecto academico.
 
 Puno, agosto de 2026.
 
-\vspace{0.45in}
+\vspace{0.3in}
 \begin{table}[H]
 \centering
-\renewcommand{\arraystretch}{1.35}
+\renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{0.92\textwidth}{C{0.42\textwidth} C{0.42\textwidth}}
 \toprule
 \textbf{Elaborado por} & \textbf{Revisado por} \\
 \midrule
-\vspace{0.42in} Renzo Gabriel Mamani Galindo & \vspace{0.42in} Mg. Gregorio Meza Marocho \\
+\vspace{0.35in} Renzo Gabriel Mamani Galindo & \vspace{0.35in} Mg. Gregorio Meza Marocho \\
 \bottomrule
 \end{tabularx}
 \end{table}
