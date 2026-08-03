@@ -354,3 +354,24 @@ Todas las etapas PASS y los entregables estan sincronizados con `build/`. No se
 requieren correcciones adicionales. Sigue pendiente la revision humana
 competente conforme a `AGENTS.md` antes de usar los entregables como definitivos.
 
+## 16. Sustentacion tecnica para revision con el ingeniero (2026-08-02)
+
+Nuevo documento standalone `sustentacion_diseno_renzo.tex` (24 paginas,
+`entregables/sustentacion-diseno-renzo.pdf` y `build/renzo-industrial/presupuesto/`)
+que prepara al estudiante para sustentar el diseno electrico ante su ingeniero.
+
+Contenido:
+- Justificacion normativa de cada parametro: conductores (seccion minima
+  030-002, ampacidad Tabla 2 con desrating 0,80 Tabla 5A/5C, caida 050-102),
+  luminarias (NTP ISO 8995, metodo de lumenes, LPD, LED), protecciones (050-100
+  y 050-104, curvas C/D, RCD 30 mA), tableros TN-S, puesta a tierra (060-712 y
+  Tabla 16, objetivo 10 ohm), pararrayo, grupo electrogeno/ATS/UPS y areas
+  clasificadas (120-000/Seccion 110).
+- Seccion de preguntas probables de la sustentacion con respuestas listas:
+  porque 2,5 mm2 minimo, porque curva D en motores, porque RCD 30 mA, porque
+  10 ohm y no 25, porque el grupo de 37,5 kVA standby, porque ATS de 4 polos,
+  porque LED, como se garantiza el nivel de lux, y el estado de las zonas
+  clasificadas como propuesta academica.
+- Compilacion PASS: 24 paginas, un unico overfull menor de 4,5 pt. Copiado a
+  `build/` y `entregables/`.
+
