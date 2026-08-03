@@ -9,7 +9,7 @@ propietario: "Miguel Mamani Chuquicallata"
 codigo_estudiante: "228447"
 semestre_academico: "2026-II"
 fecha_entrega: "2026-08-03"
-estado: "anteproyecto desarrollado y auditado: datos de ubicacion y propietario confirmados por el estudiante; calculos (PASS), planos CAD y expediente en build/; pendiente factibilidad/Icc, placas reales y revision humana competente antes de publicar en entregables"
+estado: "anteproyecto desarrollado y auditado: datos de ubicacion y propietario confirmados por el estudiante; calculos (PASS), planos CAD y expediente en build/ y entregables/; corregidas las observaciones del estudiante (pararrayo fuera del marco, estructuras/bano incompletos, trapecio de la figura 9.1 fiel al CAD-002); pendiente factibilidad/Icc, placas reales y revision humana competente"
 
 naturaleza_proyecto:
   tipo: anteproyecto_academico_nuevo

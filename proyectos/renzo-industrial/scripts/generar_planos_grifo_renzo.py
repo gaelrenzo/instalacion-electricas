@@ -128,6 +128,51 @@ def scale_length(meters: float) -> float:
     return meters * ARCH_SCALE
 
 
+def add_circle_clipped(
+    msp: ezdxf.layouts.BaseLayout,
+    center: tuple[float, float],
+    radius: float,
+    layer: str,
+    linetype: str = "CONTINUOUS",
+    lineweight: int = 25,
+    clip: tuple[float, float, float, float] = FRAME,
+    exclude: tuple[float, float, float, float] | None = TITLE,
+    segments: int = 144,
+) -> None:
+    """Dibuja un circulo de referencia recortado al area de dibujo.
+
+    Radios grandes (ej. proteccion del pararrayo R=20 m) superan el marco;
+    en lugar de dejar el circulo cortado por el borde de la lamina se dibuja
+    solo la porcion que cae dentro de ``clip`` y fuera de ``exclude`` (rotulo).
+    """
+    cx, cy = center
+    xmin, ymin, xmax, ymax = clip
+    ex = exclude
+
+    def inside(p: tuple[float, float]) -> bool:
+        if not (xmin <= p[0] <= xmax and ymin <= p[1] <= ymax):
+            return False
+        if ex is not None and ex[0] <= p[0] <= ex[2] and ex[1] <= p[1] <= ex[3]:
+            return False
+        return True
+
+    step = 2.0 * math.pi / segments
+    ring = [(cx + radius * math.cos(i * step), cy + radius * math.sin(i * step)) for i in range(segments)]
+    groups: list[list[tuple[float, float]]] = []
+    current: list[tuple[float, float]] = []
+    for point in ring + [ring[0]]:
+        if inside(point):
+            current.append(point)
+        else:
+            if len(current) >= 2:
+                groups.append(current)
+            current = []
+    if len(current) >= 2:
+        groups.append(current)
+    for group in groups:
+        msp.add_lwpolyline(group, dxfattribs={"layer": layer, "linetype": linetype, "lineweight": lineweight})
+
+
 def add_basic_dimensions(msp: ezdxf.layouts.BaseLayout, architecture: dict[str, Any]) -> None:
     """Cotas referenciales del lote de trabajo tomadas del layout canonico."""
     lote = architecture["lote_a_ejecutar"]
@@ -171,12 +216,26 @@ def add_architecture(doc: ezdxf.document.Drawing, architecture: dict[str, Any]) 
         real_entities = json.loads(real_path.read_text(encoding="utf-8"))
 
     def draw_real_walls() -> None:
+        # Jerarquia de espesores segun la capa del DWG original: muros y puertas
+        # en trazo grueso/medio; estructuras, ventanas y veredas en trazo fino.
+        weights = {
+            "muro": 40,
+            "0": 25,
+            "entrada": 12,
+            "VENTANAS": 12,
+            "D VEREDAS": 12,
+            "vereda": 12,
+        }
+        ref = layer
         for ent in real_entities:
-            if ent.get("type") != "seg" or ent.get("layer") not in ("muro", "0"):
+            if ent.get("type") != "seg":
+                continue
+            ent_layer = ent.get("layer")
+            if ent_layer not in weights:
                 continue
             a, b = ent["pts"]
-            lw = 40 if ent["layer"] == "muro" else 25
-            msp.add_line(local_to_page(*a), local_to_page(*b), dxfattribs={"layer": layer, "lineweight": lw})
+            lw = weights[ent_layer]
+            msp.add_line(local_to_page(*a), local_to_page(*b), dxfattribs={"layer": ref, "lineweight": lw})
 
     def draw_lote_real() -> bool:
         # Dibuja los segmentos reales extraidos del DWG. Se evita reconstruir
@@ -267,7 +326,7 @@ def add_observed_equipment(msp: ezdxf.layouts.BaseLayout, architecture: dict[str
                 radio = scale_length(eq.get("radio_proteccion_m", 20.0))
                 msp.add_circle((cx, cy), 0.4, dxfattribs={"layer": "IE_RAYO", "lineweight": 35})
                 msp.add_circle((cx, cy), 0.5, dxfattribs={"layer": "IE_RAYO", "lineweight": 25})
-                msp.add_circle((cx, cy), radio, dxfattribs={"layer": "IE_RAYO", "linetype": "DASHED", "lineweight": 25})
+                add_circle_clipped(msp, (cx, cy), radio, "IE_RAYO", linetype="DASHED", lineweight=25)
                 text_left(msp, f"PARARRAYO R={eq.get('radio_proteccion_m', 20.0):.0f} m (h={eq.get('altura_m', 12.0):.0f} m)", cx + 0.7, cy, 0.15, "IE_RAYO")
             elif tipo in ("cilindro_arena", "cilindro_trapo_empapado"):
                 msp.add_circle((cx, cy), 0.3, dxfattribs={"layer": layer, "lineweight": 30})

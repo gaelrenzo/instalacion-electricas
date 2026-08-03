@@ -238,3 +238,60 @@ Para cerrar la brecha de entregables con el proyecto Aquiles se agregaron:
   mayores.
 - Pendiente: revision humana competente antes de copiar de `build/` a
   `entregables/` (segun `AGENTS.md`).
+
+## 14. Correcciones de laminas reportadas por el estudiante (2026-08-02, noche)
+
+Tres observaciones del estudiante sobre las laminas y la figura 9.1; se
+corrigieron y recompilo todo el pipeline:
+
+### 14.1 Radio de proteccion del pararrayo (R=20 m) fuera del marco
+
+- Causa: el circulo R=20~m a escala 1,4 (radio 28 cm en la lamina A1) se
+  dibujaba como circulo completo con centro en (22,0; 21,7), extendiendose a
+  y=-6,3 y x=-6,0, fuera del marco (0,5..83,6; 0,5..58,9) y sobre el area del
+  rotulo/leyenda.
+- Correccion: nueva funcion `add_circle_clipped()` en
+  `scripts/generar_planos_grifo_renzo.py` que dibuja solo los arcos del circulo
+  que caen dentro del marco y fuera del rectangulo del rotulo (`TITLE`). Se
+  aplico al pararrayo de `add_observed_equipment()` (laminas IE-01, IE-02,
+  IE-03, IE-04 e IE-06).
+- Verificacion DXF: en IE-04 el radio R=20 m queda como 2 tramos de polilinea
+  con x en 0,55..50,00 e y en 1,03..49,67; todo dentro del marco y sin invadir
+  el rotulo (x maxima 50,0 < 54,2).
+
+### 14.2 Elementos faltantes en estructuras y bano
+
+- Causa: `draw_real_walls()` solo dibujaba las capas `muro` y `0` del DWG;
+  quedaban sin dibujar la capa `entrada` (estructura/marquesina), `VENTANAS`,
+  `D VEREDAS` y `vereda`, por lo que estructuras y servicios del bano no
+  aparecian en las laminas.
+- Correccion: se amplio la tabla de espesores de `draw_real_walls()` para
+  incluir `entrada`, `VENTANAS`, `D VEREDAS` y `vereda` en trazo fino
+  (lineweight 12), manteniendo muros (40) y puertas/capa 0 (25) en trazo
+  grueso/medio. Mismo criterio aplicado a `scripts/generar_layout_base.py`.
+- Verificacion: en IE-01/IE-02 el DXF paso de dibujar 114 a 227 segmentos de
+  arquitectura real (muro 14, capa 0 ~100, entrada 82, VENTANAS 18, D VEREDAS
+  12, vereda 1).
+
+### 14.3 Trapecio que corta la figura 9.1 (layout-base.pdf)
+
+- Causa: `layout-grifo.json` definia el lote a ejecutar como un trapecio de 4
+  vertices `[(0,0),(28,2),(28,16),(26,16)]`, pero el contorno real del CAD-002
+  (capa LOTE A EJECUTAR) es un pentagono
+  `(0,29;0,14)->(27,93;2,35)->(28,20;16,29)->(26,49;16,16)->(5,27;14,46)` con
+  un vertice oeste adicional, area 352 m2 (no 435). El trapecio simplificado
+  cortaba la imagen.
+- Correccion: `generar_layout_base.py` dibuja ahora los segmentos reales de la
+  capa LOTE A EJECUTAR (deduplicados) en lugar del poligono simplificado;
+  `layout-grifo.json` se actualizo al pentagono real (poligono_local,
+  poligono_utm, area 352 m2).
+- Verificacion SVG: 9 tramos unicos de lote real (ancho 3), 14 muros, 113
+  elementos finos de estructuras/ventanas/veredas, sin poligonos simplificados.
+
+### 14.4 Recompilacion
+
+- Pipeline reejecutado: calculos PASS, iluminacion PASS, fragmentos PASS,
+  `generar_layout_base.py` PASS, planos PASS (6 laminas), pdflatex 2 pasadas
+  PASS (45 paginas). Entregables actualizados: `planos-electricos-grifo-renzo.pdf`
+  y `expediente-renzo-industrial.pdf`.
+

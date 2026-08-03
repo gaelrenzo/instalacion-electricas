@@ -66,16 +66,42 @@ def svg_from_layout(layout: dict, real_entities: list[dict] | None, out_svg: Pat
     lines.append('<rect width="100%" height="100%" fill="#ffffff"/>')
 
     lote = layout["lote_a_ejecutar"]["poligono_local"]
-    pts = " ".join(f"{pt(x, y)[0]:.1f},{pt(x, y)[1]:.1f}" for x, y in lote)
-    lines.append(f'<polygon points="{pts}" fill="none" stroke="#243F60" stroke-width="3"/>')
 
     if real_entities:
-        for ent in real_entities:
-            if ent.get("type") != "seg" or ent.get("layer") not in ("muro", "0"):
+        # Lote a ejecutar fiel al DWG: se dibujan los segmentos reales de la
+        # capa LOTE A EJECUTAR (el DXF trae duplicados y tramos cortados, por
+        # eso se evita reconstruir un poligono unico que pueda "cortar" la
+        # figura con una forma simplificada).
+        lote_edges = [ent["pts"] for ent in real_entities if ent.get("type") == "seg" and ent.get("layer") == "LOTE A EJECUTAR"]
+        seen: set[tuple[tuple[float, float], tuple[float, float]]] = set()
+        for a, b in lote_edges:
+            key = tuple(sorted(((round(a[0], 2), round(a[1], 2)), (round(b[0], 2), round(b[1], 2)))))
+            if key in seen:
                 continue
+            seen.add(key)
+            pa, pb = pt(*a), pt(*b)
+            lines.append(f'<line x1="{pa[0]:.1f}" y1="{pa[1]:.1f}" x2="{pb[0]:.1f}" y2="{pb[1]:.1f}" stroke="#243F60" stroke-width="3"/>')
+    else:
+        pts = " ".join(f"{pt(x, y)[0]:.1f},{pt(x, y)[1]:.1f}" for x, y in lote)
+        lines.append(f'<polygon points="{pts}" fill="none" stroke="#243F60" stroke-width="3"/>')
+
+    if real_entities:
+        weights = {
+            "muro": ("#000000", 2.0),
+            "0": ("#808080", 1.0),
+            "entrada": ("#B0B0B0", 0.8),
+            "VENTANAS": ("#404040", 0.8),
+            "D VEREDAS": ("#C0C0C0", 0.6),
+            "vereda": ("#C0C0C0", 0.6),
+        }
+        for ent in real_entities:
+            if ent.get("type") != "seg":
+                continue
+            style = weights.get(ent.get("layer"))
+            if style is None:
+                continue
+            color, lw = style
             a, b = ent["pts"]
-            color = "#000000" if ent["layer"] == "muro" else "#808080"
-            lw = 2.0 if ent["layer"] == "muro" else 1.0
             pa, pb = pt(*a), pt(*b)
             lines.append(f'<line x1="{pa[0]:.1f}" y1="{pa[1]:.1f}" x2="{pb[0]:.1f}" y2="{pb[1]:.1f}" stroke="{color}" stroke-width="{lw}"/>')
     else:

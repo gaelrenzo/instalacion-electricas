@@ -25,22 +25,24 @@
 
   "lote_a_ejecutar": {
     "poligono_utm": [
-      [380425.0, 8325990.0],
-      [380453.0, 8325992.0],
-      [380453.0, 8326006.0],
-      [380451.0, 8326006.0]
+      [380425.29, 8325990.14],
+      [380452.93, 8325992.35],
+      [380453.2, 8326006.29],
+      [380451.49, 8326006.16],
+      [380430.27, 8326004.46]
     ],
     "poligono_local": [
-      [0.0, 0.0],
-      [28.0, 2.0],
-      [28.0, 16.0],
-      [26.0, 16.0]
+      [0.29, 0.14],
+      [27.93, 2.35],
+      [28.2, 16.29],
+      [26.49, 16.16],
+      [5.27, 14.46]
     ],
     "dimensiones": {"largo": 28.0, "ancho": 16.0},
-    "area_m2": 435.0,
+    "area_m2": 352.0,
     "estado": "observado",
-    "confianza": "media",
-    "nota": "Poligono principal de la capa LOTE A EJECUTAR"
+    "confianza": "alta",
+    "nota": "Pentagono reconstruido de los segmentos de la capa LOTE A EJECUTAR del CAD-002 (incluye el vertice oeste 5.27,14.46 que el trapecio simplificado omitia)"
   },
 
   "edificio": {
