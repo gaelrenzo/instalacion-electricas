@@ -93,7 +93,7 @@ $TRACEWID
   9
 $TEXTSTYLE
   7
-OpenSans
+Standard
   9
 $CLAYER
   8
@@ -121,11 +121,11 @@ $DIMSCALE
   9
 $DIMASZ
  40
-0.175
+2.5
   9
 $DIMEXO
  40
-0.125
+0.625
   9
 $DIMDLI
  40
@@ -141,7 +141,7 @@ $DIMDLE
   9
 $DIMEXE
  40
-0.375
+1.25
   9
 $DIMTP
  40
@@ -153,7 +153,7 @@ $DIMTM
   9
 $DIMTXT
  40
-0.25
+2.5
   9
 $DIMCEN
  40
@@ -193,11 +193,11 @@ $DIMTAD
   9
 $DIMZIN
  70
-12
+8
   9
 $DIMBLK
   1
-ARCHTICK
+
   9
 $DIMASO
  70
@@ -229,7 +229,7 @@ $DIMALTF
   9
 $DIMLFAC
  40
-100.0
+1.0
   9
 $DIMTOFL
  70
@@ -261,7 +261,7 @@ $DIMBLK2
   9
 $DIMSTYLE
   2
-EZDXF
+ISO-25
   9
 $DIMCLRD
  70
@@ -277,11 +277,11 @@ $DIMCLRT
   9
 $DIMTFAC
  40
-0.5
+1.0
   9
 $DIMGAP
  40
-0.1
+0.625
   9
 $DIMJUST
  70
@@ -313,7 +313,7 @@ $DIMALTTZ
   9
 $DIMUPT
  70
-1
+0
   9
 $DIMDEC
  70
@@ -333,7 +333,7 @@ $DIMALTTD
   9
 $DIMTXSTY
   7
-OpenSansCondensed-Light
+Standard
   9
 $DIMAUNIT
  70
@@ -341,7 +341,7 @@ $DIMAUNIT
   9
 $DIMADEC
  70
-2
+0
   9
 $DIMALTRND
  40
@@ -349,11 +349,11 @@ $DIMALTRND
   9
 $DIMAZIN
  70
-3
+0
   9
 $DIMDSEP
  70
-46
+44
   9
 $DIMATFIT
  70
@@ -381,7 +381,7 @@ $DIMLWE
   9
 $DIMTMOVE
  70
-2
+0
   9
 $DIMFXL
  40
@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461258.477719907
+2461258.499247685
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461258.477719907
+2461258.499247685
   9
 $TDUUPDATE
  40
@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-117
+96
   9
 $SURFTAB1
  70
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{1EA42091-718B-44B0-AAEB-D4906113F8ED}
+{B5A6D2D2-20E3-46FA-BE0A-C0384C833E2C}
   9
 $VERSIONGUID
   2
-{EB0CFE14-FFE7-4C7B-B211-1819927DDEEC}
+{4F1B6EEB-D920-43B9-AE28-D4E4EA6E2E36}
   9
 $EXTNAMES
 290
@@ -1469,7 +1469,7 @@ LTYPE
 100
 AcDbSymbolTable
  70
-21
+3
   0
 LTYPE
   5
@@ -1537,690 +1537,6 @@ Continuous
  40
 0.0
   0
-LTYPE
-  5
-2F
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-CENTER
- 70
-0
-  3
-Center ____ _ ____ _ ____ _ ____ _ ____ _ ____
- 72
-65
- 73
-4
- 40
-5.08
- 49
-3.175
- 74
-0
- 49
--0.635
- 74
-0
- 49
-0.635
- 74
-0
- 49
--0.635
- 74
-0
-  0
-LTYPE
-  5
-30
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-CENTERX2
- 70
-0
-  3
-Center (2x) ________  __  ________  __  ________
- 72
-65
- 73
-4
- 40
-8.89
- 49
-6.35
- 74
-0
- 49
--0.635
- 74
-0
- 49
-1.27
- 74
-0
- 49
--0.635
- 74
-0
-  0
-LTYPE
-  5
-31
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-CENTER2
- 70
-0
-  3
-Center (.5x) ____ _ ____ _ ____ _ ____ _ ____
- 72
-65
- 73
-4
- 40
-2.54
- 49
-1.587
- 74
-0
- 49
--0.318
- 74
-0
- 49
-0.318
- 74
-0
- 49
--0.318
- 74
-0
-  0
-LTYPE
-  5
-32
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHED
- 70
-0
-  3
-Dashed __ __ __ __ __ __ __ __ __ __ __ __ __ _
- 72
-65
- 73
-2
- 40
-1.524
- 49
-1.27
- 74
-0
- 49
--0.254
- 74
-0
-  0
-LTYPE
-  5
-33
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHEDX2
- 70
-0
-  3
-Dashed (2x) ____  ____  ____  ____  ____  ____
- 72
-65
- 73
-2
- 40
-3.048
- 49
-2.54
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-34
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHED2
- 70
-0
-  3
-Dashed (.5x) _ _ _ _ _ _ _ _ _ _ _ _ _ _
- 72
-65
- 73
-2
- 40
-0.762
- 49
-0.635
- 74
-0
- 49
--0.127
- 74
-0
-  0
-LTYPE
-  5
-35
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-PHANTOM
- 70
-0
-  3
-Phantom ______  __  __  ______  __  __  ______
- 72
-65
- 73
-6
- 40
-6.35
- 49
-3.175
- 74
-0
- 49
--0.635
- 74
-0
- 49
-0.635
- 74
-0
- 49
--0.635
- 74
-0
- 49
-0.635
- 74
-0
- 49
--0.635
- 74
-0
-  0
-LTYPE
-  5
-36
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-PHANTOMX2
- 70
-0
-  3
-Phantom (2x)____________    ____    ____    ____________
- 72
-65
- 73
-6
- 40
-10.795
- 49
-6.35
- 74
-0
- 49
--0.635
- 74
-0
- 49
-1.27
- 74
-0
- 49
--0.635
- 74
-0
- 49
-1.27
- 74
-0
- 49
--0.635
- 74
-0
-  0
-LTYPE
-  5
-37
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-PHANTOM2
- 70
-0
-  3
-Phantom (.5x) ___ _ _ ___ _ _ ___ _ _ ___ _ _ ___
- 72
-65
- 73
-6
- 40
-3.175
- 49
-1.587
- 74
-0
- 49
--0.318
- 74
-0
- 49
-0.318
- 74
-0
- 49
--0.318
- 74
-0
- 49
-0.318
- 74
-0
- 49
--0.318
- 74
-0
-  0
-LTYPE
-  5
-38
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHDOT
- 70
-0
-  3
-Dash dot __ . __ . __ . __ . __ . __ . __ . __
- 72
-65
- 73
-4
- 40
-3.556
- 49
-2.54
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-39
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHDOTX2
- 70
-0
-  3
-Dash dot (2x) ____  .  ____  .  ____  .  ____
- 72
-65
- 73
-4
- 40
-6.096
- 49
-5.08
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-3A
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DASHDOT2
- 70
-0
-  3
-Dash dot (.5x) _ . _ . _ . _ . _ . _ . _ . _
- 72
-65
- 73
-4
- 40
-1.778
- 49
-1.27
- 74
-0
- 49
--0.254
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.254
- 74
-0
-  0
-LTYPE
-  5
-3B
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DOT
- 70
-0
-  3
-Dot .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
- 72
-65
- 73
-2
- 40
-0.508
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-3C
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DOTX2
- 70
-0
-  3
-Dot (2x) .    .    .    .    .    .    .    . 
- 72
-65
- 73
-2
- 40
-1.016
- 49
-0.0
- 74
-0
- 49
--1.016
- 74
-0
-  0
-LTYPE
-  5
-3D
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DOT2
- 70
-0
-  3
-Dot (.5) . . . . . . . . . . . . . . . . . . . 
- 72
-65
- 73
-2
- 40
-0.254
- 49
-0.0
- 74
-0
- 49
--0.254
- 74
-0
-  0
-LTYPE
-  5
-3E
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DIVIDE
- 70
-0
-  3
-Divide __ . . __ . . __ . . __ . . __ . . __
- 72
-65
- 73
-6
- 40
-4.064
- 49
-2.54
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-3F
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DIVIDEX2
- 70
-0
-  3
-Divide (2x) ____  . .  ____  . .  ____  . .  ____
- 72
-65
- 73
-6
- 40
-6.604
- 49
-5.08
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.508
- 74
-0
-  0
-LTYPE
-  5
-40
-330
-2
-100
-AcDbSymbolTableRecord
-100
-AcDbLinetypeTableRecord
-  2
-DIVIDE2
- 70
-0
-  3
-Divide(.5x) _ . _ . _ . _ . _ . _ . _ . _
- 72
-65
- 73
-6
- 40
-2.032
- 49
-1.27
- 74
-0
- 49
--0.254
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.254
- 74
-0
- 49
-0.0
- 74
-0
- 49
--0.254
- 74
-0
-  0
 ENDTAB
   0
 TABLE
@@ -2233,7 +1549,7 @@ LAYER
 100
 AcDbSymbolTable
  70
-11
+6
   0
 LAYER
   5
@@ -2287,7 +1603,7 @@ Continuous
   0
 LAYER
   5
-8A
+2F
 330
 1
 100
@@ -2303,7 +1619,7 @@ UNIFILAR_LINEAS
   6
 Continuous
 370
-25
+-3
 390
 13
 347
@@ -2311,7 +1627,7 @@ Continuous
   0
 LAYER
   5
-8B
+30
 330
 1
 100
@@ -2319,7 +1635,7 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-UNIFILAR_COMPONENTES
+UNIFILAR_TEXTO
  70
 0
  62
@@ -2327,7 +1643,7 @@ UNIFILAR_COMPONENTES
   6
 Continuous
 370
-35
+-3
 390
 13
 347
@@ -2335,103 +1651,7 @@ Continuous
   0
 LAYER
   5
-8C
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-UNIFILAR_TEXTOS
- 70
-0
- 62
-7
-  6
-Continuous
-370
-13
-390
-13
-347
-21
-  0
-LAYER
-  5
-8D
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-UNIFILAR_MARCO
- 70
-0
- 62
-8
-  6
-Continuous
-370
-18
-390
-13
-347
-21
-  0
-LAYER
-  5
-8E
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-UNIFILAR_MEDIDOR
- 70
-0
- 62
-6
-  6
-Continuous
-370
-25
-390
-13
-347
-21
-  0
-LAYER
-  5
-8F
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-UNIFILAR_TABLERO
- 70
-0
- 62
-1
-  6
-Continuous
-370
-35
-390
-13
-347
-21
-  0
-LAYER
-  5
-90
+31
 330
 1
 100
@@ -2447,7 +1667,7 @@ UNIFILAR_PROTECCION
   6
 Continuous
 370
-25
+-3
 390
 13
 347
@@ -2455,7 +1675,7 @@ Continuous
   0
 LAYER
   5
-91
+32
 330
 1
 100
@@ -2463,39 +1683,15 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-UNIFILAR_CARGA
+UNIFILAR_MARCO
  70
 0
  62
-5
-  6
-Continuous
-370
-25
-390
-13
-347
-21
-  0
-LAYER
-  5
-92
-330
 1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-UNIFILAR_TIERRA
- 70
-0
- 62
-4
   6
 Continuous
 370
-13
+-3
 390
 13
 347
@@ -2513,7 +1709,7 @@ STYLE
 100
 AcDbSymbolTable
  70
-26
+1
   0
 STYLE
   5
@@ -2540,706 +1736,6 @@ Standard
 2.5
   3
 txt
-  4
-
-  0
-STYLE
-  5
-41
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-Light
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-Light.ttf
-  4
-
-  0
-STYLE
-  5
-42
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-Light-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-LightItalic.ttf
-  4
-
-  0
-STYLE
-  5
-43
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-Regular.ttf
-  4
-
-  0
-STYLE
-  5
-44
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-Italic.ttf
-  4
-
-  0
-STYLE
-  5
-45
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-SemiBold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-SemiBold.ttf
-  4
-
-  0
-STYLE
-  5
-46
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-SemiBoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-SemiBoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-47
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-Bold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-Bold.ttf
-  4
-
-  0
-STYLE
-  5
-48
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-BoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-BoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-49
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-ExtraBold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-ExtraBold.ttf
-  4
-
-  0
-STYLE
-  5
-4A
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSans-ExtraBoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSans-ExtraBoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-4B
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSansCondensed-Bold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSansCondensed-Bold.ttf
-  4
-
-  0
-STYLE
-  5
-4C
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSansCondensed-Light
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSansCondensed-Light.ttf
-  4
-
-  0
-STYLE
-  5
-4D
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-OpenSansCondensed-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-OpenSansCondensed-LightItalic.ttf
-  4
-
-  0
-STYLE
-  5
-4E
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSans
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSans-Regular.ttf
-  4
-
-  0
-STYLE
-  5
-4F
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSans-Bold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSans-Bold.ttf
-  4
-
-  0
-STYLE
-  5
-50
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSans-BoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSans-BoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-51
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSans-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSans-Italic.ttf
-  4
-
-  0
-STYLE
-  5
-52
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSerif
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSerif-Regular.ttf
-  4
-
-  0
-STYLE
-  5
-53
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSerif-Bold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSerif-Bold.ttf
-  4
-
-  0
-STYLE
-  5
-54
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSerif-BoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSerif-BoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-55
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationSerif-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationSerif-Italic.ttf
-  4
-
-  0
-STYLE
-  5
-56
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationMono
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationMono-Regular.ttf
-  4
-
-  0
-STYLE
-  5
-57
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationMono-Bold
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationMono-Bold.ttf
-  4
-
-  0
-STYLE
-  5
-58
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationMono-BoldItalic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationMono-BoldItalic.ttf
-  4
-
-  0
-STYLE
-  5
-59
-330
-5
-100
-AcDbSymbolTableRecord
-100
-AcDbTextStyleTableRecord
-  2
-LiberationMono-Italic
- 70
-0
- 40
-0.0
- 41
-1.0
- 50
-0.0
- 71
-0
- 42
-2.5
-  3
-LiberationMono-Italic.ttf
   4
 
   0
@@ -3301,7 +1797,7 @@ ACAD
   0
 APPID
   5
-114
+93
 330
 3
 100
@@ -3315,7 +1811,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-115
+94
 330
 3
 100
@@ -3339,7 +1835,7 @@ DIMSTYLE
 100
 AcDbSymbolTable
  70
-12
+1
 100
 AcDbDimStyleTable
   0
@@ -3479,1532 +1975,6 @@ Standard
 372
 -2
   0
-DIMSTYLE
-105
-73
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZDXF
- 70
-0
- 40
-1.0
- 41
-0.175
- 42
-0.125
- 43
-3.75
- 44
-0.375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.25
-141
-2.5
-142
-0.0
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.1
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-342
-74
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-7C
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_100_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.25
- 42
-0.125
- 43
-3.75
- 44
-0.375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.25
-141
-2.5
-142
-0.125
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.1
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-7D
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_50_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.125
- 42
-0.0625
- 43
-3.75
- 44
-0.1875
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.125
-141
-2.5
-142
-0.0625
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.05
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-7E
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_25_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.0625
- 42
-0.03125
- 43
-3.75
- 44
-0.09375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.0625
-141
-2.5
-142
-0.03125
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.025
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-7F
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_20_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.05
- 42
-0.025
- 43
-3.75
- 44
-0.07500000000000001
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.05
-141
-2.5
-142
-0.025
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.020000000000000004
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-80
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_10_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.025
- 42
-0.0125
- 43
-3.75
- 44
-0.037500000000000006
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.025
-141
-2.5
-142
-0.0125
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.010000000000000002
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-81
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_5_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.0125
- 42
-0.00625
- 43
-3.75
- 44
-0.018750000000000003
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.0125
-141
-2.5
-142
-0.00625
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.005000000000000001
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-82
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_M_1_H25_CM
- 70
-0
- 40
-1.0
- 41
-0.0025
- 42
-0.00125
- 43
-3.75
- 44
-0.00375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.0025
-141
-2.5
-142
-0.00125
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.001
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-83
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_RADIUS
- 70
-0
- 40
-1.0
- 41
-0.25
- 42
-0.125
- 43
-3.75
- 44
-0.375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.25
-141
-0.0
-142
-0.0
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.1
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-0
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-1
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-342
-84
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-88
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_RADIUS_INSIDE
- 70
-0
- 40
-1.0
- 41
-0.25
- 42
-0.125
- 43
-3.75
- 44
-0.375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.25
-141
-0.0
-142
-0.0
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.1
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-0
- 78
-12
- 79
-3
-170
-0
-171
-3
-172
-0
-173
-0
-174
-1
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-0
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-0
-290
-0
-340
-4C
-342
-84
-371
--2
-372
--2
-  0
-DIMSTYLE
-105
-89
-330
-4
-100
-AcDbSymbolTableRecord
-100
-AcDbDimStyleTableRecord
-  2
-EZ_CURVED
- 70
-0
- 40
-1.0
- 41
-0.25
- 42
-0.125
- 43
-3.75
- 44
-0.375
- 45
-0.0
- 46
-0.0
- 47
-0.0
- 48
-0.0
- 49
-2.5
-140
-0.25
-141
-2.5
-142
-0.0
-143
-0.03937007874
-144
-100.0
-145
-0.0
-146
-0.5
-147
-0.1
-148
-0.0
- 69
-0
- 70
-0
- 71
-0
- 72
-0
- 73
-0
- 74
-0
- 75
-0
- 76
-0
- 77
-1
- 78
-12
- 79
-2
- 90
-2
-170
-0
-171
-3
-172
-1
-173
-0
-174
-0
-175
-0
-176
-0
-177
-0
-178
-0
-179
-2
-271
-2
-272
-2
-273
-2
-274
-3
-275
-0
-276
-0
-277
-2
-278
-46
-279
-2
-280
-0
-281
-0
-282
-0
-283
-0
-284
-8
-285
-0
-286
-0
-288
-1
-289
-3
-290
-0
-340
-4C
-371
--2
-372
--2
-  0
 ENDTAB
   0
 TABLE
@@ -5017,7 +1987,7 @@ BLOCK_RECORD
 100
 AcDbSymbolTable
  70
-5
+2
   0
 BLOCK_RECORD
   5
@@ -5052,66 +2022,6 @@ AcDbBlockTableRecord
 *Paper_Space
 340
 1E
- 70
-0
-280
-1
-281
-0
-  0
-BLOCK_RECORD
-  5
-74
-330
-9
-100
-AcDbSymbolTableRecord
-100
-AcDbBlockTableRecord
-  2
-_ARCHTICK
-340
-0
- 70
-0
-280
-1
-281
-0
-  0
-BLOCK_RECORD
-  5
-78
-330
-9
-100
-AcDbSymbolTableRecord
-100
-AcDbBlockTableRecord
-  2
-_CLOSEDFILLED
-340
-0
- 70
-0
-280
-1
-281
-0
-  0
-BLOCK_RECORD
-  5
-84
-330
-9
-100
-AcDbSymbolTableRecord
-100
-AcDbBlockTableRecord
-  2
-_CLOSEDBLANK
-340
-0
  70
 0
 280
@@ -5203,255 +2113,75 @@ AcDbEntity
 100
 AcDbBlockEnd
   0
-BLOCK
-  5
-75
-330
-74
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockBegin
-  2
-_ARCHTICK
- 70
-0
- 10
-0.0
- 20
-0.0
- 30
-0.0
-  3
-_ARCHTICK
-  1
-
-  0
-LWPOLYLINE
-  5
-77
-330
-74
-100
-AcDbEntity
-  8
-0
-  6
-BYBLOCK
- 62
-0
-100
-AcDbPolyline
- 90
-2
- 70
-0
- 43
-0.15
- 10
--0.5
- 20
--0.5
- 10
-0.5
- 20
-0.5
-  0
-ENDBLK
-  5
-76
-330
-74
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockEnd
-  0
-BLOCK
-  5
-79
-330
-78
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockBegin
-  2
-_CLOSEDFILLED
- 70
-0
- 10
-0.0
- 20
-0.0
- 30
-0.0
-  3
-_CLOSEDFILLED
-  1
-
-  0
-SOLID
-  5
-7B
-330
-78
-100
-AcDbEntity
-  8
-0
-  6
-BYBLOCK
- 62
-0
-100
-AcDbTrace
- 10
--1.0
- 20
-0.16439898372402537
- 30
-0.0
- 11
-0.0
- 21
-0.0
- 31
-0.0
- 12
--1.0
- 22
--0.16439898372402537
- 32
-0.0
- 13
--1.0
- 23
--0.16439898372402537
- 33
-0.0
-  0
-ENDBLK
-  5
-7A
-330
-78
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockEnd
-  0
-BLOCK
-  5
-85
-330
-84
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockBegin
-  2
-_CLOSEDBLANK
- 70
-0
- 10
-0.0
- 20
-0.0
- 30
-0.0
-  3
-_CLOSEDBLANK
-  1
-
-  0
-LWPOLYLINE
-  5
-87
-330
-84
-100
-AcDbEntity
-  8
-0
-  6
-BYBLOCK
- 62
-0
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
--1.0
- 20
-0.16439898372402537
- 10
-0.0
- 20
-0.0
- 10
--1.0
- 20
--0.16439898372402537
-  0
-ENDBLK
-  5
-86
-330
-84
-100
-AcDbEntity
-  8
-0
-100
-AcDbBlockEnd
-  0
 ENDSEC
   0
 SECTION
   2
 ENTITIES
   0
-TEXT
+LWPOLYLINE
   5
-93
+33
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_MARCO
+100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 10
+420.0
+ 20
+0.0
+ 10
+420.0
+ 20
+297.0
+ 10
+0.0
+ 20
+297.0
+ 10
+0.0
+ 20
+0.0
+  0
+TEXT
+  5
+34
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-11.0
+210.0
  20
-16.5
+275.0
  30
 0.0
  40
-0.35
+8.0
   1
-DIAGRAMA UNIFILAR
+DIAGRAMA UNIFILAR - TABLERO GENERAL (TD)
  72
 1
  11
-11.0
+210.0
  21
-16.5
+275.0
  31
 0.0
 100
@@ -5461,31 +2191,31 @@ AcDbText
   0
 TEXT
   5
-94
+35
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-11.0
+210.0
  20
-16.0
+263.0
  30
 0.0
  40
-0.18
+4.5
   1
-Instalaciones Eléctricas Interiores - Vivienda Unifamiliar de 3 Niveles
+PROYECTO: VIVIENDA UNIFAMILIAR 3 NIVELES | PROPIETARIO: CHARAJA MAMANI DIEGO JEFFERSON (CÓD. 214254)
  72
 1
  11
-11.0
+210.0
  21
-16.0
+263.0
  31
 0.0
 100
@@ -5495,235 +2225,85 @@ AcDbText
   0
 TEXT
   5
-95
+36
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-2.0
+210.0
  20
-15.5
+253.0
  30
 0.0
  40
-0.12
-  1
-Propietario: CHARAJA MAMANI DIEGO JEFFERSON (Cód. 214254)
- 72
-1
- 11
-2.0
- 21
-15.5
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-96
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-2.0
- 20
-15.0
- 30
-0.0
- 40
-0.12
-  1
-MD: 13500 W  |  Ib: 39.36 A  |  Alimentador: 10.0 mm2
- 72
-1
- 11
-2.0
- 21
-15.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-LINE
-  5
-97
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
 4.0
- 20
-2.0
- 30
-0.0
- 11
-4.0
- 21
-20.0
- 31
-0.0
-  0
-TEXT
-  5
-98
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-4.0
- 20
-20.3
- 30
-0.0
- 40
-0.1
   1
-FASE
+SUMINISTRO: 220V 3Ø 60Hz ELECTRO PUNO S.A.A. | MD = 13.50 kW | PI = 18.25 kW
  72
 1
  11
-4.0
+210.0
  21
-20.3
+253.0
  31
 0.0
 100
 AcDbText
  73
 2
-  0
-TEXT
-  5
-99
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-3.2
- 20
-20.3
- 30
-0.0
- 40
-0.1
-  1
-NEUTRO
- 72
-1
- 11
-3.2
- 21
-20.3
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-LINE
-  5
-9A
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
-3.2
- 20
-2.0
- 30
-0.0
- 11
-3.2
- 21
-20.0
- 31
-0.0
   0
 CIRCLE
   5
-9B
+37
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_MEDIDOR
+UNIFILAR_PROTECCION
 100
 AcDbCircle
  10
-5.5
+50.0
  20
-18.56
+220.0
  30
 0.0
  40
-0.25
+10.0
   0
 TEXT
   5
-9C
+38
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_MEDIDOR
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+50.0
  20
-18.56
+220.0
  30
 0.0
  40
-0.18
+3.5
   1
-M
+kWh M-1
  72
 1
  11
-5.5
+50.0
  21
-18.56
+220.0
  31
 0.0
 100
@@ -5733,7 +2313,7 @@ AcDbText
   0
 LINE
   5
-9D
+39
 330
 17
 100
@@ -5743,21 +2323,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-5.1
+50.0
  20
-19.06
+240.0
  30
 0.0
  11
-5.5
+50.0
  21
-19.06
+230.0
  31
 0.0
   0
 LINE
   5
-9E
+3A
 330
 17
 100
@@ -5767,127 +2347,43 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-5.5
+50.0
  20
-18.06
+210.0
  30
 0.0
  11
-5.5
+50.0
  21
-18.31
- 31
-0.0
-  0
-LINE
-  5
-9F
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
-4.0
- 20
-18.56
- 30
-0.0
- 11
-5.5
- 21
-18.56
- 31
-0.0
-  0
-LINE
-  5
-A0
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
-5.5
- 20
-19.06
- 30
-0.0
- 11
-5.5
- 21
-20.06
+190.0
  31
 0.0
   0
 TEXT
   5
-A1
+3B
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+70.0
  20
-20.259999999999998
+200.0
  30
 0.0
  40
-0.1
+3.0
   1
-RED
- 72
-1
+Alimentador: 3-1x10 mm² NH-80 en PVC-P 25 mmØ (ΔV = 0.81%)
  11
-5.5
+70.0
  21
-20.259999999999998
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-A2
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-20.06
- 30
-0.0
- 40
-0.09
-  1
-PUBLICA
- 72
-1
- 11
-5.5
- 21
-20.06
+200.0
  31
 0.0
 100
@@ -5897,7 +2393,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-A3
+3C
 330
 17
 100
@@ -5911,77 +2407,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+40.0
  20
-17.01
+175.0
  10
-5.75
+60.0
  20
-17.01
+175.0
  10
-5.75
+60.0
  20
-17.23
+190.0
  10
-5.25
+40.0
  20
-17.23
+190.0
  10
-5.25
+40.0
  20
-17.01
-  0
-LINE
-  5
-A4
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-17.12
- 30
-0.0
- 11
-5.75
- 21
-17.12
- 31
-0.0
+175.0
   0
 TEXT
   5
-A5
+3D
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+50.0
  20
-17.12
+182.5
  30
 0.0
  40
-0.1
+3.5
   1
-3x40A (10 kA)A
+ITM GENERAL 3x40A 10kA
  72
 1
  11
-5.5
+50.0
  21
-17.12
+182.5
  31
 0.0
 100
@@ -5991,7 +2463,7 @@ AcDbText
   0
 LINE
   5
-A6
+3E
 330
 17
 100
@@ -6001,125 +2473,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+50.0
  20
-17.12
+175.0
  30
 0.0
  11
-5.5
+50.0
  21
-17.12
+150.0
  31
 0.0
-  0
-LWPOLYLINE
-  5
-A7
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TABLERO
-100
-AcDbPolyline
- 90
-5
- 70
-0
- 10
-5.0
- 20
-15.56
- 10
-6.0
- 20
-15.56
- 10
-6.0
- 20
-16.16
- 10
-5.0
- 20
-16.16
- 10
-5.0
- 20
-15.56
-  0
-TEXT
-  5
-A8
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TABLERO
-100
-AcDbText
- 10
-5.5
- 20
-15.88
- 30
-0.0
- 40
-0.16
-  1
-TG
- 72
-1
- 11
-5.5
- 21
-15.88
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-A9
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-15.410000000000002
- 30
-0.0
- 40
-0.1
-  1
-ITM: ITM Tripolar 3x40A | Cond: 10.0mm2
- 72
-1
- 11
-5.5
- 21
-15.410000000000002
- 31
-0.0
-100
-AcDbText
- 73
-2
   0
 LINE
   5
-AA
+3F
 330
 17
 100
@@ -6129,21 +2497,125 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+30.0
  20
-15.860000000000001
+150.0
  30
 0.0
  11
-5.5
+390.0
  21
-15.860000000000001
+150.0
+ 31
+0.0
+  0
+LINE
+  5
+40
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+30.0
+ 20
+146.0
+ 30
+0.0
+ 11
+390.0
+ 21
+146.0
+ 31
+0.0
+  0
+LINE
+  5
+41
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+30.0
+ 20
+142.0
+ 30
+0.0
+ 11
+390.0
+ 21
+142.0
+ 31
+0.0
+  0
+TEXT
+  5
+42
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+395.0
+ 20
+146.0
+ 30
+0.0
+ 40
+3.5
+  1
+BARRAS TRIFÁSICAS R - S - T (100A)
+ 11
+395.0
+ 21
+146.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LINE
+  5
+43
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+55.0
+ 20
+142.0
+ 30
+0.0
+ 11
+55.0
+ 21
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-AB
+44
 330
 17
 100
@@ -6157,53 +2629,53 @@ AcDbPolyline
  70
 0
  10
-5.2
+43.0
  20
-14.81
+105.0
  10
-5.8
+67.0
  20
-14.81
+105.0
  10
-5.8
+67.0
  20
-15.110000000000001
+120.0
  10
-5.2
+43.0
  20
-15.110000000000001
+120.0
  10
-5.2
+43.0
  20
-14.81
+105.0
   0
 TEXT
   5
-AC
+45
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+55.0
  20
-14.96
+112.5
  30
 0.0
  40
-0.09
+2.5
   1
-2P-40A-30mA
+ITM 2x16A
  72
 1
  11
-5.5
+55.0
  21
-14.96
+112.5
  31
 0.0
 100
@@ -6213,7 +2685,7 @@ AcDbText
   0
 LINE
   5
-AD
+46
 330
 17
 100
@@ -6223,21 +2695,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+55.0
  20
-14.96
+105.0
  30
 0.0
  11
-5.5
+55.0
  21
-14.96
+85.0
  31
 0.0
   0
 LWPOLYLINE
   5
-AE
+47
 330
 17
 100
@@ -6251,281 +2723,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+43.0
  20
-1.89
+70.0
  10
-5.75
+67.0
  20
-1.89
+70.0
  10
-5.75
+67.0
  20
-2.11
+85.0
  10
-5.25
+43.0
  20
-2.11
+85.0
  10
-5.25
+43.0
  20
-1.89
-  0
-LINE
-  5
-AF
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-2.0
- 30
-0.0
- 11
-5.75
- 21
-2.0
- 31
-0.0
+70.0
   0
 TEXT
   5
-B0
+48
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+55.0
  20
-2.0
+77.5
  30
 0.0
  40
-0.1
-  1
-2x16A (6 kA)A
- 72
-1
- 11
-5.5
- 21
-2.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B1
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.3
- 20
-2.0
- 30
-0.0
- 40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+55.0
  21
-2.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B2
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-1.19
- 30
-0.0
- 40
-0.12
-  1
-C-1: Alumbrado y Tomacorrientes Generales (1er Piso)
- 72
-1
- 11
-5.5
- 21
-1.19
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B3
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-0.99
- 30
-0.0
- 40
-0.09
-  1
-2500W
- 72
-1
- 11
-5.5
- 21
-0.99
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B4
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-0.84
- 30
-0.0
- 40
-0.08
-  1
-2.5mm2
- 72
-1
- 11
-5.5
- 21
-0.84
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B5
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-0.69
- 30
-0.0
- 40
-0.08
-  1
-dV=0.95%
- 72
-1
- 11
-5.5
- 21
-0.69
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-B6
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-1.19
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-1.19
+77.5
  31
 0.0
 100
@@ -6535,7 +2779,7 @@ AcDbText
   0
 LINE
   5
-B7
+49
 330
 17
 100
@@ -6545,21 +2789,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+55.0
  20
-2.0
+70.0
  30
 0.0
  11
-5.5
+55.0
  21
-2.0
+40.0
  31
 0.0
   0
+TEXT
+  5
+4A
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+55.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-1
+ 72
+1
+ 11
+55.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+4B
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+55.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Alum./Tomac 1P
+ 72
+1
+ 11
+55.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+4C
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+55.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+2500W | 2x2.5mm²
+ 72
+1
+ 11
+55.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-B8
+4D
 330
 17
 100
@@ -6569,21 +2915,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+97.0
  20
-2.0
+142.0
  30
 0.0
  11
-4.0
+97.0
  21
-2.0
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-B9
+4E
 330
 17
 100
@@ -6597,77 +2943,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+85.0
  20
-3.69
+105.0
  10
-5.75
+109.0
  20
-3.69
+105.0
  10
-5.75
+109.0
  20
-3.91
+120.0
  10
-5.25
+85.0
  20
-3.91
+120.0
  10
-5.25
+85.0
  20
-3.69
-  0
-LINE
-  5
-BA
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-3.8
- 30
-0.0
- 11
-5.75
- 21
-3.8
- 31
-0.0
+105.0
   0
 TEXT
   5
-BB
+4F
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+97.0
  20
-3.8
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x16A (6 kA)A
+ITM 2x16A
  72
 1
  11
-5.5
+97.0
  21
-3.8
+112.5
  31
 0.0
 100
@@ -6675,9 +2997,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-BC
+50
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+97.0
+ 20
+105.0
+ 30
+0.0
+ 11
+97.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+51
 330
 17
 100
@@ -6685,193 +3031,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+85.0
+ 20
+70.0
+ 10
+109.0
+ 20
+70.0
+ 10
+109.0
+ 20
+85.0
+ 10
+85.0
+ 20
+85.0
+ 10
+85.0
+ 20
+70.0
+  0
+TEXT
+  5
+52
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+97.0
  20
-3.8
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+97.0
  21
-3.8
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-BD
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-2.9899999999999998
- 30
-0.0
- 40
-0.12
-  1
-C-2: Alumbrado y Tomacorrientes (2do Piso y Azotea)
- 72
-1
- 11
-5.5
- 21
-2.9899999999999998
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-BE
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-2.7899999999999996
- 30
-0.0
- 40
-0.09
-  1
-2000W
- 72
-1
- 11
-5.5
- 21
-2.7899999999999996
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-BF
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-2.6399999999999997
- 30
-0.0
- 40
-0.08
-  1
-2.5mm2
- 72
-1
- 11
-5.5
- 21
-2.6399999999999997
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-C0
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-2.4899999999999998
- 30
-0.0
- 40
-0.08
-  1
-dV=0.42%
- 72
-1
- 11
-5.5
- 21
-2.4899999999999998
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-C1
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-2.9899999999999998
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-2.9899999999999998
+77.5
  31
 0.0
 100
@@ -6881,7 +3093,7 @@ AcDbText
   0
 LINE
   5
-C2
+53
 330
 17
 100
@@ -6891,21 +3103,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+97.0
  20
-3.8
+70.0
  30
 0.0
  11
-5.5
+97.0
  21
-3.8
+40.0
  31
 0.0
   0
+TEXT
+  5
+54
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+97.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-2
+ 72
+1
+ 11
+97.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+55
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+97.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Alum 2P/Azotea
+ 72
+1
+ 11
+97.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+56
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+97.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+700W | 2x2.5mm²
+ 72
+1
+ 11
+97.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-C3
+57
 330
 17
 100
@@ -6915,21 +3229,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+139.0
  20
-3.8
+142.0
  30
 0.0
  11
-4.0
+139.0
  21
-3.8
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-C4
+58
 330
 17
 100
@@ -6943,77 +3257,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+127.0
  20
-5.489999999999999
+105.0
  10
-5.75
+151.0
  20
-5.489999999999999
+105.0
  10
-5.75
+151.0
  20
-5.709999999999999
+120.0
  10
-5.25
+127.0
  20
-5.709999999999999
+120.0
  10
-5.25
+127.0
  20
-5.489999999999999
-  0
-LINE
-  5
-C5
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-5.6
- 30
-0.0
- 11
-5.75
- 21
-5.6
- 31
-0.0
+105.0
   0
 TEXT
   5
-C6
+59
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+139.0
  20
-5.6
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-3x25A (6 kA)A
+ITM 3x25A
  72
 1
  11
-5.5
+139.0
  21
-5.6
+112.5
  31
 0.0
 100
@@ -7021,9 +3311,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-C7
+5A
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+139.0
+ 20
+105.0
+ 30
+0.0
+ 11
+139.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+5B
 330
 17
 100
@@ -7031,193 +3345,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+127.0
+ 20
+70.0
+ 10
+151.0
+ 20
+70.0
+ 10
+151.0
+ 20
+85.0
+ 10
+127.0
+ 20
+85.0
+ 10
+127.0
+ 20
+70.0
+  0
+TEXT
+  5
+5C
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+139.0
  20
-5.6
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 3x32A 30mA
  72
 1
  11
-7.3
+139.0
  21
-5.6
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-C8
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-4.789999999999999
- 30
-0.0
- 40
-0.12
-  1
-C-3: Cocina Eléctrica (Primer Piso - 3Ø)
- 72
-1
- 11
-5.5
- 21
-4.789999999999999
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-C9
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-4.589999999999999
- 30
-0.0
- 40
-0.09
-  1
-6000W
- 72
-1
- 11
-5.5
- 21
-4.589999999999999
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-CA
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-4.4399999999999995
- 30
-0.0
- 40
-0.08
-  1
-6.0mm2
- 72
-1
- 11
-5.5
- 21
-4.4399999999999995
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-CB
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-4.289999999999999
- 30
-0.0
- 40
-0.08
-  1
-dV=0.68%
- 72
-1
- 11
-5.5
- 21
-4.289999999999999
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-CC
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-4.789999999999999
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-4.789999999999999
+77.5
  31
 0.0
 100
@@ -7227,7 +3407,7 @@ AcDbText
   0
 LINE
   5
-CD
+5D
 330
 17
 100
@@ -7237,21 +3417,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+139.0
  20
-5.6
+70.0
  30
 0.0
  11
-5.5
+139.0
  21
-5.6
+40.0
  31
 0.0
   0
+TEXT
+  5
+5E
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+139.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-3
+ 72
+1
+ 11
+139.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+5F
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+139.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Cocina Eléc 3Ø
+ 72
+1
+ 11
+139.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+60
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+139.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+4800W | 3x6.0mm²
+ 72
+1
+ 11
+139.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-CE
+61
 330
 17
 100
@@ -7261,21 +3543,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+181.0
  20
-5.6
+142.0
  30
 0.0
  11
-4.0
+181.0
  21
-5.6
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-CF
+62
 330
 17
 100
@@ -7289,77 +3571,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+169.0
  20
-7.289999999999999
+105.0
  10
-5.75
+193.0
  20
-7.289999999999999
+105.0
  10
-5.75
+193.0
  20
-7.509999999999999
+120.0
  10
-5.25
+169.0
  20
-7.509999999999999
+120.0
  10
-5.25
+169.0
  20
-7.289999999999999
-  0
-LINE
-  5
-D0
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-7.3999999999999995
- 30
-0.0
- 11
-5.75
- 21
-7.3999999999999995
- 31
-0.0
+105.0
   0
 TEXT
   5
-D1
+63
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+181.0
  20
-7.3999999999999995
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x16A (6 kA)A
+ITM 2x16A
  72
 1
  11
-5.5
+181.0
  21
-7.3999999999999995
+112.5
  31
 0.0
 100
@@ -7367,9 +3625,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-D2
+64
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+181.0
+ 20
+105.0
+ 30
+0.0
+ 11
+181.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+65
 330
 17
 100
@@ -7377,193 +3659,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+169.0
+ 20
+70.0
+ 10
+193.0
+ 20
+70.0
+ 10
+193.0
+ 20
+85.0
+ 10
+169.0
+ 20
+85.0
+ 10
+169.0
+ 20
+70.0
+  0
+TEXT
+  5
+66
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+181.0
  20
-7.3999999999999995
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+181.0
  21
-7.3999999999999995
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-D3
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-6.59
- 30
-0.0
- 40
-0.12
-  1
-C-4: Terma Eléctrica (Segundo Piso)
- 72
-1
- 11
-5.5
- 21
-6.59
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-D4
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-6.39
- 30
-0.0
- 40
-0.09
-  1
-1500W
- 72
-1
- 11
-5.5
- 21
-6.39
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-D5
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-6.24
- 30
-0.0
- 40
-0.08
-  1
-4.0mm2
- 72
-1
- 11
-5.5
- 21
-6.24
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-D6
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-6.09
- 30
-0.0
- 40
-0.08
-  1
-dV=0.55%
- 72
-1
- 11
-5.5
- 21
-6.09
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-D7
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-6.59
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-6.59
+77.5
  31
 0.0
 100
@@ -7573,7 +3721,7 @@ AcDbText
   0
 LINE
   5
-D8
+67
 330
 17
 100
@@ -7583,21 +3731,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+181.0
  20
-7.3999999999999995
+70.0
  30
 0.0
  11
-5.5
+181.0
  21
-7.3999999999999995
+40.0
  31
 0.0
   0
+TEXT
+  5
+68
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+181.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-4
+ 72
+1
+ 11
+181.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+69
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+181.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Terma Eléctrica
+ 72
+1
+ 11
+181.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+6A
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+181.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+1500W | 2x4.0mm²
+ 72
+1
+ 11
+181.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-D9
+6B
 330
 17
 100
@@ -7607,21 +3857,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+223.0
  20
-7.3999999999999995
+142.0
  30
 0.0
  11
-4.0
+223.0
  21
-7.3999999999999995
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-DA
+6C
 330
 17
 100
@@ -7635,77 +3885,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+211.0
  20
-9.09
+105.0
  10
-5.75
+235.0
  20
-9.09
+105.0
  10
-5.75
+235.0
  20
-9.31
+120.0
  10
-5.25
+211.0
  20
-9.31
+120.0
  10
-5.25
+211.0
  20
-9.09
-  0
-LINE
-  5
-DB
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-9.2
- 30
-0.0
- 11
-5.75
- 21
-9.2
- 31
-0.0
+105.0
   0
 TEXT
   5
-DC
+6D
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+223.0
  20
-9.2
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x16A (6 kA)A
+ITM 2x16A
  72
 1
  11
-5.5
+223.0
  21
-9.2
+112.5
  31
 0.0
 100
@@ -7713,9 +3939,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-DD
+6E
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+223.0
+ 20
+105.0
+ 30
+0.0
+ 11
+223.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+6F
 330
 17
 100
@@ -7723,193 +3973,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+211.0
+ 20
+70.0
+ 10
+235.0
+ 20
+70.0
+ 10
+235.0
+ 20
+85.0
+ 10
+211.0
+ 20
+85.0
+ 10
+211.0
+ 20
+70.0
+  0
+TEXT
+  5
+70
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+223.0
  20
-9.2
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+223.0
  21
-9.2
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-DE
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-8.389999999999999
- 30
-0.0
- 40
-0.12
-  1
-C-5: Electrobomba de Agua (0.75 HP Cisterna)
- 72
-1
- 11
-5.5
- 21
-8.389999999999999
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-DF
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-8.19
- 30
-0.0
- 40
-0.09
-  1
-750W
- 72
-1
- 11
-5.5
- 21
-8.19
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-E0
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-8.04
- 30
-0.0
- 40
-0.08
-  1
-2.5mm2
- 72
-1
- 11
-5.5
- 21
-8.04
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-E1
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-7.889999999999999
- 30
-0.0
- 40
-0.08
-  1
-dV=0.45%
- 72
-1
- 11
-5.5
- 21
-7.889999999999999
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-E2
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-8.389999999999999
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-8.389999999999999
+77.5
  31
 0.0
 100
@@ -7919,7 +4035,7 @@ AcDbText
   0
 LINE
   5
-E3
+71
 330
 17
 100
@@ -7929,21 +4045,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+223.0
  20
-9.2
+70.0
  30
 0.0
  11
-5.5
+223.0
  21
-9.2
+40.0
  31
 0.0
   0
+TEXT
+  5
+72
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+223.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-5
+ 72
+1
+ 11
+223.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+73
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+223.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Bomba Agua 0.75HP
+ 72
+1
+ 11
+223.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+74
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+223.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+750W | 2x2.5mm²
+ 72
+1
+ 11
+223.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-E4
+75
 330
 17
 100
@@ -7953,21 +4171,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+265.0
  20
-9.2
+142.0
  30
 0.0
  11
-4.0
+265.0
  21
-9.2
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-E5
+76
 330
 17
 100
@@ -7981,77 +4199,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+253.0
  20
-10.89
+105.0
  10
-5.75
+277.0
  20
-10.89
+105.0
  10
-5.75
+277.0
  20
-11.110000000000001
+120.0
  10
-5.25
+253.0
  20
-11.110000000000001
+120.0
  10
-5.25
+253.0
  20
-10.89
-  0
-LINE
-  5
-E6
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-11.0
- 30
-0.0
- 11
-5.75
- 21
-11.0
- 31
-0.0
+105.0
   0
 TEXT
   5
-E7
+77
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+265.0
  20
-11.0
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x20A (6 kA)A
+ITM 2x20A
  72
 1
  11
-5.5
+265.0
  21
-11.0
+112.5
  31
 0.0
 100
@@ -8059,9 +4253,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-E8
+78
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+265.0
+ 20
+105.0
+ 30
+0.0
+ 11
+265.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+79
 330
 17
 100
@@ -8069,193 +4287,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+253.0
+ 20
+70.0
+ 10
+277.0
+ 20
+70.0
+ 10
+277.0
+ 20
+85.0
+ 10
+253.0
+ 20
+85.0
+ 10
+253.0
+ 20
+70.0
+  0
+TEXT
+  5
+7A
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+265.0
  20
-11.0
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+265.0
  21
-11.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-E9
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-10.19
- 30
-0.0
- 40
-0.12
-  1
-C-6: Tomacorrientes Especiales Cocina
- 72
-1
- 11
-5.5
- 21
-10.19
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-EA
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-9.99
- 30
-0.0
- 40
-0.09
-  1
-1500W
- 72
-1
- 11
-5.5
- 21
-9.99
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-EB
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-9.84
- 30
-0.0
- 40
-0.08
-  1
-4.0mm2
- 72
-1
- 11
-5.5
- 21
-9.84
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-EC
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-9.69
- 30
-0.0
- 40
-0.08
-  1
-dV=0.38%
- 72
-1
- 11
-5.5
- 21
-9.69
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-ED
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-10.19
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-10.19
+77.5
  31
 0.0
 100
@@ -8265,7 +4349,7 @@ AcDbText
   0
 LINE
   5
-EE
+7B
 330
 17
 100
@@ -8275,21 +4359,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+265.0
  20
-11.0
+70.0
  30
 0.0
  11
-5.5
+265.0
  21
-11.0
+40.0
  31
 0.0
   0
+TEXT
+  5
+7C
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+265.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-6
+ 72
+1
+ 11
+265.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+7D
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+265.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Tomac Cocina
+ 72
+1
+ 11
+265.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+7E
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+265.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+750W | 2x4.0mm²
+ 72
+1
+ 11
+265.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-EF
+7F
 330
 17
 100
@@ -8299,21 +4485,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+307.0
  20
-11.0
+142.0
  30
 0.0
  11
-4.0
+307.0
  21
-11.0
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-F0
+80
 330
 17
 100
@@ -8327,77 +4513,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+295.0
  20
-12.690000000000001
+105.0
  10
-5.75
+319.0
  20
-12.690000000000001
+105.0
  10
-5.75
+319.0
  20
-12.910000000000002
+120.0
  10
-5.25
+295.0
  20
-12.910000000000002
+120.0
  10
-5.25
+295.0
  20
-12.690000000000001
-  0
-LINE
-  5
-F1
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-12.8
- 30
-0.0
- 11
-5.75
- 21
-12.8
- 31
-0.0
+105.0
   0
 TEXT
   5
-F2
+81
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+307.0
  20
-12.8
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x20A (6 kA)A
+ITM 2x20A
  72
 1
  11
-5.5
+307.0
  21
-12.8
+112.5
  31
 0.0
 100
@@ -8405,9 +4567,33 @@ AcDbText
  73
 2
   0
-TEXT
+LINE
   5
-F3
+82
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_LINEAS
+100
+AcDbLine
+ 10
+307.0
+ 20
+105.0
+ 30
+0.0
+ 11
+307.0
+ 21
+85.0
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+83
 330
 17
 100
@@ -8415,193 +4601,59 @@ AcDbEntity
   8
 UNIFILAR_PROTECCION
 100
+AcDbPolyline
+ 90
+5
+ 70
+0
+ 10
+295.0
+ 20
+70.0
+ 10
+319.0
+ 20
+70.0
+ 10
+319.0
+ 20
+85.0
+ 10
+295.0
+ 20
+85.0
+ 10
+295.0
+ 20
+70.0
+  0
+TEXT
+  5
+84
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
 AcDbText
  10
-7.3
+307.0
  20
-12.8
+77.5
  30
 0.0
  40
-0.07
+2.2
   1
 ID 2x25A 30mA
  72
 1
  11
-7.3
+307.0
  21
-12.8
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-F4
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-11.99
- 30
-0.0
- 40
-0.12
-  1
-C-7: Lavadora y Secadora de Ropa (Azotea)
- 72
-1
- 11
-5.5
- 21
-11.99
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-F5
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-11.790000000000001
- 30
-0.0
- 40
-0.09
-  1
-2500W
- 72
-1
- 11
-5.5
- 21
-11.790000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-F6
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-11.64
- 30
-0.0
- 40
-0.08
-  1
-4.0mm2
- 72
-1
- 11
-5.5
- 21
-11.64
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-F7
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-11.49
- 30
-0.0
- 40
-0.08
-  1
-dV=0.72%
- 72
-1
- 11
-5.5
- 21
-11.49
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-F8
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-11.99
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-11.99
+77.5
  31
 0.0
 100
@@ -8611,7 +4663,7 @@ AcDbText
   0
 LINE
   5
-F9
+85
 330
 17
 100
@@ -8621,21 +4673,123 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+307.0
  20
-12.8
+70.0
  30
 0.0
  11
-5.5
+307.0
  21
-12.8
+40.0
  31
 0.0
   0
+TEXT
+  5
+86
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+307.0
+ 20
+33.0
+ 30
+0.0
+ 40
+4.0
+  1
+C-7
+ 72
+1
+ 11
+307.0
+ 21
+33.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+87
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+307.0
+ 20
+25.0
+ 30
+0.0
+ 40
+2.5
+  1
+Lavadora/Secadora
+ 72
+1
+ 11
+307.0
+ 21
+25.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+88
+330
+17
+100
+AcDbEntity
+  8
+UNIFILAR_TEXTO
+100
+AcDbText
+ 10
+307.0
+ 20
+18.0
+ 30
+0.0
+ 40
+2.2
+  1
+1750W | 2x4.0mm²
+ 72
+1
+ 11
+307.0
+ 21
+18.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
 LINE
   5
-FA
+89
 330
 17
 100
@@ -8645,21 +4799,21 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-3.2
+349.0
  20
-12.8
+142.0
  30
 0.0
  11
-4.0
+349.0
  21
-12.8
+120.0
  31
 0.0
   0
 LWPOLYLINE
   5
-FB
+8A
 330
 17
 100
@@ -8673,281 +4827,53 @@ AcDbPolyline
  70
 0
  10
-5.25
+337.0
  20
-14.490000000000002
+105.0
  10
-5.75
+361.0
  20
-14.490000000000002
+105.0
  10
-5.75
+361.0
  20
-14.710000000000003
+120.0
  10
-5.25
+337.0
  20
-14.710000000000003
+120.0
  10
-5.25
+337.0
  20
-14.490000000000002
-  0
-LINE
-  5
-FC
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbLine
- 10
-5.25
- 20
-14.600000000000001
- 30
-0.0
- 11
-5.75
- 21
-14.600000000000001
- 31
-0.0
+105.0
   0
 TEXT
   5
-FD
+8B
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_PROTECCION
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-5.5
+349.0
  20
-14.600000000000001
+112.5
  30
 0.0
  40
-0.1
+2.5
   1
-2x20A (6 kA)A
+ITM 2x20A
  72
 1
  11
-5.5
+349.0
  21
-14.600000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-FE
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.3
- 20
-14.600000000000001
- 30
-0.0
- 40
-0.07
-  1
-Reserva equipada
- 72
-1
- 11
-7.3
- 21
-14.600000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-FF
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_CARGA
-100
-AcDbText
- 10
-5.5
- 20
-13.790000000000001
- 30
-0.0
- 40
-0.12
-  1
-C-8: Cargas Especiales de Reserva
- 72
-1
- 11
-5.5
- 21
-13.790000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-100
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-13.590000000000002
- 30
-0.0
- 40
-0.09
-  1
-1500W
- 72
-1
- 11
-5.5
- 21
-13.590000000000002
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-101
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-13.440000000000001
- 30
-0.0
- 40
-0.08
-  1
-4.0mm2
- 72
-1
- 11
-5.5
- 21
-13.440000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-102
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-5.5
- 20
-13.290000000000001
- 30
-0.0
- 40
-0.08
-  1
-dV=0.38%
- 72
-1
- 11
-5.5
- 21
-13.290000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-103
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_PROTECCION
-100
-AcDbText
- 10
-7.5
- 20
-13.790000000000001
- 30
-0.0
- 40
-0.08
-  1
-OK
- 72
-1
- 11
-7.5
- 21
-13.790000000000001
+112.5
  31
 0.0
 100
@@ -8957,7 +4883,7 @@ AcDbText
   0
 LINE
   5
-104
+8C
 330
 17
 100
@@ -8967,205 +4893,27 @@ UNIFILAR_LINEAS
 100
 AcDbLine
  10
-4.0
+349.0
  20
-14.600000000000001
+105.0
  30
 0.0
  11
-5.5
+349.0
  21
-14.600000000000001
+85.0
  31
 0.0
-  0
-LINE
-  5
-105
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
-3.2
- 20
-14.600000000000001
- 30
-0.0
- 11
-4.0
- 21
-14.600000000000001
- 31
-0.0
-  0
-LINE
-  5
-106
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_LINEAS
-100
-AcDbLine
- 10
-3.2
- 20
-1.1
- 30
-0.0
- 11
-3.2
- 21
-2.0
- 31
-0.0
-  0
-LINE
-  5
-107
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TIERRA
-100
-AcDbLine
- 10
-3.2
- 20
-1.1
- 30
-0.0
- 11
-3.2
- 21
-0.8
- 31
-0.0
-  0
-LINE
-  5
-108
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TIERRA
-100
-AcDbLine
- 10
-3.0
- 20
-0.8
- 30
-0.0
- 11
-3.4000000000000004
- 21
-0.8
- 31
-0.0
-  0
-LINE
-  5
-109
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TIERRA
-100
-AcDbLine
- 10
-3.08
- 20
-0.6500000000000001
- 30
-0.0
- 11
-3.3200000000000003
- 21
-0.6500000000000001
- 31
-0.0
-  0
-LINE
-  5
-10A
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TIERRA
-100
-AcDbLine
- 10
-3.1500000000000004
- 20
-0.5000000000000001
- 30
-0.0
- 11
-3.25
- 21
-0.5000000000000001
- 31
-0.0
-  0
-TEXT
-  5
-10B
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TIERRA
-100
-AcDbText
- 10
-3.2
- 20
-0.3500000000000001
- 30
-0.0
- 40
-0.09
-  1
-SPAT
- 72
-1
- 11
-3.2
- 21
-0.3500000000000001
- 31
-0.0
-100
-AcDbText
- 73
-2
   0
 LWPOLYLINE
   5
-10C
+8D
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_MARCO
+UNIFILAR_PROTECCION
 100
 AcDbPolyline
  90
@@ -9173,89 +4921,53 @@ AcDbPolyline
  70
 0
  10
-1.5
+337.0
  20
--1.3
+70.0
  10
-20.5
+361.0
  20
--1.3
+70.0
  10
-20.5
+361.0
  20
-22.5
+85.0
  10
-1.5
+337.0
  20
-22.5
+85.0
  10
-1.5
+337.0
  20
--1.3
-  0
-LWPOLYLINE
-  5
-10D
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_MARCO
-100
-AcDbPolyline
- 90
-5
- 70
-0
- 10
-16.0
- 20
-2.9
- 10
-21.0
- 20
-2.9
- 10
-21.0
- 20
-4.7
- 10
-16.0
- 20
-4.7
- 10
-16.0
- 20
-2.9
+70.0
   0
 TEXT
   5
-10E
+8E
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-18.5
+349.0
  20
-4.5
+77.5
  30
 0.0
  40
-0.12
+2.2
   1
-SIMBOLOGIA
+Reserva
  72
 1
  11
-18.5
+349.0
  21
-4.5
+77.5
  31
 0.0
 100
@@ -9265,55 +4977,55 @@ AcDbText
   0
 LINE
   5
-10F
+8F
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_MARCO
+UNIFILAR_LINEAS
 100
 AcDbLine
  10
-16.0
+349.0
  20
-4.3
+70.0
  30
 0.0
  11
-21.0
+349.0
  21
-4.3
+40.0
  31
 0.0
   0
 TEXT
   5
-110
+90
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-18.5
+349.0
  20
+33.0
+ 30
+0.0
+ 40
 4.0
- 30
-0.0
- 40
-0.09
   1
-Medidor
+C-8
  72
 1
  11
-18.5
+349.0
  21
-4.0
+33.0
  31
 0.0
 100
@@ -9323,31 +5035,31 @@ AcDbText
   0
 TEXT
   5
-111
+91
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-18.5
+349.0
  20
-3.7
+25.0
  30
 0.0
  40
-0.09
+2.5
   1
-ITM / Proteccion
+Reserva Especial
  72
 1
  11
-18.5
+349.0
  21
-3.7
+25.0
  31
 0.0
 100
@@ -9357,65 +5069,31 @@ AcDbText
   0
 TEXT
   5
-112
+92
 330
 17
 100
 AcDbEntity
   8
-UNIFILAR_TEXTOS
+UNIFILAR_TEXTO
 100
 AcDbText
  10
-18.5
+349.0
  20
-3.4
+18.0
  30
 0.0
  40
-0.09
+2.2
   1
-Tablero general
+750W | 2x4.0mm²
  72
 1
  11
-18.5
+349.0
  21
-3.4
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-113
-330
-17
-100
-AcDbEntity
-  8
-UNIFILAR_TEXTOS
-100
-AcDbText
- 10
-18.5
- 20
-3.1
- 30
-0.0
- 40
-0.09
-  1
-Carga / Circuito
- 72
-1
- 11
-18.5
- 21
-3.1
+18.0
  31
 0.0
 100
@@ -9638,106 +5316,6 @@ A
 AcDbDictionary
 281
 1
-  3
-2dWireframe
-350
-5A
-  3
-Basic
-350
-5B
-  3
-Brighten
-350
-5C
-  3
-ColorChange
-350
-5D
-  3
-Conceptual
-350
-5E
-  3
-Dim
-350
-5F
-  3
-EdgeColorOff
-350
-60
-  3
-Facepattern
-350
-61
-  3
-Flat
-350
-62
-  3
-FlatWithEdges
-350
-63
-  3
-Gouraud
-350
-64
-  3
-GouraudWithEdges
-350
-65
-  3
-Hidden
-350
-66
-  3
-JitterOff
-350
-67
-  3
-Linepattern
-350
-68
-  3
-Modeling
-350
-69
-  3
-OverhangOff
-350
-6A
-  3
-Realistic
-350
-6B
-  3
-Shaded
-350
-6C
-  3
-Shaded with edges
-350
-6D
-  3
-Shades of Gray
-350
-6E
-  3
-Sketchy
-350
-6F
-  3
-Thicken
-350
-70
-  3
-Wireframe
-350
-71
-  3
-X-Ray
-350
-72
   0
 LAYOUT
   5
@@ -10513,7 +6091,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-116
+95
   0
 DICTIONARYVAR
   5
@@ -10525,711 +6103,11 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-05T16:27:55.081956+00:00
-  0
-VISUALSTYLE
-  5
-5A
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-2dWireframe
- 70
-4
- 90
-0
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-5B
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Basic
- 70
-7
- 90
-1
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-5C
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Brighten
- 70
-12
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-5D
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-ColorChange
- 70
-16
- 90
-2
- 40
-0.6
- 62
-8
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-5E
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Conceptual
- 70
-9
- 90
-3
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-5F
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Dim
- 70
-11
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-60
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-EdgeColorOff
- 70
-22
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-61
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Facepattern
- 70
-15
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-62
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Flat
- 70
-0
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-63
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-FlatWithEdges
- 70
-1
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-64
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Gouraud
- 70
-2
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-65
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-GouraudWithEdges
- 70
-3
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-66
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Hidden
- 70
-6
- 90
-1
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-67
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-JitterOff
- 70
-20
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-68
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Linepattern
- 70
-14
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-69
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Modeling
- 70
-10
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-6A
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-OverhangOff
- 70
-21
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-6B
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Realistic
- 70
-8
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-6C
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Shaded
- 70
-27
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-6D
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Shaded with edges
- 70
-26
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-6E
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Shades of Gray
- 70
-23
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-6F
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Sketchy
- 70
-24
- 90
-1
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-70
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Thicken
- 70
-13
- 90
-2
- 40
-0.6
- 62
-7
-290
-0
-291
-1
-  0
-VISUALSTYLE
-  5
-71
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-Wireframe
- 70
-5
- 90
-0
- 40
-0.6
- 62
-7
-290
-0
-291
-0
-  0
-VISUALSTYLE
-  5
-72
-102
-{ACAD_REACTORS
-330
-16
-102
-}
-330
-16
-100
-AcDbVisualStyle
-  2
-X-Ray
- 70
-25
- 90
-2
- 40
-0.5
- 62
-7
-290
-0
-291
-0
+1.4.4 @ 2026-08-05T16:58:55.063157+00:00
   0
 DICTIONARYVAR
   5
-116
+95
 330
 2D
 100
@@ -11237,7 +6115,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-05T16:27:55.092781+00:00
+1.4.4 @ 2026-08-05T16:58:55.072361+00:00
   0
 ENDSEC
   0

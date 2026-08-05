@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<qet-project version="0.90" title="Diagrama Unifilar Tablero General TD - Norma DGE/MEM Perú">
+  <properties>
+    <property name="propietario" value="CHARAJA MAMANI DIEGO JEFFERSON (Cód. 214254)"/>
+    <property name="proyecto" value="Instalaciones Eléctricas Interiores - Vivienda Unifamiliar de 3 Niveles"/>
+    <property name="docente" value="Ing. Villanueva Cornejo Marcos Jose"/>
+    <property name="asignatura" value="Instalaciones Eléctricas (Grupo B)"/>
+    <property name="escuela" value="EPIME - FIMEES - UNAP"/>
+  </properties>
+  <diagram width="1050" height="1485" title="Diagrama Unifilar Tablero General (TD)" order="1">
+    <inset>
+      <title>DIAGRAMA UNIFILAR TABLERO GENERAL (TD)</title>
+      <author>CHARAJA MAMANI DIEGO JEFFERSON (Cód. 214254)</author>
+      <date>2026-06-15</date>
+      <folio>IE-01</folio>
+      <plant>Vivienda Unifamiliar 3 Niveles - Puno</plant>
+    </inset>
+    <elements>
+      <element type="acometida_red" x="100" y="100" label="RED SECUNDARIA 220V 3Ø 60Hz - ELECTRO PUNO S.A.A."/>
+      <element type="medidor_kwh" x="100" y="200" label="MEDIDOR M-1 (Caja LT de Cobre)"/>
+      <element type="alimentador_general" x="100" y="300" label="Alimentador General: 3-1x10.0 mm² NH-80 en PVC-P 25 mmØ"/>
+      <element type="itm_tripolar" x="100" y="400" label="ITM General: ITM Tripolar 3x40A"/>
+      <element type="barras_colectoras" x="100" y="500" label="BARRAS COLECTORAS CU 100A (FASES R - S - T)"/>
+      <element type="circuito_derivado" x="100" y="600" id="C-1" label="C-1: Alumbrado y Tomacorrientes Generales (1er Piso) | ITM 2x16A (6 kA) | ID 2x25A 30mA | 2x2.5 mm² NH-80"/>
+      <element type="circuito_derivado" x="220" y="600" id="C-2" label="C-2: Alumbrado y Tomacorrientes (2do Piso y Azotea) | ITM 2x16A (6 kA) | ID 2x25A 30mA | 2x2.5 mm² NH-80"/>
+      <element type="circuito_derivado" x="340" y="600" id="C-3" label="C-3: Cocina Eléctrica (Primer Piso - 3Ø) | ITM 3x25A (6 kA) | ID 3x32A 30mA | 2x6.0 mm² NH-80"/>
+      <element type="circuito_derivado" x="460" y="600" id="C-4" label="C-4: Terma Eléctrica (Segundo Piso) | ITM 2x16A (6 kA) | ID 2x25A 30mA | 2x4.0 mm² NH-80"/>
+      <element type="circuito_derivado" x="580" y="600" id="C-5" label="C-5: Electrobomba de Agua (0.75 HP Cisterna) | ITM 2x16A (6 kA) | ID 2x25A 30mA | 2x2.5 mm² NH-80"/>
+      <element type="circuito_derivado" x="700" y="600" id="C-6" label="C-6: Tomacorrientes Especiales Cocina | ITM 2x20A (6 kA) | ID 2x25A 30mA | 2x4.0 mm² NH-80"/>
+      <element type="circuito_derivado" x="820" y="600" id="C-7" label="C-7: Lavadora y Secadora de Ropa (Azotea) | ITM 2x20A (6 kA) | ID 2x25A 30mA | 2x4.0 mm² NH-80"/>
+      <element type="circuito_derivado" x="940" y="600" id="C-8" label="C-8: Cargas Especiales de Reserva | ITM 2x20A (6 kA) | Reserva equipada | 2x4.0 mm² NH-80"/>
+    </elements>
+  </diagram>
+</qet-project>
