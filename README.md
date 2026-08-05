@@ -76,8 +76,17 @@ El proyecto de la segunda unidad se inicia en
 Mientras su tipologia siga pendiente, solo se permite investigar, registrar
 fuentes y comparar alternativas; no se deben inventar cargas ni generar planos.
 
+## Motor CAD y QElectroTech
+
+El repositorio integra **[QElectroTech](https://github.com/qelectrotech/qelectrotech-source-mirror)** como solución de esquemática eléctrica de código abierto para la generación automatizada de diagramas unifilares, simulación de protecciones y tableros generales.
+
+* **Documentación QElectroTech:** [`herramientas/cad/QELECTROTECH.md`](herramientas/cad/QELECTROTECH.md)
+* **Generador de proyectos `.qet`:** `python3 herramientas/cad/scripts/qet_generator.py`
+* **Motor DXF / ezdxf:** `python3 herramientas/cad/scripts/generar_unifilar.py`
+
 ## Datos pesados y respaldos
 
 `referencias/local/` y `proyectos/*/fuentes/local/` contienen material pesado o restringido que no se sube a Git. La reorganizacion anterior permanece respaldada en `respaldo/reorganizacion-base-antigua-2026-06-13`.
 
 Las configuraciones locales de asistentes, incluida `.gemini/`, estan ignoradas porque no forman parte del producto ni del pipeline reproducible.
+
