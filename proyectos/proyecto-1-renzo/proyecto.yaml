@@ -1,0 +1,36 @@
+schema_version: 1
+id: proyecto-1-renzo
+proyecto: "Proyecto 1 Renzo - Instalación Eléctrica Residencial Casa de 1 Piso"
+propietario: "Renzo Gabriel Mamani Galindo"
+docente: "Richar Renzo Julio Amachi Quispe"
+estado: "diseño y memoria de cálculo completada"
+
+ubicacion:
+  distrito: "Capachica"
+  provincia: "Puno"
+  departamento: "Puno"
+  direccion: "Vivienda Unifamiliar 1 Piso"
+
+entradas:
+  configuracion: datos/parametros-proyecto.yaml
+  modelo_electrico: datos/modelo-electrico.yaml
+  plano_referencia: "/storage/emulated/0/universida-datos/Protecto/IMG-20260905-WA0067.jpg"
+
+circuitos:
+  C1:
+    nombre: "Alumbrado General"
+    elementos: "11 luminarias LED + 8 interruptores"
+    potencia_w: 220
+    conductor_mm2: 2.5
+    proteccion_itm: "10A 2P"
+  C2:
+    nombre: "Tomacorrientes Uso General"
+    elementos: "29 tomacorrientes C/T"
+    potencia_w: 3000
+    conductor_mm2: 2.5
+    proteccion_itm: "20A 2P"
+    proteccion_id: "25A 30mA 2P"
+
+entregables:
+  directorio: entregables
+  informe: entregables/informe_tecnico_completo.md

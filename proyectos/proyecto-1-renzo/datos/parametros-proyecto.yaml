@@ -1,0 +1,19 @@
+proyecto:
+  nombre: "Proyecto 1 Renzo - Casa de 1 Piso"
+  autor: "Renzo Gabriel Mamani Galindo"
+  curso: "Instalaciones Eléctricas I"
+  docente: "Richar Renzo Julio Amachi Quispe"
+  universidad: "Universidad Nacional del Altiplano (UNAP)"
+  ubicacion:
+    direccion: "Vivienda Unifamiliar"
+    distrito: "Capachica"
+    provincia: "Puno"
+    departamento: "Puno"
+  parametros_electricos:
+    tension_v: 220
+    sistema: "Monofásico 220V 60Hz"
+    frecuencia_hz: 60
+    factor_potencia: 0.90
+    caida_tension_max_alimentador_pct: 2.5
+    caida_tension_max_derivado_pct: 2.5
+    caida_tension_max_total_pct: 4.0
