@@ -22,8 +22,8 @@
 ### 2. Justificación Técnica de los 2 Circuitos Derivados
 
 #### **Circuito C-1: Iluminación / Alumbrado**
-- **Luminarias:** 11 LED de 15 W a 20 W $\Rightarrow P = 11 \times 20\,\text{W} = 220\,\text{W}$.
-- **Corriente:** $I = \frac{220}{220} = 1.0\,\text{A}$ (Carga pequeña).
+- **Luminarias:** 11 LED de potencia menor a 15 W (ej. 9 W a 15 W max) $\Rightarrow P = 11 \times 15\,\text{W} = 165\,\text{W}$ (o $132\,\text{W}$ a $12\,\text{W}$).
+- **Corriente:** $I = \frac{165}{220} = \mathbf{0.75\,\text{A}}$ (Carga extremadamente pequeña).
 - **8 Interruptores:** No representan 8 circuitos, solo controlan el circuito C-1.
 - **Conductor:** $2.5\,\text{mm}^2\,\text{Cu}$ (N.° 12 AWG) + Tierra.
 - **Breaker:** 10 A Monofásico.
