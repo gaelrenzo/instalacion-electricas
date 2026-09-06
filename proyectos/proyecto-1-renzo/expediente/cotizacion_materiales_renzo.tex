@@ -3,13 +3,13 @@
 % --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,es-tabla]{babel}
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=1.8cm]{geometry}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,tabularx,multirow}
 \usepackage{tcolorbox}
 \usepackage{float}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks=true,linkcolor=AccentBlue,urlcolor=AccentBlue]{hyperref}
 
 % --- COLORES ---
 \definecolor{DarkBlue}{RGB}{20, 50, 90}
@@ -26,93 +26,106 @@
 \begin{tcolorbox}[colback=DarkBlue,colframe=DarkBlue,arc=4pt]
     \color{white}
     \centering
-    {\Huge \textbf{PRESUPUESTO Y COTIZACIÓN DE MATERIALES}}\\[0.2cm]
-    {\Large Instalación Eléctrica Residencial -- Casa de 1 Piso}\\[0.1cm]
-    \small \textbf{Técnico Instalador:} Renzo Gabriel Mamani Galindo | \textbf{Teléfono / Yape / Contacto:} 923 037 653
+    {\Huge \textbf{COTIZACIÓN CON LINKS Y PROVEEDORES}}\\[0.2cm]
+    {\Large Materiales Eléctricos -- Casa de 1 Piso (48 Puntos Totales)}\\[0.1cm]
+    \small \textbf{Técnico Instalador:} Renzo Gabriel Mamani Galindo | \textbf{Contacto / Yape:} 923 037 653
 \end{tcolorbox}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{tabularx}{\textwidth}{X X}
-    \textbf{Atención Propietario / Cliente:} Cotización de Materiales & \textbf{Fecha:} Septiembre de 2026 \\
-    \textbf{Ubicación:} Vivienda Unifamiliar (1 Piso) & \textbf{Validez de Cotización:} 15 días \\
+    \textbf{Atención Propietario / Cliente:} Presupuesto de Materiales & \textbf{Fecha de Emisión:} Septiembre de 2026 \\
+    \textbf{Ubicación de Proyecto:} Vivienda Unifamiliar (1 Piso) & \textbf{Validez de Precios:} 15 Días Calendario \\
 \end{tabularx}
 
-\vspace{0.2cm}
+\vspace{0.1cm}
 \hrule
-\vspace{0.3cm}
+\vspace{0.2cm}
 
-\section*{1. Lista Detallada de Materiales y Costos Referenciales}
+\section*{1. Guía de Tiendas y Enlaces de Compra (Puno / Juliaca / Arequipa)}
 
-La siguiente cotización incluye la totalidad de cables, tuberías, cajas, accesorios, placas, tomacorrientes, luminarias LED, llaves de protección y pozo a tierra necesarios para la ejecución del proyecto de **48 puntos eléctricos**.
+Todos los insumos especificados cuentan con garantía oficial de marca y pueden ser comprados directamente en las siguientes tiendas físicas y plataformas web:
+
+\begin{tcolorbox}[colback=BgGrey,colframe=AccentBlue,title=\textbf{TIENDAS Y DISTRIBUIDORAS OFICIALES CON LÍNKS DIRECTOS}]
+\begin{itemize}
+    \item \textbf{\href{https://www.promart.pe}{Promart Homecenter} (Juliaca - Real Plaza / Arequipa):} Venta de cables \href{https://www.indeco.com.pe}{Indeco} en rollo de 100m, placas \href{https://www.bticino.com.pe}{Bticino Modus PRO}, tuberías \href{https://www.pavco.com.pe}{Pavco} y paneles LED \href{https://www.philips.com.pe}{Philips / Opalux}.
+    \item \textbf{\href{https://www.sodimac.com.pe}{Sodimac / Maestro} (Juliaca / Arequipa):} Venta de tableros eléctricos \href{https://www.schneider-electric.com.pe}{Schneider Electric / Solera}, térmicos Easy9, diferenciales de $30\,\text{mA}$ y pozos a tierra.
+    \item \textbf{Distribuidoras Mayoristas en Juliaca y Puno:}
+    \begin{itemize}
+        \item \textit{Juliaca:} Jr. Benjamín Vizcarra y Av. Ferial (Precios mayoristas por rollo de cable Indeco a S/ 135 - 140).
+        \item \textit{Puno:} Jr. Lima y Mercado Central.
+    \end{itemize}
+    \item \textbf{\href{https://www.promelsa.com.pe}{Promelsa} / \href{https://www.electroenchufe.com}{Electro Enchufe} (Envío directo Arequipa/Lima):} Despacho express por agencias Shalom, Marvisur o Flores.
+\end{itemize}
+\end{tcolorbox}
+
+\section*{2. Cuadro Detallado de Materiales, Precios y Enlaces}
 
 \begin{table}[H]
 \centering
-\small
-\begin{tabularx}{\textwidth}{c X c c r r}
+\scriptsize
+\begin{tabularx}{\textwidth}{c X c c r r X}
 \toprule
-\textbf{Item} & \textbf{Descripción del Material} & \textbf{Marca / Ref.} & \textbf{Cant.} & \textbf{P. Unit. (S/)} & \textbf{Total (S/)} \\
+\textbf{Item} & \textbf{Descripción del Material} & \textbf{Marca / Proveedor} & \textbf{Cant.} & \textbf{P. Unit.} & \textbf{Total} & \textbf{Enlace / Tienda} \\
 \midrule
-\multicolumn{6}{l}{\textbf{\color{AccentBlue}\textbf{A. CONDUCTORES ELÉCTRICOS}}} \\
-1 & Cable Cobre $2.5\,\text{mm}^2$ (12 AWG) THHN (Rojo/Azul) & Indeco / Promelsa & 2 rollos & S/ 140.00 & S/ 280.00 \\
-2 & Cable Cobre $2.5\,\text{mm}^2$ (12 AWG) Verde (Tierra PE) & Indeco / Promelsa & 1 rollo & S/ 140.00 & S/ 140.00 \\
-3 & Cable Cobre $4.0\,\text{mm}^2$ (10 AWG) THHN (Alimentador) & Indeco & 60 metros & S/ 2.80 & S/ 168.00 \\
+\multicolumn{7}{l}{\textbf{\color{AccentBlue}\textbf{A. CONDUCTORES ELÉCTRICOS (CABLEADO)}}} \\
+1 & Cable Cobre $2.5\,\text{mm}^2$ (12 AWG) THHN Rojo/Azul & \href{https://www.indeco.com.pe}{Indeco} / \href{https://www.promart.pe}{Promart} & 2 rollos & S/ 140.00 & S/ 280.00 & \href{https://www.promart.pe}{promart.pe} \\
+2 & Cable Cobre $2.5\,\text{mm}^2$ (12 AWG) THHN Verde (PE) & \href{https://www.indeco.com.pe}{Indeco} / \href{https://www.sodimac.com.pe}{Sodimac} & 1 rollo & S/ 140.00 & S/ 140.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+3 & Cable Cobre $4.0\,\text{mm}^2$ (10 AWG) THHN Alimentador & \href{https://www.indeco.com.pe}{Indeco} / Mayorista & 60 m & S/ 2.80 & S/ 168.00 & \href{https://www.promelsa.com.pe}{promelsa.com.pe} \\
 \midrule
-\multicolumn{6}{l}{\textbf{\color{AccentBlue}\textbf{B. TUBERÍAS, CAJAS Y CANALIZACIÓN}}} \\
-4 & Tubo PVC Pesado (PVC-P) 20 mm ($3/4''$) $\times 3\,\text{m}$ & Pavco / Matusita & 25 tubos & S/ 6.50 & S/ 162.50 \\
-5 & Tubo PVC Pesado (PVC-P) 25 mm ($1''$) $\times 3\,\text{m}$ & Pavco / Matusita & 5 tubos & S/ 9.50 & S/ 47.50 \\
-6 & Caja Octogonal Galvanizada $4'' \times 4''$ (Luminarias) & NEMA / Genérica & 11 uds. & S/ 2.50 & S/ 27.50 \\
-7 & Caja Rectangular Galvanizada $4'' \times 2''$ (Tomas/Int.) & NEMA / Genérica & 37 uds. & S/ 2.20 & S/ 81.40 \\
-8 & Curvas, Uniones $3/4''$ y Pegamento PVC $1/4$ galón & Pavco & 1 kit & S/ 45.00 & S/ 45.00 \\
+\multicolumn{7}{l}{\textbf{\color{AccentBlue}\textbf{B. TUBERÍAS, CAJAS Y CANALIZACIÓN}}} \\
+4 & Tubo PVC Pesado (PVC-P) 20 mm ($3/4''$) $\times 3\,\text{m}$ & \href{https://www.promart.pe}{Pavco} / \href{https://www.sodimac.com.pe}{Maestro} & 25 tubos & S/ 6.50 & S/ 162.50 & \href{https://www.promart.pe}{promart.pe} \\
+5 & Tubo PVC Pesado (PVC-P) 25 mm ($1''$) $\times 3\,\text{m}$ & \href{https://www.promart.pe}{Pavco} / \href{https://www.sodimac.com.pe}{Maestro} & 5 tubos & S/ 9.50 & S/ 47.50 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+6 & Caja Octogonal Galvanizada $4'' \times 4''$ (Techo) & Ferretería / Maestro & 11 uds. & S/ 2.50 & S/ 27.50 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+7 & Caja Rectangular Galvanizada $4'' \times 2''$ (Pared) & Ferretería / Maestro & 37 uds. & S/ 2.20 & S/ 81.40 & \href{https://www.promart.pe}{promart.pe} \\
+8 & Curvas $3/4''$, Uniones y Pegamento PVC 1/4 galón & \href{https://www.promart.pe}{Pavco / Oatey} & 1 kit & S/ 45.00 & S/ 45.00 & \href{https://www.promart.pe}{promart.pe} \\
 \midrule
-\multicolumn{6}{l}{\textbf{\color{AccentBlue}\textbf{C. MECANISMOS, PLACAS Y LUMINARIAS LED}}} \\
-9 & Tomacorriente Bipolar Doble con Tierra 2P+T & Bticino Modus PRO & 29 uds. & S/ 14.50 & S/ 420.50 \\
-10 & Interruptor Simple / Conmutado con Placa & Bticino Modus PRO & 8 uds. & S/ 11.00 & S/ 88.00 \\
-11 & Luminaria LED Adosable / Panel $12\text{W} - 15\text{W}$ & Philips / Opalux & 11 uds. & S/ 22.00 & S/ 242.00 \\
+\multicolumn{7}{l}{\textbf{\color{AccentBlue}\textbf{C. MECANISMOS, PLACAS Y LUMINARIAS LED}}} \\
+9 & Tomacorriente Bipolar Doble con Tierra 2P+T & \href{https://www.bticino.com.pe}{Bticino Modus PRO} & 29 uds. & S/ 14.50 & S/ 420.50 & \href{https://www.promart.pe}{promart.pe} \\
+10 & Interruptor Simple / Conmutado con Placa & \href{https://www.bticino.com.pe}{Bticino Modus PRO} & 8 uds. & S/ 11.00 & S/ 88.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+11 & Luminaria LED Adosable / Panel $12\text{W} - 15\text{W}$ & \href{https://www.philips.com.pe}{Philips / Opalux} & 11 uds. & S/ 22.00 & S/ 242.00 & \href{https://www.promart.pe}{promart.pe} \\
 \midrule
-\multicolumn{6}{l}{\textbf{\color{AccentBlue}\textbf{D. TABLERO Y PROTECCIONES ELÉCTRICAS}}} \\
-12 & Tablero Distribución Empotrado Resina 8 Polos IP40 & Solera / Schneider & 1 ud. & S/ 75.00 & S/ 75.00 \\
-13 & ITM Monofásico 2P -- 25 A ($10\,\text{kA}$) General & Schneider / ABB & 1 ud. & S/ 38.00 & S/ 38.00 \\
-14 & ITM Monofásico 2P -- 10 A ($6\,\text{kA}$) C-1 Alumbrado & Schneider / ABB & 1 ud. & S/ 32.00 & S/ 32.00 \\
-15 & ITM Monofásico 2P -- 20 A ($6\,\text{kA}$) C-2 Tomas & Schneider / ABB & 1 ud. & S/ 32.00 & S/ 32.00 \\
-16 & Interruptor Diferencial 2P -- 25 A / 30 mA & Schneider / ABB & 1 ud. & S/ 85.00 & S/ 85.00 \\
+\multicolumn{7}{l}{\textbf{\color{AccentBlue}\textbf{D. TABLERO Y PROTECCIONES ELÉCTRICAS}}} \\
+12 & Tablero Distribución Empotrado Resina 8 Polos & \href{https://www.schneider-electric.com.pe}{Solera / Schneider} & 1 ud. & S/ 75.00 & S/ 75.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+13 & ITM Monofásico 2P -- 25 A ($10\,\text{kA}$) General & \href{https://www.schneider-electric.com.pe}{Schneider / ABB} & 1 ud. & S/ 38.00 & S/ 38.00 & \href{https://www.promart.pe}{promart.pe} \\
+14 & ITM Monofásico 2P -- 10 A ($6\,\text{kA}$) C-1 Alumbrado & \href{https://www.schneider-electric.com.pe}{Schneider / ABB} & 1 ud. & S/ 32.00 & S/ 32.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+15 & ITM Monofásico 2P -- 20 A ($6\,\text{kA}$) C-2 Tomas & \href{https://www.schneider-electric.com.pe}{Schneider / ABB} & 1 ud. & S/ 32.00 & S/ 32.00 & \href{https://www.promart.pe}{promart.pe} \\
+16 & Interruptor Diferencial 2P -- 25 A / 30 mA & \href{https://www.schneider-electric.com.pe}{Schneider / ABB} & 1 ud. & S/ 85.00 & S/ 85.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
 \midrule
-\multicolumn{6}{l}{\textbf{\color{AccentBlue}\textbf{E. POZO A TIERRA (PAT) Y VARIOS}}} \\
-17 & Varilla Cobre Puro Electrodo $\frac{5}{8}'' \times 2.40\,\text{m}$ + ABR & Cobre Puro & 1 kit & S/ 107.00 & S/ 107.00 \\
-18 & Caja Registro Concreto $30 \times 30\,\text{cm}$ con tapa & Concreto & 1 ud. & S/ 35.00 & S/ 35.00 \\
-19 & Dosis Mejoradora de Terreno Gel / Bentonita & ThorGel / Similar & 1 dosis & S/ 85.00 & S/ 85.00 \\
-20 & Conductor Tierra $6\,\text{mm}^2$ Cu (10m) + Cintas 3M & Indeco / 3M & 1 kit & S/ 80.00 & S/ 80.00 \\
+\multicolumn{7}{l}{\textbf{\color{AccentBlue}\textbf{E. POZO A TIERRA (PAT) Y VARIOS}}} \\
+17 & Varilla Cobre Puro Electrodo $\frac{5}{8}'' \times 2.40\text{m}$ + ABR & Cobre Puro / Maestro & 1 kit & S/ 107.00 & S/ 107.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
+18 & Caja Registro Concreto $30 \times 30\text{cm}$ con tapa & Concreto / Ferretería & 1 ud. & S/ 35.00 & S/ 35.00 & Distribuidor \\
+19 & Dosis Mejoradora de Terreno Gel / Bentonita & ThorGel / Maestro & 1 dosis & S/ 85.00 & S/ 85.00 & \href{https://www.promart.pe}{promart.pe} \\
+20 & Conductor Tierra $6\,\text{mm}^2$ Cu + Cintas 3M & Indeco / 3M 1700 & 1 kit & S/ 80.00 & S/ 80.00 & \href{https://www.sodimac.com.pe}{sodimac.com.pe} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section*{2. Resumen General del Presupuesto Total}
+\section*{3. Justificación de Precios e Inversión Total}
 
-\begin{tcolorbox}[colback=BgGrey,colframe=DarkBlue,title=\textbf{RESUMEN CONSOLIDADO: MATERIALES + MANO DE OBRA}]
+\begin{tcolorbox}[colback=BgGrey,colframe=DarkBlue,title=\textbf{RESUMEN GENERAL: MATERIALES + MANO DE OBRA}]
     \begin{tabularx}{\textwidth}{X r}
-        \textbf{Subtotal Materiales Eléctricos (Sección A al E):} & \textbf{S/ 2,271.30} \\
-        \textbf{Mano de Obra (Renzo -- 48 Puntos Totales):} & \textbf{S/ 650.00} \\
+        \textbf{Subtotal Materiales Eléctricos (Sección A a la E):} & \textbf{S/ 2,271.30} \\
+        \textbf{Mano de Obra (Renzo Gabriel Mamani G. -- 48 Puntos):} & \textbf{S/ 650.00} \\
         \midrule
-        {\Large \textbf{\color{DarkBlue} TOTAL GENERAL PROYECTADO:}} & {\Huge \textbf{\color{GreenPrice} S/ 2,921.30 SOLES}} \\
+        {\Large \textbf{\color{DarkBlue} PRESUPUESTO TOTAL ESTIMADO:}} & {\Huge \textbf{\color{GreenPrice} S/ 2,921.30 SOLES}} \\
     \end{tabularx}
+    \tcblower
+    \small \textbf{Justificación de la inversión:} 
+    \begin{itemize}
+        \item \textbf{Seguridad Garantizada:} Uso exclusivo de cable de cobre de $2.5\,\text{mm}^2$ Indeco (no calienta) e Interruptor Diferencial de 30 mA (evita electrocuciones).
+        \item \textbf{Durabilidad:} Materiales de marca oficial (Bticino, Schneider, Indeco, Pavco) con vida útil proyectada de \textbf{25 a 30 años}.
+    \end{itemize}
 \end{tcolorbox}
 
-\vspace{0.4cm}
-
-\textbf{Notas Importantes:}
-\begin{itemize}
-    \item Los precios de los materiales son valores de mercado comercial promedio de tienda (Sodimac / Promart / Distribuidora eléctrica).
-    \item El cliente puede adquirir los materiales por su cuenta usando esta lista exacta de insumos.
-\end{itemize}
-
-\vspace{1.2cm}
+\vspace{0.8cm}
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c}
     \rule{7cm}{0.4pt} \\
     \textbf{Renzo Gabriel Mamani Galindo} \\
-    Técnico Instalador Electricista -- Cel: 923 037 653
+    Técnico Instalador Electricista -- Celular / Yape: \textbf{923 037 653}
 \end{tabular}
 \end{table}
 
