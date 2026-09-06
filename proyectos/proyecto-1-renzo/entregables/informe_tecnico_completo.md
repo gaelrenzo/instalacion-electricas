@@ -2,6 +2,7 @@
 ## INSTALACIÓN ELÉCTRICA -- CASA DE 1 PISO
 
 **Técnico Instalador Electricista:** Renzo Gabriel Mamani Galindo  
+**Teléfono / Contacto:** 923 037 653  
 **Ubicación:** Vivienda Unifamiliar (1 Piso)  
 **Sistema:** Monofásico 220 V / 60 Hz  
 
