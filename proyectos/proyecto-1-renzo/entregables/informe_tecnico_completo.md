@@ -37,9 +37,27 @@
 
 ---
 
-### 3. Criterio de Selección de Conductor
-Se usará **$2.5\,\text{mm}^2\,\text{Cu}$ (N.° 12 AWG)** como mínimo para ambos circuitos derivados en lugar de cable N.° 14 AWG ($2.08\,\text{mm}^2$), garantizando que se cumpla la regla de seguridad:
+### 3. Criterio de Selección de Conductor, Proyección y Uso de Cable N.° 14
+
+#### **A. ¿Por qué usar 2.5 mm² Cu (N.° 12 AWG) y no N.° 14 AWG ($2.08\,\text{mm}^2$)?**
+1. **Capacidad Térmica de Corriente:** El cable de $2.5\,\text{mm}^2$ soporta hasta **21 A – 25 A** en ducto. En el circuito de tomacorrientes con una demanda calculada de $13.64\,\text{A}$, el cable de $2.5\,\text{mm}^2$ trabaja a solo un **55% – 60% de su capacidad**, manteniéndose totalmente frío. En cambio, un cable 14 AWG (máx. 15 A) trabajaría al 90% – 100% de su límite continuo, recalentando el aislamiento de PVC.
+2. **Resistencia Mecánica durante el Cableado:** Al jalar los cables por las tuberías con codos en paredes de ladrillo/concreto, el calibre $2.5\,\text{mm}^2$ resiste el estiramiento y la tracción sin fracturar las hebras de cobre ni rasgar el aislante.
+3. **Menor Caída de Tensión:** El cobre $2.5\,\text{mm}^2$ tiene menor resistencia eléctrica ($7.41\,\Omega/\text{km}$ frente a $12.1\,\Omega/\text{km}$ del N.° 14), evitando bajones de luz o parpadeos cuando arrancan motores de refrigeradores o electrodomésticos.
+
+#### **B. Proyección de Vida Útil de la Instalación**
+- Operando con un conductor de $2.5\,\text{mm}^2$ Cu por debajo del 60% de su límite térmico y protegido con breakers de 20 A + diferencial de 30 mA, la instalación eléctrica tiene una vida útil garantizada de **25 a 30 años** sin deterioro del cableado ni sobrecalentamientos.
+
+#### **C. ¿En qué casos SÍ se puede usar cable N.° 14 AWG ($2.08\,\text{mm}^2$)?**
+- **Retornos de Interruptores:** En el tramo que va desde el interruptor de pared hasta la luminaria LED (retorno de fase) para alimentar cargas muy livianas (< 2 Amperios).
+- **Circuitos Exclusivos de Alumbrado LED:** En circuitos dedicados únicamente a iluminación donde no exista posibilidad física de conectar tomacorrientes ni electrodomésticos.
+- **Circuitos Auxiliares de Bajo Consumo:** Timbres de puerta, intercomunicadores, sensores de presencia o automatizaciones con consumos menores a 3 Amperios.
+
+---
+
+### 4. Cumplimiento de la Regla de Seguridad
 $$\mathbf{I_{\text{demanda}} \le I_{\text{breaker}} \le I_{\text{conductor}}}$$
+- **Circuito C-1 (Alumbrado):** $0.75\,\text{A} \le 10\,\text{A} \le 21\,\text{A}$ (CUMPLE)
+- **Circuito C-2 (Tomacorrientes):** $13.64\,\text{A} \le 20\,\text{A} \le 21\,\text{A}$ (CUMPLE)
 
 ---
 

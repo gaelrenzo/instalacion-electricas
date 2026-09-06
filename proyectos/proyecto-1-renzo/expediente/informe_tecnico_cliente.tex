@@ -87,9 +87,25 @@ Para garantizar un trabajo seguro y duradero, la instalación se dividirá en **
     \item \textbf{Protección (Breaker):} **20 A** Monofásico + **Diferencial 25 A / 30 mA**.
 \end{itemize}
 
-\begin{tcolorbox}[colback=BgGrey,colframe=DarkBlue,title=\textbf{Nota Importante sobre el Cable N.° 14 (2.08 mm²)}]
-    No recomiendo usar cable N.° 14 AWG para los circuitos derivados de esta instalación nueva. Se utilizará como mínimo **2.5 mm² Cu (N.° 12 AWG)** para asegurar mayor capacidad, evitar calentamientos y garantizar la regla de seguridad:
-    $$\mathbf{I_{\text{demanda}} \le I_{\text{breaker}} \le I_{\text{conductor}}}$$
+\begin{tcolorbox}[colback=BgGrey,colframe=DarkBlue,title=\textbf{3. Justificación del Conductor, Vida Útil y Caso de Cable N.° 14}]
+    \textbf{A. ¿Por qué usar 2.5 mm² Cu (N.° 12 AWG) en lugar de N.° 14 AWG?}
+    \begin{itemize}
+        \item \textbf{Capacidad Térmica de Corriente:} El cable $2.5\,\text{mm}^2$ soporta hasta $21\,\text{A}-25\,\text{A}$ en ducto. En el circuito de tomacorrientes con una demanda de $13.64\,\text{A}$, el cable $2.5\,\text{mm}^2$ trabaja apenas a un **55\%-60\% de su capacidad**, manteniéndose completamente frío. En cambio, un cable 14 AWG (máx. 15 A) trabajaría al 90\%-100\% de su límite, recalentando el aislamiento de PVC.
+        \item \textbf{Resistencia Mecánica en Cableado:} Durante la pasada por tuberías y codos en paredes de ladrillo/concreto, el calibre $2.5\,\text{mm}^2$ resiste el estiramiento y la tracción sin fracturar las hebras de cobre ni dañar la chaqueta.
+        \item \textbf{Menor Caída de Tensión:} El cobre $2.5\,\text{mm}^2$ tiene menor resistencia eléctrica ($7.41\,\Omega/\text{km}$ vs. $12.1\,\Omega/\text{km}$ del N.° 14), evitando parpadeos de luz cuando arrancan motores de refrigeradores o electrodomésticos.
+    \end{itemize}
+
+    \textbf{B. Proyección de Vida Útil de la Instalación:}
+    \begin{itemize}
+        \item Con cable de $2.5\,\text{mm}^2$ Cu (THHN/THW-90) operando con margen térmico y protegido con breakers termomagnéticos y diferencial de 30 mA, la instalación eléctrica tiene una vida útil garantizada de \textbf{25 a 30 años} sin deterioro prematuro.
+    \end{itemize}
+
+    \textbf{C. ¿En qué casos SÍ se puede usar cable N.° 14 AWG (2.08 mm²)?}
+    \begin{itemize}
+        \item \textbf{Retornos de Interruptores:} Para los tramos entre el interruptor de pared y la luminaria LED (retorno de fase) en cargas menores a 2 Amperios.
+        \item \textbf{Circuitos Exclusivos de Iluminación Puramente LED:} En instalaciones donde no exista posibilidad alguna de conectar tomacorrientes ni electrodomésticos.
+        \item \textbf{Circuitos Auxiliares y de Control:} Timbres de puerta, intercomunicadores, sensores de presencia, alarmas o automatización de bajo consumo ($< 3\,\text{A}$).
+    \end{itemize}
 \end{tcolorbox}
 
 \section*{3. Esquema Simple de Tablero}
