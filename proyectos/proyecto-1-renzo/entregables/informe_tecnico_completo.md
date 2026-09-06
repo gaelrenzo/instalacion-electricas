@@ -1,63 +1,60 @@
-# INFORME TÉCNICO COMPLETO DE INSTALACIONES ELÉCTRICAS
-## PROYECTO 1 RENZO - VIVIENDA UNIFAMILIAR DE 1 PISO
+# PRESUPUESTO Y MEMORIA TÉCNICA SIMPLIFICADA
+## INSTALACIÓN ELÉCTRICA -- CASA DE 1 PISO
 
-**Expediente N.°:** 2026-PROY1-RENZO  
-**Propietario:** Renzo Gabriel Mamani Galindo  
-**Ubicación:** Puno, Perú  
-**Estado:** Finalizado / Aprobado  
-
----
-
-## 1. RESUMEN EJECUTIVO
-
-Se ha desarrollado el expediente técnico integral de la instalación eléctrica para una **vivienda de un (1) piso**, ajustado a la normativa vigente del **Código Nacional de Electricidad (CNE - Utilización 2006)**.
-
-### Características del Sistema:
-- **Tensión nominal:** $220\,\text{V}$ Monofásico, $60\,\text{Hz}$.
-- **Número de Circuitos Derivados:** 2 circuitos independientes (C-1 Alumbrado, C-2 Tomacorrientes).
-- **Máxima Demanda Calculada:** $3.76\,\text{kW}$ ($19.0\,\text{A}$).
-- **Calibre mínimo de circuitos derivados:** $2.5\,\text{mm}^2\,\text{Cu}$ (Equivalente #12 AWG), rechazando $2.08\,\text{mm}^2$ (#14 AWG).
-- **Alimentador Principal:** $2 \times 4\,\text{mm}^2\,\text{Cu} + 1 \times 4\,\text{mm}^2\,\text{PE}$.
-- **Interruptor General:** Termomagnético 2P - 25 A ($10\,\text{kA}$).
-- **Protección Diferencial:** 2P - 25 A / $30\,\text{mA}$ en C-2 Tomacorrientes.
+**Técnico Instalador Electricista:** Renzo Gabriel Mamani Galindo  
+**Ubicación:** Vivienda Unifamiliar (1 Piso)  
+**Sistema:** Monofásico 220 V / 60 Hz  
 
 ---
 
-## 2. REVISIÓN DEL PLANO ARQUITECTÓNICO Y PUNTOS DE UTILIZACIÓN
+### 1. Mensaje de Presupuesto para Cliente
 
-Del análisis del plano técnico (`/storage/emulated/0/universida-datos/Protecto/IMG-20260905-WA0067.jpg`):
-
-1. **Circuito C-1 (Alumbrado):**
-   - 11 Salidas para centro de luz LED.
-   - 8 Interruptores para maniobra de iluminación (conmutados y simples).
-   - Potencia de alumbrado: $220\,\text{W}$ ($1.11\,\text{A}$).
-   - Protección: ITM 2P - 10 A. Cable: $2.5\,\text{mm}^2$.
-
-2. **Circuito C-2 (Tomacorrientes de Uso General):**
-   - 29 Puntos de tomacorrientes bipolares dobles con toma a tierra.
-   - Carga simultánea esperada: $3,000\,\text{W}$ ($15.15\,\text{A}$).
-   - Protección: ITM 2P - 20 A + ID 2P - 25 A / 30 mA. Cable: $2.5\,\text{mm}^2$.
+> Hola, estuve revisando bien el trabajo. Son **29 tomacorrientes, 8 interruptores y 11 luminarias**, en total **48 puntos**.
+>
+> El precio de **S/ 650.00 soles** es por la mano de obra e incluye pasar los conductores por las tuberías, pelar y conectar los cables, instalar los tomacorrientes e interruptores, colocar las 11 luminarias a aproximadamente 3 m de altura y realizar las pruebas de funcionamiento.
+>
+> En promedio sería alrededor de **S/ 13.50 por punto**, considerando que las luminarias requieren el uso de escalera.
+>
+> Los materiales serían aparte. El precio corresponde únicamente a la mano de obra y dejar todo correctamente instalado y funcionando.
 
 ---
 
-## 3. RESUMEN DE CÁLCULOS ELÉCTRICOS
+### 2. Justificación Técnica de los 2 Circuitos Derivados
 
-| Parámetro | Alimentador | Circuito C-1 (Alumbrado) | Circuito C-2 (Tomacorrientes) |
-| :--- | :--- | :--- | :--- |
-| **Carga / Potencia** | 3.76 kW (MD) | 220 W (PI) | 3.0 kW (MD simultánea) |
-| **Corriente de Trabajo ($I$)** | 19.0 A | 1.11 A | 15.15 A |
-| **Protección ITM** | **2P - 25 A** (10 kA) | **2P - 10 A** (6 kA) | **2P - 20 A** (6 kA) |
-| **Protección Diferencial (ID)** | N/A | N/A | **2P - 25 A / 30 mA** |
-| **Sección Conductor (Cu)** | **4.0 mm²** | **2.5 mm²** | **2.5 mm²** |
-| **Conductor Tierra (PE)** | **4.0 mm²** | **2.5 mm²** | **2.5 mm²** |
-| **Diámetro Ducto PVC-P** | 25 mm (1") | 20 mm (3/4") | 20 mm (3/4") |
-| **Caída de Tensión ($\% \Delta V$)** | **1.13 %** | **0.14 %** | **2.41 %** |
-| **Estado Caída Tensión** | OK (< 2.5%) | OK (< 2.5%) | OK (< 2.5%) |
+#### **Circuito C-1: Iluminación / Alumbrado**
+- **Luminarias:** 11 LED de 15 W a 20 W $\Rightarrow P = 11 \times 20\,\text{W} = 220\,\text{W}$.
+- **Corriente:** $I = \frac{220}{220} = 1.0\,\text{A}$ (Carga pequeña).
+- **8 Interruptores:** No representan 8 circuitos, solo controlan el circuito C-1.
+- **Conductor:** $2.5\,\text{mm}^2\,\text{Cu}$ (N.° 12 AWG) + Tierra.
+- **Breaker:** 10 A Monofásico.
+
+#### **Circuito C-2: Tomacorrientes de Uso General (29 Tomas)**
+- **Equipos:** Refrigerador (300-500W), TV (100-200W), Laptop (50-100W), PC (300-600W), electrodomésticos varios.
+- **Potencia Simultánea Estimada:** $P = 3,000\,\text{W}$.
+- **Corriente de Demanda:** $I = \frac{3000}{220} = \mathbf{13.64\,\text{A}}$.
+- **Conductor:** $2.5\,\text{mm}^2\,\text{Cu}$ (N.° 12 AWG) + Tierra.
+- **Breaker:** 20 A Monofásico + Diferencial 25 A / 30 mA.
 
 ---
 
-## 4. CONCLUSIONES Y RECOMENDACIONES
+### 3. Criterio de Selección de Conductor
+Se usará **$2.5\,\text{mm}^2\,\text{Cu}$ (N.° 12 AWG)** como mínimo para ambos circuitos derivados en lugar de cable N.° 14 AWG ($2.08\,\text{mm}^2$), garantizando que se cumpla la regla de seguridad:
+$$\mathbf{I_{\text{demanda}} \le I_{\text{breaker}} \le I_{\text{conductor}}}$$
 
-1. **Selección de Cable 2.5 mm²:** Se justifica y valida el uso de conductores de $2.5\,\text{mm}^2$ de cobre para los dos circuitos derivados. Esta decisión garantiza que el cable trabaje holgadamente por debajo de su límite térmico ($21\,\text{A}$ a $25\,\text{A}$), minimiza la caída de tensión a menos de $2.5\%$, y tolera sobrecargas de arranque de equipos domésticos.
-2. **Protección de Personas:** Se ha incluido obligatoriamente la protección diferencial de $30\,\text{mA}$ para los 29 tomacorrientes, cumpliendo con la exigencia del Código Nacional de Electricidad de Perú para la prevención de electrocuciones.
-3. **Puesta a Tierra:** Es indispensable verificar en obra que el pozo a tierra reporte una resistencia menor o igual a $25\,\Omega$ medida con telurómetro antes de energizar la instalación.
+---
+
+### 4. Esquema Simple del Tablero
+
+```text
+                        TABLERO PRINCIPAL (220 V)
+                                    |
+                      +-------------+-------------+
+                      |                           |
+                 Breaker C-1                 Breaker C-2
+                    10 A                        20 A
+                      |                           |
+                  ALUMBRADO                 TOMACORRIENTES
+                      |                           |
+                11 luminarias                  29 tomas
+                8 interruptores             (TV, PC, Refri)
+```
