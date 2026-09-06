@@ -1,0 +1,285 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- PAQUETES DE CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2cm,headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,tabularx,multirow}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage[hidelinks,pdftex]{hyperref}
+
+% --- PALETA DE COLORES PROFESIONAL ---
+\definecolor{NavyBlue}{RGB}{10, 45, 90}
+\definecolor{AccentBlue}{RGB}{0, 102, 180}
+\definecolor{LightBlueBg}{RGB}{240, 246, 252}
+\definecolor{DarkGrey}{RGB}{50, 50, 50}
+\definecolor{SuccessGreen}{RGB}{25, 135, 84}
+
+% --- ESTILO DE SECCIONES ---
+\titleformat{\section}{\Large\bfseries\color{NavyBlue}}{\thesection.}{0.5em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{AccentBlue}}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries\color{DarkGrey}}{\thesubsubsection.}{0.5em}{}
+
+% --- ENCABEZADOS Y PIE DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{NavyBlue}{\textbf{EXPEDIENTE TÉCNICO | PROYECTO 1 RENZO}}}
+\rhead{\small\textcolor{DarkGrey}{Vivienda Unifamiliar 1 Piso}}
+\lfoot{\small\textcolor{DarkGrey}{Cliente: Renzo Gabriel Mamani Galindo}}
+\rfoot{\small\textcolor{DarkGrey}{Página \thepage}}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- ESTILO DE CAJAS TCOLORBOX ---
+\tcbuselibrary{skins,breakable}
+\tcbset{
+    boxrule=0.8pt,
+    arc=3pt,
+    colback=LightBlueBg,
+    colframe=NavyBlue,
+    fonttitle=\bfseries\color{white},
+    coltitle=white
+}
+
+\begin{document}
+
+% ==========================================
+% PORTADA EJECUTIVA PROFESIONAL
+% ==========================================
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    {\Huge \textbf{\color{NavyBlue} EXPEDIENTE TÉCNICO DE INSTALACIONES ELÉCTRICAS}}\\[0.6cm]
+    {\Large \textbf{\color{AccentBlue} PROYECTO 1 RENZO -- VIVIENDA UNIFAMILIAR DE 1 PISO}}\\[1.5cm]
+    
+    \begin{tcolorbox}[colback=NavyBlue,colframe=NavyBlue,halign=center]
+        \color{white}
+        \Large \textbf{INFORME FINAL Y MEMORIA DE CÁLCULO PARA ENTREGA A CLIENTE}\\
+        \small Cumplimiento Estricto del Código Nacional de Electricidad (CNE - Utilización 2006)
+    \end{tcolorbox}
+    
+    \vspace{2cm}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{/storage/emulated/0/universida-datos/Protecto/IMG-20260905-WA0067.jpg}
+        \caption{\textit{Plano de Distribución Eléctrica Inspeccionado -- Simbología CNE / SETUN}}
+    \end{figure}
+    
+    \vfill
+    
+    \begin{tabularx}{\textwidth}{l X}
+        \toprule
+        \textbf{\color{NavyBlue} Propietario / Cliente:} & Renzo Gabriel Mamani Galindo \\
+        \textbf{\color{NavyBlue} Docente / Supervisor:} & Richar Renzo Julio Amachi Quispe \\
+        \textbf{\color{NavyBlue} Tipo de Edificación:} & Vivienda Unifamiliar de 1 Piso \\
+        \textbf{\color{NavyBlue} Ubicación:} & Capachica -- Puno, Perú \\
+        \textbf{\color{NavyBlue} Suministro Eléctrico:} & Monofásico 220 V / 60 Hz \\
+        \textbf{\color{NavyBlue} Estado del Proyecto:} & \textcolor{SuccessGreen}{\textbf{APROBADO PARA EJECUCIÓN}} \\
+        \textbf{\color{NavyBlue} Fecha de Emisión:} & Septiembre de 2026 \\
+        \bottomrule
+    \end{tabularx}
+    
+\end{titlepage}
+
+\newpage
+
+% ==========================================
+% CONTENIDO TÉCNICO
+% ==========================================
+
+\section{Resumen Ejecutivo}
+
+El presente documento constituye el **Expediente Técnico de Instalaciones Eléctricas Interiores** para la edificación de una **vivienda unifamiliar de un piso**, desarrollado a solicitud del cliente **Renzo Gabriel Mamani Galindo**.
+
+El proyecto ha sido concebido garantizando la máxima continuidad de servicio, eficiencia energética, facilidad de mantenimiento y seguridad personal contra riesgos de choque eléctrico y sobrecargas, en total estricta conformidad con el **Código Nacional de Electricidad (CNE Utilización - R.M. 037-2006-MEM/DM)** y normas IEC complementarias.
+
+\begin{tcolorbox}[title=Aspectos Clave del Diseño Eléctrico, colframe=AccentBlue]
+\begin{itemize}
+    \item \textbf{Alimentación:} Monofásica $220\,\text{V} / 60\,\text{Hz}$ desde la red pública de distribución.
+    \item \textbf{Distribución de Circuitos Derivados:} 2 circuitos totalmente independientes (C-1 Alumbrado y C-2 Tomacorrientes).
+    \item \textbf{Criterio Estricto de Conductores:} Conductor mínimo de \textbf{$2.5\,\text{mm}^2$ Cu (N.° 12 AWG equiv.)} para ambos circuitos derivados, eliminando el cable de $2.08\,\text{mm}^2$ (14 AWG) para evitar calentamientos y garantizar resistencia mecánica.
+    \item \textbf{Protección Diferencial:} Incorporación de Interruptor Diferencial de alta sensibilidad ($30\,\text{mA}$) para la protección humana en el 100\% de las 29 salidas de tomacorrientes.
+    \item \textbf{Caída de Tensión Total:} \textbf{3.54 \%}, valor dentro del límite de $4.0\%$ exigido por la Regla 050-102 del CNE.
+\end{itemize}
+\end{tcolorbox}
+
+---
+
+\section{Análisis y Conteo de Puntos Eléctricos en Plano}
+
+De la evaluación técnica del plano de arquitectura y electrotecnia (\textit{IMG-20260905-WA0067.jpg}), se han contabilizado exactamente los siguientes puntos de utilización:
+
+\begin{table}[H]
+\centering
+\caption{Resumen Cuantitativo de Salidas Eléctricas por Circuito}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{c l c X}
+\toprule
+\textbf{Circuito} & \textbf{Descripción} & \textbf{Cantidad} & \textbf{Detalle Técnico} \\
+\midrule
+\textbf{C-1} & Salidas para Alumbrado LED & 11 Puntos & 8 luminarias interiores principales + 3 luminarias en zona superior/exterior. \\
+\textbf{C-1} & Interruptores de Maniobra & 8 Puntos & Control de encendido simple y conmutado. \\
+\midrule
+\textbf{C-2} & Tomacorrientes Bipolares Dobles & 29 Puntos & Con toma de tierra (2P+T), distribuidos en muros y columnas centrales. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+---
+
+\section{Memoria de Cálculo de Cargas y Protecciones}
+
+\subsection{Circuito C-1: Alumbrado General}
+\begin{itemize}
+    \item \textbf{Potencia Unitaria LED:} 20 W por luminaria.
+    \item \textbf{Potencia Instalada Total ($P_{\text{C1}}$):} $11 \times 20\,\text{W} = 220\,\text{W}$.
+    \item \textbf{Corriente de Trabajo Nominal ($I_{\text{C1}}$):}
+    \begin{equation}
+    I_{\text{C1}} = \frac{P_{\text{C1}}}{V \cdot \cos\phi} = \frac{220\,\text{W}}{220\,\text{V} \times 0.90} = 1.11\,\text{A}
+    \end{equation}
+    \item \textbf{Conductor Seleccionado:} $2 \times 2.5\,\text{mm}^2\,\text{Cu THHN/THW-90} + 1 \times 2.5\,\text{mm}^2\,\text{Cu PE}$ en ducto PVC-P $20\,\text{mm}$ ($3/4''$).
+    \item \textbf{Capacidad de corriente del cable ($I_z$):} $21\,\text{A}$ en ducto empotrado.
+    \item \textbf{Protección Termomagnética (ITM):} **2P -- 10 A**, Curva C ($6\,\text{kA}$).
+\end{itemize}
+
+\subsection{Circuito C-2: Tomacorrientes de Uso General (TUG)}
+\begin{itemize}
+    \item \textbf{Cantidad de tomas:} 29 tomacorrientes 2P+T.
+    \item \textbf{Máxima Demanda Simultánea Estimada ($P_{\text{C2}}$):} $3,000\,\text{W}$ (operación continua de refrigerador, TV, laptop, PC de escritorio y electrodomésticos portátiles).
+    \item \textbf{Corriente de Trabajo ($I_{\text{C2}}$):}
+    \begin{equation}
+    I_{\text{C2}} = \frac{3,000\,\text{W}}{220\,\text{V} \times 0.90} = 15.15\,\text{A}
+    \end{equation}
+    \item \textbf{Conductor Seleccionado:} $2 \times 2.5\,\text{mm}^2\,\text{Cu THHN/THW-90} + 1 \times 2.5\,\text{mm}^2\,\text{Cu PE}$ en ducto PVC-P $20\,\text{mm}$ ($3/4''$).
+    \item \textbf{Protección Termomagnética (ITM):} **2P -- 20 A**, Curva C ($6\,\text{kA}$).
+    \item \textbf{Protección Diferencial (ID):} **2P -- 25 A / 30 mA** (Exigencia obligatoria según Regla CNE 060-400).
+\end{itemize}
+
+\subsection{Alimentador Principal (Medidor M $\rightarrow$ Tablero General TG)}
+De acuerdo a la Regla **050-200** del CNE Utilización para Vivienda Unifamiliar:
+\begin{align}
+\text{PI Total} &= 220\,\text{W} + 5,800\,\text{W} = 6,020\,\text{W} \\
+\text{MD Total} &= 1,500\,\text{W} + (6,020 - 1,500) \times 0.50 = 3,760\,\text{W} = 3.76\,\text{kW}
+\end{align}
+\begin{equation}
+I_{\text{alim}} = \frac{3,760\,\text{W}}{220\,\text{V} \times 0.90} = 18.99\,\text{A} \approx 19.0\,\text{A} \quad \implies \quad I_{\text{diseño}} = 1.25 \times 19.0\,\text{A} = 23.75\,\text{A}
+\end{equation}
+\begin{itemize}
+    \item \textbf{Conductor del Alimentador:} **$2 \times 4\,\text{mm}^2\,\text{Cu THHN/THW-90} + 1 \times 4\,\text{mm}^2\,\text{PE}$** en ducto PVC-P $25\,\text{mm}$ ($1''$) (Capacidad $31\,\text{A}$).
+    \item \textbf{Llave Termomagnética General (TG):} **2P -- 25 A**, Curva C ($10\,\text{kA}$).
+\end{itemize}
+
+---
+
+\section{Verificación de Caída de Tensión (Caída V \%)}
+
+La Regla **050-102** del CNE establece que la caída de tensión máxima no debe superar el 2.5\% en el alimentador ni el 2.5\% en los circuitos derivados, con un acumulado máximo del 4.0\%.
+
+Fórmula monofásica: $\Delta V = \frac{2 \cdot L \cdot I \cdot 0.0175}{S}$
+
+\begin{table}[H]
+\centering
+\caption{Cuadro Justificativo de Caída de Tensión}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{X c c c c c c}
+\toprule
+\textbf{Tramo} & \textbf{Conductor} & \textbf{Longitud} & \textbf{Corriente} & \textbf{$\Delta V$ (V)} & \textbf{$\% \Delta V$} & \textbf{Evaluación} \\
+\midrule
+\textbf{Alimentador General} & $2 \times 4\,\text{mm}^2$ & $15.0\,\text{m}$ & $19.00\,\text{A}$ & $2.49\,\text{V}$ & \textbf{1.13 \%} & \textcolor{SuccessGreen}{\textbf{APROBADO}} \\
+\textbf{Circuito C-1 (Alumbrado)} & $2 \times 2.5\,\text{mm}^2$ & $20.0\,\text{m}$ & $1.11\,\text{A}$ & $0.31\,\text{V}$ & \textbf{0.14 \%} & \textcolor{SuccessGreen}{\textbf{APROBADO}} \\
+\textbf{Circuito C-2 (Tomacorrientes)} & $2 \times 2.5\,\text{mm}^2$ & $25.0\,\text{m}$ & $15.15\,\text{A}$ & $5.30\,\text{V}$ & \textbf{2.41 \%} & \textcolor{SuccessGreen}{\textbf{APROBADO}} \\
+\midrule
+\multicolumn{5}{l}{\textbf{Caída de Tensión Total Combinada (Alimentador + C-2):}} & \textbf{3.54 \%} & \textcolor{SuccessGreen}{\textbf{CUMPLE (< 4.0\%)}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+---
+
+\section{Esquema del Diagrama Unifilar}
+
+\begin{tcolorbox}[title=Diagrama Unifilar de Protección y Distribución (TG), colframe=NavyBlue]
+\begin{verbatim}
+               MEDIDOR DE ENERGIA (220V Monofasico 60Hz)
+                                   |
+                         Alimentador Principal:
+             2x4 mm2 Cu THHN + 1x4 mm2 PE (Tubo PVC-P 25mm)
+                                   |
+               +-------------------+-------------------+
+               |    TABLERO GENERAL (TG) EN CASTILLO   |
+               |                                       |
+               |   [ ITM GENERAL 2P - 25A (10 kA) ]    |
+               |                   |                   |
+               +---------+---------+---------+---------+
+                         |                   |
+               +---------+---------+ +-------+---------+
+               |  C-1 ALUMBRADO    | |C-2 TOMACORRIENTES|
+               |                   | |                 |
+               | [ ITM 2P - 10A ]  | | [ ITM 2P - 20A ]|
+               |                   | |                 |
+               |                   | |  [ ID 2P - 25A  |
+               |                   | |     30 mA ]     |
+               +---------+---------+ +-------+---------+
+                         |                   |
+                 2x2.5 mm2 Cu        2x2.5 mm2 Cu
+                 + 1x2.5 mm2 PE      + 1x2.5 mm2 PE
+                 (PVC-P 20mm)        (PVC-P 20mm)
+                         |                   |
+                  11 Luminarias       29 Tomacorrientes
+                    8 Int.               (TUG 2P+T)
+\end{verbatim}
+\end{tcolorbox}
+
+---
+
+\section{Lista General de Materiales (BOM)}
+
+\begin{table}[H]
+\centering
+\caption{Cómputo Métrico de Materiales Eléctricos para Obra}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{c X c c}
+\toprule
+\textbf{Item} & \textbf{Descripción del Material} & \textbf{Unidad} & \textbf{Cantidad Total} \\
+\midrule
+1 & Cable de Cobre Libre de Halógenos / THHN $4\,\text{mm}^2$ (Fase/Neutro/PE) & Metros & 60 \\
+2 & Cable de Cobre THHN/THW-90 $2.5\,\text{mm}^2$ (Fase y Neutro) & Metros & 180 \\
+3 & Cable de Cobre $2.5\,\text{mm}^2$ Verde/Amarillo (Protección a Tierra) & Metros & 90 \\
+4 & Tubo PVC Pesado (PVC-P) $\varnothing 20\,\text{mm}$ ($3/4''$) $\times 3\,\text{m}$ & Tubos & 25 \\
+5 & Tubo PVC Pesado (PVC-P) $\varnothing 25\,\text{mm}$ ($1''$) $\times 3\,\text{m}$ & Tubos & 5 \\
+6 & Cajas Octogonales Galvanizadas $4'' \times 4''$ (Luminarias) & Piezas & 11 \\
+7 & Cajas Rectangulares Galvanizadas $4'' \times 2''$ (Tomas e Int.) & Piezas & 37 \\
+8 & Tablero Eléctrico de Distribución Empotrado Resina 8 Polos IP40 & Unidad & 1 \\
+9 & Interruptor Termomagnético 2P -- 25 A ($10\,\text{kA}$) (General) & Unidad & 1 \\
+10 & Interruptor Termomagnético 2P -- 10 A ($6\,\text{kA}$) (Alumbrado) & Unidad & 1 \\
+11 & Interruptor Termomagnético 2P -- 20 A ($6\,\text{kA}$) (Tomacorrientes) & Unidad & 1 \\
+12 & Interruptor Diferencial 2P -- 25 A / 30 mA (Protección Humana) & Unidad & 1 \\
+13 & Kit Pozo Puesta a Tierra (Electrodo Cobre $\frac{5}{8}'' \times 2.4\text{m}$ + Dosis Gel) & Kit & 1 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{1.5cm}
+
+% ==========================================
+% FIRMAS Y CONFORMIDAD
+% ==========================================
+\begin{table}[H]
+\centering
+\begin{tabular}{cc}
+    \hspace{1cm}\rule{6cm}{0.4pt}\hspace{1cm} & \hspace{1cm}\rule{6cm}{0.4pt}\hspace{1cm} \\
+    \textbf{Renzo Gabriel Mamani Galindo} & \textbf{Ing. Richar Renzo Julio Amachi Q.} \\
+    Propietario / Cliente & Supervisor de Proyecto \\
+\end{tabular}
+\end{table}
+
+\end{document}
