@@ -1,0 +1,112 @@
+{
+  "revision": 3,
+  "status": "PRELIMINARY_NOT_FOR_CONSTRUCTION",
+  "software_tests": "pytest completo aprobado; ver salida de pipeline",
+  "engineering_validation": false,
+  "files": {
+    "derived/reconciliacion_corredores_rev3.json": {
+      "bytes": 4886,
+      "sha256": "58d26e38956d72c88c3fae6034d952b4acfc63be6393f6ed8d7be11ecdb6a100"
+    },
+    "datos/empalmes_kml_rev3.csv": {
+      "bytes": 837,
+      "sha256": "27e5784deea1975cb41079f68ddc51592f081cb0101adaaec10e45f5397c007d"
+    },
+    "datos/candidatos_nuevos_replanteo_rev3.csv": {
+      "bytes": 13799,
+      "sha256": "c140885e6a29ed70b71d51e34139f778975f24a3517b305b328ec3dd6757f1e0"
+    },
+    "datos/registro_datos_rev3.json": {
+      "bytes": 6878,
+      "sha256": "038ee2483c9a36c77a42e09ca2b5a03d9fd83a0f5ce20f40ce867a044a3a7f32"
+    },
+    "datos/cruces_viales_rev3.csv": {
+      "bytes": 11004,
+      "sha256": "59046eb4d8eeb170b10d4ee861888864be8096f10d3139687b52aef215151854"
+    },
+    "documentacion/CONCILIACION_CORREDORES_REV3.md": {
+      "bytes": 2962,
+      "sha256": "e5a208816c8aa311e90067d8c24750c04f5dae16aab55e7750cdb4d3908418fd"
+    },
+    "documentacion/SOLICITUD_TECNICA_ELECTRO_PUNO_REV3.md": {
+      "bytes": 2970,
+      "sha256": "e6dd9dbce40527105ec44d3b0303ca1ac8b7d6b57d3711fb2cd8c402f7dfec70"
+    },
+    "documentacion/METODOLOGIA_UBICACION_POSTES_REV3.md": {
+      "bytes": 2229,
+      "sha256": "cf29af0637b781194614c8c6f551d10c5a1562131597877af708fb4286e9bea8"
+    },
+    "documentacion/FLUJO_CALCULOS_REV3.md": {
+      "bytes": 4492,
+      "sha256": "3056b22c33a300b993fd188d64899ec7a9c299c52148b52713e7e633eef0ab3e"
+    },
+    "documentacion/PLAN_CAMPO_Y_CRUCES_REV3.md": {
+      "bytes": 2271,
+      "sha256": "9b5adbd5289fa22ffa306750c4b2cb9a4f6feda409555b172577d07c8af42ce5"
+    },
+    "documentacion/AUDITORIA_PLANOS_REV3.md": {
+      "bytes": 2204,
+      "sha256": "543fea0c11a19e5b6f392a01939bfc780088bfeccd516c0fc6aa0ddc4d2455c2"
+    },
+    "documentacion/BLOQUEOS_Y_PUERTAS_REV3.md": {
+      "bytes": 3148,
+      "sha256": "1f160f9f4ed7affab5cef8d0b813d28e2d49547d2249dabd415b36807ddab1cb"
+    },
+    "documentacion/INFORME_REV3.md": {
+      "bytes": 2529,
+      "sha256": "e821071cd9dd391289b1e26d54329ee452efa75cf348d99182282fe1f9d2c112"
+    },
+    "expediente/08_preparacion_diseno_rev3.md": {
+      "bytes": 1064,
+      "sha256": "47119842e96f200e1c29643918482f0f3af3654dd7acacddbf997aa61cd9041d"
+    },
+    "README.md": {
+      "bytes": 8813,
+      "sha256": "83acdc9f948579ffeb4002495d53a2f47a7bbc5513f3ca5e9a2946600e5bb39e"
+    },
+    "proyecto.yaml": {
+      "bytes": 2115,
+      "sha256": "f4e0a465e74559b51352d15dacdf34250bea40b5d59c3c37563c19c767f42542"
+    },
+    "requirements.txt": {
+      "bytes": 169,
+      "sha256": "90d51aef190f1b8a875b92e0446749ec684f85ed52f4011705ba6cf07aa39e4a"
+    },
+    "datos/parametros_diseno_pendientes.json": {
+      "bytes": 1995,
+      "sha256": "436e4137a4ec4ccfeba3cacf8d2058302986cd948f8ca77a908e04a946ee97eb"
+    },
+    "scripts/preparar_rev3.py": {
+      "bytes": 15561,
+      "sha256": "a64ab50ef1f0dd8105d58576c38e9a1767c864657e6eb7fc7f8a84362ea9fcda"
+    },
+    "scripts/validar_rev3.py": {
+      "bytes": 8068,
+      "sha256": "4b28a6c022e73bf8c1ca88bffe20ef126092aea69be0d530f1a6937a96d4bb18"
+    },
+    "scripts/reproducir_rev3.py": {
+      "bytes": 3868,
+      "sha256": "9f0b83689d6e8967a456e72a08855d5dd1e4f3bccdb35f21766d05a0b038e5f0"
+    },
+    "tests/test_rev3.py": {
+      "bytes": 4106,
+      "sha256": "c58b4a55a6e24aa007fdbcb31cef014af433fa3d4537d2609b6dbeded9ee50b6"
+    },
+    "sources/ruta topografica capachica llachon.kml": {
+      "bytes": 9467,
+      "sha256": "d68db8f50d3408e93612471acdc5db59ccaddb37bdbf08fa4c5e764fff082ec8"
+    },
+    "derived/route.json": {
+      "bytes": 22765,
+      "sha256": "5942212c0e283e14ccd1359212c16b76a6c680b5ec51b85798d497946ffa8d54"
+    },
+    "sources/gisem_mt_estructuras.geojson": {
+      "bytes": 169594,
+      "sha256": "6794f57ffe7762ce8dba3338027531cb598ac6f09bccf10d8011ad73f471fd4a"
+    },
+    "sources/osm_roads.json": {
+      "bytes": 414403,
+      "sha256": "f71194136b4640ce71a49d6b30466042472ed6b1216972b9e5e3e959b9ecadae"
+    }
+  }
+}

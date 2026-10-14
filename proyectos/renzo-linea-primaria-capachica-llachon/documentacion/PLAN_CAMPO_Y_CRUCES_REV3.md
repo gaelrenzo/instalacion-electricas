@@ -1,0 +1,11 @@
+# Plan de campo, cruces y servidumbres — Rev. 3
+
+**Prioridad 1 — continuidad del eje:** replantear GAP-1 (14,133 m), GAP-2 (43,965 m) y GAP-3 (6,979 m). En GAP-3 medir el punto de intersección de segmentos 3/4 y establecer sentido del recorrido, sobrantes y posible duplicidad. Levantar ambos extremos, cotas y conexión real sin editar el KML fuente.
+
+**Prioridad 2 — conexión y red existente:** verificar físicamente el punto informado (-15,6421333, -69,8316111), el tramo TMT001868169 y los códigos de estructuras cercanas. Comparar con as-built del titular, placa, propiedad, estado, capacidad y accesos. Los 40 puntos PC-* son inventario GIS para inspección; los 27 sitios PN-* son propuestas geométricas distintas para evaluar. Registrar ambos con fotografías y método de coordenadas.
+
+**Prioridad 3 — obstáculos y derechos:** inspeccionar las **44 intersecciones geométricas** de vías OSM, con coordenadas, progresiva, ID de vía y tipo OSM en datos/cruces_viales_rev3.csv, y los **17 cambios de dirección** registrados en datos/cruces_y_puntos_criticos.csv. Depurar duplicados y coincidencias de eje. Añadir cauces, edificaciones, líneas de telecomunicación, vegetación, caminos, cercos y zonas ambiental/culturalmente restringidas que no figuran en las fuentes disponibles. Obtener ubicación, nivel, ancho, titular, clase de cruce, permiso y gálibo requerido. El trazado no prueba servidumbre: levantar linderos, propietario, acceso y consentimiento/acto aplicable por parcela.
+
+**Producto exigido al topógrafo:** coordenadas WGS84/UTM 19S y cotas con datum vertical declarado; equipo, fecha, control, método, incertidumbre y firmas; perfiles longitudinales/transversales de cada vano/cambio/cruce; nube o puntos originales; fotografías georreferenciadas; inventario de apoyos y obstáculos. SRTM30m previo no sustituye estas mediciones.
+
+**Lista de verificación por sitio:** ID PN/PC, progresiva y segmento, coordenada/cota medida, diferencia frente al KML/GIS, estado de apoyo existente, cruce/obstáculo, flecha y despeje medidos si corresponde, servidumbre, geotecnia/resistividad, acceso, restricción, evidencia fotográfica, responsable y decisión. Ningún sitio pasa a plano constructivo sin resolver sus campos críticos.

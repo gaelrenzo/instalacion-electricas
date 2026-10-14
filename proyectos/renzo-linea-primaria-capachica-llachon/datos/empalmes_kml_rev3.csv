@@ -1,0 +1,4 @@
+﻿id,segmento_origen,estacion_fin_origen_m,lon_fin_origen,lat_fin_origen,lon_inicio_siguiente,lat_inicio_siguiente,distancia_recta_m,avance_proyectado_gis_m,interseccion_puntual,sobrante_hasta_cruce_origen_m,avance_desde_inicio_a_cruce_siguiente_m,estado
+GAP-1,1,255.990104,-69.83242273552025,-15.64371044075648,-69.83230912986195,-15.64364559960856,14.132854,0.0,False,,,trazo entre extremos no levantado; verificar continuidad y sentido
+GAP-2,2,4388.21944,-69.84928125853355,-15.67336652054809,-69.84953040036214,-15.67368226031759,43.965184,33.488926,False,,,trazo entre extremos no levantado; verificar continuidad y sentido
+GAP-3,3,8966.604252,-69.82133950857532,-15.7023275086226,-69.8213893272022,-15.70228686960023,6.979239,-6.977383,True,1.781217,5.270941,trazo entre extremos no levantado; verificar continuidad y sentido

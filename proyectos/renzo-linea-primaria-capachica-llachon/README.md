@@ -1,5 +1,22 @@
 # Capachica–Llachón: anteproyecto y planos AutoCAD
 
+## Revisión activa 3: conciliación y preparación del diseño
+
+La [conciliación de ejes](documentacion/CONCILIACION_CORREDORES_REV3.md) distingue la diferencia publicada de **105,482 m** del KML frente al GIS, las tres brechas que suman **65,077 m** y los **40,405 m** que resultan solo de restar cifras redondeadas. Esa resta no identifica un tramo faltante. Las fuentes originales siguen inalteradas.
+
+Los [27 sitios PN para replanteo](datos/candidatos_nuevos_replanteo_rev3.csv) son candidatos geométricos a evaluar para apoyos nuevos; están separados de las 40 estructuras GISEM PC del inventario Rev. 2. Su [método de selección](documentacion/METODOLOGIA_UBICACION_POSTES_REV3.md) y [registro de procedencia y estado](datos/registro_datos_rev3.json) impiden tratarlos como postes aprobados.
+
+Se prepararon, **sin enviar**, la [solicitud a Electro Puno](documentacion/SOLICITUD_TECNICA_ELECTRO_PUNO_REV3.md), el [plan de campo y cruces](documentacion/PLAN_CAMPO_Y_CRUCES_REV3.md) con [44 indicios viales georreferenciados](datos/cruces_viales_rev3.csv), el [flujo de cálculos](documentacion/FLUJO_CALCULOS_REV3.md), la [auditoría de los cinco planos](documentacion/AUDITORIA_PLANOS_REV3.md) y los [bloqueos y criterios de avance](documentacion/BLOQUEOS_Y_PUERTAS_REV3.md). Los DXF/PDF Rev. 2 permanecen como antecedentes para corregir tras topografía y datos del operador.
+
+Desde la raíz del repositorio, con el entorno virtual instalado según la sección inferior:
+
+~~~powershell
+python proyectos/renzo-linea-primaria-capachica-llachon/scripts/reproducir_rev3.py --archive-existing
+python -m pytest proyectos/renzo-linea-primaria-capachica-llachon/tests -q
+~~~
+
+La opción --archive-existing respalda las salidas Rev. 3 ya incluidas en el repositorio bajo build/ antes de regenerarlas. Si no existen salidas, puede omitirse. Las pruebas verifican datos y software, **no** la ingeniería de construcción.
+
 ## Revisión activa 2: corredor manual KML
 
 La [auditoría KML Rev. 2](documentacion/AUDITORIA_KML_REV2.md) es la referencia activa del corredor manual. Calcula **13 939,512 m UTM** en cuatro segmentos separados por brechas de 14,133, 43,965 y 6,979 m. Difiere **105,482 m** de la longitud GIS anterior. El punto de conexión informado está a 0,561 m del comienzo del KML y coincide con un tramo GISEM, pero su aprobación eléctrica está pendiente.

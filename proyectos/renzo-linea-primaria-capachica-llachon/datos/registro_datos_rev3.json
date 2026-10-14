@@ -1,0 +1,202 @@
+{
+  "confirmados": {
+    "kml_sha256": {
+      "valor": "d68db8f50d3408e93612471acdc5db59ccaddb37bdbf08fa4c5e764fff082ec8",
+      "unidad": null,
+      "fuente": "ruta topografica capachica llachon.kml",
+      "nota": "identidad documental; sin validación de campo"
+    },
+    "segmentos_kml": {
+      "valor": 4,
+      "unidad": "líneas",
+      "fuente": "ruta topografica capachica llachon.kml",
+      "nota": "estructura del archivo"
+    },
+    "vertices_kml": {
+      "valor": 187,
+      "unidad": "vértices",
+      "fuente": "ruta topografica capachica llachon.kml",
+      "nota": "estructura del archivo"
+    },
+    "codigo_tmt": {
+      "valor": "TMT001868169",
+      "unidad": null,
+      "fuente": "sources/gisem_mt_tramos.geojson",
+      "nota": "capa de tramos; no conexión aprobada"
+    }
+  },
+  "calculados": {
+    "longitud_kml_sin_empalmes_m": {
+      "valor": 13939.51191,
+      "unidad": "m",
+      "fuente": "derived/reconciliacion_corredores_rev3.json",
+      "nota": "geometría cartográfica UTM 19S; no metrado de obra"
+    },
+    "longitud_gis_m": {
+      "valor": 13834.028618,
+      "unidad": "m",
+      "fuente": "derived/reconciliacion_corredores_rev3.json",
+      "nota": "geometría cartográfica UTM 19S; no metrado de obra"
+    },
+    "diferencia_ejes_m": {
+      "valor": 105.483292,
+      "unidad": "m",
+      "fuente": "derived/reconciliacion_corredores_rev3.json",
+      "nota": "geometría cartográfica UTM 19S; no metrado de obra"
+    },
+    "suma_brechas_rectas_m": {
+      "valor": 65.077277,
+      "unidad": "m",
+      "fuente": "derived/reconciliacion_corredores_rev3.json",
+      "nota": "geometría cartográfica UTM 19S; no metrado de obra"
+    }
+  },
+  "estimados": {
+    "sitios_geometricos_replanteo": {
+      "valor": 27,
+      "unidad": "sitios",
+      "fuente": "datos/candidatos_nuevos_replanteo_rev3.csv",
+      "nota": "filtros de gabinete de 10 m y 20 grados; no postes aprobados"
+    },
+    "estructuras_gis_proximas": {
+      "valor": 40,
+      "unidad": "puntos",
+      "fuente": "datos/ubicaciones_postes_preliminares.csv",
+      "nota": "inventario cartográfico con radio de 25 m"
+    },
+    "intersecciones_viales_osm": {
+      "valor": 44,
+      "unidad": "alertas",
+      "fuente": "datos/cruces_viales_rev3.csv",
+      "nota": "intersecciones geométricas no verificadas en campo"
+    }
+  },
+  "pendientes_validacion": {
+    "network_operator_approved_connection": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "nominal_voltage_kv": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "system_phases": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "frequency_hz": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "existing_feeder_id": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "existing_line_as_built": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "existing_conductor_type_and_section": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "existing_structures_inventory": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "existing_transformers_and_protection": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "present_peak_demand_kva": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "forecast_peak_demand_kva": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "power_factor": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "source_short_circuit_levels": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "topographic_survey": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "crossings_and_clearances": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "weather_design_cases": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "soil_and_geotechnical_data": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "soil_resistivity_ohm_m": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "servitudes_and_land_rights": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "environmental_and_cultural_constraints": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    },
+    "scope_of_work_approved": {
+      "valor": null,
+      "unidad": null,
+      "fuente": "datos/parametros_diseno_pendientes.json",
+      "nota": "solicitar a Electro Puno o levantar en campo"
+    }
+  }
+}

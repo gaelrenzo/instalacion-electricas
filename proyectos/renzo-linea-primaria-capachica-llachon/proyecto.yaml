@@ -1,7 +1,8 @@
 id: renzo-linea-primaria-capachica-llachon
 nombre: Anteproyecto cartográfico de red MT Capachica–Llachón
 estado: borrador_para_revision
-revision_activa: 2
+revision_activa: 3
+estado_planos: antecedente_rev2_pendiente_de_correccion
 objeto: Evaluar el corredor de media tensión publicado y la necesidad de intervención
 origen_referencia_gisem: NMT000367723
 final_referencia_gisem: NMT000027963
@@ -20,9 +21,17 @@ vistas:
   - plans/CL-03_REV2_MANUAL.pdf
   - plans/CL-04_REV2_MANUAL.pdf
   - plans/CL-05_REV2_MANUAL.pdf
-memoria: documentacion/AUDITORIA_KML_REV2.md
-calculos: documentacion/CALCULOS_Y_PENDIENTES_REV2.md
+memoria: documentacion/CONCILIACION_CORREDORES_REV3.md
+calculos: documentacion/FLUJO_CALCULOS_REV3.md
 matriz_normativa: documentacion/MATRIZ_NORMATIVA_REV2.md
+metodologia_postes: documentacion/METODOLOGIA_UBICACION_POSTES_REV3.md
+solicitud_operador: documentacion/SOLICITUD_TECNICA_ELECTRO_PUNO_REV3.md
+plan_campo: documentacion/PLAN_CAMPO_Y_CRUCES_REV3.md
+auditoria_planos: documentacion/AUDITORIA_PLANOS_REV3.md
+bloqueos: documentacion/BLOQUEOS_Y_PUERTAS_REV3.md
+informe_revision: documentacion/INFORME_REV3.md
+registro_datos: datos/registro_datos_rev3.json
+reconciliacion_corredores: derived/reconciliacion_corredores_rev3.json
 antecedente_rev1: documentacion/respaldo_rev1/proyecto_original.yaml
 expediente_editable: expediente/README.md
 expediente_pdf_local: build/renzo-linea-primaria-capachica-llachon/EXPEDIENTE_PRELIMINAR_CAPACHICA_LLACHON_REV1.pdf
